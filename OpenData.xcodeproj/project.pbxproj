@@ -21,6 +21,7 @@
 		A6748AC0192127EA0073CE19 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748AA2192127E90073CE19 /* UIKit.framework */; };
 		A6748AC8192127EA0073CE19 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A6748AC6192127EA0073CE19 /* InfoPlist.strings */; };
 		A6748ACA192127EA0073CE19 /* OpenDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748AC9192127EA0073CE19 /* OpenDataTests.m */; };
+		C11118D911DD46AFA835F8F3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D73CDD20E349509DE73F55 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A1D73CDD20E349509DE73F55 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6748A9B192127E90073CE19 /* OpenData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6748A9E192127E90073CE19 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A6748AA0192127E90073CE19 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,6 +55,7 @@
 		A6748AC5192127EA0073CE19 /* OpenDataTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenDataTests-Info.plist"; sourceTree = "<group>"; };
 		A6748AC7192127EA0073CE19 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A6748AC9192127EA0073CE19 /* OpenDataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenDataTests.m; sourceTree = "<group>"; };
+		CFFE53274403422DB4CE650B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +66,7 @@
 				A6748AA1192127E90073CE19 /* CoreGraphics.framework in Frameworks */,
 				A6748AA3192127E90073CE19 /* UIKit.framework in Frameworks */,
 				A6748A9F192127E90073CE19 /* Foundation.framework in Frameworks */,
+				C11118D911DD46AFA835F8F3 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +90,7 @@
 				A6748AC3192127EA0073CE19 /* OpenDataTests */,
 				A6748A9D192127E90073CE19 /* Frameworks */,
 				A6748A9C192127E90073CE19 /* Products */,
+				CFFE53274403422DB4CE650B /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +110,7 @@
 				A6748AA0192127E90073CE19 /* CoreGraphics.framework */,
 				A6748AA2192127E90073CE19 /* UIKit.framework */,
 				A6748ABD192127EA0073CE19 /* XCTest.framework */,
+				A1D73CDD20E349509DE73F55 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -159,9 +165,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A6748ACD192127EA0073CE19 /* Build configuration list for PBXNativeTarget "OpenData" */;
 			buildPhases = (
+				AC358971F6BA49D48AD6EFDD /* Check Pods Manifest.lock */,
 				A6748A97192127E90073CE19 /* Sources */,
 				A6748A98192127E90073CE19 /* Frameworks */,
 				A6748A99192127E90073CE19 /* Resources */,
+				F3A6364F3A5C4563A93D828D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -380,6 +388,7 @@
 		};
 		A6748ACE192127EA0073CE19 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CFFE53274403422DB4CE650B /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -393,6 +402,7 @@
 		};
 		A6748ACF192127EA0073CE19 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CFFE53274403422DB4CE650B /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -463,6 +473,7 @@
 				A6748ACF192127EA0073CE19 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A6748AD0192127EA0073CE19 /* Build configuration list for PBXNativeTarget "OpenDataTests" */ = {
 			isa = XCConfigurationList;
@@ -471,6 +482,7 @@
 				A6748AD2192127EA0073CE19 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
