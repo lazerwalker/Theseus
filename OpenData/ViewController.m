@@ -8,9 +8,13 @@
 
 #import "ViewController.h"
 #import "LocationManager.h"
+#import "MotionManager.h"
+#import "LocationList.h"
 
 @interface ViewController ()
 @property (strong, nonatomic) LocationManager *locationManager;
+@property (strong, nonatomic) MotionManager *motionManager;
+
 @end
 
 @implementation ViewController
@@ -21,6 +25,13 @@
 
     self.locationManager = [LocationManager new];
     [self.locationManager startMonitoring];
+
+    self.motionManager = [MotionManager new];
+    [self.motionManager startMonitoring];
+
+    LocationList *list = [LocationList loadFromDisk];
+    NSLog(@"================> %@", list.activities);
+    NSLog(@"================> %@", list.locations);
 }
 
 

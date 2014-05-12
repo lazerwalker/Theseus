@@ -11,9 +11,11 @@
 @interface LocationList : MTLModel
 
 @property (strong, nonatomic) NSArray *locations;
+@property (strong, nonatomic) NSArray *activities;
 
 + (instancetype)loadFromDisk;
 
 - (void)addLocations:(NSArray *)locations;
+- (void)addActivities:(NSArray *)activities;
 
 @end

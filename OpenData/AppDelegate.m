@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MotionManager.h"
 
 @implementation AppDelegate
 
@@ -35,7 +36,8 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    MotionManager *manager = [MotionManager new];
+    [manager fetchUpdatesWhileInactive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

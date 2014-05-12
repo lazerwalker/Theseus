@@ -20,7 +20,14 @@
 }
 
 - (void)addLocations:(NSArray *)locations {
+    if (!self.locations) self.locations = [NSArray new];
     self.locations = [self.locations arrayByAddingObjectsFromArray:locations];
+    [self persistToDisk];
+}
+
+- (void)addActivities:(NSArray *)activities {
+    if (!self.activities) self.activities = [NSArray new];
+    self.activities = [self.activities arrayByAddingObjectsFromArray:activities];
     [self persistToDisk];
 }
 
