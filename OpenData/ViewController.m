@@ -42,62 +42,66 @@
 }
 
 - (void)render {
-    LocationList *list = [LocationList loadFromDisk];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        LocationList *list = [LocationList loadFromDisk];
 
-    NSArray *array = [list.locations arrayByAddingObjectsFromArray:list.activities];
-    array = [array sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        NSDate *date1, *date2;
+        NSArray *array = [list.locations arrayByAddingObjectsFromArray:list.activities];
+        array = [array sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            NSDate *date1, *date2;
 
-        if ([obj1 isKindOfClass:[CLLocation class]]) {
-            date1 = [(CLLocation *)obj1 timestamp];
-        } else if ([obj1 isKindOfClass:[CMMotionActivity class]]){
-            date1 = [(CMMotionActivity *)obj1 startDate];
-        } else {
-            NSLog(@"UH OH");
-        }
-
-        if ([obj2 isKindOfClass:[CLLocation class]]) {
-            date2 = [(CLLocation *)obj2 timestamp];
-        } else if ([obj2 isKindOfClass:[CMMotionActivity class]]){
-            date2 = [(CMMotionActivity *)obj2 startDate];
-        } else {
-            NSLog(@"UH OH");
-        }
-
-        return [date1 compare:date2];
-    }];
-
-    CMMotionActivity *previousActivity;
-
-    NSMutableArray *annotations = [NSMutableArray new];
-    NSMutableArray *movementPoints = [NSMutableArray new];
-    for (id obj in array) {
-        if ([obj isKindOfClass:[CLLocation class]]) {
-            if (previousActivity.stationary) {
-                [annotations addObject:obj];
+            if ([obj1 isKindOfClass:[CLLocation class]]) {
+                date1 = [(CLLocation *)obj1 timestamp];
+            } else if ([obj1 isKindOfClass:[CMMotionActivity class]]){
+                date1 = [(CMMotionActivity *)obj1 startDate];
             } else {
-                [movementPoints addObject:obj];
+                NSLog(@"UH OH");
             }
-        } else {
-            previousActivity = obj;
+
+            if ([obj2 isKindOfClass:[CLLocation class]]) {
+                date2 = [(CLLocation *)obj2 timestamp];
+            } else if ([obj2 isKindOfClass:[CMMotionActivity class]]){
+                date2 = [(CMMotionActivity *)obj2 startDate];
+            } else {
+                NSLog(@"UH OH");
+            }
+
+            return [date1 compare:date2];
+        }];
+
+        CMMotionActivity *previousActivity;
+
+        NSMutableArray *annotations = [NSMutableArray new];
+        NSMutableArray *movementPoints = [NSMutableArray new];
+        for (id obj in array) {
+            if ([obj isKindOfClass:[CLLocation class]]) {
+                if (previousActivity.stationary) {
+                    [annotations addObject:obj];
+                } else {
+                    [movementPoints addObject:obj];
+                }
+            } else {
+                previousActivity = obj;
+            }
         }
-    }
 
-    NSLog(@"================> %@", annotations);
-    [self.mapView addAnnotations:annotations];
+        CLLocationCoordinate2D* pointArr = malloc(sizeof(CLLocationCoordinate2D) * movementPoints.count);
 
-    CLLocationCoordinate2D* pointArr = malloc(sizeof(CLLocationCoordinate2D) * movementPoints.count);
+        NSUInteger idx = 0;
+        for (CLLocation *location in movementPoints) {
+            pointArr[idx] = location.coordinate;
+            idx++;
+        }
 
-    NSUInteger idx = 0;
-    for (CLLocation *location in movementPoints) {
-        pointArr[idx] = location.coordinate;
-        idx++;
-    }
+        MKPolyline *polyline = [MKPolyline polylineWithCoordinates:pointArr count:movementPoints.count];
 
-    MKPolyline *polyline = [MKPolyline polylineWithCoordinates:pointArr count:movementPoints.count];
-    [self.mapView addOverlay:polyline];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.mapView addAnnotations:annotations];
 
-    [self.mapView setRegion:MKCoordinateRegionMake([annotations.lastObject coordinate], MKCoordinateSpanMake(0.01, 0.01))];
+            [self.mapView addOverlay:polyline];
+
+            [self.mapView setRegion:MKCoordinateRegionMake([annotations.lastObject coordinate], MKCoordinateSpanMake(0.01, 0.01))];
+        });
+    });
 }
 
 #pragma mark - MKMapViewDelegate

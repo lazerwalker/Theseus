@@ -12,6 +12,7 @@
 
 @interface MotionManager ()
 @property (strong, nonatomic) CMMotionActivityManager *manager;
+@property (strong, nonatomic) NSOperationQueue *operationQueue;
 @end
 
 
@@ -22,6 +23,7 @@
     if (!self) return nil;
 
     self.manager = [CMMotionActivityManager new];
+    self.operationQueue = [NSOperationQueue new];
 
     return self;
 }
@@ -29,7 +31,7 @@
 - (void)startMonitoring {
     if (![CMMotionActivityManager isActivityAvailable]) return;
 
-    [self.manager startActivityUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^(CMMotionActivity *activity) {
+    [self.manager startActivityUpdatesToQueue:self.operationQueue withHandler:^(CMMotionActivity *activity) {
         LocationList *list = [LocationList loadFromDisk];
         [list addActivities:@[activity]];
     }];
@@ -46,7 +48,7 @@
     NSDate *date = [list.activities.lastObject startDate];
     if (!date) date = [NSDate distantPast];
 
-    [self.manager queryActivityStartingFromDate:date toDate:NSDate.date toQueue:NSOperationQueue.mainQueue withHandler:^(NSArray *activities, NSError *error) {
+    [self.manager queryActivityStartingFromDate:date toDate:NSDate.date toQueue:self.operationQueue withHandler:^(NSArray *activities, NSError *error) {
 
         if (error) {
             NSLog(@"================> %@", error);
