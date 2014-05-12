@@ -54,7 +54,7 @@
             } else if ([obj1 isKindOfClass:[CMMotionActivity class]]){
                 date1 = [(CMMotionActivity *)obj1 startDate];
             } else {
-                NSLog(@"UH OH");
+                @throw @"Expected a CLLocation or CMMotionActivity object";
             }
 
             if ([obj2 isKindOfClass:[CLLocation class]]) {
@@ -62,7 +62,7 @@
             } else if ([obj2 isKindOfClass:[CMMotionActivity class]]){
                 date2 = [(CMMotionActivity *)obj2 startDate];
             } else {
-                NSLog(@"UH OH");
+                @throw @"Expected a CLLocation or CMMotionActivity object";
             }
 
             return [date1 compare:date2];
