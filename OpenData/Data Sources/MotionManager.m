@@ -44,6 +44,8 @@
 
     LocationList *list = [LocationList loadFromDisk];
     NSDate *date = [list.activities.lastObject startDate];
+    if (!date) date = [NSDate distantPast];
+
     [self.manager queryActivityStartingFromDate:date toDate:NSDate.date toQueue:NSOperationQueue.mainQueue withHandler:^(NSArray *activities, NSError *error) {
 
         if (error) {

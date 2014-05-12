@@ -24,6 +24,7 @@
 		A6748AD7192128D70073CE19 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748AD6192128D70073CE19 /* LocationManager.m */; };
 		A6748ADB19212E8C0073CE19 /* LocationList.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748ADA19212E8C0073CE19 /* LocationList.m */; };
 		A6748ADE1921344F0073CE19 /* MotionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748ADD1921344F0073CE19 /* MotionManager.m */; };
+		A6748AE3192155F50073CE19 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748AE2192155F50073CE19 /* MapKit.framework */; };
 		C11118D911DD46AFA835F8F3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D73CDD20E349509DE73F55 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		A6748ADA19212E8C0073CE19 /* LocationList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationList.m; path = Models/LocationList.m; sourceTree = "<group>"; };
 		A6748ADC1921344F0073CE19 /* MotionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MotionManager.h; path = "Data Sources/MotionManager.h"; sourceTree = "<group>"; };
 		A6748ADD1921344F0073CE19 /* MotionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MotionManager.m; path = "Data Sources/MotionManager.m"; sourceTree = "<group>"; };
+		A6748AE2192155F50073CE19 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CFFE53274403422DB4CE650B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6748AE3192155F50073CE19 /* MapKit.framework in Frameworks */,
 				A6748AA1192127E90073CE19 /* CoreGraphics.framework in Frameworks */,
 				A6748AA3192127E90073CE19 /* UIKit.framework in Frameworks */,
 				A6748A9F192127E90073CE19 /* Foundation.framework in Frameworks */,
@@ -115,6 +118,7 @@
 		A6748A9D192127E90073CE19 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A6748AE2192155F50073CE19 /* MapKit.framework */,
 				A6748A9E192127E90073CE19 /* Foundation.framework */,
 				A6748AA0192127E90073CE19 /* CoreGraphics.framework */,
 				A6748AA2192127E90073CE19 /* UIKit.framework */,
