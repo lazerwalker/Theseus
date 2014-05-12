@@ -10,6 +10,7 @@
 #import "LocationManager.h"
 #import "MotionManager.h"
 #import "LocationList.h"
+#import "MovementPath.h"
 
 @import MapKit;
 @import CoreMotion;
@@ -72,6 +73,7 @@
 
         NSMutableArray *annotations = [NSMutableArray new];
         NSMutableArray *movementPoints = [NSMutableArray new];
+        NSMutableArray *paths = [NSMutableArray new];
         for (id obj in array) {
             if ([obj isKindOfClass:[CLLocation class]]) {
                 if (previousActivity.stationary) {
@@ -81,23 +83,40 @@
                 }
             } else {
                 previousActivity = obj;
+
+                CLLocationCoordinate2D* pointArr = malloc(sizeof(CLLocationCoordinate2D) * movementPoints.count);
+
+                NSUInteger idx = 0;
+                for (CLLocation *location in movementPoints) {
+                    pointArr[idx] = location.coordinate;
+                    idx++;
+                }
+
+                MovementPath *path = [MovementPath polylineWithCoordinates:pointArr count:movementPoints.count];
+
+                if (previousActivity.walking) {
+                    path.type = MovementTypeWalking;
+                } else if (previousActivity.running) {
+                    path.type = MovementTypeRunning;
+                } else if (previousActivity.automotive) {
+                    path.type = MovementTypeTransit;
+                } else {
+                    CLLocationSpeed speed = [[movementPoints valueForKeyPath:@"@avg.speed"] doubleValue];
+                    if (speed > 1.0) {
+                        path.type = MovementTypeBiking;
+                    }
+                }
+
+                [paths addObject:path];
+                [movementPoints removeAllObjects];
             }
         }
 
-        CLLocationCoordinate2D* pointArr = malloc(sizeof(CLLocationCoordinate2D) * movementPoints.count);
-
-        NSUInteger idx = 0;
-        for (CLLocation *location in movementPoints) {
-            pointArr[idx] = location.coordinate;
-            idx++;
-        }
-
-        MKPolyline *polyline = [MKPolyline polylineWithCoordinates:pointArr count:movementPoints.count];
 
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.mapView addAnnotations:annotations];
 
-            [self.mapView addOverlay:polyline];
+            [self.mapView addOverlays:paths];
 
             [self.mapView setRegion:MKCoordinateRegionMake([annotations.lastObject coordinate], MKCoordinateSpanMake(0.01, 0.01))];
         });
@@ -105,10 +124,23 @@
 }
 
 #pragma mark - MKMapViewDelegate
-- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay {
+- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(MovementPath *)overlay {
     MKPolylineView *polylineView = [[MKPolylineView alloc] initWithPolyline:overlay];
-    polylineView.strokeColor = [UIColor redColor];
-    polylineView.lineWidth = 3.0;
+
+
+    if (overlay.type == MovementTypeWalking) {
+        polylineView.strokeColor = [UIColor redColor];
+    } else if (overlay.type == MovementTypeRunning) {
+        polylineView.strokeColor = [UIColor blueColor];
+    } else if (overlay.type == MovementTypeBiking) {
+        polylineView.strokeColor = [UIColor greenColor];
+    } else if (overlay.type == MovementTypeRunning) {
+        polylineView.strokeColor = [UIColor yellowColor];
+    } else {
+        polylineView.strokeColor = [UIColor blackColor];
+    }
+
+    polylineView.lineWidth = 10.0;
 
     return polylineView;
 }

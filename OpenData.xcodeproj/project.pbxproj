@@ -25,6 +25,7 @@
 		A6748ADB19212E8C0073CE19 /* LocationList.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748ADA19212E8C0073CE19 /* LocationList.m */; };
 		A6748ADE1921344F0073CE19 /* MotionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748ADD1921344F0073CE19 /* MotionManager.m */; };
 		A6748AE3192155F50073CE19 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748AE2192155F50073CE19 /* MapKit.framework */; };
+		A6748AE6192175590073CE19 /* MovementPath.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748AE5192175590073CE19 /* MovementPath.m */; };
 		C11118D911DD46AFA835F8F3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D73CDD20E349509DE73F55 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,8 @@
 		A6748ADC1921344F0073CE19 /* MotionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MotionManager.h; path = "Data Sources/MotionManager.h"; sourceTree = "<group>"; };
 		A6748ADD1921344F0073CE19 /* MotionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MotionManager.m; path = "Data Sources/MotionManager.m"; sourceTree = "<group>"; };
 		A6748AE2192155F50073CE19 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		A6748AE4192175590073CE19 /* MovementPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovementPath.h; path = Models/MovementPath.h; sourceTree = "<group>"; };
+		A6748AE5192175590073CE19 /* MovementPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovementPath.m; path = Models/MovementPath.m; sourceTree = "<group>"; };
 		CFFE53274403422DB4CE650B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -197,6 +200,8 @@
 			children = (
 				A6748AD919212E8C0073CE19 /* LocationList.h */,
 				A6748ADA19212E8C0073CE19 /* LocationList.m */,
+				A6748AE4192175590073CE19 /* MovementPath.h */,
+				A6748AE5192175590073CE19 /* MovementPath.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -346,6 +351,7 @@
 				A6748ADB19212E8C0073CE19 /* LocationList.m in Sources */,
 				A6748AAF192127E90073CE19 /* AppDelegate.m in Sources */,
 				A6748AAB192127E90073CE19 /* main.m in Sources */,
+				A6748AE6192175590073CE19 /* MovementPath.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
