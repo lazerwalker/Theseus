@@ -7,9 +7,10 @@
 //
 
 #import "ViewController.h"
+#import "LocationManager.h"
 
 @interface ViewController ()
-
+@property (strong, nonatomic) LocationManager *locationManager;
 @end
 
 @implementation ViewController
@@ -17,13 +18,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+
+    self.locationManager = [LocationManager new];
+    [self.locationManager startMonitoring];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end

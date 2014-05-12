@@ -21,6 +21,8 @@
 		A6748AC0192127EA0073CE19 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748AA2192127E90073CE19 /* UIKit.framework */; };
 		A6748AC8192127EA0073CE19 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A6748AC6192127EA0073CE19 /* InfoPlist.strings */; };
 		A6748ACA192127EA0073CE19 /* OpenDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748AC9192127EA0073CE19 /* OpenDataTests.m */; };
+		A6748AD7192128D70073CE19 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748AD6192128D70073CE19 /* LocationManager.m */; };
+		A6748ADB19212E8C0073CE19 /* LocationList.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748ADA19212E8C0073CE19 /* LocationList.m */; };
 		C11118D911DD46AFA835F8F3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D73CDD20E349509DE73F55 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +57,10 @@
 		A6748AC5192127EA0073CE19 /* OpenDataTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenDataTests-Info.plist"; sourceTree = "<group>"; };
 		A6748AC7192127EA0073CE19 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A6748AC9192127EA0073CE19 /* OpenDataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenDataTests.m; sourceTree = "<group>"; };
+		A6748AD5192128D70073CE19 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationManager.h; path = "Data Sources/LocationManager.h"; sourceTree = "<group>"; };
+		A6748AD6192128D70073CE19 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationManager.m; path = "Data Sources/LocationManager.m"; sourceTree = "<group>"; };
+		A6748AD919212E8C0073CE19 /* LocationList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationList.h; path = Models/LocationList.h; sourceTree = "<group>"; };
+		A6748ADA19212E8C0073CE19 /* LocationList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationList.m; path = Models/LocationList.m; sourceTree = "<group>"; };
 		CFFE53274403422DB4CE650B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,11 +124,12 @@
 		A6748AA4192127E90073CE19 /* OpenData */ = {
 			isa = PBXGroup;
 			children = (
+				A6748AD819212E7C0073CE19 /* Models */,
+				A6748AD4192128B20073CE19 /* Data Sources */,
+				A6748AD3192128AB0073CE19 /* View Controllers */,
 				A6748AAD192127E90073CE19 /* AppDelegate.h */,
 				A6748AAE192127E90073CE19 /* AppDelegate.m */,
 				A6748AB0192127E90073CE19 /* Main.storyboard */,
-				A6748AB3192127E90073CE19 /* ViewController.h */,
-				A6748AB4192127E90073CE19 /* ViewController.m */,
 				A6748AB6192127E90073CE19 /* Images.xcassets */,
 				A6748AA5192127E90073CE19 /* Supporting Files */,
 			);
@@ -156,6 +163,33 @@
 				A6748AC6192127EA0073CE19 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A6748AD3192128AB0073CE19 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A6748AB3192127E90073CE19 /* ViewController.h */,
+				A6748AB4192127E90073CE19 /* ViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		A6748AD4192128B20073CE19 /* Data Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A6748AD5192128D70073CE19 /* LocationManager.h */,
+				A6748AD6192128D70073CE19 /* LocationManager.m */,
+			);
+			name = "Data Sources";
+			sourceTree = "<group>";
+		};
+		A6748AD819212E7C0073CE19 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A6748AD919212E8C0073CE19 /* LocationList.h */,
+				A6748ADA19212E8C0073CE19 /* LocationList.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,12 +293,47 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		AC358971F6BA49D48AD6EFDD /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F3A6364F3A5C4563A93D828D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A6748A97192127E90073CE19 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6748AD7192128D70073CE19 /* LocationManager.m in Sources */,
 				A6748AB5192127E90073CE19 /* ViewController.m in Sources */,
+				A6748ADB19212E8C0073CE19 /* LocationList.m in Sources */,
 				A6748AAF192127E90073CE19 /* AppDelegate.m in Sources */,
 				A6748AAB192127E90073CE19 /* main.m in Sources */,
 			);
