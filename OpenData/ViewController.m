@@ -11,6 +11,7 @@
 #import "MotionManager.h"
 #import "LocationList.h"
 #import "MovementPath.h"
+#import "Stop.h"
 
 @import MapKit;
 @import CoreMotion;
@@ -71,13 +72,13 @@
 
         CMMotionActivity *previousActivity;
 
-        NSMutableArray *annotations = [NSMutableArray new];
+        NSMutableArray *locations = [NSMutableArray new];
         NSMutableArray *movementPoints = [NSMutableArray new];
         NSMutableArray *paths = [NSMutableArray new];
         for (id obj in array) {
             if ([obj isKindOfClass:[CLLocation class]]) {
                 if (previousActivity.stationary) {
-                    [annotations addObject:obj];
+                    [locations addObject:obj];
                 } else {
                     [movementPoints addObject:obj];
                 }
@@ -110,6 +111,25 @@
                 [paths addObject:path];
                 [movementPoints removeAllObjects];
             }
+        }
+
+        NSMutableArray *annotations = [NSMutableArray new];
+        NSMutableArray *currentLocations = [NSMutableArray new];
+        for (CLLocation *location in locations) {
+            if ([location distanceFromLocation:currentLocations.firstObject] > 50) {
+                if (currentLocations.count > 0) {
+                    Stop *stop = [[Stop alloc] initWithLocations:currentLocations];
+                    [annotations addObject:stop];
+                }
+                currentLocations = [NSMutableArray new];
+            }
+
+            [currentLocations addObject:location];
+        }
+
+        if (currentLocations.count > 0) {
+            Stop *stop = [[Stop alloc] initWithLocations:currentLocations];
+            [annotations addObject:stop];
         }
 
 
