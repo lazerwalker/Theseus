@@ -7,7 +7,7 @@
 //
 
 #import "LocationManager.h"
-#import "LocationList.h"
+#import "RawLocation.h"
 
 @import CoreLocation;
 
@@ -35,7 +35,14 @@
 
 #pragma mark - CLLocationManagerDelegate
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    LocationList *list = [LocationList loadFromDisk];
-    [list addLocations:locations];
+    for (CLLocation *location in locations) {
+        RawLocation *rawLocation = [RawLocation createWithLocation:location];
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    }
 }
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"================> %@", error);
+}
+
 @end

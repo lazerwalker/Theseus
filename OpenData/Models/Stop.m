@@ -21,13 +21,9 @@
     self.horizontalAccuracy = [[locations valueForKeyPath:@"@avg.horizontalAccuracy"] doubleValue];
     self.verticalAccuracy = [[locations valueForKeyPath:@"@avg.verticalAccuracy"] doubleValue];
 
-    CLLocationDegrees latitude, longitude;
-    for (CLLocation *location in locations) {
-        latitude += location.coordinate.latitude;
-        longitude += location.coordinate.longitude;
-    }
-
-    self.coordinate = CLLocationCoordinate2DMake(latitude/locations.count, longitude/locations.count);
+    CLLocationDegrees latitude = [[locations valueForKeyPath:@"@avg.latitude"] doubleValue];
+    CLLocationDegrees longitude = [[locations valueForKeyPath:@"@avg.longitude"] doubleValue];
+    self.coordinate = CLLocationCoordinate2DMake(latitude, longitude);
 
     return self;
 }

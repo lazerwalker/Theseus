@@ -1,0 +1,1 @@
+../../MagicalRecord/MagicalRecord/Core/MagicalRecordShorthand.h

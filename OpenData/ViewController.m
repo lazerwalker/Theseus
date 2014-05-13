@@ -12,6 +12,7 @@
 #import "LocationList.h"
 #import "MovementPath.h"
 #import "Stop.h"
+#import "RawLocation.h"
 
 @import MapKit;
 @import CoreMotion;
@@ -55,21 +56,20 @@
 - (void)render {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         LocationList *list = [LocationList loadFromDisk];
-
-        NSArray *array = [list.locations arrayByAddingObjectsFromArray:list.activities];
+        NSArray *array = [[RawLocation MR_findAllSortedBy:@"timestamp" ascending:YES] arrayByAddingObjectsFromArray:list.activities];
         array = [array sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             NSDate *date1, *date2;
 
-            if ([obj1 isKindOfClass:[CLLocation class]]) {
-                date1 = [(CLLocation *)obj1 timestamp];
+            if ([obj1 isKindOfClass:[RawLocation class]]) {
+                date1 = [(RawLocation *)obj1 timestamp];
             } else if ([obj1 isKindOfClass:[CMMotionActivity class]]){
                 date1 = [(CMMotionActivity *)obj1 startDate];
             } else {
                 @throw @"Expected a CLLocation or CMMotionActivity object";
             }
 
-            if ([obj2 isKindOfClass:[CLLocation class]]) {
-                date2 = [(CLLocation *)obj2 timestamp];
+            if ([obj2 isKindOfClass:[RawLocation class]]) {
+                date2 = [(RawLocation *)obj2 timestamp];
             } else if ([obj2 isKindOfClass:[CMMotionActivity class]]){
                 date2 = [(CMMotionActivity *)obj2 startDate];
             } else {
@@ -85,7 +85,7 @@
         NSMutableArray *movementPoints = [NSMutableArray new];
         NSMutableArray *paths = [NSMutableArray new];
         for (id obj in array) {
-            if ([obj isKindOfClass:[CLLocation class]]) {
+            if ([obj isKindOfClass:[RawLocation class]]) {
                 if (previousActivity.stationary) {
                     [locations addObject:obj];
                 } else {
@@ -97,7 +97,7 @@
                 CLLocationCoordinate2D* pointArr = malloc(sizeof(CLLocationCoordinate2D) * movementPoints.count);
 
                 NSUInteger idx = 0;
-                for (CLLocation *location in movementPoints) {
+                for (RawLocation *location in movementPoints) {
                     pointArr[idx] = location.coordinate;
                     idx++;
                 }
@@ -123,24 +123,10 @@
         }
 
         NSMutableArray *annotations = [NSMutableArray new];
-        NSMutableArray *currentLocations = [NSMutableArray new];
-        for (CLLocation *location in locations) {
-            if ([location distanceFromLocation:currentLocations.firstObject] > 50) {
-                if (currentLocations.count > 0) {
-                    Stop *stop = [[Stop alloc] initWithLocations:currentLocations];
-                    [annotations addObject:stop];
-                }
-                currentLocations = [NSMutableArray new];
-            }
-
-            [currentLocations addObject:location];
-        }
-
-        if (currentLocations.count > 0) {
-            Stop *stop = [[Stop alloc] initWithLocations:currentLocations];
+        for (RawLocation *location in locations) {
+            Stop *stop = [[Stop alloc] initWithLocations:@[location]];
             [annotations addObject:stop];
         }
-
 
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.mapView addAnnotations:annotations];

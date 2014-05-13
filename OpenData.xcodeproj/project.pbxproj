@@ -26,7 +26,9 @@
 		A6748AE3192155F50073CE19 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748AE2192155F50073CE19 /* MapKit.framework */; };
 		A6748AE6192175590073CE19 /* MovementPath.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748AE5192175590073CE19 /* MovementPath.m */; };
 		A6CDC3B41922854800AC941A /* Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CDC3B31922854800AC941A /* Stop.m */; };
+		A6F4D9111922CF13006C7034 /* OpenData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6F4D90F1922CF13006C7034 /* OpenData.xcdatamodeld */; };
 		A6F4D95D1922D2AA006C7034 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F4D95C1922D2AA006C7034 /* CoreData.framework */; };
+		A6F4D9601922D684006C7034 /* RawLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F4D95F1922D684006C7034 /* RawLocation.m */; };
 		C11118D911DD46AFA835F8F3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D73CDD20E349509DE73F55 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -71,7 +73,10 @@
 		A6748AE5192175590073CE19 /* MovementPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovementPath.m; path = Models/MovementPath.m; sourceTree = "<group>"; };
 		A6CDC3B21922854800AC941A /* Stop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stop.h; path = Models/Stop.h; sourceTree = "<group>"; };
 		A6CDC3B31922854800AC941A /* Stop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stop.m; path = Models/Stop.m; sourceTree = "<group>"; };
+		A6F4D9101922CF13006C7034 /* OpenData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OpenData.xcdatamodel; sourceTree = "<group>"; };
 		A6F4D95C1922D2AA006C7034 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		A6F4D95E1922D684006C7034 /* RawLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RawLocation.h; path = Models/RawLocation.h; sourceTree = "<group>"; };
+		A6F4D95F1922D684006C7034 /* RawLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RawLocation.m; path = Models/RawLocation.m; sourceTree = "<group>"; };
 		CFFE53274403422DB4CE650B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,6 +162,7 @@
 				A6748AA7192127E90073CE19 /* InfoPlist.strings */,
 				A6748AAA192127E90073CE19 /* main.m */,
 				A6748AAC192127E90073CE19 /* OpenData-Prefix.pch */,
+				A6F4D90F1922CF13006C7034 /* OpenData.xcdatamodeld */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -208,6 +214,8 @@
 				A6748AE5192175590073CE19 /* MovementPath.m */,
 				A6CDC3B21922854800AC941A /* Stop.h */,
 				A6CDC3B31922854800AC941A /* Stop.m */,
+				A6F4D95E1922D684006C7034 /* RawLocation.h */,
+				A6F4D95F1922D684006C7034 /* RawLocation.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -351,12 +359,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6748AD7192128D70073CE19 /* LocationManager.m in Sources */,
+				A6F4D9601922D684006C7034 /* RawLocation.m in Sources */,
 				A6748ADE1921344F0073CE19 /* MotionManager.m in Sources */,
 				A6748AB5192127E90073CE19 /* ViewController.m in Sources */,
 				A6748ADB19212E8C0073CE19 /* LocationList.m in Sources */,
 				A6748AAF192127E90073CE19 /* AppDelegate.m in Sources */,
 				A6748AAB192127E90073CE19 /* main.m in Sources */,
 				A6CDC3B41922854800AC941A /* Stop.m in Sources */,
+				A6F4D9111922CF13006C7034 /* OpenData.xcdatamodeld in Sources */,
 				A6748AE6192175590073CE19 /* MovementPath.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -568,6 +578,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A6F4D90F1922CF13006C7034 /* OpenData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A6F4D9101922CF13006C7034 /* OpenData.xcdatamodel */,
+			);
+			currentVersion = A6F4D9101922CF13006C7034 /* OpenData.xcdatamodel */;
+			path = OpenData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A6748A93192127E90073CE19 /* Project object */;
 }

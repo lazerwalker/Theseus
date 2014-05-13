@@ -1,1 +1,2 @@
 pod "Mantle"
+pod "MagicalRecord"

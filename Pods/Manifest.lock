@@ -1,12 +1,17 @@
 PODS:
+  - MagicalRecord (2.2):
+    - MagicalRecord/Core
+  - MagicalRecord/Core (2.2)
   - Mantle (1.4.1):
     - Mantle/extobjc
   - Mantle/extobjc (1.4.1)
 
 DEPENDENCIES:
+  - MagicalRecord
   - Mantle
 
 SPEC CHECKSUMS:
+  MagicalRecord: 95d49d74ef752cd52f6ad87bcb474817fc3978cf
   Mantle: 0714cdb2b8559d9e6c2410d6a8529e3307bff189
 
 COCOAPODS: 0.32.1
