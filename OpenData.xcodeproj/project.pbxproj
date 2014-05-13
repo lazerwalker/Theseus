@@ -21,7 +21,6 @@
 		A6748AC8192127EA0073CE19 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A6748AC6192127EA0073CE19 /* InfoPlist.strings */; };
 		A6748ACA192127EA0073CE19 /* OpenDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748AC9192127EA0073CE19 /* OpenDataTests.m */; };
 		A6748AD7192128D70073CE19 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748AD6192128D70073CE19 /* LocationManager.m */; };
-		A6748ADB19212E8C0073CE19 /* LocationList.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748ADA19212E8C0073CE19 /* LocationList.m */; };
 		A6748ADE1921344F0073CE19 /* MotionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748ADD1921344F0073CE19 /* MotionManager.m */; };
 		A6748AE3192155F50073CE19 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748AE2192155F50073CE19 /* MapKit.framework */; };
 		A6748AE6192175590073CE19 /* MovementPath.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748AE5192175590073CE19 /* MovementPath.m */; };
@@ -29,6 +28,7 @@
 		A6F4D9111922CF13006C7034 /* OpenData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6F4D90F1922CF13006C7034 /* OpenData.xcdatamodeld */; };
 		A6F4D95D1922D2AA006C7034 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F4D95C1922D2AA006C7034 /* CoreData.framework */; };
 		A6F4D9601922D684006C7034 /* RawLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F4D95F1922D684006C7034 /* RawLocation.m */; };
+		A6F4D9691922DE94006C7034 /* RawMotionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F4D9681922DE94006C7034 /* RawMotionActivity.m */; };
 		C11118D911DD46AFA835F8F3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D73CDD20E349509DE73F55 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -64,8 +64,6 @@
 		A6748AC9192127EA0073CE19 /* OpenDataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenDataTests.m; sourceTree = "<group>"; };
 		A6748AD5192128D70073CE19 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationManager.h; path = "Data Sources/LocationManager.h"; sourceTree = "<group>"; };
 		A6748AD6192128D70073CE19 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationManager.m; path = "Data Sources/LocationManager.m"; sourceTree = "<group>"; };
-		A6748AD919212E8C0073CE19 /* LocationList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationList.h; path = Models/LocationList.h; sourceTree = "<group>"; };
-		A6748ADA19212E8C0073CE19 /* LocationList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationList.m; path = Models/LocationList.m; sourceTree = "<group>"; };
 		A6748ADC1921344F0073CE19 /* MotionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MotionManager.h; path = "Data Sources/MotionManager.h"; sourceTree = "<group>"; };
 		A6748ADD1921344F0073CE19 /* MotionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MotionManager.m; path = "Data Sources/MotionManager.m"; sourceTree = "<group>"; };
 		A6748AE2192155F50073CE19 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -77,6 +75,8 @@
 		A6F4D95C1922D2AA006C7034 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A6F4D95E1922D684006C7034 /* RawLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RawLocation.h; path = Models/RawLocation.h; sourceTree = "<group>"; };
 		A6F4D95F1922D684006C7034 /* RawLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RawLocation.m; path = Models/RawLocation.m; sourceTree = "<group>"; };
+		A6F4D9671922DE94006C7034 /* RawMotionActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RawMotionActivity.h; path = Models/RawMotionActivity.h; sourceTree = "<group>"; };
+		A6F4D9681922DE94006C7034 /* RawMotionActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RawMotionActivity.m; path = Models/RawMotionActivity.m; sourceTree = "<group>"; };
 		CFFE53274403422DB4CE650B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -208,8 +208,8 @@
 		A6748AD819212E7C0073CE19 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A6748AD919212E8C0073CE19 /* LocationList.h */,
-				A6748ADA19212E8C0073CE19 /* LocationList.m */,
+				A6F4D9671922DE94006C7034 /* RawMotionActivity.h */,
+				A6F4D9681922DE94006C7034 /* RawMotionActivity.m */,
 				A6748AE4192175590073CE19 /* MovementPath.h */,
 				A6748AE5192175590073CE19 /* MovementPath.m */,
 				A6CDC3B21922854800AC941A /* Stop.h */,
@@ -362,10 +362,10 @@
 				A6F4D9601922D684006C7034 /* RawLocation.m in Sources */,
 				A6748ADE1921344F0073CE19 /* MotionManager.m in Sources */,
 				A6748AB5192127E90073CE19 /* ViewController.m in Sources */,
-				A6748ADB19212E8C0073CE19 /* LocationList.m in Sources */,
 				A6748AAF192127E90073CE19 /* AppDelegate.m in Sources */,
 				A6748AAB192127E90073CE19 /* main.m in Sources */,
 				A6CDC3B41922854800AC941A /* Stop.m in Sources */,
+				A6F4D9691922DE94006C7034 /* RawMotionActivity.m in Sources */,
 				A6F4D9111922CF13006C7034 /* OpenData.xcdatamodeld in Sources */,
 				A6748AE6192175590073CE19 /* MovementPath.m in Sources */,
 			);

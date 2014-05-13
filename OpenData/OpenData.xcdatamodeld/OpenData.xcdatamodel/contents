@@ -9,7 +9,13 @@
         <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="verticalAccuracy" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
     </entity>
+    <entity name="RawMotionActivity" representedClassName="RawMotionActivity" syncable="YES">
+        <attribute name="activity" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="confidence" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
     <elements>
         <element name="RawLocation" positionX="-63" positionY="-18" width="128" height="148"/>
+        <element name="RawMotionActivity" positionX="-36" positionY="63" width="128" height="88"/>
     </elements>
 </model>

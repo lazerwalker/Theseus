@@ -9,10 +9,10 @@
 #import "ViewController.h"
 #import "LocationManager.h"
 #import "MotionManager.h"
-#import "LocationList.h"
 #import "MovementPath.h"
 #import "Stop.h"
 #import "RawLocation.h"
+#import "RawMotionActivity.h"
 
 @import MapKit;
 @import CoreMotion;
@@ -55,38 +55,21 @@
 
 - (void)render {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        LocationList *list = [LocationList loadFromDisk];
-        NSArray *array = [[RawLocation MR_findAllSortedBy:@"timestamp" ascending:YES] arrayByAddingObjectsFromArray:list.activities];
-        array = [array sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-            NSDate *date1, *date2;
+        NSArray *array = [[RawLocation MR_findAllSortedBy:@"timestamp" ascending:YES]
+                          arrayByAddingObjectsFromArray:
+                          [RawMotionActivity MR_findAllSortedBy:@"timestamp" ascending:YES]];
 
-            if ([obj1 isKindOfClass:[RawLocation class]]) {
-                date1 = [(RawLocation *)obj1 timestamp];
-            } else if ([obj1 isKindOfClass:[CMMotionActivity class]]){
-                date1 = [(CMMotionActivity *)obj1 startDate];
-            } else {
-                @throw @"Expected a CLLocation or CMMotionActivity object";
-            }
+        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:YES];
+        array = [array sortedArrayUsingDescriptors:@[descriptor]];
 
-            if ([obj2 isKindOfClass:[RawLocation class]]) {
-                date2 = [(RawLocation *)obj2 timestamp];
-            } else if ([obj2 isKindOfClass:[CMMotionActivity class]]){
-                date2 = [(CMMotionActivity *)obj2 startDate];
-            } else {
-                @throw @"Expected a CLLocation or CMMotionActivity object";
-            }
-
-            return [date1 compare:date2];
-        }];
-
-        CMMotionActivity *previousActivity;
+        RawMotionActivity *previousActivity;
 
         NSMutableArray *locations = [NSMutableArray new];
         NSMutableArray *movementPoints = [NSMutableArray new];
         NSMutableArray *paths = [NSMutableArray new];
         for (id obj in array) {
             if ([obj isKindOfClass:[RawLocation class]]) {
-                if (previousActivity.stationary) {
+                if (!previousActivity || previousActivity.activityType == RawMotionActivityTypeStationary) {
                     [locations addObject:obj];
                 } else {
                     [movementPoints addObject:obj];
@@ -104,11 +87,11 @@
 
                 MovementPath *path = [MovementPath polylineWithCoordinates:pointArr count:movementPoints.count];
 
-                if (previousActivity.walking) {
+                if (previousActivity.activityType == RawMotionActivityTypeWalking) {
                     path.type = MovementTypeWalking;
-                } else if (previousActivity.running) {
+                } else if (previousActivity.activityType == RawMotionActivityTypeRunning) {
                     path.type = MovementTypeRunning;
-                } else if (previousActivity.automotive) {
+                } else if (previousActivity.activityType == RawMotionActivityTypeAutomotive) {
                     path.type = MovementTypeTransit;
                 } else {
                     CLLocationSpeed speed = [[movementPoints valueForKeyPath:@"@avg.speed"] doubleValue];

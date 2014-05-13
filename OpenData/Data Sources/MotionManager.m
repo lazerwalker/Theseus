@@ -7,7 +7,8 @@
 //
 
 #import "MotionManager.h"
-#import "LocationList.h"
+#import "RawMotionActivity.h"
+
 @import CoreMotion;
 
 @interface MotionManager ()
@@ -32,8 +33,8 @@
     if (![CMMotionActivityManager isActivityAvailable]) return;
 
     [self.manager startActivityUpdatesToQueue:self.operationQueue withHandler:^(CMMotionActivity *activity) {
-        LocationList *list = [LocationList loadFromDisk];
-        [list addActivities:@[activity]];
+        RawMotionActivity *rawActivity = [RawMotionActivity createWithMotionActivity:activity];
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     }];
 }
 
@@ -44,9 +45,8 @@
 - (void)fetchUpdatesWhileInactive {
     if (![CMMotionActivityManager isActivityAvailable]) return;
 
-    LocationList *list = [LocationList loadFromDisk];
-    NSDate *date = [list.activities.lastObject startDate];
-    if (!date) date = [NSDate distantPast];
+    RawMotionActivity *mostRecent = [RawMotionActivity MR_findFirstOrderedByAttribute:@"timestamp" ascending:NO];
+    NSDate *date = mostRecent.timestamp ?: [NSDate distantPast];
 
     [self.manager queryActivityStartingFromDate:date toDate:NSDate.date toQueue:self.operationQueue withHandler:^(NSArray *activities, NSError *error) {
 
@@ -55,8 +55,12 @@
             return;
         }
         
-        LocationList *list = [LocationList loadFromDisk];
-        [list addActivities:activities];
+        NSMutableArray *rawActivities = [NSMutableArray new];
+        for (CMMotionActivity *activity in activities) {
+            [rawActivities addObject:[RawMotionActivity createWithMotionActivity:activity]];
+        }
+
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     }];
 }
 @end
