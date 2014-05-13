@@ -13,7 +13,6 @@
 		A6748AA9192127E90073CE19 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A6748AA7192127E90073CE19 /* InfoPlist.strings */; };
 		A6748AAB192127E90073CE19 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748AAA192127E90073CE19 /* main.m */; };
 		A6748AAF192127E90073CE19 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748AAE192127E90073CE19 /* AppDelegate.m */; };
-		A6748AB2192127E90073CE19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6748AB0192127E90073CE19 /* Main.storyboard */; };
 		A6748AB5192127E90073CE19 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748AB4192127E90073CE19 /* ViewController.m */; };
 		A6748AB7192127E90073CE19 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6748AB6192127E90073CE19 /* Images.xcassets */; };
 		A6748ABE192127EA0073CE19 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748ABD192127EA0073CE19 /* XCTest.framework */; };
@@ -27,6 +26,7 @@
 		A6748AE3192155F50073CE19 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748AE2192155F50073CE19 /* MapKit.framework */; };
 		A6748AE6192175590073CE19 /* MovementPath.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748AE5192175590073CE19 /* MovementPath.m */; };
 		A6CDC3B41922854800AC941A /* Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CDC3B31922854800AC941A /* Stop.m */; };
+		A6F4D95D1922D2AA006C7034 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F4D95C1922D2AA006C7034 /* CoreData.framework */; };
 		C11118D911DD46AFA835F8F3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D73CDD20E349509DE73F55 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -52,7 +52,6 @@
 		A6748AAC192127E90073CE19 /* OpenData-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OpenData-Prefix.pch"; sourceTree = "<group>"; };
 		A6748AAD192127E90073CE19 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A6748AAE192127E90073CE19 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A6748AB1192127E90073CE19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A6748AB3192127E90073CE19 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A6748AB4192127E90073CE19 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A6748AB6192127E90073CE19 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -72,6 +71,7 @@
 		A6748AE5192175590073CE19 /* MovementPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovementPath.m; path = Models/MovementPath.m; sourceTree = "<group>"; };
 		A6CDC3B21922854800AC941A /* Stop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stop.h; path = Models/Stop.h; sourceTree = "<group>"; };
 		A6CDC3B31922854800AC941A /* Stop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stop.m; path = Models/Stop.m; sourceTree = "<group>"; };
+		A6F4D95C1922D2AA006C7034 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		CFFE53274403422DB4CE650B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6F4D95D1922D2AA006C7034 /* CoreData.framework in Frameworks */,
 				A6748AE3192155F50073CE19 /* MapKit.framework in Frameworks */,
 				A6748AA1192127E90073CE19 /* CoreGraphics.framework in Frameworks */,
 				A6748AA3192127E90073CE19 /* UIKit.framework in Frameworks */,
@@ -124,6 +125,7 @@
 		A6748A9D192127E90073CE19 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A6F4D95C1922D2AA006C7034 /* CoreData.framework */,
 				A6748AE2192155F50073CE19 /* MapKit.framework */,
 				A6748A9E192127E90073CE19 /* Foundation.framework */,
 				A6748AA0192127E90073CE19 /* CoreGraphics.framework */,
@@ -142,7 +144,6 @@
 				A6748AD3192128AB0073CE19 /* View Controllers */,
 				A6748AAD192127E90073CE19 /* AppDelegate.h */,
 				A6748AAE192127E90073CE19 /* AppDelegate.m */,
-				A6748AB0192127E90073CE19 /* Main.storyboard */,
 				A6748AB6192127E90073CE19 /* Images.xcassets */,
 				A6748AA5192127E90073CE19 /* Supporting Files */,
 			);
@@ -298,7 +299,6 @@
 			files = (
 				A6748AB7192127E90073CE19 /* Images.xcassets in Resources */,
 				A6748AA9192127E90073CE19 /* InfoPlist.strings in Resources */,
-				A6748AB2192127E90073CE19 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,14 +386,6 @@
 				A6748AA8192127E90073CE19 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		A6748AB0192127E90073CE19 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A6748AB1192127E90073CE19 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		A6748AC6192127EA0073CE19 /* InfoPlist.strings */ = {

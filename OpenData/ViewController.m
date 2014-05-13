@@ -21,11 +21,20 @@
 @property (strong, nonatomic) LocationManager *locationManager;
 @property (strong, nonatomic) MotionManager *motionManager;
 
-@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic) MKMapView *mapView;
 
 @end
 
 @implementation ViewController
+
+- (instancetype)init {
+    self = [super init];
+    if (!self) return nil;
+
+    self.view = self.mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
+
+    return self;
+}
 
 - (void)viewDidLoad
 {

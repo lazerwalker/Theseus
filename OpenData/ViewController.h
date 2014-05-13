@@ -6,8 +6,11 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import CoreData;
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<NSFetchedResultsControllerDelegate>
+
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
