@@ -19,7 +19,10 @@ typedef NS_ENUM(NSUInteger, MovementType) {
 @interface MovementPath : MKPolyline
 
 @property (nonatomic, assign) MovementType type;
-@property (nonatomic, strong) NSDate *startDate;
-@property (nonatomic, strong) NSDate *endDate;
+@property (nonatomic, strong) NSDate *startTime;
+@property (nonatomic, strong) NSDate *endTime;
+
+@property (readonly) NSTimeInterval duration;
+@property (readonly) NSString *typeString;
 
 @end

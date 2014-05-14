@@ -42,6 +42,7 @@
         } else if ([obj isKindOfClass:RawMotionActivity.class]){
             RawMotionActivity *activity = (RawMotionActivity *)obj;
             if (!(previousActivity.activityType == activity.activityType)) {
+                if (currentObjects.count == 0) continue;
                 if (previousActivity.activityType == RawMotionActivityTypeStationary) {
                     Stop *stop = [[Stop alloc] initWithLocations:currentObjects];
                     stop.endTime = activity.timestamp;
@@ -65,8 +66,8 @@
                         path.type = MovementTypeTransit;
                     }
 
-                    path.startDate = [(RawLocation *)currentObjects.firstObject timestamp];
-                    path.endDate = activity.timestamp;
+                    path.startTime = [(RawLocation *)currentObjects.firstObject timestamp];
+                    path.endTime = activity.timestamp;
                     [paths addObject:path];
                 }
                 currentObjects = [NSMutableArray new];

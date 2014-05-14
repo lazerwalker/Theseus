@@ -10,4 +10,17 @@
 
 @implementation MovementPath
 
+- (NSTimeInterval)duration {
+    return [self.endTime timeIntervalSinceDate:self.startTime];
+}
+
+- (NSString *)typeString {
+    NSArray *types = @[@"Unknown",
+                       @"Walking",
+                       @"Running",
+                       @"Biking",
+                       @"Transit"];
+    return types[self.type];
+}
+
 @end

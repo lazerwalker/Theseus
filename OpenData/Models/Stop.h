@@ -19,6 +19,8 @@
 @property (assign, nonatomic) CLLocationAccuracy horizontalAccuracy;
 @property (assign, nonatomic) CLLocationAccuracy verticalAccuracy;
 
+@property (readonly) NSTimeInterval duration;
+
 - (id)initWithLocations:(NSArray *)locations;
 
 @end
