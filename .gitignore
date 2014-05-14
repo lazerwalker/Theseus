@@ -1,5 +1,6 @@
-# Created by http://www.gitignore.io
+OpenData/Configuration.plist
 
+# Created by http://www.gitignore.io
 ### Objective-C ###
 # Xcode
 #
@@ -19,11 +20,3 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-
-# CocoaPods
-#
-# We recommend against adding the Pods directory to your .gitignore. However
-# you should judge for yourself, the pros and cons are mentioned at:
-# http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
-#
-# Pods/

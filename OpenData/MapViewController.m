@@ -11,6 +11,7 @@
 #import "Stop.h"
 #import "RawLocation.h"
 #import "RawMotionActivity.h"
+#import "FoursquareClient.h"
 
 @import MapKit;
 @import CoreMotion;
@@ -105,6 +106,9 @@
             [self.mapView addOverlays:paths];
 
             [self.mapView setRegion:MKCoordinateRegionMake([annotations.lastObject coordinate], MKCoordinateSpanMake(0.01, 0.01))];
+            [[FoursquareClient new] fetchVenuesForCoordinate:[annotations.lastObject coordinate] completion:^(NSArray *results, NSError *error) {
+                NSLog(@"================> %@", results);
+            }];
         });
     });
 }

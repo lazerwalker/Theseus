@@ -24,12 +24,15 @@
 		A6748ADE1921344F0073CE19 /* MotionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748ADD1921344F0073CE19 /* MotionManager.m */; };
 		A6748AE3192155F50073CE19 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748AE2192155F50073CE19 /* MapKit.framework */; };
 		A6748AE6192175590073CE19 /* MovementPath.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748AE5192175590073CE19 /* MovementPath.m */; };
+		A68425CA192302CB0083D006 /* FoursquareVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = A68425C9192302CB0083D006 /* FoursquareVenue.m */; };
+		A68425CC1923047F0083D006 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = A68425CB1923047F0083D006 /* Configuration.plist */; };
 		A6CDC3B41922854800AC941A /* Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CDC3B31922854800AC941A /* Stop.m */; };
 		A6F4D9111922CF13006C7034 /* OpenData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6F4D90F1922CF13006C7034 /* OpenData.xcdatamodeld */; };
 		A6F4D95D1922D2AA006C7034 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F4D95C1922D2AA006C7034 /* CoreData.framework */; };
 		A6F4D9601922D684006C7034 /* RawLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F4D95F1922D684006C7034 /* RawLocation.m */; };
 		A6F4D9691922DE94006C7034 /* RawMotionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F4D9681922DE94006C7034 /* RawMotionActivity.m */; };
 		A6F4D96F1922E9F5006C7034 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F4D96E1922E9F5006C7034 /* ListViewController.m */; };
+		A6F4D9731922FE33006C7034 /* FoursquareClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F4D9721922FE33006C7034 /* FoursquareClient.m */; };
 		C11118D911DD46AFA835F8F3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D73CDD20E349509DE73F55 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +73,9 @@
 		A6748AE2192155F50073CE19 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A6748AE4192175590073CE19 /* MovementPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovementPath.h; path = Models/MovementPath.h; sourceTree = "<group>"; };
 		A6748AE5192175590073CE19 /* MovementPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovementPath.m; path = Models/MovementPath.m; sourceTree = "<group>"; };
+		A68425C8192302CB0083D006 /* FoursquareVenue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FoursquareVenue.h; path = Models/FoursquareVenue.h; sourceTree = "<group>"; };
+		A68425C9192302CB0083D006 /* FoursquareVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FoursquareVenue.m; path = Models/FoursquareVenue.m; sourceTree = "<group>"; };
+		A68425CB1923047F0083D006 /* Configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Configuration.plist; sourceTree = "<group>"; };
 		A6CDC3B21922854800AC941A /* Stop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stop.h; path = Models/Stop.h; sourceTree = "<group>"; };
 		A6CDC3B31922854800AC941A /* Stop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stop.m; path = Models/Stop.m; sourceTree = "<group>"; };
 		A6F4D9101922CF13006C7034 /* OpenData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OpenData.xcdatamodel; sourceTree = "<group>"; };
@@ -80,6 +86,8 @@
 		A6F4D9681922DE94006C7034 /* RawMotionActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RawMotionActivity.m; path = Models/RawMotionActivity.m; sourceTree = "<group>"; };
 		A6F4D96D1922E9F5006C7034 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListViewController.h; path = "View Controllers/ListViewController.h"; sourceTree = "<group>"; };
 		A6F4D96E1922E9F5006C7034 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListViewController.m; path = "View Controllers/ListViewController.m"; sourceTree = "<group>"; };
+		A6F4D9711922FE33006C7034 /* FoursquareClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FoursquareClient.h; path = Interfaces/FoursquareClient.h; sourceTree = "<group>"; };
+		A6F4D9721922FE33006C7034 /* FoursquareClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FoursquareClient.m; path = Interfaces/FoursquareClient.m; sourceTree = "<group>"; };
 		CFFE53274403422DB4CE650B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,6 +155,7 @@
 		A6748AA4192127E90073CE19 /* OpenData */ = {
 			isa = PBXGroup;
 			children = (
+				A6F4D9701922FDF3006C7034 /* Interfaces */,
 				A6748AD819212E7C0073CE19 /* Models */,
 				A6748AD4192128B20073CE19 /* Data Sources */,
 				A6748AD3192128AB0073CE19 /* View Controllers */,
@@ -166,6 +175,7 @@
 				A6748AAA192127E90073CE19 /* main.m */,
 				A6748AAC192127E90073CE19 /* OpenData-Prefix.pch */,
 				A6F4D90F1922CF13006C7034 /* OpenData.xcdatamodeld */,
+				A68425CB1923047F0083D006 /* Configuration.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -221,8 +231,19 @@
 				A6CDC3B31922854800AC941A /* Stop.m */,
 				A6F4D95E1922D684006C7034 /* RawLocation.h */,
 				A6F4D95F1922D684006C7034 /* RawLocation.m */,
+				A68425C8192302CB0083D006 /* FoursquareVenue.h */,
+				A68425C9192302CB0083D006 /* FoursquareVenue.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		A6F4D9701922FDF3006C7034 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				A6F4D9711922FE33006C7034 /* FoursquareClient.h */,
+				A6F4D9721922FE33006C7034 /* FoursquareClient.m */,
+			);
+			name = Interfaces;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,6 +331,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A68425CC1923047F0083D006 /* Configuration.plist in Resources */,
 				A6748AB7192127E90073CE19 /* Images.xcassets in Resources */,
 				A6748AA9192127E90073CE19 /* InfoPlist.strings in Resources */,
 			);
@@ -363,8 +385,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6F4D9731922FE33006C7034 /* FoursquareClient.m in Sources */,
 				A6748AD7192128D70073CE19 /* LocationManager.m in Sources */,
 				A6F4D9601922D684006C7034 /* RawLocation.m in Sources */,
+				A68425CA192302CB0083D006 /* FoursquareVenue.m in Sources */,
 				A6F4D96F1922E9F5006C7034 /* ListViewController.m in Sources */,
 				A6748ADE1921344F0073CE19 /* MotionManager.m in Sources */,
 				A6748AB5192127E90073CE19 /* MapViewController.m in Sources */,
