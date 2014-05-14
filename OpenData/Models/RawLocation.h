@@ -22,4 +22,6 @@
 
 - (void)setupWithLocation:(CLLocation *)location;
 
+- (CLLocationDistance)distanceFromLocation:(RawLocation *)location;
+
 @end

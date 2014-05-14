@@ -97,9 +97,17 @@
         }
 
         NSMutableArray *annotations = [NSMutableArray new];
+        NSMutableArray *currentLocations = [NSMutableArray new];
         for (RawLocation *location in locations) {
-            Stop *stop = [[Stop alloc] initWithLocations:@[location]];
-            [annotations addObject:stop];
+            if ([location distanceFromLocation:currentLocations.firstObject] > 50) {
+                if (currentLocations.count > 0) {
+                    Stop *stop = [[Stop alloc] initWithLocations:@[location]];
+                    [annotations addObject:stop];
+                }
+                currentLocations = [NSMutableArray new];
+            }
+
+            [currentLocations addObject:location];
         }
 
         dispatch_async(dispatch_get_main_queue(), ^{

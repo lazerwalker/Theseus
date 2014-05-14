@@ -27,4 +27,12 @@
     return CLLocationCoordinate2DMake(self.latitude.doubleValue, self.longitude.doubleValue);
 }
 
+- (CLLocationDistance)distanceFromLocation:(RawLocation *)location {
+    CLLocation *thisLocation = [[CLLocation alloc] initWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
+
+    CLLocation *thatLocation = [[CLLocation alloc] initWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude];
+
+    return [thisLocation distanceFromLocation:thatLocation];
+}
+
 @end
