@@ -28,6 +28,7 @@
     if (!self) return nil;
 
     self.view = self.mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
+    self.mapView.delegate = self;
     self.title = @"Map";
 
     return self;

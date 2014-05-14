@@ -28,6 +28,7 @@
     UITabBarController *tabController = [UITabBarController new];
     tabController.viewControllers = @[[MapViewController new], [ListViewController new]];
 
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = tabController;
     [self.window makeKeyAndVisible];
 
