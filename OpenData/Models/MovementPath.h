@@ -19,5 +19,7 @@ typedef NS_ENUM(NSUInteger, MovementType) {
 @interface MovementPath : MKPolyline
 
 @property (nonatomic, assign) MovementType type;
+@property (nonatomic, strong) NSDate *startDate;
+@property (nonatomic, strong) NSDate *endDate;
 
 @end

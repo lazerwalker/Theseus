@@ -53,61 +53,49 @@
 
         RawMotionActivity *previousActivity;
 
-        NSMutableArray *locations = [NSMutableArray new];
-        NSMutableArray *movementPoints = [NSMutableArray new];
-        NSMutableArray *paths = [NSMutableArray new];
-        for (id obj in array) {
-            if ([obj isKindOfClass:[RawLocation class]]) {
-                if (!previousActivity || previousActivity.activityType == RawMotionActivityTypeStationary) {
-                    [locations addObject:obj];
-                } else {
-                    [movementPoints addObject:obj];
-                }
-            } else {
-                previousActivity = obj;
-
-                if (movementPoints.count == 0) continue;
-
-                CLLocationCoordinate2D* pointArr = malloc(sizeof(CLLocationCoordinate2D) * movementPoints.count);
-
-                NSUInteger idx = 0;
-                for (RawLocation *location in movementPoints) {
-                    pointArr[idx] = location.coordinate;
-                    idx++;
-                }
-
-                MovementPath *path = [MovementPath polylineWithCoordinates:pointArr count:movementPoints.count];
-
-                if (previousActivity.activityType == RawMotionActivityTypeWalking) {
-                    path.type = MovementTypeWalking;
-                } else if (previousActivity.activityType == RawMotionActivityTypeRunning) {
-                    path.type = MovementTypeRunning;
-                } else if (previousActivity.activityType == RawMotionActivityTypeAutomotive) {
-                    path.type = MovementTypeTransit;
-                } else {
-                    CLLocationSpeed speed = [[movementPoints valueForKeyPath:@"@avg.speed"] doubleValue];
-                    if (speed > 1.0) {
-                        path.type = MovementTypeBiking;
-                    }
-                }
-
-                [paths addObject:path];
-                [movementPoints removeAllObjects];
-            }
-        }
-
         NSMutableArray *annotations = [NSMutableArray new];
-        NSMutableArray *currentLocations = [NSMutableArray new];
-        for (RawLocation *location in locations) {
-            if ([location distanceFromLocation:currentLocations.firstObject] > 50) {
-                if (currentLocations.count > 0) {
-                    Stop *stop = [[Stop alloc] initWithLocations:@[location]];
-                    [annotations addObject:stop];
-                }
-                currentLocations = [NSMutableArray new];
-            }
+        NSMutableArray *paths = [NSMutableArray new];
 
-            [currentLocations addObject:location];
+        NSMutableArray *currentObjects = [NSMutableArray new];
+
+        for (id obj in array) {
+            if ([obj isKindOfClass:RawLocation.class]) {
+                [currentObjects addObject:obj];
+            } else if ([obj isKindOfClass:RawMotionActivity.class]){
+                RawMotionActivity *activity = (RawMotionActivity *)obj;
+                if (!(previousActivity.activityType == activity.activityType)) {
+                    if (previousActivity.activityType == RawMotionActivityTypeStationary) {
+                        Stop *stop = [[Stop alloc] initWithLocations:currentObjects];
+                        stop.endTime = activity.timestamp;
+                        [annotations addObject:stop];
+                    } else {
+                        CLLocationCoordinate2D* pointArr = malloc(sizeof(CLLocationCoordinate2D) * currentObjects.count);
+
+                        NSUInteger idx = 0;
+                        for (RawLocation *location in currentObjects) {
+                            pointArr[idx] = location.coordinate;
+                            idx++;
+                        }
+
+                        MovementPath *path = [MovementPath polylineWithCoordinates:pointArr count:currentObjects.count];
+
+                        if (activity.activityType == RawMotionActivityTypeWalking) {
+                            path.type = MovementTypeWalking;
+                        } else if (activity.activityType == RawMotionActivityTypeRunning) {
+                            path.type = MovementTypeRunning;
+                        } else if (activity.activityType == RawMotionActivityTypeAutomotive) {
+                            path.type = MovementTypeTransit;
+                        }
+
+                        path.startDate = [(RawLocation *)currentObjects.firstObject timestamp];
+                        path.endDate = activity.timestamp;
+                        [paths addObject:path];
+                    }
+                    currentObjects = [NSMutableArray new];
+                }
+
+                previousActivity = obj;
+            }
         }
 
         dispatch_async(dispatch_get_main_queue(), ^{
