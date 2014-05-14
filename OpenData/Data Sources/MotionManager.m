@@ -32,9 +32,12 @@
 - (void)startMonitoring {
     if (![CMMotionActivityManager isActivityAvailable]) return;
 
-    [self.manager startActivityUpdatesToQueue:self.operationQueue withHandler:^(CMMotionActivity *activity) {
-        RawMotionActivity *rawActivity = [RawMotionActivity createWithMotionActivity:activity];
-        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    [self.manager startActivityUpdatesToQueue:NSOperationQueue.mainQueue withHandler:^(CMMotionActivity *activity) {
+
+        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+            RawMotionActivity *rawActivity = [RawMotionActivity MR_createInContext:localContext];
+            [rawActivity setupWithMotionActivity:activity];
+        }];
     }];
 }
 
@@ -44,23 +47,22 @@
 
 - (void)fetchUpdatesWhileInactive {
     if (![CMMotionActivityManager isActivityAvailable]) return;
-
     RawMotionActivity *mostRecent = [RawMotionActivity MR_findFirstOrderedByAttribute:@"timestamp" ascending:NO];
     NSDate *date = mostRecent.timestamp ?: [NSDate distantPast];
 
     [self.manager queryActivityStartingFromDate:date toDate:NSDate.date toQueue:self.operationQueue withHandler:^(NSArray *activities, NSError *error) {
 
         if (error) {
-            NSLog(@"================> %@", error);
+            NSLog(@"MOTION ERROR ================> %@", error);
             return;
         }
-        
-        NSMutableArray *rawActivities = [NSMutableArray new];
-        for (CMMotionActivity *activity in activities) {
-            [rawActivities addObject:[RawMotionActivity createWithMotionActivity:activity]];
-        }
 
-        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+        [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+            for (CMMotionActivity *activity in activities) {
+                RawMotionActivity *rawActivity = [RawMotionActivity MR_createInContext:localContext];
+                [rawActivity setupWithMotionActivity:activity];
+            }
+        }];
     }];
 }
 @end

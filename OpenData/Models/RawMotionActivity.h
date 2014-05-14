@@ -24,6 +24,6 @@ typedef NS_ENUM(NSUInteger, RawMotionActivityType) {
 @property (nonatomic) NSNumber* activity;
 @property (nonatomic) NSNumber* confidence;
 
-+ (instancetype)createWithMotionActivity:(CMMotionActivity *)activity;
+- (void)setupWithMotionActivity:(CMMotionActivity *)activity;
 
 @end

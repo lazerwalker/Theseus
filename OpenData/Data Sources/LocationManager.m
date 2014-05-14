@@ -36,16 +36,16 @@
 
 #pragma mark - CLLocationManagerDelegate
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    NSMutableArray *rawLocations = [NSMutableArray new];
-    for (CLLocation *location in locations) {
-        [rawLocations addObject:[RawLocation createWithLocation:location]];
-    }
-
-    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+        for (CLLocation *location in locations) {
+            RawLocation *rawLocation = [RawLocation MR_createInContext:localContext];
+            [rawLocation setupWithLocation:location];
+        }
+    }];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-    NSLog(@"================> %@", error);
+    NSLog(@"LOCATIONERROR ================> %@", error);
 }
 
 @end

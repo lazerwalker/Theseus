@@ -12,19 +12,15 @@
 
 @dynamic timestamp, altitude, horizontalAccuracy, verticalAccuracy, latitude, longitude, speed;
 
-+ (instancetype)createWithLocation:(CLLocation *)location {
-    RawLocation *entity = [RawLocation MR_createEntity];
+- (void)setupWithLocation:(CLLocation *)location {
+    self.timestamp = location.timestamp;
+    self.altitude = @(location.altitude);
+    self.horizontalAccuracy = @(location.horizontalAccuracy);
+    self.verticalAccuracy = @(location.verticalAccuracy);
+    self.speed = @(location.speed);
 
-    entity.timestamp = location.timestamp;
-    entity.altitude = @(location.altitude);
-    entity.horizontalAccuracy = @(location.horizontalAccuracy);
-    entity.verticalAccuracy = @(location.verticalAccuracy);
-    entity.speed = @(location.speed);
-
-    entity.latitude = @(location.coordinate.latitude);
-    entity.longitude = @(location.coordinate.longitude);
-
-    return entity;
+    self.latitude = @(location.coordinate.latitude);
+    self.longitude = @(location.coordinate.longitude);
 }
 
 - (CLLocationCoordinate2D)coordinate {

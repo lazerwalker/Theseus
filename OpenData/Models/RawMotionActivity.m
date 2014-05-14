@@ -14,24 +14,21 @@
 @dynamic activity;
 @dynamic confidence;
 
-+ (instancetype)createWithMotionActivity:(CMMotionActivity *)activity {
-    RawMotionActivity *entity = [RawMotionActivity MR_createEntity];
-    entity.timestamp = activity.startDate;
-    entity.confidence = @(activity.confidence);
+- (void)setupWithMotionActivity:(CMMotionActivity *)activity {
+    self.timestamp = activity.startDate;
+    self.confidence = @(activity.confidence);
 
     if (activity.walking) {
-        entity.activity = @(RawMotionActivityTypeWalking);
+        self.activity = @(RawMotionActivityTypeWalking);
     } else if (activity.running) {
-        entity.activity = @(RawMotionActivityTypeRunning);
+        self.activity = @(RawMotionActivityTypeRunning);
     } else if (activity.automotive) {
-        entity.activity = @(RawMotionActivityTypeAutomotive);
+        self.activity = @(RawMotionActivityTypeAutomotive);
     } else if (activity.stationary) {
-        entity.activity = @(RawMotionActivityTypeStationary);
+        self.activity = @(RawMotionActivityTypeStationary);
     } else {
-        entity.activity = @(RawMotionActivityTypeUnknown);
+        self.activity = @(RawMotionActivityTypeUnknown);
     }
-
-    return entity;
 }
 
 - (RawMotionActivityType)activityType {

@@ -20,6 +20,6 @@
 @property (nonatomic) NSNumber *latitude;
 @property (nonatomic) NSNumber *longitude;
 
-+ (instancetype)createWithLocation:(CLLocation *)location;
+- (void)setupWithLocation:(CLLocation *)location;
 
 @end
