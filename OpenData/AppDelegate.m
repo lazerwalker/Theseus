@@ -8,21 +8,41 @@
 
 #import "AppDelegate.h"
 #import "MotionManager.h"
-#import "ViewController.h"
+#import "MapViewController.h"
+#import "ListViewController.h"
 
-@import CoreData;
+#import "LocationManager.h"
+#import "MotionManager.h"
 
+@interface AppDelegate ()
+
+@property (strong, nonatomic) LocationManager *locationManager;
+@property (strong, nonatomic) MotionManager *motionManager;
+
+@end
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [MagicalRecord setupAutoMigratingCoreDataStack];
 
-    self.window.rootViewController = [ViewController new];
+    UITabBarController *tabController = [UITabBarController new];
+    tabController.viewControllers = @[[MapViewController new], [ListViewController new]];
+
+    self.window.rootViewController = tabController;
     [self.window makeKeyAndVisible];
+
+    [self startMonitoring];
 
     return YES;
 }
 
+- (void)startMonitoring {
+    self.locationManager = [LocationManager new];
+    [self.locationManager startMonitoring];
+
+    self.motionManager = [MotionManager new];
+    [self.motionManager startMonitoring];
+}
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {

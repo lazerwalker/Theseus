@@ -6,9 +6,7 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "LocationManager.h"
-#import "MotionManager.h"
+#import "MapViewController.h"
 #import "MovementPath.h"
 #import "Stop.h"
 #import "RawLocation.h"
@@ -17,22 +15,20 @@
 @import MapKit;
 @import CoreMotion;
 
-@interface ViewController ()<MKMapViewDelegate>
-
-@property (strong, nonatomic) LocationManager *locationManager;
-@property (strong, nonatomic) MotionManager *motionManager;
+@interface MapViewController ()<MKMapViewDelegate>
 
 @property (strong, nonatomic) MKMapView *mapView;
 
 @end
 
-@implementation ViewController
+@implementation MapViewController
 
 - (instancetype)init {
     self = [super init];
     if (!self) return nil;
 
     self.view = self.mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
+    self.title = @"Map";
 
     return self;
 }
@@ -41,16 +37,7 @@
 {
     [super viewDidLoad];
 
-    [self startMonitoring];
     [self render];
-}
-
-- (void)startMonitoring {
-    self.locationManager = [LocationManager new];
-    [self.locationManager startMonitoring];
-
-    self.motionManager = [MotionManager new];
-    [self.motionManager startMonitoring];
 }
 
 - (void)render {

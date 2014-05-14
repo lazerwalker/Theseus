@@ -13,7 +13,7 @@
 		A6748AA9192127E90073CE19 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A6748AA7192127E90073CE19 /* InfoPlist.strings */; };
 		A6748AAB192127E90073CE19 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748AAA192127E90073CE19 /* main.m */; };
 		A6748AAF192127E90073CE19 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748AAE192127E90073CE19 /* AppDelegate.m */; };
-		A6748AB5192127E90073CE19 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748AB4192127E90073CE19 /* ViewController.m */; };
+		A6748AB5192127E90073CE19 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748AB4192127E90073CE19 /* MapViewController.m */; };
 		A6748AB7192127E90073CE19 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6748AB6192127E90073CE19 /* Images.xcassets */; };
 		A6748ABE192127EA0073CE19 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748ABD192127EA0073CE19 /* XCTest.framework */; };
 		A6748ABF192127EA0073CE19 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748A9E192127E90073CE19 /* Foundation.framework */; };
@@ -29,6 +29,7 @@
 		A6F4D95D1922D2AA006C7034 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F4D95C1922D2AA006C7034 /* CoreData.framework */; };
 		A6F4D9601922D684006C7034 /* RawLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F4D95F1922D684006C7034 /* RawLocation.m */; };
 		A6F4D9691922DE94006C7034 /* RawMotionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F4D9681922DE94006C7034 /* RawMotionActivity.m */; };
+		A6F4D96F1922E9F5006C7034 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F4D96E1922E9F5006C7034 /* ListViewController.m */; };
 		C11118D911DD46AFA835F8F3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D73CDD20E349509DE73F55 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -54,8 +55,8 @@
 		A6748AAC192127E90073CE19 /* OpenData-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OpenData-Prefix.pch"; sourceTree = "<group>"; };
 		A6748AAD192127E90073CE19 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A6748AAE192127E90073CE19 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A6748AB3192127E90073CE19 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		A6748AB4192127E90073CE19 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		A6748AB3192127E90073CE19 /* MapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		A6748AB4192127E90073CE19 /* MapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		A6748AB6192127E90073CE19 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A6748ABC192127EA0073CE19 /* OpenDataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenDataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6748ABD192127EA0073CE19 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -77,6 +78,8 @@
 		A6F4D95F1922D684006C7034 /* RawLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RawLocation.m; path = Models/RawLocation.m; sourceTree = "<group>"; };
 		A6F4D9671922DE94006C7034 /* RawMotionActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RawMotionActivity.h; path = Models/RawMotionActivity.h; sourceTree = "<group>"; };
 		A6F4D9681922DE94006C7034 /* RawMotionActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RawMotionActivity.m; path = Models/RawMotionActivity.m; sourceTree = "<group>"; };
+		A6F4D96D1922E9F5006C7034 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListViewController.h; path = "View Controllers/ListViewController.h"; sourceTree = "<group>"; };
+		A6F4D96E1922E9F5006C7034 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListViewController.m; path = "View Controllers/ListViewController.m"; sourceTree = "<group>"; };
 		CFFE53274403422DB4CE650B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -188,8 +191,10 @@
 		A6748AD3192128AB0073CE19 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A6748AB3192127E90073CE19 /* ViewController.h */,
-				A6748AB4192127E90073CE19 /* ViewController.m */,
+				A6748AB3192127E90073CE19 /* MapViewController.h */,
+				A6748AB4192127E90073CE19 /* MapViewController.m */,
+				A6F4D96D1922E9F5006C7034 /* ListViewController.h */,
+				A6F4D96E1922E9F5006C7034 /* ListViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -360,8 +365,9 @@
 			files = (
 				A6748AD7192128D70073CE19 /* LocationManager.m in Sources */,
 				A6F4D9601922D684006C7034 /* RawLocation.m in Sources */,
+				A6F4D96F1922E9F5006C7034 /* ListViewController.m in Sources */,
 				A6748ADE1921344F0073CE19 /* MotionManager.m in Sources */,
-				A6748AB5192127E90073CE19 /* ViewController.m in Sources */,
+				A6748AB5192127E90073CE19 /* MapViewController.m in Sources */,
 				A6748AAF192127E90073CE19 /* AppDelegate.m in Sources */,
 				A6748AAB192127E90073CE19 /* main.m in Sources */,
 				A6CDC3B41922854800AC941A /* Stop.m in Sources */,
