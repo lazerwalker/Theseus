@@ -66,6 +66,8 @@
             } else {
                 previousActivity = obj;
 
+                if (movementPoints.count == 0) continue;
+
                 CLLocationCoordinate2D* pointArr = malloc(sizeof(CLLocationCoordinate2D) * movementPoints.count);
 
                 NSUInteger idx = 0;
