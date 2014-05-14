@@ -14,7 +14,7 @@
 
 #ifndef MR_ENABLE_ACTIVE_RECORD_LOGGING
     #ifdef DEBUG
-        #define MR_ENABLE_ACTIVE_RECORD_LOGGING 1
+        //#define MR_ENABLE_ACTIVE_RECORD_LOGGING 1
     #else
         #define MR_ENABLE_ACTIVE_RECORD_LOGGING 0
     #endif
