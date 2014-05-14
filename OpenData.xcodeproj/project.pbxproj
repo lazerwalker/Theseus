@@ -27,6 +27,7 @@
 		A68425CA192302CB0083D006 /* FoursquareVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = A68425C9192302CB0083D006 /* FoursquareVenue.m */; };
 		A68425CC1923047F0083D006 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = A68425CB1923047F0083D006 /* Configuration.plist */; };
 		A6CDC3B41922854800AC941A /* Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CDC3B31922854800AC941A /* Stop.m */; };
+		A6D7DFDA192417B20036C2DF /* DataProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D7DFD9192417B20036C2DF /* DataProcessor.m */; };
 		A6F4D9111922CF13006C7034 /* OpenData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6F4D90F1922CF13006C7034 /* OpenData.xcdatamodeld */; };
 		A6F4D95D1922D2AA006C7034 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F4D95C1922D2AA006C7034 /* CoreData.framework */; };
 		A6F4D9601922D684006C7034 /* RawLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F4D95F1922D684006C7034 /* RawLocation.m */; };
@@ -78,6 +79,8 @@
 		A68425CB1923047F0083D006 /* Configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Configuration.plist; sourceTree = "<group>"; };
 		A6CDC3B21922854800AC941A /* Stop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stop.h; path = Models/Stop.h; sourceTree = "<group>"; };
 		A6CDC3B31922854800AC941A /* Stop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stop.m; path = Models/Stop.m; sourceTree = "<group>"; };
+		A6D7DFD8192417B20036C2DF /* DataProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataProcessor.h; path = Interfaces/DataProcessor.h; sourceTree = "<group>"; };
+		A6D7DFD9192417B20036C2DF /* DataProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataProcessor.m; path = Interfaces/DataProcessor.m; sourceTree = "<group>"; };
 		A6F4D9101922CF13006C7034 /* OpenData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OpenData.xcdatamodel; sourceTree = "<group>"; };
 		A6F4D95C1922D2AA006C7034 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A6F4D95E1922D684006C7034 /* RawLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RawLocation.h; path = Models/RawLocation.h; sourceTree = "<group>"; };
@@ -242,6 +245,8 @@
 			children = (
 				A6F4D9711922FE33006C7034 /* FoursquareClient.h */,
 				A6F4D9721922FE33006C7034 /* FoursquareClient.m */,
+				A6D7DFD8192417B20036C2DF /* DataProcessor.h */,
+				A6D7DFD9192417B20036C2DF /* DataProcessor.m */,
 			);
 			name = Interfaces;
 			sourceTree = "<group>";
@@ -393,6 +398,7 @@
 				A6748ADE1921344F0073CE19 /* MotionManager.m in Sources */,
 				A6748AB5192127E90073CE19 /* MapViewController.m in Sources */,
 				A6748AAF192127E90073CE19 /* AppDelegate.m in Sources */,
+				A6D7DFDA192417B20036C2DF /* DataProcessor.m in Sources */,
 				A6748AAB192127E90073CE19 /* main.m in Sources */,
 				A6CDC3B41922854800AC941A /* Stop.m in Sources */,
 				A6F4D9691922DE94006C7034 /* RawMotionActivity.m in Sources */,

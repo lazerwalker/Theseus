@@ -9,9 +9,7 @@
 #import "MapViewController.h"
 #import "MovementPath.h"
 #import "Stop.h"
-#import "RawLocation.h"
-#import "RawMotionActivity.h"
-#import "FoursquareClient.h"
+#import "DataProcessor.h"
 
 @import MapKit;
 @import CoreMotion;
@@ -43,72 +41,15 @@
 }
 
 - (void)render {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSArray *array = [[RawLocation MR_findAllSortedBy:@"timestamp" ascending:YES]
-                          arrayByAddingObjectsFromArray:
-                          [RawMotionActivity MR_findAllSortedBy:@"timestamp" ascending:YES]];
-
-        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:YES];
-        array = [array sortedArrayUsingDescriptors:@[descriptor]];
-
-        RawMotionActivity *previousActivity;
-
-        NSMutableArray *annotations = [NSMutableArray new];
-        NSMutableArray *paths = [NSMutableArray new];
-
-        NSMutableArray *currentObjects = [NSMutableArray new];
-
-        for (id obj in array) {
-            if ([obj isKindOfClass:RawLocation.class]) {
-                [currentObjects addObject:obj];
-            } else if ([obj isKindOfClass:RawMotionActivity.class]){
-                RawMotionActivity *activity = (RawMotionActivity *)obj;
-                if (!(previousActivity.activityType == activity.activityType)) {
-                    if (previousActivity.activityType == RawMotionActivityTypeStationary) {
-                        Stop *stop = [[Stop alloc] initWithLocations:currentObjects];
-                        stop.endTime = activity.timestamp;
-                        [annotations addObject:stop];
-                    } else {
-                        CLLocationCoordinate2D* pointArr = malloc(sizeof(CLLocationCoordinate2D) * currentObjects.count);
-
-                        NSUInteger idx = 0;
-                        for (RawLocation *location in currentObjects) {
-                            pointArr[idx] = location.coordinate;
-                            idx++;
-                        }
-
-                        MovementPath *path = [MovementPath polylineWithCoordinates:pointArr count:currentObjects.count];
-
-                        if (activity.activityType == RawMotionActivityTypeWalking) {
-                            path.type = MovementTypeWalking;
-                        } else if (activity.activityType == RawMotionActivityTypeRunning) {
-                            path.type = MovementTypeRunning;
-                        } else if (activity.activityType == RawMotionActivityTypeAutomotive) {
-                            path.type = MovementTypeTransit;
-                        }
-
-                        path.startDate = [(RawLocation *)currentObjects.firstObject timestamp];
-                        path.endDate = activity.timestamp;
-                        [paths addObject:path];
-                    }
-                    currentObjects = [NSMutableArray new];
-                }
-
-                previousActivity = obj;
-            }
-        }
-
+    DataProcessor *dataProcessor = [DataProcessor new];
+    [dataProcessor processDataWithCompletion:^(NSArray *stops, NSArray *paths) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.mapView addAnnotations:annotations];
-
+            [self.mapView addAnnotations:stops];
             [self.mapView addOverlays:paths];
 
-            [self.mapView setRegion:MKCoordinateRegionMake([annotations.lastObject coordinate], MKCoordinateSpanMake(0.01, 0.01))];
-            [[FoursquareClient new] fetchVenuesForCoordinate:[annotations.lastObject coordinate] completion:^(NSArray *results, NSError *error) {
-                NSLog(@"================> %@", results);
-            }];
+            [self.mapView setRegion:MKCoordinateRegionMake([stops.lastObject coordinate], MKCoordinateSpanMake(0.01, 0.01))];
         });
-    });
+    }];
 }
 
 #pragma mark - MKMapViewDelegate
