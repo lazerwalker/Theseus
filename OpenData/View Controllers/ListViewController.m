@@ -31,6 +31,7 @@ static NSString * const CellIdentifier = @"CellIdentifier";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.contentInset = UIEdgeInsetsMake(20, 0, self.tabBarController.tabBar.bounds.size.height, 0);
     [self loadData];
 }
 
@@ -38,9 +39,8 @@ static NSString * const CellIdentifier = @"CellIdentifier";
 - (void)loadData {
     DataProcessor *dataProcessor = [DataProcessor new];
     [dataProcessor processDataWithCompletion:^(NSArray *stops, NSArray *paths) {
-        NSArray *data = [stops arrayByAddingObjectsFromArray:paths];
         NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"startTime" ascending:YES];
-        self.data = [data sortedArrayUsingDescriptors:@[descriptor]];
+        self.data = [stops sortedArrayUsingDescriptors:@[descriptor]];
 
         [self.tableView reloadData];
     }];
@@ -60,20 +60,16 @@ static NSString * const CellIdentifier = @"CellIdentifier";
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    id object = self.data[indexPath.row];
+    Stop *stop = self.data[indexPath.row];
 
-    if ([object isKindOfClass:Stop.class]) {
-        cell.textLabel.text = [NSString stringWithFormat:@"%f, %f", [(Stop *)object coordinate].latitude, [(Stop *)object coordinate].longitude];
-    } else {
-        cell.textLabel.text = [(MovementPath *)object typeString];
-    }
+    cell.textLabel.text = [NSString stringWithFormat:@"%f, %f", stop.coordinate.latitude, stop.coordinate.longitude];
 
-    NSTimeInterval duration = [(Stop *)object duration];
+    NSTimeInterval duration = stop.duration;
     NSInteger hours = duration / 60 / 60;
     NSInteger minutes = duration/60 - hours*60;
     NSInteger seconds = duration - minutes*60;
     NSString *timeString = [NSString stringWithFormat:@"%02lu:%02lu:%02lu", (long)hours, (long)minutes, (long)seconds];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ — %@ (%@)", [self.dateFormatter stringFromDate:[(Stop *)object startTime]], [self.dateFormatter stringFromDate:[(Stop *)object endTime]], timeString];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ — %@ (%@)", [self.dateFormatter stringFromDate:stop.startTime], [self.dateFormatter stringFromDate:stop.endTime], timeString];
 }
 
 #pragma mark - UITableViewDataSource
