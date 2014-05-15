@@ -46,7 +46,17 @@
                 if (previousActivity.activityType == RawMotionActivityTypeStationary) {
                     Stop *stop = [[Stop alloc] initWithLocations:currentObjects];
                     stop.endTime = activity.timestamp;
-                    [annotations addObject:stop];
+
+                    Stop *previousStop = annotations.lastObject;
+                    if ([stop isSameLocationAs:annotations.lastObject]) {
+                        MovementPath *previousPath = paths.lastObject;
+                        [previousStop addMovementPath:previousPath];
+                        [paths removeLastObject];
+
+                        [previousStop mergeWithStop:stop];
+                    } else {
+                        [annotations addObject:stop];
+                    }
                 } else {
                     CLLocationCoordinate2D* pointArr = malloc(sizeof(CLLocationCoordinate2D) * currentObjects.count);
 
