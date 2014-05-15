@@ -46,6 +46,18 @@ static NSString * const CellIdentifier = @"CellIdentifier";
     }];
 }
 
+- (NSDateFormatter *)dateFormatter {
+    static NSDateFormatter *_dateFormatter = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        _dateFormatter.dateStyle = NSDateFormatterShortStyle;
+        _dateFormatter.timeStyle = NSDateFormatterShortStyle;
+    });
+
+    return _dateFormatter;
+}
+
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     id object = self.data[indexPath.row];
@@ -60,8 +72,8 @@ static NSString * const CellIdentifier = @"CellIdentifier";
     NSInteger hours = duration / 60 / 60;
     NSInteger minutes = duration/60 - hours*60;
     NSInteger seconds = duration - minutes*60;
-    NSString *timeString = [NSString stringWithFormat:@"%02lu:%02lu:%02lu", hours, minutes, seconds];
-    cell.detailTextLabel.text = timeString;
+    NSString *timeString = [NSString stringWithFormat:@"%02lu:%02lu:%02lu", (long)hours, (long)minutes, (long)seconds];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ — %@ (%@)", [self.dateFormatter stringFromDate:[(Stop *)object startTime]], [self.dateFormatter stringFromDate:[(Stop *)object endTime]], timeString];
 }
 
 #pragma mark - UITableViewDataSource
