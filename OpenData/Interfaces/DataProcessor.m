@@ -22,73 +22,75 @@
 @implementation DataProcessor
 
 - (void)processDataWithCompletion:(void (^)(NSArray *, NSArray *))completion {
-    NSArray *array = [[RawLocation MR_findAllSortedBy:@"timestamp" ascending:YES]
-                      arrayByAddingObjectsFromArray:
-                      [RawMotionActivity MR_findAllSortedBy:@"timestamp" ascending:YES]];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSArray *array = [[RawLocation MR_findAllSortedBy:@"timestamp" ascending:YES]
+                          arrayByAddingObjectsFromArray:
+                          [RawMotionActivity MR_findAllSortedBy:@"timestamp" ascending:YES]];
 
-    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:YES];
-    array = [array sortedArrayUsingDescriptors:@[descriptor]];
+        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:YES];
+        array = [array sortedArrayUsingDescriptors:@[descriptor]];
 
-    RawMotionActivity *previousActivity;
+        RawMotionActivity *previousActivity;
 
-    NSMutableArray *annotations = [NSMutableArray new];
-    NSMutableArray *paths = [NSMutableArray new];
+        NSMutableArray *annotations = [NSMutableArray new];
+        NSMutableArray *paths = [NSMutableArray new];
 
-    NSMutableArray *currentObjects = [NSMutableArray new];
+        NSMutableArray *currentObjects = [NSMutableArray new];
 
-    for (id obj in array) {
-        if ([obj isKindOfClass:RawLocation.class]) {
-            [currentObjects addObject:obj];
-        } else if ([obj isKindOfClass:RawMotionActivity.class]){
-            RawMotionActivity *activity = (RawMotionActivity *)obj;
-            if (!(previousActivity.activityType == activity.activityType)) {
-                if (currentObjects.count == 0) continue;
-                if (previousActivity.activityType == RawMotionActivityTypeStationary) {
-                    Stop *stop = [[Stop alloc] initWithLocations:currentObjects];
-                    stop.endTime = activity.timestamp;
+        for (id obj in array) {
+            if ([obj isKindOfClass:RawLocation.class]) {
+                [currentObjects addObject:obj];
+            } else if ([obj isKindOfClass:RawMotionActivity.class]){
+                RawMotionActivity *activity = (RawMotionActivity *)obj;
+                if (!(previousActivity.activityType == activity.activityType)) {
+                    if (currentObjects.count == 0) continue;
+                    if (previousActivity.activityType == RawMotionActivityTypeStationary) {
+                        Stop *stop = [[Stop alloc] initWithLocations:currentObjects];
+                        stop.endTime = activity.timestamp;
 
-                    Stop *previousStop = annotations.lastObject;
-                    if ([stop isSameLocationAs:annotations.lastObject]) {
-                        MovementPath *previousPath = paths.lastObject;
-                        [previousStop addMovementPath:previousPath];
-                        [paths removeLastObject];
+                        Stop *previousStop = annotations.lastObject;
+                        if ([stop isSameLocationAs:annotations.lastObject]) {
+                            MovementPath *previousPath = paths.lastObject;
+                            [previousStop addMovementPath:previousPath];
+                            [paths removeLastObject];
 
-                        [previousStop mergeWithStop:stop];
+                            [previousStop mergeWithStop:stop];
+                        } else {
+                            [annotations addObject:stop];
+                        }
                     } else {
-                        [annotations addObject:stop];
+                        CLLocationCoordinate2D* pointArr = malloc(sizeof(CLLocationCoordinate2D) * currentObjects.count);
+
+                        NSUInteger idx = 0;
+                        for (RawLocation *location in currentObjects) {
+                            pointArr[idx] = location.coordinate;
+                            idx++;
+                        }
+
+                        MovementPath *path = [MovementPath polylineWithCoordinates:pointArr count:currentObjects.count];
+
+                        if (activity.activityType == RawMotionActivityTypeWalking) {
+                            path.type = MovementTypeWalking;
+                        } else if (activity.activityType == RawMotionActivityTypeRunning) {
+                            path.type = MovementTypeRunning;
+                        } else if (activity.activityType == RawMotionActivityTypeAutomotive) {
+                            path.type = MovementTypeTransit;
+                        }
+
+                        path.startTime = [(RawLocation *)currentObjects.firstObject timestamp];
+                        path.endTime = activity.timestamp;
+                        [paths addObject:path];
                     }
-                } else {
-                    CLLocationCoordinate2D* pointArr = malloc(sizeof(CLLocationCoordinate2D) * currentObjects.count);
-
-                    NSUInteger idx = 0;
-                    for (RawLocation *location in currentObjects) {
-                        pointArr[idx] = location.coordinate;
-                        idx++;
-                    }
-
-                    MovementPath *path = [MovementPath polylineWithCoordinates:pointArr count:currentObjects.count];
-
-                    if (activity.activityType == RawMotionActivityTypeWalking) {
-                        path.type = MovementTypeWalking;
-                    } else if (activity.activityType == RawMotionActivityTypeRunning) {
-                        path.type = MovementTypeRunning;
-                    } else if (activity.activityType == RawMotionActivityTypeAutomotive) {
-                        path.type = MovementTypeTransit;
-                    }
-
-                    path.startTime = [(RawLocation *)currentObjects.firstObject timestamp];
-                    path.endTime = activity.timestamp;
-                    [paths addObject:path];
+                    currentObjects = [NSMutableArray new];
                 }
-                currentObjects = [NSMutableArray new];
+                
+                previousActivity = obj;
             }
-
-            previousActivity = obj;
         }
-    }
-    if (completion) {
-        completion(annotations, paths);
-    }
+        if (completion) {
+            completion(annotations, paths);
+        }
+    });
 }
 
 @end
