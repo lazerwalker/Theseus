@@ -26,7 +26,12 @@
     [MagicalRecord setupAutoMigratingCoreDataStack];
 
     UITabBarController *tabController = [UITabBarController new];
-    tabController.viewControllers = @[[MapViewController new], [ListViewController new]];
+
+    UINavigationController *mapNav = [[UINavigationController alloc] initWithRootViewController:[MapViewController new]];
+
+    UINavigationController *listNav = [[UINavigationController alloc] initWithRootViewController:[ListViewController new]];
+
+    tabController.viewControllers = @[mapNav, listNav];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = tabController;

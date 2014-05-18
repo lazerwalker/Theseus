@@ -30,14 +30,14 @@
     self.mapView.delegate = self;
     self.title = @"Map";
 
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Process" style:UIBarButtonItemStylePlain target:self action:@selector(render)];
+
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    [self render];
 }
 
 - (void)render {

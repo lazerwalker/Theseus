@@ -25,6 +25,7 @@ static NSString * const CellIdentifier = @"CellIdentifier";
     if (!self) return nil;
 
     self.title = @"List";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Process" style:UIBarButtonItemStylePlain target:self action:@selector(loadData)];
 
     return self;
 }
@@ -32,7 +33,6 @@ static NSString * const CellIdentifier = @"CellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.contentInset = UIEdgeInsetsMake(20, 0, self.tabBarController.tabBar.bounds.size.height, 0);
-    [self loadData];
 }
 
 #pragma mark - 
