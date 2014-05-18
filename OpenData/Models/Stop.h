@@ -11,23 +11,18 @@
 
 @class MovementPath;
 
-@interface Stop : MTLModel<MKAnnotation>
+@interface Stop : NSManagedObject<MKAnnotation>
 
-@property (strong, nonatomic) NSDate *startTime;
-@property (strong, nonatomic) NSDate *endTime;
-@property (readonly) NSTimeInterval duration;
+@property (nonatomic) NSDate *startTime;
+@property (nonatomic) NSDate *endTime;
+@property (nonatomic) NSSet *locations;
+@property (nonatomic) NSSet *movementPaths;
 
-@property (assign, nonatomic) CLLocationCoordinate2D coordinate;
-@property (assign, nonatomic) CLLocationDistance altitude;
-@property (assign, nonatomic) CLLocationAccuracy horizontalAccuracy;
-@property (assign, nonatomic) CLLocationAccuracy verticalAccuracy;
+@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+@property (nonatomic, readonly) CLLocationDistance altitude;
+@property (nonatomic, readonly) NSTimeInterval duration;
 
-@property (strong, nonatomic) NSMutableArray *movementPaths;
-@property (strong, nonatomic) NSArray *locations;
-
-
-- (id)initWithLocations:(NSArray *)locations;
-
+- (void)setupWithLocations:(NSArray *)locations;
 - (BOOL)isSameLocationAs:(Stop *)stop;
 - (void)mergeWithStop:(Stop *)stop;
 - (void)addMovementPath:(MovementPath *)path;

@@ -21,18 +21,33 @@
 
 @implementation DataProcessor
 
+- (void)removeAllProcessedDataWithContext:(NSManagedObjectContext *)context {
+    NSArray *stops = [Stop MR_findAllInContext:context];
+    for (Stop *stop in stops) {
+        [stop MR_deleteInContext:context];
+    }
+
+    NSArray *movementPaths = [MovementPath MR_findAllInContext:context];
+    for (MovementPath *path in movementPaths) {
+        [path MR_deleteInContext:context];
+    }
+}
+
 - (void)processDataWithCompletion:(void (^)(NSArray *, NSArray *))completion {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSArray *array = [[RawLocation MR_findAllSortedBy:@"timestamp" ascending:YES]
-                          arrayByAddingObjectsFromArray:
-                          [RawMotionActivity MR_findAllSortedBy:@"timestamp" ascending:YES]];
+    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+        [self removeAllProcessedDataWithContext:localContext];
+
+        NSArray *array = [RawLocation MR_findAllSortedBy:@"timestamp" ascending:YES inContext:localContext];
+
+        array = [array arrayByAddingObjectsFromArray:
+          [RawMotionActivity MR_findAllSortedBy:@"timestamp" ascending:YES inContext:localContext]];
 
         NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:YES];
         array = [array sortedArrayUsingDescriptors:@[descriptor]];
 
         RawMotionActivity *previousActivity;
 
-        NSMutableArray *annotations = [NSMutableArray new];
+        NSMutableArray *stops = [NSMutableArray new];
         NSMutableArray *paths = [NSMutableArray new];
 
         NSMutableArray *currentObjects = [NSMutableArray new];
@@ -45,37 +60,25 @@
                 if (!(previousActivity.activityType == activity.activityType)) {
                     if (currentObjects.count == 0) continue;
                     if (previousActivity.activityType == RawMotionActivityTypeStationary) {
-                        Stop *stop = [[Stop alloc] initWithLocations:currentObjects];
+                        Stop *stop = [Stop MR_createInContext:localContext];
+                        [stop setupWithLocations:currentObjects];
                         stop.endTime = activity.timestamp;
 
-                        Stop *previousStop = annotations.lastObject;
-                        if ([stop isSameLocationAs:annotations.lastObject]) {
+                        Stop *previousStop = stops.lastObject;
+                        if ([stop isSameLocationAs:stops.lastObject]) {
                             MovementPath *previousPath = paths.lastObject;
                             [previousStop addMovementPath:previousPath];
                             [paths removeLastObject];
-
                             [previousStop mergeWithStop:stop];
+                            [stop MR_deleteEntity];
                         } else {
-                            [annotations addObject:stop];
+                            [stops addObject:stop];
                         }
                     } else {
-                        CLLocationCoordinate2D* pointArr = malloc(sizeof(CLLocationCoordinate2D) * currentObjects.count);
+                        MovementPath *path = [MovementPath MR_createInContext:localContext];
 
-                        NSUInteger idx = 0;
-                        for (RawLocation *location in currentObjects) {
-                            pointArr[idx] = location.coordinate;
-                            idx++;
-                        }
-
-                        MovementPath *path = [MovementPath polylineWithCoordinates:pointArr count:currentObjects.count];
-
-                        if (activity.activityType == RawMotionActivityTypeWalking) {
-                            path.type = MovementTypeWalking;
-                        } else if (activity.activityType == RawMotionActivityTypeRunning) {
-                            path.type = MovementTypeRunning;
-                        } else if (activity.activityType == RawMotionActivityTypeAutomotive) {
-                            path.type = MovementTypeTransit;
-                        }
+                        path.locations = [NSSet setWithArray:currentObjects];
+                        path.activity = previousActivity;
 
                         path.startTime = [(RawLocation *)currentObjects.firstObject timestamp];
                         path.endTime = activity.timestamp;
@@ -83,14 +86,19 @@
                     }
                     currentObjects = [NSMutableArray new];
                 }
-                
+
                 previousActivity = obj;
             }
         }
+        NSLog(@"Done");
+    } completion:^(BOOL success, NSError *error) {
         if (completion) {
-            completion(annotations, paths);
+            NSArray *stops = [Stop MR_findAllSortedBy:@"startTime" ascending:YES];
+            NSArray *paths = [MovementPath MR_findAllSortedBy:@"startTime" ascending:YES];
+
+            completion(stops, paths);
         }
-    });
+    }];
 }
 
 @end

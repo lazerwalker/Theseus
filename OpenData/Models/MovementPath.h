@@ -8,6 +8,8 @@
 
 @import MapKit;
 
+@class RawMotionActivity;
+
 typedef NS_ENUM(NSUInteger, MovementType) {
     MovementTypeUnknown,
     MovementTypeWalking,
@@ -16,13 +18,16 @@ typedef NS_ENUM(NSUInteger, MovementType) {
     MovementTypeTransit
 };
 
-@interface MovementPath : MKPolyline
+@interface MovementPath : NSManagedObject
 
-@property (nonatomic, assign) MovementType type;
 @property (nonatomic, strong) NSDate *startTime;
 @property (nonatomic, strong) NSDate *endTime;
+@property (nonatomic, strong) NSSet *locations;
+@property (nonatomic, strong) RawMotionActivity *activity;
 
-@property (readonly) NSTimeInterval duration;
-@property (readonly) NSString *typeString;
+@property (nonatomic, readonly) MovementType type;
+@property (nonatomic, readonly) NSTimeInterval duration;
+@property (nonatomic, readonly) NSString *typeString;
+
 
 @end

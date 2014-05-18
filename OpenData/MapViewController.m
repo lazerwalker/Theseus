@@ -45,7 +45,7 @@
     [dataProcessor processDataWithCompletion:^(NSArray *stops, NSArray *paths) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.mapView addAnnotations:stops];
-            [self.mapView addOverlays:paths];
+//            [self.mapView addOverlays:paths];
 
             [self.mapView setRegion:MKCoordinateRegionMake([stops.lastObject coordinate], MKCoordinateSpanMake(0.01, 0.01))];
         });
@@ -53,7 +53,8 @@
 }
 
 #pragma mark - MKMapViewDelegate
-- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(MovementPath *)overlay {
+// TODO: MovementPathOverlay object that implements MKPolyline and wraps a MovementPath object
+/*- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(MovementPath *)overlay {
     MKPolylineView *polylineView = [[MKPolylineView alloc] initWithPolyline:overlay];
 
 
@@ -72,5 +73,5 @@
     polylineView.lineWidth = 10.0;
 
     return polylineView;
-}
+}*/
 @end

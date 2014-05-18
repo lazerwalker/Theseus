@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C1021" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="MovementPath" representedClassName="MovementPath" syncable="YES">
+        <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="activity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RawMotionActivity" inverseName="movementPath" inverseEntity="RawMotionActivity" syncable="YES"/>
+        <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RawLocation" inverseName="movementPath" inverseEntity="RawLocation" syncable="YES"/>
+        <relationship name="stop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Stop" inverseName="movementPaths" inverseEntity="Stop" syncable="YES"/>
+    </entity>
     <entity name="RawLocation" representedClassName="RawLocation" syncable="YES">
         <attribute name="altitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="horizontalAccuracy" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -8,14 +15,32 @@
         <attribute name="speed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="verticalAccuracy" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="movementPath" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MovementPath" inverseName="locations" inverseEntity="MovementPath" syncable="YES"/>
+        <relationship name="stop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Stop" inverseName="locations" inverseEntity="Stop" syncable="YES"/>
     </entity>
     <entity name="RawMotionActivity" representedClassName="RawMotionActivity" syncable="YES">
         <attribute name="activity" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
         <attribute name="confidence" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="movementPath" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MovementPath" inverseName="activity" inverseEntity="MovementPath" syncable="YES"/>
+    </entity>
+    <entity name="Stop" representedClassName="Stop" syncable="YES">
+        <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RawLocation" inverseName="stop" inverseEntity="RawLocation" syncable="YES"/>
+        <relationship name="movementPaths" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MovementPath" inverseName="stop" inverseEntity="MovementPath" syncable="YES"/>
+    </entity>
+    <entity name="Venue" representedClassName="Venue" syncable="YES">
+        <attribute name="foursquareId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="RawLocation" positionX="-63" positionY="-18" width="128" height="148"/>
-        <element name="RawMotionActivity" positionX="-36" positionY="63" width="128" height="88"/>
+        <element name="MovementPath" positionX="0" positionY="0" width="128" height="28"/>
+        <element name="RawLocation" positionX="0" positionY="0" width="128" height="178"/>
+        <element name="RawMotionActivity" positionX="0" positionY="0" width="128" height="103"/>
+        <element name="Stop" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="Venue" positionX="0" positionY="0" width="128" height="105"/>
     </elements>
 </model>

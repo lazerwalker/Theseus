@@ -10,25 +10,20 @@
 
 @implementation Stop
 
-- (id)initWithLocations:(NSArray *)locations {
-    self = [super init];
-    if (!self) return nil;
-
-    [self setupWithLocations:locations];
-    return self;
-}
+@dynamic startTime, endTime, locations, movementPaths;
 
 - (NSTimeInterval)duration {
     return [self.endTime timeIntervalSinceDate:self.startTime];
 }
 
 - (void)addMovementPath:(MovementPath *)path {
-    self.movementPaths = self.movementPaths ?: [NSMutableArray new];
-    [self.movementPaths addObject:path];
+    NSSet *paths = self.movementPaths ?: [NSSet new];
+    paths = [paths setByAddingObject:path];
+    self.movementPaths = paths;
 }
 
 - (void)mergeWithStop:(Stop *)stop {
-    NSArray *locations = [self.locations arrayByAddingObjectsFromArray:stop.locations];
+    NSArray *locations = [[self.locations setByAddingObjectsFromSet:stop.locations] allObjects];
     [self setupWithLocations:locations];
 }
 
@@ -41,20 +36,25 @@
     return distance < 50;
 }
 
+#pragma mark - Accessors
+- (CLLocationCoordinate2D)coordinate {
+    CLLocationDegrees latitude = [[self.locations valueForKeyPath:@"@avg.latitude"] doubleValue];
+    CLLocationDegrees longitude = [[self.locations valueForKeyPath:@"@avg.longitude"] doubleValue];
+
+    return CLLocationCoordinate2DMake(latitude, longitude);
+}
+
+- (CLLocationDistance)altitude {
+    return [[self.locations valueForKeyPath:@"@avg.altitude"] doubleValue];
+}
+
+
 #pragma mark - Private
 - (void)setupWithLocations:(NSArray *)locations {
-    self.locations = locations;
+    self.locations = [NSSet setWithArray:locations];
 
     self.startTime = [locations valueForKeyPath:@"@min.timestamp"];
     self.endTime = [locations valueForKeyPath:@"@max.timestamp"];
-
-    self.altitude = [[locations valueForKeyPath:@"@avg.altitude"] doubleValue];
-    self.horizontalAccuracy = [[locations valueForKeyPath:@"@avg.horizontalAccuracy"] doubleValue];
-    self.verticalAccuracy = [[locations valueForKeyPath:@"@avg.verticalAccuracy"] doubleValue];
-
-    CLLocationDegrees latitude = [[locations valueForKeyPath:@"@avg.latitude"] doubleValue];
-    CLLocationDegrees longitude = [[locations valueForKeyPath:@"@avg.longitude"] doubleValue];
-    self.coordinate = CLLocationCoordinate2DMake(latitude, longitude);
 }
 
 @end

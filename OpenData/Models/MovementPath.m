@@ -7,8 +7,11 @@
 //
 
 #import "MovementPath.h"
+#import "RawMotionActivity.h"
 
 @implementation MovementPath
+
+@dynamic startTime, endTime, locations, activity;
 
 - (NSTimeInterval)duration {
     return [self.endTime timeIntervalSinceDate:self.startTime];
@@ -21,6 +24,18 @@
                        @"Biking",
                        @"Transit"];
     return types[self.type];
+}
+
+- (MovementType)type {
+    if (self.activity.activityType == RawMotionActivityTypeWalking) {
+        return MovementTypeWalking;
+    } else if (self.activity.activityType == RawMotionActivityTypeRunning) {
+        return MovementTypeRunning;
+    } else if (self.activity.activityType == RawMotionActivityTypeAutomotive) {
+        return MovementTypeTransit;
+    } else {
+        return MovementTypeUnknown;
+    }
 }
 
 @end
