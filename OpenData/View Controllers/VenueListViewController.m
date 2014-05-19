@@ -18,6 +18,7 @@
 static NSString * const CellIdentifier = @"cell";
 
 typedef NS_ENUM(NSUInteger, TableSections) {
+    TableSectionNewResult,
     TableSectionLocalResults,
     TableSectionRemoteResults,
     NumberOfTableSections
@@ -83,7 +84,9 @@ typedef NS_ENUM(NSUInteger, TableSections) {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == TableSectionLocalResults) {
+    if (section == TableSectionNewResult) {
+        return (self.searchBar.text.length > 0 ? 1 : 0);
+    } else if (section == TableSectionLocalResults) {
         return self.localResults.count;
     } else if (section == TableSectionRemoteResults) {
         return self.results.count;
@@ -105,7 +108,11 @@ typedef NS_ENUM(NSUInteger, TableSections) {
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 
     Venue *venue;
-    if (indexPath.section == TableSectionLocalResults) {
+    if (indexPath.section == TableSectionNewResult) {
+        venue = [Venue MR_createEntity];
+        venue.coordinate = self.stop.coordinate;
+        venue.name = self.searchBar.text;
+    } else if (indexPath.section == TableSectionLocalResults) {
         venue = self.localResults[indexPath.row];
     } else if (indexPath.section == TableSectionRemoteResults) {
         FoursquareVenue *foursquareVenue = self.results[indexPath.row];
@@ -132,8 +139,10 @@ typedef NS_ENUM(NSUInteger, TableSections) {
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    if (indexPath.section == TableSectionLocalResults) {
+    if (indexPath.section == TableSectionNewResult) {
+        cell.textLabel.text = [NSString stringWithFormat:@"Use '%@'", self.searchBar.text];
+        cell.imageView.image = nil;
+    } else if (indexPath.section == TableSectionLocalResults) {
         Venue *venue = self.localResults[indexPath.row];
         cell.textLabel.text = venue.name;
         cell.imageView.image = nil;
@@ -153,6 +162,8 @@ typedef NS_ENUM(NSUInteger, TableSections) {
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:TableSectionNewResult] withRowAnimation:UITableViewRowAnimationNone];
+
     if (searchText.length == 0) {
         [self fetchLocalNearbyResults];
     } else {
