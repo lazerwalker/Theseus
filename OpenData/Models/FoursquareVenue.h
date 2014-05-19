@@ -10,7 +10,11 @@
 
 @interface FoursquareVenue : MTLModel<MTLJSONSerializing>
 
-@property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSString *foursquareId;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *foursquareId;
+@property (nonatomic, readonly) NSURL *iconURL;
+
+@property (nonatomic, strong) NSArray *iconPrefix;
+@property (nonatomic, strong) NSArray *iconSuffix;
 
 @end

@@ -10,6 +10,7 @@
 #import "DataProcessor.h"
 #import "MovementPath.h"
 #import "Stop.h"
+#import "VenueListViewController.h"
 
 static NSString * const CellIdentifier = @"CellIdentifier";
 
@@ -75,6 +76,12 @@ static NSString * const CellIdentifier = @"CellIdentifier";
     NSInteger seconds = duration - minutes*60;
     NSString *timeString = [NSString stringWithFormat:@"%02lu:%02lu:%02lu", (long)hours, (long)minutes, (long)seconds];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ — %@ (%@)", [self.dateFormatter stringFromDate:stop.startTime], [self.dateFormatter stringFromDate:stop.endTime], timeString];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Stop *stop = self.data[indexPath.row];
+    VenueListViewController *venueList = [[VenueListViewController alloc] initWithStop:stop];
+    [self.navigationController presentViewController:venueList animated:YES completion:nil];
 }
 
 #pragma mark - UITableViewDataSource
