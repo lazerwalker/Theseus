@@ -81,7 +81,12 @@ static NSString * const CellIdentifier = @"CellIdentifier";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Stop *stop = self.data[indexPath.row];
     VenueListViewController *venueList = [[VenueListViewController alloc] initWithStop:stop];
-    [self.navigationController presentViewController:venueList animated:YES completion:nil];
+    venueList.didTapCancelButtonBlock = ^{
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    };
+
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:venueList];
+    [self.navigationController presentViewController:navController animated:YES completion:nil];
 }
 
 #pragma mark - UITableViewDataSource

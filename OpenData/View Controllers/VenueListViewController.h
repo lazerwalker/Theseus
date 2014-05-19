@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) Stop *stop;
 
+@property (nonatomic, copy) void (^didTapCancelButtonBlock)();
+
 - (id)initWithStop:(Stop *)stop;
 
 @end

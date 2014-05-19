@@ -32,6 +32,8 @@ static NSString * const CellIdentifier = @"cell";
 
     self.stop = stop;
     self.title = @"Select A Venue";
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(didTapCancelButton)];
+
     self.results = [NSArray new];
 
     return self;
@@ -50,6 +52,12 @@ static NSString * const CellIdentifier = @"cell";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
+}
+
+- (void)didTapCancelButton {
+    if (self.didTapCancelButtonBlock) {
+        self.didTapCancelButtonBlock();
+    }
 }
 
 #pragma mark - UITableViewDataSource
