@@ -101,4 +101,12 @@
     }];
 }
 
+- (void)fetchStaleDataWithCompletion:(void(^)(NSArray *stops, NSArray *paths))completion {
+    if (completion) {
+        NSArray *stops = [Stop MR_findAllSortedBy:@"startTime" ascending:YES];
+        NSArray *paths = [MovementPath MR_findAllSortedBy:@"startTime" ascending:YES];
+
+        completion(stops, paths);
+    }
+}
 @end

@@ -10,4 +10,6 @@
 @interface DataProcessor : NSObject
 
 - (void)processDataWithCompletion:(void(^)(NSArray *stops, NSArray *paths))completion;
+- (void)fetchStaleDataWithCompletion:(void(^)(NSArray *stops, NSArray *paths))completion;
+
 @end

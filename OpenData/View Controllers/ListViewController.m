@@ -33,6 +33,11 @@ static NSString * const CellIdentifier = @"CellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.contentInset = UIEdgeInsetsMake(20, 0, self.tabBarController.tabBar.bounds.size.height, 0);
+    DataProcessor *dataProcessor = [DataProcessor new];
+    [dataProcessor fetchStaleDataWithCompletion:^(NSArray *stops, NSArray *paths) {
+        self.data = stops;
+        [self.tableView reloadData];
+    }];
 }
 
 #pragma mark - 

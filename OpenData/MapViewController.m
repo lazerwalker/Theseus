@@ -39,6 +39,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    DataProcessor *dataProcessor = [DataProcessor new];
+    [dataProcessor fetchStaleDataWithCompletion:^(NSArray *stops, NSArray *paths) {
+        NSMutableArray *polylines = [NSMutableArray new];
+        for (MovementPath *path in paths) {
+            MovementPathPolyline *polyline = [MovementPathPolyline polylineWithMovementPath:path];
+            [polylines addObject:polyline];
+        }
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.mapView addAnnotations:stops];
+            [self.mapView addOverlays:polylines];
+
+            [self.mapView setRegion:MKCoordinateRegionMake([stops.lastObject coordinate], MKCoordinateSpanMake(0.01, 0.01))];
+        });
+    }];
 }
 
 - (void)render {
