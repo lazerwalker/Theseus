@@ -32,6 +32,8 @@
         <relationship name="venue" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Venue" inverseName="stops" inverseEntity="Venue" syncable="YES"/>
     </entity>
     <entity name="Venue" representedClassName="Venue" syncable="YES">
+        <attribute name="foursquareIconPrefix" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="foursquareIconSuffix" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="foursquareId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -43,6 +45,6 @@
         <element name="RawLocation" positionX="0" positionY="0" width="128" height="178"/>
         <element name="RawMotionActivity" positionX="0" positionY="0" width="128" height="103"/>
         <element name="Stop" positionX="0" positionY="0" width="128" height="118"/>
-        <element name="Venue" positionX="0" positionY="0" width="128" height="118"/>
+        <element name="Venue" positionX="0" positionY="0" width="128" height="150"/>
     </elements>
 </model>

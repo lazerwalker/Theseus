@@ -19,6 +19,10 @@
 @property (nonatomic, retain) NSSet *stops;
 
 @property (nonatomic) CLLocationCoordinate2D coordinate;
+@property (nonatomic, readonly) NSURL *iconURL;
+
+@property (nonatomic, retain) NSString* foursquareIconSuffix;
+@property (nonatomic, retain) NSString* foursquareIconPrefix;
 
 - (void)setupWithFoursquareVenue:(FoursquareVenue *)venue;
 

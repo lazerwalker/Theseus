@@ -144,7 +144,11 @@ typedef NS_ENUM(NSUInteger, TableSections) {
     } else if (indexPath.section == TableSectionLocalResults) {
         Venue *venue = self.localResults[indexPath.row];
         cell.textLabel.text = venue.name;
-        cell.imageView.image = nil;
+        if (venue.iconURL) {
+            [cell.imageView setImageWithURL:venue.iconURL];
+        } else {
+            cell.imageView.image = nil;
+        }
     } else if (indexPath.section == TableSectionRemoteResults) {
         FoursquareVenue *venue = self.results[indexPath.row];
 

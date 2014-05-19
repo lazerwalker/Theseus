@@ -12,6 +12,8 @@
 @implementation Venue
 
 @dynamic foursquareId;
+@dynamic foursquareIconSuffix;
+@dynamic foursquareIconPrefix;
 @dynamic latitude;
 @dynamic longitude;
 @dynamic name;
@@ -22,6 +24,9 @@
     self.foursquareId = venue.foursquareId;
     self.latitude = venue.latitude;
     self.longitude = venue.longitude;
+
+    self.foursquareIconPrefix = venue.iconPrefix.firstObject;
+    self.foursquareIconSuffix = venue.iconSuffix.firstObject;
 }
 
 - (CLLocationCoordinate2D) coordinate {
@@ -33,5 +38,10 @@
     self.longitude = @(coordinate.longitude);
 }
 
+- (NSURL *)iconURL {
+    if (!(self.foursquareIconPrefix && self.foursquareIconSuffix)) return nil;
+    NSString *url = [NSString stringWithFormat:@"%@bg_64%@", self.foursquareIconPrefix, self.foursquareIconSuffix];
+    return [NSURL URLWithString:url];
+}
 
 @end
