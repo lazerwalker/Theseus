@@ -5,4 +5,5 @@ pod "SDWebImage"
 target :OpenDataTests do
     pod "Expecta"
     pod "Specta"
+    pod "OCMockito"
 end

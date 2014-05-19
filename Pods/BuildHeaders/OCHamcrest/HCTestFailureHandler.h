@@ -1,0 +1,1 @@
+../../OCHamcrest/Source/Core/HCTestFailureHandler.h

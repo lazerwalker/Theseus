@@ -6,6 +6,9 @@ PODS:
   - Mantle (1.4.1):
     - Mantle/extobjc
   - Mantle/extobjc (1.4.1)
+  - OCHamcrest (3.0.1)
+  - OCMockito (1.2.0):
+    - OCHamcrest (~> 3.0)
   - SDWebImage (3.6):
     - SDWebImage/Core
   - SDWebImage/Core (3.6)
@@ -15,6 +18,7 @@ DEPENDENCIES:
   - Expecta
   - MagicalRecord
   - Mantle
+  - OCMockito
   - SDWebImage
   - Specta
 
@@ -22,6 +26,8 @@ SPEC CHECKSUMS:
   Expecta: 322f1dc42610106a5ba9871b4924cf1635d80833
   MagicalRecord: 95d49d74ef752cd52f6ad87bcb474817fc3978cf
   Mantle: 0714cdb2b8559d9e6c2410d6a8529e3307bff189
+  OCHamcrest: 782c52ae8c673e5d6060a65005cfd26d20d519ba
+  OCMockito: 050fca9528760faa8b5fafc82faad9d54f0864c0
   SDWebImage: 7eb273e54ca8a2e506ad9bd5e80c35b2a4d7c95e
   Specta: 2d06220591110c6d9757d8be8ecf8e63aa40dc2a
 
