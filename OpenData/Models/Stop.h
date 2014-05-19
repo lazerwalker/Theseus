@@ -28,4 +28,5 @@
 - (BOOL)isSameLocationAs:(Stop *)stop;
 - (void)mergeWithStop:(Stop *)stop;
 - (void)addMovementPath:(MovementPath *)path;
+- (CLLocationDistance)distanceFromCoordinate:(CLLocationCoordinate2D)coordinate;
 @end

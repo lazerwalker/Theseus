@@ -23,4 +23,9 @@
     self.longitude = venue.longitude;
 }
 
+- (CLLocationCoordinate2D) coordinate {
+    return CLLocationCoordinate2DMake(self.latitude.doubleValue, self.longitude.doubleValue);
+}
+
+
 @end

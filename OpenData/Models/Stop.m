@@ -28,12 +28,16 @@
 }
 
 - (BOOL)isSameLocationAs:(Stop *)stop {
+    CLLocationDistance distance = [self distanceFromCoordinate:stop.coordinate];
+    return distance < 50;
+}
+
+- (CLLocationDistance)distanceFromCoordinate:(CLLocationCoordinate2D)coordinate {
     CLLocation *thisLocation = [[CLLocation alloc] initWithLatitude:self.coordinate.latitude longitude:self.coordinate.longitude];
 
-    CLLocation *thatLocation = [[CLLocation alloc] initWithLatitude:stop.coordinate.latitude longitude:stop.coordinate.longitude];
+    CLLocation *thatLocation = [[CLLocation alloc] initWithLatitude:coordinate.latitude longitude:coordinate.longitude];
 
-    CLLocationDistance distance = [thisLocation distanceFromLocation:thatLocation];
-    return distance < 50;
+    return [thisLocation distanceFromLocation:thatLocation];
 }
 
 #pragma mark - Accessors

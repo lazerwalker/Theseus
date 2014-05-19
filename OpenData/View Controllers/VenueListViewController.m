@@ -11,15 +11,23 @@
 #import "Stop.h"
 #import "FoursquareClient.h"
 #import "FoursquareVenue.h"
+#import "Venue.h"
 
 #import <UIImageView+WebCache.h>
 
 static NSString * const CellIdentifier = @"cell";
 
+typedef NS_ENUM(NSUInteger, TableSections) {
+    TableSectionLocalResults,
+    TableSectionRemoteResults,
+    NumberOfTableSections
+};
+
 @interface VenueListViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) FoursquareClient *client;
+@property (nonatomic, strong) NSArray *localResults;
 @property (nonatomic, strong) NSArray *results;
 
 @end
@@ -35,6 +43,7 @@ static NSString * const CellIdentifier = @"cell";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(didTapCancelButton)];
 
     self.results = [NSArray new];
+    self.localResults = [NSArray new];
 
     return self;
 }
@@ -42,16 +51,35 @@ static NSString * const CellIdentifier = @"cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.client = [FoursquareClient new];
-    [self.client fetchVenuesForCoordinate:self.stop.coordinate completion:^(NSArray *results, NSError *error) {
-        self.results = results;
-        [self.tableView reloadData];
-    }];
+    [self fetchLocalResults];
+    [self fetchRemoteResults];
 
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
+}
+
+- (void)fetchLocalResults {
+    NSPredicate *nearby = [NSPredicate predicateWithFormat:@"(latitude > %@) AND (latitude < %@) AND (longitude > %@) AND (longitude < %@)", @(self.stop.coordinate.latitude - 0.1), @(self.stop.coordinate.latitude + 0.1), @(self.stop.coordinate.longitude - 0.1), @(self.stop.coordinate.longitude + 0.1)];
+    NSArray *results = [Venue MR_findAllWithPredicate:nearby];
+    self.localResults = [results sortedArrayUsingComparator:^NSComparisonResult(Venue *obj1, Venue *obj2) {
+        NSNumber *distance1 = @([self.stop distanceFromCoordinate:obj1.coordinate]);
+        NSNumber *distance2 = @([self.stop distanceFromCoordinate:obj2.coordinate]);
+        return [distance1 compare:distance2];
+    }];
+
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:TableSectionLocalResults] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (void)fetchRemoteResults {
+    self.client = [FoursquareClient new];
+    [self.client fetchVenuesForCoordinate:self.stop.coordinate completion:^(NSArray *results, NSError *error) {
+        NSArray *localFoursquareIds = [self.localResults valueForKey:@"foursquareId"];
+        NSPredicate *blacklist = [NSPredicate predicateWithFormat:@"NOT (foursquareId IN %@)", localFoursquareIds];
+        self.results = [results filteredArrayUsingPredicate:blacklist];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:TableSectionRemoteResults] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }];
 }
 
 - (void)didTapCancelButton {
@@ -61,8 +89,18 @@ static NSString * const CellIdentifier = @"cell";
 }
 
 #pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return NumberOfTableSections;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.results.count;
+    if (section == TableSectionLocalResults) {
+        return self.localResults.count;
+    } else if (section == TableSectionRemoteResults) {
+        return self.results.count;
+    } else {
+        return 0;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -83,12 +121,28 @@ static NSString * const CellIdentifier = @"cell";
     }
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSDictionary *titles = @{
+     @(TableSectionLocalResults): @"Places You've Been Near Here",
+     @(TableSectionRemoteResults): @"Nearby Foursquare Venues"
+    };
+
+    return titles[@(section)];
+}
+
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    FoursquareVenue *venue = self.results[indexPath.row];
 
-    cell.textLabel.text = venue.name;
-    [cell.imageView setImageWithURL:venue.iconURL];
+    if (indexPath.section == TableSectionLocalResults) {
+        Venue *venue = self.localResults[indexPath.row];
+        cell.textLabel.text = venue.name;
+        cell.imageView.image = nil;
+    } else if (indexPath.section == TableSectionRemoteResults) {
+        FoursquareVenue *venue = self.results[indexPath.row];
+
+        cell.textLabel.text = venue.name;
+        [cell.imageView setImageWithURL:venue.iconURL];
+    }
 }
 
 @end
