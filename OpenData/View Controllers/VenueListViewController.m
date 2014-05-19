@@ -64,6 +64,7 @@ typedef NS_ENUM(NSUInteger, TableSections) {
 
     self.searchBar = [UISearchBar new];
     self.searchBar.delegate = self;
+    self.searchBar.showsCancelButton = YES;
     [self.searchBar sizeToFit];
     self.tableView.tableHeaderView = self.searchBar;
 
@@ -158,6 +159,12 @@ typedef NS_ENUM(NSUInteger, TableSections) {
         [self searchLocally:searchBar.text];
         [self searchRemotely:searchBar.text];
     }
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [self fetchLocalNearbyResults];
+    [self fetchRemoteNearbyResults];
+    [searchBar resignFirstResponder];
 }
 
 #pragma mark - Private
