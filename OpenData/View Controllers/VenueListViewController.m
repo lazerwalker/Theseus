@@ -23,10 +23,13 @@ typedef NS_ENUM(NSUInteger, TableSections) {
     NumberOfTableSections
 };
 
-@interface VenueListViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface VenueListViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UISearchBar *searchBar;
+
 @property (nonatomic, strong) FoursquareClient *client;
+
 @property (nonatomic, strong) NSArray *localResults;
 @property (nonatomic, strong) NSArray *results;
 
@@ -51,35 +54,20 @@ typedef NS_ENUM(NSUInteger, TableSections) {
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self fetchLocalResults];
-    [self fetchRemoteResults];
+    [self fetchLocalNearbyResults];
+    [self fetchRemoteNearbyResults];
 
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
-}
 
-- (void)fetchLocalResults {
-    NSPredicate *nearby = [NSPredicate predicateWithFormat:@"(latitude > %@) AND (latitude < %@) AND (longitude > %@) AND (longitude < %@)", @(self.stop.coordinate.latitude - 0.1), @(self.stop.coordinate.latitude + 0.1), @(self.stop.coordinate.longitude - 0.1), @(self.stop.coordinate.longitude + 0.1)];
-    NSArray *results = [Venue MR_findAllWithPredicate:nearby];
-    self.localResults = [results sortedArrayUsingComparator:^NSComparisonResult(Venue *obj1, Venue *obj2) {
-        NSNumber *distance1 = @([self.stop distanceFromCoordinate:obj1.coordinate]);
-        NSNumber *distance2 = @([self.stop distanceFromCoordinate:obj2.coordinate]);
-        return [distance1 compare:distance2];
-    }];
+    self.searchBar = [UISearchBar new];
+    self.searchBar.delegate = self;
+    [self.searchBar sizeToFit];
+    self.tableView.tableHeaderView = self.searchBar;
 
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:TableSectionLocalResults] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-
-- (void)fetchRemoteResults {
-    self.client = [FoursquareClient new];
-    [self.client fetchVenuesForCoordinate:self.stop.coordinate completion:^(NSArray *results, NSError *error) {
-        NSArray *localFoursquareIds = [self.localResults valueForKey:@"foursquareId"];
-        NSPredicate *blacklist = [NSPredicate predicateWithFormat:@"NOT (foursquareId IN %@)", localFoursquareIds];
-        self.results = [results filteredArrayUsingPredicate:blacklist];
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:TableSectionRemoteResults] withRowAnimation:UITableViewRowAnimationAutomatic];
-    }];
+    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
 }
 
 - (void)didTapCancelButton {
@@ -154,6 +142,61 @@ typedef NS_ENUM(NSUInteger, TableSections) {
         cell.textLabel.text = venue.name;
         [cell.imageView setImageWithURL:venue.iconURL];
     }
+}
+
+#pragma mark - UISearchBarDelegate
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [self searchLocally:searchBar.text];
+    [self searchRemotely:searchBar.text];
+    [searchBar resignFirstResponder];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if (searchText.length == 0) {
+        [self fetchLocalNearbyResults];
+    } else {
+        [self searchLocally:searchBar.text];
+        [self searchRemotely:searchBar.text];
+    }
+}
+
+#pragma mark - Private
+- (void)fetchLocalNearbyResults {
+    NSPredicate *nearby = [NSPredicate predicateWithFormat:@"(latitude > %@) AND (latitude < %@) AND (longitude > %@) AND (longitude < %@)", @(self.stop.coordinate.latitude - 0.1), @(self.stop.coordinate.latitude + 0.1), @(self.stop.coordinate.longitude - 0.1), @(self.stop.coordinate.longitude + 0.1)];
+    NSArray *results = [Venue MR_findAllWithPredicate:nearby];
+    self.localResults = [results sortedArrayUsingComparator:^NSComparisonResult(Venue *obj1, Venue *obj2) {
+        NSNumber *distance1 = @([self.stop distanceFromCoordinate:obj1.coordinate]);
+        NSNumber *distance2 = @([self.stop distanceFromCoordinate:obj2.coordinate]);
+        return [distance1 compare:distance2];
+    }];
+
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:TableSectionLocalResults] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (void)fetchRemoteNearbyResults {
+    self.client = [FoursquareClient new];
+    [self.client fetchVenuesNearCoordinate:self.stop.coordinate completion:^(NSArray *results, NSError *error) {
+        NSArray *localFoursquareIds = [self.localResults valueForKey:@"foursquareId"];
+        NSPredicate *blacklist = [NSPredicate predicateWithFormat:@"NOT (foursquareId IN %@)", localFoursquareIds];
+        self.results = [results filteredArrayUsingPredicate:blacklist];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:TableSectionRemoteResults] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }];
+}
+
+- (void)searchLocally:(NSString *)query {
+    NSPredicate *nearby = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@", query];
+    self.localResults = [Venue MR_findAllWithPredicate:nearby];
+
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:TableSectionLocalResults] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (void)searchRemotely:(NSString *)query {
+    [self.client searchFor:query nearCoordinate:self.stop.coordinate completion:^(NSArray *results, NSError *error) {
+        NSArray *localFoursquareIds = [self.localResults valueForKey:@"foursquareId"];
+        NSPredicate *blacklist = [NSPredicate predicateWithFormat:@"NOT (foursquareId IN %@)", localFoursquareIds];
+        self.results = [results filteredArrayUsingPredicate:blacklist];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:TableSectionRemoteResults] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }];
 }
 
 @end
