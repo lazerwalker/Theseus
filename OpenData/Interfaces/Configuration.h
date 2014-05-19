@@ -13,4 +13,7 @@
 @property (nonatomic, readonly) NSString *foursquareClientID;
 @property (nonatomic, readonly) NSString *foursquareClientSecret;
 
+@property (nonatomic, readonly) NSString *dropboxAppSecret;
+@property (nonatomic, readonly) NSString *dropboxAppKey;
+
 @end

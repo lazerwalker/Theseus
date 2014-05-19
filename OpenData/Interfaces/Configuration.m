@@ -9,6 +9,7 @@
 #import "Configuration.h"
 
 static NSString * const FoursquareDictKey = @"FoursquareAPI";
+static NSString * const DropboxDictKey = @"DropboxAPI";
 
 @interface Configuration ()
 @property (nonatomic, strong) NSDictionary *plist;
@@ -40,6 +41,14 @@ static NSString * const FoursquareDictKey = @"FoursquareAPI";
 
 - (NSString *)foursquareClientSecret {
     return self.plist[FoursquareDictKey][@"ClientSecret"];
+}
+
+- (NSString *)dropboxAppSecret {
+    return self.plist[DropboxDictKey][@"AppSecret"];
+}
+
+- (NSString *)dropboxAppKey {
+    return self.plist[DropboxDictKey][@"AppKey"];
 }
 
 @end

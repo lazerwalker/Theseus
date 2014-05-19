@@ -36,9 +36,14 @@ describe(@"Configuration", ^{
             config = [[Configuration alloc] initWithBundle:bundle];
         });
 
-        it(@"should load foursquare client ID and secret", ^{
+        it(@"should load foursquare keys", ^{
             expect(config.foursquareClientID).toNot.beNil();
             expect(config.foursquareClientSecret).toNot.beNil();
+        });
+
+        it(@"should load dropbox keys", ^{
+            expect(config.dropboxAppSecret).toNot.beNil();
+            expect(config.dropboxAppKey).toNot.beNil();
         });
     });
 
