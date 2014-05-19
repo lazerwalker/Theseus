@@ -31,6 +31,12 @@
 		A6C7CFDE192A7760001A6DAC /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFDD192A7760001A6DAC /* Venue.m */; };
 		A6C7CFE1192A7FF1001A6DAC /* OpenData.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFE0192A7FF1001A6DAC /* OpenData.m */; };
 		A6C7CFE3192A806B001A6DAC /* OpenDataSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFE2192A806B001A6DAC /* OpenDataSpec.m */; };
+		A6C7CFE6192AAC8E001A6DAC /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C7CFE5192AAC8E001A6DAC /* DropboxSDK.framework */; };
+		A6C7CFE7192AAC8E001A6DAC /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C7CFE5192AAC8E001A6DAC /* DropboxSDK.framework */; };
+		A6C7CFE9192AACA4001A6DAC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C7CFE8192AACA4001A6DAC /* Security.framework */; };
+		A6C7CFEB192AACA7001A6DAC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C7CFEA192AACA7001A6DAC /* QuartzCore.framework */; };
+		A6C7CFEC192AACAC001A6DAC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C7CFE8192AACA4001A6DAC /* Security.framework */; };
+		A6C7CFED192AACB0001A6DAC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C7CFEA192AACA7001A6DAC /* QuartzCore.framework */; };
 		A6CDC3B41922854800AC941A /* Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CDC3B31922854800AC941A /* Stop.m */; };
 		A6D7DFDA192417B20036C2DF /* DataProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D7DFD9192417B20036C2DF /* DataProcessor.m */; };
 		A6F4D9111922CF13006C7034 /* OpenData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6F4D90F1922CF13006C7034 /* OpenData.xcdatamodeld */; };
@@ -92,6 +98,9 @@
 		A6C7CFDF192A7FF1001A6DAC /* OpenData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenData.h; sourceTree = "<group>"; };
 		A6C7CFE0192A7FF1001A6DAC /* OpenData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenData.m; sourceTree = "<group>"; };
 		A6C7CFE2192A806B001A6DAC /* OpenDataSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenDataSpec.m; sourceTree = "<group>"; };
+		A6C7CFE5192AAC8E001A6DAC /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
+		A6C7CFE8192AACA4001A6DAC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		A6C7CFEA192AACA7001A6DAC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A6CDC3B21922854800AC941A /* Stop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stop.h; path = Models/Stop.h; sourceTree = "<group>"; };
 		A6CDC3B31922854800AC941A /* Stop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stop.m; path = Models/Stop.m; sourceTree = "<group>"; };
 		A6D7DFD8192417B20036C2DF /* DataProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataProcessor.h; path = Interfaces/DataProcessor.h; sourceTree = "<group>"; };
@@ -114,8 +123,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6C7CFEB192AACA7001A6DAC /* QuartzCore.framework in Frameworks */,
+				A6C7CFE9192AACA4001A6DAC /* Security.framework in Frameworks */,
 				A6F4D95D1922D2AA006C7034 /* CoreData.framework in Frameworks */,
 				A6748AE3192155F50073CE19 /* MapKit.framework in Frameworks */,
+				A6C7CFE6192AAC8E001A6DAC /* DropboxSDK.framework in Frameworks */,
 				A6748AA1192127E90073CE19 /* CoreGraphics.framework in Frameworks */,
 				A6748AA3192127E90073CE19 /* UIKit.framework in Frameworks */,
 				A6748A9F192127E90073CE19 /* Foundation.framework in Frameworks */,
@@ -127,9 +139,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6C7CFED192AACB0001A6DAC /* QuartzCore.framework in Frameworks */,
+				A6C7CFEC192AACAC001A6DAC /* Security.framework in Frameworks */,
 				A6748ABE192127EA0073CE19 /* XCTest.framework in Frameworks */,
 				A6748AC0192127EA0073CE19 /* UIKit.framework in Frameworks */,
 				A6748ABF192127EA0073CE19 /* Foundation.framework in Frameworks */,
+				A6C7CFE7192AAC8E001A6DAC /* DropboxSDK.framework in Frameworks */,
 				52B113583BE24591AC8CB7D6 /* libPods-OpenDataTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,6 +176,8 @@
 		A6748A9D192127E90073CE19 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A6C7CFEA192AACA7001A6DAC /* QuartzCore.framework */,
+				A6C7CFE8192AACA4001A6DAC /* Security.framework */,
 				A6F4D95C1922D2AA006C7034 /* CoreData.framework */,
 				A6748AE2192155F50073CE19 /* MapKit.framework */,
 				A6748A9E192127E90073CE19 /* Foundation.framework */,
@@ -176,17 +193,18 @@
 		A6748AA4192127E90073CE19 /* OpenData */ = {
 			isa = PBXGroup;
 			children = (
-				A6BD97B419299AC600264548 /* Presenters */,
-				A6F4D9701922FDF3006C7034 /* Interfaces */,
-				A6748AD819212E7C0073CE19 /* Models */,
-				A6748AD4192128B20073CE19 /* Data Sources */,
-				A6748AD3192128AB0073CE19 /* View Controllers */,
+				A6C7CFE4192AAC85001A6DAC /* External */,
 				A6748AAD192127E90073CE19 /* AppDelegate.h */,
 				A6748AAE192127E90073CE19 /* AppDelegate.m */,
+				A6748AD4192128B20073CE19 /* Data Sources */,
 				A6748AB6192127E90073CE19 /* Images.xcassets */,
-				A6748AA5192127E90073CE19 /* Supporting Files */,
+				A6F4D9701922FDF3006C7034 /* Interfaces */,
+				A6748AD819212E7C0073CE19 /* Models */,
 				A6C7CFDF192A7FF1001A6DAC /* OpenData.h */,
 				A6C7CFE0192A7FF1001A6DAC /* OpenData.m */,
+				A6BD97B419299AC600264548 /* Presenters */,
+				A6748AA5192127E90073CE19 /* Supporting Files */,
+				A6748AD3192128AB0073CE19 /* View Controllers */,
 			);
 			path = OpenData;
 			sourceTree = "<group>";
@@ -272,6 +290,14 @@
 				A6BD97B619299AE000264548 /* MovementPathPolyline.m */,
 			);
 			name = Presenters;
+			sourceTree = "<group>";
+		};
+		A6C7CFE4192AAC85001A6DAC /* External */ = {
+			isa = PBXGroup;
+			children = (
+				A6C7CFE5192AAC8E001A6DAC /* DropboxSDK.framework */,
+			);
+			name = External;
 			sourceTree = "<group>";
 		};
 		A6F4D9701922FDF3006C7034 /* Interfaces */ = {
@@ -591,6 +617,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OpenData",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenData/OpenData-Prefix.pch";
 				INFOPLIST_FILE = "OpenData/OpenData-Info.plist";
@@ -605,6 +635,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/OpenData",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenData/OpenData-Prefix.pch";
 				INFOPLIST_FILE = "OpenData/OpenData-Info.plist";
@@ -622,6 +656,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)/OpenData",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenData/OpenData-Prefix.pch";
@@ -645,6 +680,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(PROJECT_DIR)/OpenData",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenData/OpenData-Prefix.pch";
