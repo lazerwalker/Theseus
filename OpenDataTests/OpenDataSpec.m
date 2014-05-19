@@ -7,7 +7,6 @@
 //
 
 #define EXP_SHORTHAND
-#define HC_SHORTHAND
 #import <Specta.h>
 #import <Expecta.h>
 

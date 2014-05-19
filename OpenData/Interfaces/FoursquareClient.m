@@ -8,15 +8,25 @@
 
 #import "FoursquareClient.h"
 #import "FoursquareVenue.h"
+#import "Configuration.h"
 
 static NSString * const BaseURL = @"https://api.foursquare.com/v2/venues/search";
 static NSString * const APIDate = @"20140513";
 
 @interface FoursquareClient ()<NSURLConnectionDelegate>
-
+@property (nonatomic, strong) Configuration *config;
 @end
 
 @implementation FoursquareClient
+
+- (id)init {
+    self = [super init];
+    if (!self) return nil;
+
+    self.config = [Configuration new];
+
+    return self;
+}
 
 - (void)fetchVenuesNearCoordinate:(CLLocationCoordinate2D)coordinate
                        completion:(void(^)(NSArray *results, NSError *error))completion {
@@ -33,24 +43,23 @@ static NSString * const APIDate = @"20140513";
 
 #pragma mark - Private
 - (NSURL *)searchURLForCoordinate:(CLLocationCoordinate2D)coordinate {
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Configuration" ofType:@"plist"];
-    NSDictionary *configuration = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
-
-    NSString *clientId = configuration[@"FoursquareAPI"][@"ClientID"];
-    NSString *clientSecret = configuration[@"FoursquareAPI"][@"ClientSecret"];
-
-    NSString *urlString = [BaseURL stringByAppendingFormat:@"?client_id=%@&client_secret=%@&v=%@&ll=%f,%f", clientId, clientSecret, APIDate, coordinate.latitude, coordinate.longitude];
+    NSString *urlString = [BaseURL stringByAppendingFormat:@"?client_id=%@&client_secret=%@&v=%@&ll=%f,%f",
+                           self.config.foursquareClientID,
+                           self.config.foursquareClientSecret,
+                           APIDate,
+                           coordinate.latitude,
+                           coordinate.longitude];
     return [NSURL URLWithString:urlString];
 }
 
 - (NSURL *)searchURLForCoordinate:(CLLocationCoordinate2D)coordinate query:(NSString *)query {
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Configuration" ofType:@"plist"];
-    NSDictionary *configuration = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
-
-    NSString *clientId = configuration[@"FoursquareAPI"][@"ClientID"];
-    NSString *clientSecret = configuration[@"FoursquareAPI"][@"ClientSecret"];
-
-    NSString *urlString = [BaseURL stringByAppendingFormat:@"?client_id=%@&client_secret=%@&v=%@&ll=%f,%f&query=%@", clientId, clientSecret, APIDate, coordinate.latitude, coordinate.longitude, query];
+    NSString *urlString = [BaseURL stringByAppendingFormat:@"?client_id=%@&client_secret=%@&v=%@&ll=%f,%f&query=%@",
+                           self.config.foursquareClientID,
+                           self.config.foursquareClientSecret,
+                           APIDate,
+                           coordinate.latitude,
+                           coordinate.longitude,
+                           query];
     return [NSURL URLWithString:urlString];
 }
 

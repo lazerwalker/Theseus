@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		52B113583BE24591AC8CB7D6 /* libPods-OpenDataTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D971CDBFFFA4B76AEF7147C /* libPods-OpenDataTests.a */; };
+		A61D645D192ABCF700F7EB88 /* Configuration.plist.example in Resources */ = {isa = PBXBuildFile; fileRef = A61D645C192ABCF700F7EB88 /* Configuration.plist.example */; };
+		A61D645E192ABD2100F7EB88 /* Configuration.plist.example in Resources */ = {isa = PBXBuildFile; fileRef = A61D645C192ABCF700F7EB88 /* Configuration.plist.example */; };
 		A6748A9F192127E90073CE19 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748A9E192127E90073CE19 /* Foundation.framework */; };
 		A6748AA1192127E90073CE19 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748AA0192127E90073CE19 /* CoreGraphics.framework */; };
 		A6748AA3192127E90073CE19 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748AA2192127E90073CE19 /* UIKit.framework */; };
@@ -37,6 +39,9 @@
 		A6C7CFEB192AACA7001A6DAC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C7CFEA192AACA7001A6DAC /* QuartzCore.framework */; };
 		A6C7CFEC192AACAC001A6DAC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C7CFE8192AACA4001A6DAC /* Security.framework */; };
 		A6C7CFED192AACB0001A6DAC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C7CFEA192AACA7001A6DAC /* QuartzCore.framework */; };
+		A6C7CFF0192AAD2A001A6DAC /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFEF192AAD2A001A6DAC /* Configuration.m */; };
+		A6C7CFF1192AAD2A001A6DAC /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFEF192AAD2A001A6DAC /* Configuration.m */; };
+		A6C7CFF4192AAD87001A6DAC /* ConfigurationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFF3192AAD87001A6DAC /* ConfigurationSpec.m */; };
 		A6CDC3B41922854800AC941A /* Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CDC3B31922854800AC941A /* Stop.m */; };
 		A6D7DFDA192417B20036C2DF /* DataProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D7DFD9192417B20036C2DF /* DataProcessor.m */; };
 		A6F4D9111922CF13006C7034 /* OpenData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6F4D90F1922CF13006C7034 /* OpenData.xcdatamodeld */; };
@@ -62,6 +67,7 @@
 		8BE585C2279B40C38BFDB9C8 /* Pods-OpenDataTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenDataTests.xcconfig"; path = "Pods/Pods-OpenDataTests.xcconfig"; sourceTree = "<group>"; };
 		8D971CDBFFFA4B76AEF7147C /* libPods-OpenDataTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OpenDataTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1D73CDD20E349509DE73F55 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A61D645C192ABCF700F7EB88 /* Configuration.plist.example */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Configuration.plist.example; path = OpenData/Configuration.plist.example; sourceTree = SOURCE_ROOT; };
 		A6748A9B192127E90073CE19 /* OpenData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6748A9E192127E90073CE19 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A6748AA0192127E90073CE19 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -101,6 +107,9 @@
 		A6C7CFE5192AAC8E001A6DAC /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
 		A6C7CFE8192AACA4001A6DAC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A6C7CFEA192AACA7001A6DAC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A6C7CFEE192AAD2A001A6DAC /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Configuration.h; path = Interfaces/Configuration.h; sourceTree = "<group>"; };
+		A6C7CFEF192AAD2A001A6DAC /* Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Configuration.m; path = Interfaces/Configuration.m; sourceTree = "<group>"; };
+		A6C7CFF3192AAD87001A6DAC /* ConfigurationSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfigurationSpec.m; path = Interfaces/ConfigurationSpec.m; sourceTree = "<group>"; };
 		A6CDC3B21922854800AC941A /* Stop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stop.h; path = Models/Stop.h; sourceTree = "<group>"; };
 		A6CDC3B31922854800AC941A /* Stop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stop.m; path = Models/Stop.m; sourceTree = "<group>"; };
 		A6D7DFD8192417B20036C2DF /* DataProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataProcessor.h; path = Interfaces/DataProcessor.h; sourceTree = "<group>"; };
@@ -225,6 +234,7 @@
 		A6748AC3192127EA0073CE19 /* OpenDataTests */ = {
 			isa = PBXGroup;
 			children = (
+				A6C7CFF2192AAD77001A6DAC /* Interfaces */,
 				A6748AC4192127EA0073CE19 /* Supporting Files */,
 				A6C7CFE2192A806B001A6DAC /* OpenDataSpec.m */,
 			);
@@ -235,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				A6748AC5192127EA0073CE19 /* OpenDataTests-Info.plist */,
+				A61D645C192ABCF700F7EB88 /* Configuration.plist.example */,
 				A6748AC6192127EA0073CE19 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -300,6 +311,14 @@
 			name = External;
 			sourceTree = "<group>";
 		};
+		A6C7CFF2192AAD77001A6DAC /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				A6C7CFF3192AAD87001A6DAC /* ConfigurationSpec.m */,
+			);
+			name = Interfaces;
+			sourceTree = "<group>";
+		};
 		A6F4D9701922FDF3006C7034 /* Interfaces */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,6 +326,8 @@
 				A6F4D9721922FE33006C7034 /* FoursquareClient.m */,
 				A6D7DFD8192417B20036C2DF /* DataProcessor.h */,
 				A6D7DFD9192417B20036C2DF /* DataProcessor.m */,
+				A6C7CFEE192AAD2A001A6DAC /* Configuration.h */,
+				A6C7CFEF192AAD2A001A6DAC /* Configuration.m */,
 			);
 			name = Interfaces;
 			sourceTree = "<group>";
@@ -398,6 +419,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A61D645E192ABD2100F7EB88 /* Configuration.plist.example in Resources */,
 				A68425CC1923047F0083D006 /* Configuration.plist in Resources */,
 				A6748AB7192127E90073CE19 /* Images.xcassets in Resources */,
 				A6748AA9192127E90073CE19 /* InfoPlist.strings in Resources */,
@@ -408,6 +430,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A61D645D192ABCF700F7EB88 /* Configuration.plist.example in Resources */,
 				A6748AC8192127EA0073CE19 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,6 +508,7 @@
 				A6F4D9731922FE33006C7034 /* FoursquareClient.m in Sources */,
 				A6748AD7192128D70073CE19 /* LocationManager.m in Sources */,
 				A6BD97BA192A4B2900264548 /* VenueListViewController.m in Sources */,
+				A6C7CFF0192AAD2A001A6DAC /* Configuration.m in Sources */,
 				A6F4D9601922D684006C7034 /* RawLocation.m in Sources */,
 				A68425CA192302CB0083D006 /* FoursquareVenue.m in Sources */,
 				A6F4D96F1922E9F5006C7034 /* ListViewController.m in Sources */,
@@ -507,7 +531,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6C7CFF1192AAD2A001A6DAC /* Configuration.m in Sources */,
 				A6C7CFE3192A806B001A6DAC /* OpenDataSpec.m in Sources */,
+				A6C7CFF4192AAD87001A6DAC /* ConfigurationSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
