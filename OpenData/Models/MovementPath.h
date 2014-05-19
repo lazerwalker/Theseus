@@ -29,5 +29,4 @@ typedef NS_ENUM(NSUInteger, MovementType) {
 @property (nonatomic, readonly) NSTimeInterval duration;
 @property (nonatomic, readonly) NSString *typeString;
 
-
 @end

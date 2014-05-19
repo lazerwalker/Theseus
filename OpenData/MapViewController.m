@@ -10,6 +10,7 @@
 #import "MovementPath.h"
 #import "Stop.h"
 #import "DataProcessor.h"
+#import "MovementPathPolyline.h"
 
 @import MapKit;
 @import CoreMotion;
@@ -43,9 +44,15 @@
 - (void)render {
     DataProcessor *dataProcessor = [DataProcessor new];
     [dataProcessor processDataWithCompletion:^(NSArray *stops, NSArray *paths) {
+        NSMutableArray *polylines = [NSMutableArray new];
+        for (MovementPath *path in paths) {
+            MovementPathPolyline *polyline = [MovementPathPolyline polylineWithMovementPath:path];
+            [polylines addObject:polyline];
+        }
+
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.mapView addAnnotations:stops];
-//            [self.mapView addOverlays:paths];
+            [self.mapView addOverlays:polylines];
 
             [self.mapView setRegion:MKCoordinateRegionMake([stops.lastObject coordinate], MKCoordinateSpanMake(0.01, 0.01))];
         });
@@ -53,10 +60,8 @@
 }
 
 #pragma mark - MKMapViewDelegate
-// TODO: MovementPathOverlay object that implements MKPolyline and wraps a MovementPath object
-/*- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(MovementPath *)overlay {
+- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(MovementPathPolyline *)overlay {
     MKPolylineView *polylineView = [[MKPolylineView alloc] initWithPolyline:overlay];
-
 
     if (overlay.type == MovementTypeWalking) {
         polylineView.strokeColor = [UIColor redColor];
@@ -73,5 +78,5 @@
     polylineView.lineWidth = 10.0;
 
     return polylineView;
-}*/
+}
 @end
