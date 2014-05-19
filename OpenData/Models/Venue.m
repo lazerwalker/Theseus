@@ -28,5 +28,10 @@
     return CLLocationCoordinate2DMake(self.latitude.doubleValue, self.longitude.doubleValue);
 }
 
+- (void)setCoordinate:(CLLocationCoordinate2D)coordinate {
+    self.latitude = @(coordinate.latitude);
+    self.longitude = @(coordinate.longitude);
+}
+
 
 @end

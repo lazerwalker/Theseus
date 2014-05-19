@@ -18,7 +18,7 @@
 @property (nonatomic, retain) NSString* name;
 @property (nonatomic, retain) NSSet *stops;
 
-@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+@property (nonatomic) CLLocationCoordinate2D coordinate;
 
 - (void)setupWithFoursquareVenue:(FoursquareVenue *)venue;
 
