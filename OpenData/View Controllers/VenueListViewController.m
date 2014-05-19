@@ -74,6 +74,15 @@ static NSString * const CellIdentifier = @"cell";
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+
+    FoursquareVenue *venue = self.results[indexPath.row];
+    if (self.didSelectVenueBlock) {
+        self.didSelectVenueBlock(venue);
+    }
+}
+
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     FoursquareVenue *venue = self.results[indexPath.row];

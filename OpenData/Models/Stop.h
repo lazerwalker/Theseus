@@ -10,6 +10,7 @@
 @import MapKit;
 
 @class MovementPath;
+@class Venue;
 
 @interface Stop : NSManagedObject<MKAnnotation>
 
@@ -17,6 +18,7 @@
 @property (nonatomic) NSDate *endTime;
 @property (nonatomic) NSSet *locations;
 @property (nonatomic) NSSet *movementPaths;
+@property (nonatomic) Venue *venue;
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, readonly) CLLocationDistance altitude;

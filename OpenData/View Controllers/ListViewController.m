@@ -10,6 +10,7 @@
 #import "DataProcessor.h"
 #import "MovementPath.h"
 #import "Stop.h"
+#import "Venue.h"
 #import "VenueListViewController.h"
 
 static NSString * const CellIdentifier = @"CellIdentifier";
@@ -68,7 +69,11 @@ static NSString * const CellIdentifier = @"CellIdentifier";
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     Stop *stop = self.data[indexPath.row];
 
-    cell.textLabel.text = [NSString stringWithFormat:@"%f, %f", stop.coordinate.latitude, stop.coordinate.longitude];
+    if (stop.venue) {
+        cell.textLabel.text = stop.venue.name;
+    } else {
+        cell.textLabel.text = [NSString stringWithFormat:@"%f, %f", stop.coordinate.latitude, stop.coordinate.longitude];
+    }
 
     NSTimeInterval duration = stop.duration;
     NSInteger hours = duration / 60 / 60;
@@ -81,8 +86,21 @@ static NSString * const CellIdentifier = @"CellIdentifier";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Stop *stop = self.data[indexPath.row];
     VenueListViewController *venueList = [[VenueListViewController alloc] initWithStop:stop];
+
     venueList.didTapCancelButtonBlock = ^{
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    };
+
+    venueList.didSelectVenueBlock = ^(FoursquareVenue *foursquareVenue) {
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        
+        [MagicalRecord saveUsingCurrentThreadContextWithBlock:^(NSManagedObjectContext *localContext) {
+            Venue *venue = [Venue MR_createEntity];
+            [venue setupWithFoursquareVenue:foursquareVenue];
+            stop.venue = venue;
+
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        } completion:nil];
     };
 
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:venueList];

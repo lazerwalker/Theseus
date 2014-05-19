@@ -10,7 +10,7 @@
 
 @implementation Stop
 
-@dynamic startTime, endTime, locations, movementPaths;
+@dynamic startTime, endTime, locations, movementPaths, venue;
 
 - (NSTimeInterval)duration {
     return [self.endTime timeIntervalSinceDate:self.startTime];

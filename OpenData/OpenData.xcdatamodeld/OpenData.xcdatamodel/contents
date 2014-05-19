@@ -29,18 +29,20 @@
         <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RawLocation" inverseName="stop" inverseEntity="RawLocation" syncable="YES"/>
         <relationship name="movementPaths" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MovementPath" inverseName="stop" inverseEntity="MovementPath" syncable="YES"/>
+        <relationship name="venue" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Venue" inverseName="stops" inverseEntity="Venue" syncable="YES"/>
     </entity>
     <entity name="Venue" representedClassName="Venue" syncable="YES">
         <attribute name="foursquareId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="stops" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Stop" inverseName="venue" inverseEntity="Stop" syncable="YES"/>
     </entity>
     <elements>
         <element name="MovementPath" positionX="0" positionY="0" width="128" height="28"/>
         <element name="RawLocation" positionX="0" positionY="0" width="128" height="178"/>
         <element name="RawMotionActivity" positionX="0" positionY="0" width="128" height="103"/>
-        <element name="Stop" positionX="0" positionY="0" width="128" height="105"/>
-        <element name="Venue" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="Stop" positionX="0" positionY="0" width="128" height="118"/>
+        <element name="Venue" positionX="0" positionY="0" width="128" height="118"/>
     </elements>
 </model>

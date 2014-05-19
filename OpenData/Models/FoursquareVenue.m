@@ -13,7 +13,9 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{@"foursquareId": @"id",
              @"iconPrefix": @"categories.icon.prefix",
-             @"iconSuffix": @"categories.icon.suffix"};
+             @"iconSuffix": @"categories.icon.suffix",
+             @"latitude": @"location.lat",
+             @"longitude": @"location.lng"};
 }
 
 - (NSURL *)iconURL {

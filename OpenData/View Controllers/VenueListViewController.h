@@ -7,12 +7,14 @@
 //
 
 @class Stop;
+@class FoursquareVenue;
 
 @interface VenueListViewController : UIViewController
 
 @property (nonatomic, strong) Stop *stop;
 
 @property (nonatomic, copy) void (^didTapCancelButtonBlock)();
+@property (nonatomic, copy) void (^didSelectVenueBlock)(FoursquareVenue *);
 
 - (id)initWithStop:(Stop *)stop;
 
