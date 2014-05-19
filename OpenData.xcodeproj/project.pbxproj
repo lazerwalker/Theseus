@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52B113583BE24591AC8CB7D6 /* libPods-OpenDataTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D971CDBFFFA4B76AEF7147C /* libPods-OpenDataTests.a */; };
 		A6748A9F192127E90073CE19 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748A9E192127E90073CE19 /* Foundation.framework */; };
 		A6748AA1192127E90073CE19 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748AA0192127E90073CE19 /* CoreGraphics.framework */; };
 		A6748AA3192127E90073CE19 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748AA2192127E90073CE19 /* UIKit.framework */; };
@@ -51,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8BE585C2279B40C38BFDB9C8 /* Pods-OpenDataTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenDataTests.xcconfig"; path = "Pods/Pods-OpenDataTests.xcconfig"; sourceTree = "<group>"; };
+		8D971CDBFFFA4B76AEF7147C /* libPods-OpenDataTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OpenDataTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1D73CDD20E349509DE73F55 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6748A9B192127E90073CE19 /* OpenData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6748A9E192127E90073CE19 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -124,6 +127,7 @@
 				A6748ABE192127EA0073CE19 /* XCTest.framework in Frameworks */,
 				A6748AC0192127EA0073CE19 /* UIKit.framework in Frameworks */,
 				A6748ABF192127EA0073CE19 /* Foundation.framework in Frameworks */,
+				52B113583BE24591AC8CB7D6 /* libPods-OpenDataTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +142,7 @@
 				A6748A9D192127E90073CE19 /* Frameworks */,
 				A6748A9C192127E90073CE19 /* Products */,
 				CFFE53274403422DB4CE650B /* Pods.xcconfig */,
+				8BE585C2279B40C38BFDB9C8 /* Pods-OpenDataTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -160,6 +165,7 @@
 				A6748AA2192127E90073CE19 /* UIKit.framework */,
 				A6748ABD192127EA0073CE19 /* XCTest.framework */,
 				A1D73CDD20E349509DE73F55 /* libPods.a */,
+				8D971CDBFFFA4B76AEF7147C /* libPods-OpenDataTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -300,9 +306,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A6748AD0192127EA0073CE19 /* Build configuration list for PBXNativeTarget "OpenDataTests" */;
 			buildPhases = (
+				426E92F6F7134E048689025D /* Check Pods Manifest.lock */,
 				A6748AB8192127E90073CE19 /* Sources */,
 				A6748AB9192127E90073CE19 /* Frameworks */,
 				A6748ABA192127E90073CE19 /* Resources */,
+				4871640B1F314BB7A5A7DAF5 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -376,6 +384,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		426E92F6F7134E048689025D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4871640B1F314BB7A5A7DAF5 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-OpenDataTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		AC358971F6BA49D48AD6EFDD /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -571,6 +609,7 @@
 		};
 		A6748AD1192127EA0073CE19 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8BE585C2279B40C38BFDB9C8 /* Pods-OpenDataTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/OpenData.app/OpenData";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -593,6 +632,7 @@
 		};
 		A6748AD2192127EA0073CE19 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8BE585C2279B40C38BFDB9C8 /* Pods-OpenDataTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/OpenData.app/OpenData";
 				FRAMEWORK_SEARCH_PATHS = (
