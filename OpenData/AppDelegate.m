@@ -31,7 +31,7 @@
 
     UINavigationController *listNav = [[UINavigationController alloc] initWithRootViewController:[ListViewController new]];
 
-    tabController.viewControllers = @[mapNav, listNav];
+    tabController.viewControllers = @[listNav, mapNav];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = tabController;
