@@ -20,7 +20,6 @@
 		A6748ABF192127EA0073CE19 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748A9E192127E90073CE19 /* Foundation.framework */; };
 		A6748AC0192127EA0073CE19 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748AA2192127E90073CE19 /* UIKit.framework */; };
 		A6748AC8192127EA0073CE19 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A6748AC6192127EA0073CE19 /* InfoPlist.strings */; };
-		A6748ACA192127EA0073CE19 /* OpenDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748AC9192127EA0073CE19 /* OpenDataTests.m */; };
 		A6748AD7192128D70073CE19 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748AD6192128D70073CE19 /* LocationManager.m */; };
 		A6748ADE1921344F0073CE19 /* MotionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748ADD1921344F0073CE19 /* MotionManager.m */; };
 		A6748AE3192155F50073CE19 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748AE2192155F50073CE19 /* MapKit.framework */; };
@@ -30,6 +29,8 @@
 		A6BD97B719299AE000264548 /* MovementPathPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BD97B619299AE000264548 /* MovementPathPolyline.m */; };
 		A6BD97BA192A4B2900264548 /* VenueListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BD97B9192A4B2900264548 /* VenueListViewController.m */; };
 		A6C7CFDE192A7760001A6DAC /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFDD192A7760001A6DAC /* Venue.m */; };
+		A6C7CFE1192A7FF1001A6DAC /* OpenData.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFE0192A7FF1001A6DAC /* OpenData.m */; };
+		A6C7CFE3192A806B001A6DAC /* OpenDataSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFE2192A806B001A6DAC /* OpenDataSpec.m */; };
 		A6CDC3B41922854800AC941A /* Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CDC3B31922854800AC941A /* Stop.m */; };
 		A6D7DFDA192417B20036C2DF /* DataProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D7DFD9192417B20036C2DF /* DataProcessor.m */; };
 		A6F4D9111922CF13006C7034 /* OpenData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6F4D90F1922CF13006C7034 /* OpenData.xcdatamodeld */; };
@@ -72,7 +73,6 @@
 		A6748ABD192127EA0073CE19 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A6748AC5192127EA0073CE19 /* OpenDataTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenDataTests-Info.plist"; sourceTree = "<group>"; };
 		A6748AC7192127EA0073CE19 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A6748AC9192127EA0073CE19 /* OpenDataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenDataTests.m; sourceTree = "<group>"; };
 		A6748AD5192128D70073CE19 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationManager.h; path = "Data Sources/LocationManager.h"; sourceTree = "<group>"; };
 		A6748AD6192128D70073CE19 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationManager.m; path = "Data Sources/LocationManager.m"; sourceTree = "<group>"; };
 		A6748ADC1921344F0073CE19 /* MotionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MotionManager.h; path = "Data Sources/MotionManager.h"; sourceTree = "<group>"; };
@@ -89,6 +89,9 @@
 		A6BD97B9192A4B2900264548 /* VenueListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueListViewController.m; path = "View Controllers/VenueListViewController.m"; sourceTree = "<group>"; };
 		A6C7CFDC192A7760001A6DAC /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Venue.h; path = Models/Venue.h; sourceTree = "<group>"; };
 		A6C7CFDD192A7760001A6DAC /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Venue.m; path = Models/Venue.m; sourceTree = "<group>"; };
+		A6C7CFDF192A7FF1001A6DAC /* OpenData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenData.h; sourceTree = "<group>"; };
+		A6C7CFE0192A7FF1001A6DAC /* OpenData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenData.m; sourceTree = "<group>"; };
+		A6C7CFE2192A806B001A6DAC /* OpenDataSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenDataSpec.m; sourceTree = "<group>"; };
 		A6CDC3B21922854800AC941A /* Stop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stop.h; path = Models/Stop.h; sourceTree = "<group>"; };
 		A6CDC3B31922854800AC941A /* Stop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stop.m; path = Models/Stop.m; sourceTree = "<group>"; };
 		A6D7DFD8192417B20036C2DF /* DataProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataProcessor.h; path = Interfaces/DataProcessor.h; sourceTree = "<group>"; };
@@ -182,6 +185,8 @@
 				A6748AAE192127E90073CE19 /* AppDelegate.m */,
 				A6748AB6192127E90073CE19 /* Images.xcassets */,
 				A6748AA5192127E90073CE19 /* Supporting Files */,
+				A6C7CFDF192A7FF1001A6DAC /* OpenData.h */,
+				A6C7CFE0192A7FF1001A6DAC /* OpenData.m */,
 			);
 			path = OpenData;
 			sourceTree = "<group>";
@@ -202,8 +207,8 @@
 		A6748AC3192127EA0073CE19 /* OpenDataTests */ = {
 			isa = PBXGroup;
 			children = (
-				A6748AC9192127EA0073CE19 /* OpenDataTests.m */,
 				A6748AC4192127EA0073CE19 /* Supporting Files */,
+				A6C7CFE2192A806B001A6DAC /* OpenDataSpec.m */,
 			);
 			path = OpenDataTests;
 			sourceTree = "<group>";
@@ -464,6 +469,7 @@
 				A6BD97B719299AE000264548 /* MovementPathPolyline.m in Sources */,
 				A6748AAB192127E90073CE19 /* main.m in Sources */,
 				A6C7CFDE192A7760001A6DAC /* Venue.m in Sources */,
+				A6C7CFE1192A7FF1001A6DAC /* OpenData.m in Sources */,
 				A6CDC3B41922854800AC941A /* Stop.m in Sources */,
 				A6F4D9691922DE94006C7034 /* RawMotionActivity.m in Sources */,
 				A6F4D9111922CF13006C7034 /* OpenData.xcdatamodeld in Sources */,
@@ -475,7 +481,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6748ACA192127EA0073CE19 /* OpenDataTests.m in Sources */,
+				A6C7CFE3192A806B001A6DAC /* OpenDataSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

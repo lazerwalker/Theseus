@@ -20,8 +20,11 @@ static NSString * const APIDate = @"20140513";
 
 - (void)fetchVenuesForCoordinate:(CLLocationCoordinate2D)coordinate
                        completion:(void(^)(NSArray *results, NSError *error))completion {
+    [OpenData showNetworkActivitySpinner];
     NSURLRequest *request = [NSURLRequest requestWithURL:[self searchURLForCoordinate:coordinate]];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        [OpenData hideNetworkActivitySpinner];
+        
         NSArray *results;
 
         if (data) {
