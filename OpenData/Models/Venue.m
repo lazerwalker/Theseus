@@ -15,6 +15,7 @@
 @dynamic latitude;
 @dynamic longitude;
 @dynamic name;
+@dynamic stops;
 
 - (void)setupWithFoursquareVenue:(FoursquareVenue *)venue {
     self.name = venue.name;

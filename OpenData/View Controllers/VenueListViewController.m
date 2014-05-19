@@ -115,7 +115,18 @@ typedef NS_ENUM(NSUInteger, TableSections) {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 
-    FoursquareVenue *venue = self.results[indexPath.row];
+    Venue *venue;
+    if (indexPath.section == TableSectionLocalResults) {
+        venue = self.localResults[indexPath.row];
+    } else if (indexPath.section == TableSectionRemoteResults) {
+        FoursquareVenue *foursquareVenue = self.results[indexPath.row];
+        venue = [Venue MR_findFirstByAttribute:@"foursquareId" withValue:foursquareVenue.foursquareId];
+        if (!venue) {
+            venue = [Venue MR_createEntity];
+            [venue setupWithFoursquareVenue:foursquareVenue];
+        }
+    }
+
     if (self.didSelectVenueBlock) {
         self.didSelectVenueBlock(venue);
     }

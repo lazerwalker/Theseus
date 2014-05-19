@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSNumber* latitude;
 @property (nonatomic, retain) NSNumber* longitude;
 @property (nonatomic, retain) NSString* name;
+@property (nonatomic, retain) NSSet *stops;
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 
