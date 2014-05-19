@@ -10,6 +10,7 @@
 #import "DataProcessor.h"
 #import "MovementPath.h"
 #import "Stop.h"
+#import "FoursquareVenue.h"
 #import "Venue.h"
 #import "VenueListViewController.h"
 
@@ -93,10 +94,14 @@ static NSString * const CellIdentifier = @"CellIdentifier";
 
     venueList.didSelectVenueBlock = ^(FoursquareVenue *foursquareVenue) {
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-        
+
         [MagicalRecord saveUsingCurrentThreadContextWithBlock:^(NSManagedObjectContext *localContext) {
-            Venue *venue = [Venue MR_createEntity];
-            [venue setupWithFoursquareVenue:foursquareVenue];
+            Venue *venue = [Venue MR_findFirstByAttribute:@"foursquareId" withValue:foursquareVenue.foursquareId];
+            if (!venue) {
+                venue = [Venue MR_createEntity];
+                [venue setupWithFoursquareVenue:foursquareVenue];
+            }
+
             stop.venue = venue;
 
             [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
