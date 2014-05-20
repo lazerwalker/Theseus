@@ -27,6 +27,7 @@
     <entity name="Stop" representedClassName="Stop" syncable="YES">
         <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="venueConfirmed" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RawLocation" inverseName="stop" inverseEntity="RawLocation" syncable="YES"/>
         <relationship name="movementPaths" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MovementPath" inverseName="stop" inverseEntity="MovementPath" syncable="YES"/>
         <relationship name="venue" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Venue" inverseName="stops" inverseEntity="Venue" syncable="YES"/>
@@ -44,7 +45,7 @@
         <element name="MovementPath" positionX="0" positionY="0" width="128" height="28"/>
         <element name="RawLocation" positionX="0" positionY="0" width="128" height="178"/>
         <element name="RawMotionActivity" positionX="0" positionY="0" width="128" height="103"/>
-        <element name="Stop" positionX="0" positionY="0" width="128" height="118"/>
+        <element name="Stop" positionX="0" positionY="0" width="128" height="135"/>
         <element name="Venue" positionX="0" positionY="0" width="128" height="150"/>
     </elements>
 </model>

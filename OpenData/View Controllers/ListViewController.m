@@ -72,6 +72,7 @@ static NSString * const CellIdentifier = @"CellIdentifier";
 
     if (stop.venue) {
         cell.textLabel.text = stop.venue.name;
+        cell.textLabel.textColor = (stop.venueConfirmed.boolValue ? [UIColor blackColor] : [UIColor grayColor]);
     } else {
         cell.textLabel.text = [NSString stringWithFormat:@"%f, %f", stop.coordinate.latitude, stop.coordinate.longitude];
     }
@@ -102,6 +103,7 @@ static NSString * const CellIdentifier = @"CellIdentifier";
             }
 
             stop.venue = venue;
+            stop.venueConfirmed = @(YES);
 
             [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         } completion:nil];
