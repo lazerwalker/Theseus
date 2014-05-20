@@ -128,12 +128,13 @@ typedef NS_ENUM(NSUInteger, TableSections) {
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    NSDictionary *titles = @{
-     @(TableSectionLocalResults): @"Places You've Been Near Here",
-     @(TableSectionRemoteResults): @"Nearby Foursquare Venues"
-    };
+    if (section == TableSectionLocalResults && self.localResults.count > 0) {
+        return @"Places You've Been Near Here";
+    } else if (section == TableSectionRemoteResults) {
+        return @"Nearby Foursquare Venues";
+    }
 
-    return titles[@(section)];
+    return nil;
 }
 
 #pragma mark - UITableViewDelegate
