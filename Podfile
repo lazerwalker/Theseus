@@ -1,6 +1,7 @@
 pod "Mantle"
 pod "MagicalRecord"
 pod "SDWebImage"
+pod "Dropbox-iOS-SDK"
 
 target :OpenDataTests do
     pod "Expecta"

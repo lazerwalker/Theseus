@@ -1,4 +1,5 @@
 PODS:
+  - Dropbox-iOS-SDK (1.3.10)
   - Expecta (0.3.0)
   - MagicalRecord (2.2):
     - MagicalRecord/Core
@@ -15,6 +16,7 @@ PODS:
   - Specta (0.2.1)
 
 DEPENDENCIES:
+  - Dropbox-iOS-SDK
   - Expecta
   - MagicalRecord
   - Mantle
@@ -23,6 +25,7 @@ DEPENDENCIES:
   - Specta
 
 SPEC CHECKSUMS:
+  Dropbox-iOS-SDK: 9cc160cd7fa2edfae25adf11346bff3496d6dbad
   Expecta: 322f1dc42610106a5ba9871b4924cf1635d80833
   MagicalRecord: 95d49d74ef752cd52f6ad87bcb474817fc3978cf
   Mantle: 0714cdb2b8559d9e6c2410d6a8529e3307bff189

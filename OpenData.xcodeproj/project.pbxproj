@@ -10,6 +10,7 @@
 		52B113583BE24591AC8CB7D6 /* libPods-OpenDataTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D971CDBFFFA4B76AEF7147C /* libPods-OpenDataTests.a */; };
 		A61D645D192ABCF700F7EB88 /* Configuration.plist.example in Resources */ = {isa = PBXBuildFile; fileRef = A61D645C192ABCF700F7EB88 /* Configuration.plist.example */; };
 		A61D645E192ABD2100F7EB88 /* Configuration.plist.example in Resources */ = {isa = PBXBuildFile; fileRef = A61D645C192ABCF700F7EB88 /* Configuration.plist.example */; };
+		A61D6461192ABF6800F7EB88 /* AppDelegateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A61D6460192ABF6800F7EB88 /* AppDelegateSpec.m */; };
 		A6748A9F192127E90073CE19 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748A9E192127E90073CE19 /* Foundation.framework */; };
 		A6748AA1192127E90073CE19 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748AA0192127E90073CE19 /* CoreGraphics.framework */; };
 		A6748AA3192127E90073CE19 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748AA2192127E90073CE19 /* UIKit.framework */; };
@@ -33,8 +34,6 @@
 		A6C7CFDE192A7760001A6DAC /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFDD192A7760001A6DAC /* Venue.m */; };
 		A6C7CFE1192A7FF1001A6DAC /* OpenData.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFE0192A7FF1001A6DAC /* OpenData.m */; };
 		A6C7CFE3192A806B001A6DAC /* OpenDataSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFE2192A806B001A6DAC /* OpenDataSpec.m */; };
-		A6C7CFE6192AAC8E001A6DAC /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C7CFE5192AAC8E001A6DAC /* DropboxSDK.framework */; };
-		A6C7CFE7192AAC8E001A6DAC /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C7CFE5192AAC8E001A6DAC /* DropboxSDK.framework */; };
 		A6C7CFE9192AACA4001A6DAC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C7CFE8192AACA4001A6DAC /* Security.framework */; };
 		A6C7CFEB192AACA7001A6DAC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C7CFEA192AACA7001A6DAC /* QuartzCore.framework */; };
 		A6C7CFEC192AACAC001A6DAC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C7CFE8192AACA4001A6DAC /* Security.framework */; };
@@ -68,6 +67,7 @@
 		8D971CDBFFFA4B76AEF7147C /* libPods-OpenDataTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OpenDataTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1D73CDD20E349509DE73F55 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A61D645C192ABCF700F7EB88 /* Configuration.plist.example */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Configuration.plist.example; path = OpenData/Configuration.plist.example; sourceTree = SOURCE_ROOT; };
+		A61D6460192ABF6800F7EB88 /* AppDelegateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegateSpec.m; sourceTree = "<group>"; };
 		A6748A9B192127E90073CE19 /* OpenData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6748A9E192127E90073CE19 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A6748AA0192127E90073CE19 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -104,7 +104,6 @@
 		A6C7CFDF192A7FF1001A6DAC /* OpenData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenData.h; sourceTree = "<group>"; };
 		A6C7CFE0192A7FF1001A6DAC /* OpenData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenData.m; sourceTree = "<group>"; };
 		A6C7CFE2192A806B001A6DAC /* OpenDataSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenDataSpec.m; sourceTree = "<group>"; };
-		A6C7CFE5192AAC8E001A6DAC /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
 		A6C7CFE8192AACA4001A6DAC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A6C7CFEA192AACA7001A6DAC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A6C7CFEE192AAD2A001A6DAC /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Configuration.h; path = Interfaces/Configuration.h; sourceTree = "<group>"; };
@@ -136,7 +135,6 @@
 				A6C7CFE9192AACA4001A6DAC /* Security.framework in Frameworks */,
 				A6F4D95D1922D2AA006C7034 /* CoreData.framework in Frameworks */,
 				A6748AE3192155F50073CE19 /* MapKit.framework in Frameworks */,
-				A6C7CFE6192AAC8E001A6DAC /* DropboxSDK.framework in Frameworks */,
 				A6748AA1192127E90073CE19 /* CoreGraphics.framework in Frameworks */,
 				A6748AA3192127E90073CE19 /* UIKit.framework in Frameworks */,
 				A6748A9F192127E90073CE19 /* Foundation.framework in Frameworks */,
@@ -153,7 +151,6 @@
 				A6748ABE192127EA0073CE19 /* XCTest.framework in Frameworks */,
 				A6748AC0192127EA0073CE19 /* UIKit.framework in Frameworks */,
 				A6748ABF192127EA0073CE19 /* Foundation.framework in Frameworks */,
-				A6C7CFE7192AAC8E001A6DAC /* DropboxSDK.framework in Frameworks */,
 				52B113583BE24591AC8CB7D6 /* libPods-OpenDataTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,7 +199,6 @@
 		A6748AA4192127E90073CE19 /* OpenData */ = {
 			isa = PBXGroup;
 			children = (
-				A6C7CFE4192AAC85001A6DAC /* External */,
 				A6748AAD192127E90073CE19 /* AppDelegate.h */,
 				A6748AAE192127E90073CE19 /* AppDelegate.m */,
 				A6748AD4192128B20073CE19 /* Data Sources */,
@@ -237,6 +233,7 @@
 				A6C7CFF2192AAD77001A6DAC /* Interfaces */,
 				A6748AC4192127EA0073CE19 /* Supporting Files */,
 				A6C7CFE2192A806B001A6DAC /* OpenDataSpec.m */,
+				A61D6460192ABF6800F7EB88 /* AppDelegateSpec.m */,
 			);
 			path = OpenDataTests;
 			sourceTree = "<group>";
@@ -301,14 +298,6 @@
 				A6BD97B619299AE000264548 /* MovementPathPolyline.m */,
 			);
 			name = Presenters;
-			sourceTree = "<group>";
-		};
-		A6C7CFE4192AAC85001A6DAC /* External */ = {
-			isa = PBXGroup;
-			children = (
-				A6C7CFE5192AAC8E001A6DAC /* DropboxSDK.framework */,
-			);
-			name = External;
 			sourceTree = "<group>";
 		};
 		A6C7CFF2192AAD77001A6DAC /* Interfaces */ = {
@@ -534,6 +523,7 @@
 				A6C7CFF1192AAD2A001A6DAC /* Configuration.m in Sources */,
 				A6C7CFE3192A806B001A6DAC /* OpenDataSpec.m in Sources */,
 				A6C7CFF4192AAD87001A6DAC /* ConfigurationSpec.m in Sources */,
+				A61D6461192ABF6800F7EB88 /* AppDelegateSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

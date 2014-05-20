@@ -7,12 +7,14 @@
 //
 
 #import "AppDelegate.h"
-#import "MotionManager.h"
 #import "MapViewController.h"
 #import "ListViewController.h"
 
 #import "LocationManager.h"
 #import "MotionManager.h"
+#import "Configuration.h"
+
+#import <DropboxSDK.h>
 
 @interface AppDelegate ()
 
@@ -25,10 +27,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [MagicalRecord setupAutoMigratingCoreDataStack];
 
+    [self setupDropbox];
+
     UITabBarController *tabController = [UITabBarController new];
-
     UINavigationController *mapNav = [[UINavigationController alloc] initWithRootViewController:[MapViewController new]];
-
     UINavigationController *listNav = [[UINavigationController alloc] initWithRootViewController:[ListViewController new]];
 
     tabController.viewControllers = @[listNav, mapNav];
@@ -42,18 +44,30 @@
     return YES;
 }
 
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    MotionManager *manager = [MotionManager new];
+    [manager fetchUpdatesWhileInactive];
+}
+
+#pragma mark - Private
+- (void)setupDropbox {
+    Configuration *config = [Configuration new];
+    DBSession *dbSession = [[DBSession alloc]
+                            initWithAppKey:config.dropboxAppKey
+                            appSecret:config.dropboxAppSecret
+                            root:kDBRootAppFolder];
+
+    DBSession.sharedSession = dbSession;
+}
+
 - (void)startMonitoring {
     self.locationManager = [LocationManager new];
     [self.locationManager startMonitoring];
 
     self.motionManager = [MotionManager new];
     [self.motionManager startMonitoring];
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    MotionManager *manager = [MotionManager new];
-    [manager fetchUpdatesWhileInactive];
 }
 
 @end
