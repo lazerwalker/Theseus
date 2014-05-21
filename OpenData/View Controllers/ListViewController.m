@@ -49,8 +49,7 @@ static NSString * const CellIdentifier = @"CellIdentifier";
     DataProcessor *dataProcessor = [DataProcessor new];
     [dataProcessor processDataWithCompletion:^(NSArray *stops, NSArray *paths) {
         NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"startTime" ascending:YES];
-        self.data = [stops sortedArrayUsingDescriptors:@[descriptor]];
-
+        self.data = [[stops arrayByAddingObjectsFromArray:paths] sortedArrayUsingDescriptors:@[descriptor]];
         [self.tableView reloadData];
     }];
 }
@@ -71,6 +70,12 @@ static NSString * const CellIdentifier = @"CellIdentifier";
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     id obj = self.data[indexPath.row];
 
+    NSTimeInterval duration = [obj duration];
+    NSInteger hours = duration / 60 / 60;
+    NSInteger minutes = duration/60 - hours*60;
+    NSInteger seconds = duration - minutes*60;
+    NSString *timeString = [NSString stringWithFormat:@"%02lu:%02lu:%02lu", (long)hours, (long)minutes, (long)seconds];
+
     if ([obj isKindOfClass:Stop.class]) {
         Stop *stop = obj;
         if (stop.venue) {
@@ -80,15 +85,10 @@ static NSString * const CellIdentifier = @"CellIdentifier";
             cell.textLabel.text = [NSString stringWithFormat:@"%f, %f", stop.coordinate.latitude, stop.coordinate.longitude];
         }
 
-        NSTimeInterval duration = stop.duration;
-        NSInteger hours = duration / 60 / 60;
-        NSInteger minutes = duration/60 - hours*60;
-        NSInteger seconds = duration - minutes*60;
-        NSString *timeString = [NSString stringWithFormat:@"%02lu:%02lu:%02lu", (long)hours, (long)minutes, (long)seconds];
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ — %@ (%@)", [self.dateFormatter stringFromDate:stop.startTime], [self.dateFormatter stringFromDate:stop.endTime], timeString];
     } else if ([obj isKindOfClass:MovementPath.class]){
-        MovementPath *path = obj;
-        cell.textLabel.text = [NSString stringWithFormat:@"Moving for %u seconds", (int)path.duration];
+        cell.textLabel.text = [NSString stringWithFormat:@"Moving for %@", timeString];
+        cell.detailTextLabel.text = nil;
     }
 }
 
