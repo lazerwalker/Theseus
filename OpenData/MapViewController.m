@@ -41,7 +41,7 @@
     [super viewDidLoad];
 
     DataProcessor *dataProcessor = [DataProcessor new];
-    [dataProcessor fetchStaleDataWithCompletion:^(NSArray *stops, NSArray *paths) {
+    [dataProcessor fetchStaleDataWithCompletion:^(NSArray *results, NSArray *stops, NSArray *paths, NSArray *untrackedPeriods) {
         NSMutableArray *polylines = [NSMutableArray new];
         for (MovementPath *path in paths) {
             MovementPathPolyline *polyline = [MovementPathPolyline polylineWithMovementPath:path];
@@ -59,7 +59,7 @@
 
 - (void)render {
     DataProcessor *dataProcessor = [DataProcessor new];
-    [dataProcessor processDataWithCompletion:^(NSArray *stops, NSArray *paths) {
+    [dataProcessor processDataWithCompletion:^(NSArray *results, NSArray *stops, NSArray *paths, NSArray *untrackedPeriods) {
         NSMutableArray *polylines = [NSMutableArray new];
         for (MovementPath *path in paths) {
             MovementPathPolyline *polyline = [MovementPathPolyline polylineWithMovementPath:path];

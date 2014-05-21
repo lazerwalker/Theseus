@@ -10,6 +10,8 @@
 #import "DataProcessor.h"
 #import "MovementPath.h"
 #import "Stop.h"
+#import "UntrackedPeriod.h"
+
 #import "FoursquareVenue.h"
 #import "Venue.h"
 #import "VenueListViewController.h"
@@ -37,9 +39,8 @@ static NSString * const CellIdentifier = @"CellIdentifier";
     [super viewDidLoad];
     self.tableView.contentInset = UIEdgeInsetsMake(20, 0, self.tabBarController.tabBar.bounds.size.height, 0);
     DataProcessor *dataProcessor = [DataProcessor new];
-    [dataProcessor fetchStaleDataWithCompletion:^(NSArray *stops, NSArray *paths) {
-        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"startTime" ascending:YES];
-        self.data = [[stops arrayByAddingObjectsFromArray:paths] sortedArrayUsingDescriptors:@[descriptor]];
+    [dataProcessor fetchStaleDataWithCompletion:^(NSArray *results, NSArray *stops, NSArray *paths, NSArray *untrackedPeriods) {
+        self.data = results;
         [self.tableView reloadData];
     }];
 }
@@ -47,9 +48,8 @@ static NSString * const CellIdentifier = @"CellIdentifier";
 #pragma mark - 
 - (void)loadData {
     DataProcessor *dataProcessor = [DataProcessor new];
-    [dataProcessor processDataWithCompletion:^(NSArray *stops, NSArray *paths) {
-        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"startTime" ascending:YES];
-        self.data = [[stops arrayByAddingObjectsFromArray:paths] sortedArrayUsingDescriptors:@[descriptor]];
+    [dataProcessor processDataWithCompletion:^(NSArray *results, NSArray *stops, NSArray *paths, NSArray *untrackedPeriods) {
+        self.data = results;
         [self.tableView reloadData];
     }];
 }
@@ -88,6 +88,9 @@ static NSString * const CellIdentifier = @"CellIdentifier";
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ — %@ (%@)", [self.dateFormatter stringFromDate:stop.startTime], [self.dateFormatter stringFromDate:stop.endTime], timeString];
     } else if ([obj isKindOfClass:MovementPath.class]){
         cell.textLabel.text = [NSString stringWithFormat:@"Moving for %@", timeString];
+        cell.detailTextLabel.text = nil;
+    } else if ([obj isKindOfClass:UntrackedPeriod.class]) {
+        cell.textLabel.text = [NSString stringWithFormat:@"Inactive for %@", timeString];
         cell.detailTextLabel.text = nil;
     }
 }

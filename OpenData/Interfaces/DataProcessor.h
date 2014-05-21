@@ -6,10 +6,11 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
+typedef void (^DataProcessorCompletionBlock)(NSArray *allObjects, NSArray *stops, NSArray *paths, NSArray *untrackedPeriods);
 
 @interface DataProcessor : NSObject
 
-- (void)processDataWithCompletion:(void(^)(NSArray *stops, NSArray *paths))completion;
-- (void)fetchStaleDataWithCompletion:(void(^)(NSArray *stops, NSArray *paths))completion;
+- (void)processDataWithCompletion:(DataProcessorCompletionBlock)completion;
+- (void)fetchStaleDataWithCompletion:(DataProcessorCompletionBlock)completion;
 
 @end

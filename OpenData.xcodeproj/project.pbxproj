@@ -27,6 +27,7 @@
 		A6748AE6192175590073CE19 /* MovementPath.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748AE5192175590073CE19 /* MovementPath.m */; };
 		A68425CA192302CB0083D006 /* FoursquareVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = A68425C9192302CB0083D006 /* FoursquareVenue.m */; };
 		A68425CC1923047F0083D006 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = A68425CB1923047F0083D006 /* Configuration.plist */; };
+		A6B91CFA192D56F800F7106E /* UntrackedPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91CF9192D56F800F7106E /* UntrackedPeriod.m */; };
 		A6BD97B719299AE000264548 /* MovementPathPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BD97B619299AE000264548 /* MovementPathPolyline.m */; };
 		A6BD97BA192A4B2900264548 /* VenueListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BD97B9192A4B2900264548 /* VenueListViewController.m */; };
 		A6C7CFDE192A7760001A6DAC /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFDD192A7760001A6DAC /* Venue.m */; };
@@ -92,6 +93,8 @@
 		A68425C8192302CB0083D006 /* FoursquareVenue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FoursquareVenue.h; path = Models/FoursquareVenue.h; sourceTree = "<group>"; };
 		A68425C9192302CB0083D006 /* FoursquareVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FoursquareVenue.m; path = Models/FoursquareVenue.m; sourceTree = "<group>"; };
 		A68425CB1923047F0083D006 /* Configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Configuration.plist; path = ../Configuration.plist; sourceTree = "<group>"; };
+		A6B91CF8192D56F800F7106E /* UntrackedPeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UntrackedPeriod.h; path = Models/UntrackedPeriod.h; sourceTree = "<group>"; };
+		A6B91CF9192D56F800F7106E /* UntrackedPeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UntrackedPeriod.m; path = Models/UntrackedPeriod.m; sourceTree = "<group>"; };
 		A6BD97B519299AE000264548 /* MovementPathPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovementPathPolyline.h; path = Presenters/MovementPathPolyline.h; sourceTree = "<group>"; };
 		A6BD97B619299AE000264548 /* MovementPathPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovementPathPolyline.m; path = Presenters/MovementPathPolyline.m; sourceTree = "<group>"; };
 		A6BD97B8192A4B2900264548 /* VenueListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueListViewController.h; path = "View Controllers/VenueListViewController.h"; sourceTree = "<group>"; };
@@ -271,6 +274,8 @@
 		A6748AD819212E7C0073CE19 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A6B91CF8192D56F800F7106E /* UntrackedPeriod.h */,
+				A6B91CF9192D56F800F7106E /* UntrackedPeriod.m */,
 				A6C7CFDC192A7760001A6DAC /* Venue.h */,
 				A6C7CFDD192A7760001A6DAC /* Venue.m */,
 				A6F4D9671922DE94006C7034 /* RawMotionActivity.h */,
@@ -492,6 +497,7 @@
 				A6748AD7192128D70073CE19 /* LocationManager.m in Sources */,
 				A6BD97BA192A4B2900264548 /* VenueListViewController.m in Sources */,
 				A6C7CFF0192AAD2A001A6DAC /* Configuration.m in Sources */,
+				A6B91CFA192D56F800F7106E /* UntrackedPeriod.m in Sources */,
 				A6F4D9601922D684006C7034 /* RawLocation.m in Sources */,
 				A68425CA192302CB0083D006 /* FoursquareVenue.m in Sources */,
 				A6F4D96F1922E9F5006C7034 /* ListViewController.m in Sources */,

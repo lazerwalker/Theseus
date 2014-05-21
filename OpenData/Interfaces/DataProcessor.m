@@ -11,6 +11,7 @@
 #import "RawMotionActivity.h"
 #import "Stop.h"
 #import "MovementPath.h"
+#import "UntrackedPeriod.h"
 
 @interface DataProcessor ()
 
@@ -33,7 +34,7 @@
     }
 }
 
-- (void)processDataWithCompletion:(void (^)(NSArray *, NSArray *))completion {
+- (void)processDataWithCompletion:(DataProcessorCompletionBlock)completion {
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
         [self removeAllProcessedDataWithContext:localContext];
 
@@ -112,18 +113,37 @@
             }
         }
         [paths removeObjectsInArray:pathsToRemove];
+
+        NSSortDescriptor *startTimeDescriptor = [[NSSortDescriptor alloc] initWithKey:@"startTime" ascending:YES];
+        NSArray *allObjects = [[stops arrayByAddingObjectsFromArray:paths] sortedArrayUsingDescriptors:@[startTimeDescriptor]];
+        NSMutableArray *untrackedPeriods = [NSMutableArray new];
+        id previousObj;
+        for (id obj in allObjects) {
+            if (fabsf([[previousObj endTime] timeIntervalSinceDate:[obj startTime]]) > 10) {
+                UntrackedPeriod *time = [UntrackedPeriod MR_createInContext:localContext];
+                time.startTime = [previousObj endTime];
+                time.endTime = [obj startTime];
+                [untrackedPeriods addObject:time];
+            }
+            previousObj = obj;
+        }
+
     } completion:^(BOOL success, NSError *error) {
         [self fetchStaleDataWithCompletion:completion];
     }];
 }
 
-- (void)fetchStaleDataWithCompletion:(void(^)(NSArray *stops, NSArray *paths))completion {
+- (void)fetchStaleDataWithCompletion:(void(^)(NSArray *allObjects, NSArray *stops, NSArray *paths, NSArray *untrackedPeriods))completion {
     if (completion) {
         NSPredicate *onlyRealPaths = [NSPredicate predicateWithFormat:@"(stop = nil)"];
         NSArray *stops = [Stop MR_findAllSortedBy:@"startTime" ascending:YES];
         NSArray *paths = [MovementPath MR_findAllSortedBy:@"startTime" ascending:YES withPredicate:onlyRealPaths];
+        NSArray *untrackedPeriods = [UntrackedPeriod MR_findAllSortedBy:@"startTime" ascending:YES];
 
-        completion(stops, paths);
+        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"startTime" ascending:YES];
+        NSArray *allObjects = [[[stops arrayByAddingObjectsFromArray:paths] arrayByAddingObjectsFromArray:untrackedPeriods] sortedArrayUsingDescriptors:@[descriptor]];
+
+        completion(allObjects, stops, paths, untrackedPeriods);
     }
 }
 

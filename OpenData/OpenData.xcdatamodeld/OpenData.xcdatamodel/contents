@@ -32,6 +32,10 @@
         <relationship name="movementPaths" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="MovementPath" inverseName="stop" inverseEntity="MovementPath" syncable="YES"/>
         <relationship name="venue" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Venue" inverseName="stops" inverseEntity="Venue" syncable="YES"/>
     </entity>
+    <entity name="UntrackedPeriod" representedClassName="UntrackedPeriod" syncable="YES">
+        <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
     <entity name="Venue" representedClassName="Venue" syncable="YES">
         <attribute name="foursquareIconPrefix" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="foursquareIconSuffix" optional="YES" attributeType="String" syncable="YES"/>
@@ -42,10 +46,11 @@
         <relationship name="stops" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Stop" inverseName="venue" inverseEntity="Stop" syncable="YES"/>
     </entity>
     <elements>
-        <element name="MovementPath" positionX="0" positionY="0" width="128" height="28"/>
+        <element name="MovementPath" positionX="0" positionY="0" width="128" height="165"/>
         <element name="RawLocation" positionX="0" positionY="0" width="128" height="178"/>
         <element name="RawMotionActivity" positionX="0" positionY="0" width="128" height="103"/>
         <element name="Stop" positionX="0" positionY="0" width="128" height="135"/>
         <element name="Venue" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="UntrackedPeriod" positionX="9" positionY="72" width="128" height="75"/>
     </elements>
 </model>
