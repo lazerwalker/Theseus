@@ -326,11 +326,9 @@
 			buildPhases = (
 				AC358971F6BA49D48AD6EFDD /* Check Pods Manifest.lock */,
 				A6748A97192127E90073CE19 /* Sources */,
-				A6CF8489192BD550008672BF /* ShellScript */,
 				A6748A98192127E90073CE19 /* Frameworks */,
 				A6748A99192127E90073CE19 /* Resources */,
 				F3A6364F3A5C4563A93D828D /* Copy Pods Resources */,
-				A6B91CF7192D3FC500F7106E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -452,32 +450,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-OpenDataTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		A6B91CF7192D3FC500F7106E /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "echo \"The solution is ${DROPBOX_APP_KEY}\"";
-		};
-		A6CF8489192BD550008672BF /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "DROPBOX_APP_KEY=$(/usr/libexec/PlistBuddy \"${PROJECT_DIR}/Configuration.plist\" -c \"print :DropboxAPI:AppKey\")\necho $DROPBOX_APP_KEY\n/usr/libexec/PlistBuddy ${INFOPLIST_FILE} -c \"Set :CFBundleURLTypes:0:CFBundleURLSchemes:0 db-${DROPBOX_APP_KEY}\"";
 		};
 		AC358971F6BA49D48AD6EFDD /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
