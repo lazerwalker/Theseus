@@ -12,10 +12,6 @@
 
 @dynamic startTime, endTime, locations, movementPaths, venue, venueConfirmed;
 
-- (NSTimeInterval)duration {
-    return [self.endTime timeIntervalSinceDate:self.startTime];
-}
-
 - (void)addMovementPath:(MovementPath *)path {
     NSSet *paths = self.movementPaths ?: [NSSet new];
     paths = [paths setByAddingObject:path];
@@ -43,6 +39,13 @@
     return [thisLocation distanceFromLocation:thatLocation];
 }
 
+- (void)setupWithLocations:(NSArray *)locations {
+    self.locations = [NSSet setWithArray:locations];
+
+    self.startTime = [locations valueForKeyPath:@"@min.timestamp"];
+    self.endTime = [locations valueForKeyPath:@"@max.timestamp"];
+}
+
 #pragma mark - Accessors
 - (CLLocationCoordinate2D)coordinate {
     CLLocationDegrees latitude = [[self.locations valueForKeyPath:@"@avg.latitude"] doubleValue];
@@ -55,13 +58,8 @@
     return [[self.locations valueForKeyPath:@"@avg.altitude"] doubleValue];
 }
 
-
-#pragma mark - Private
-- (void)setupWithLocations:(NSArray *)locations {
-    self.locations = [NSSet setWithArray:locations];
-
-    self.startTime = [locations valueForKeyPath:@"@min.timestamp"];
-    self.endTime = [locations valueForKeyPath:@"@max.timestamp"];
+- (NSTimeInterval)duration {
+    return [self.endTime timeIntervalSinceDate:self.startTime];
 }
 
 @end
