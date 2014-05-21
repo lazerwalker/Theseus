@@ -29,7 +29,10 @@
 
 - (BOOL)isSameLocationAs:(Stop *)stop {
     CLLocationDistance distance = [self distanceFromCoordinate:stop.coordinate];
-    return distance < 50;
+
+    // TODO: The magic number 310 is roughly 1 Manhattan city block.
+    // Eventually, this logic needs to be way more complex, ideally taking into account both GPS accuracy and the radius of nearby Foursquare venues. 
+    return distance < 310;
 }
 
 - (CLLocationDistance)distanceFromCoordinate:(CLLocationCoordinate2D)coordinate {
