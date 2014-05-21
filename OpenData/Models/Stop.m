@@ -7,6 +7,7 @@
 //
 
 #import "Stop.h"
+#import "MovementPath.h"
 
 @implementation Stop
 
@@ -15,6 +16,7 @@
 - (void)addMovementPath:(MovementPath *)path {
     NSSet *paths = self.movementPaths ?: [NSSet new];
     paths = [paths setByAddingObject:path];
+    path.stop = self;
     self.movementPaths = paths;
 }
 

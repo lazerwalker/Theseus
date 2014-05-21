@@ -11,7 +11,7 @@
 
 @implementation MovementPath
 
-@dynamic startTime, endTime, locations, activity;
+@dynamic startTime, endTime, locations, activity, stop;
 
 - (NSTimeInterval)duration {
     return [self.endTime timeIntervalSinceDate:self.startTime];
@@ -36,6 +36,10 @@
     } else {
         return MovementTypeUnknown;
     }
+}
+
+- (void)addLocations:(NSArray *)locations {
+    self.locations = [self.locations setByAddingObjectsFromArray:locations];
 }
 
 @end

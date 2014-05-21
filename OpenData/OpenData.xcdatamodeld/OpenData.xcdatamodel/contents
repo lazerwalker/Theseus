@@ -29,7 +29,7 @@
         <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="venueConfirmed" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RawLocation" inverseName="stop" inverseEntity="RawLocation" syncable="YES"/>
-        <relationship name="movementPaths" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MovementPath" inverseName="stop" inverseEntity="MovementPath" syncable="YES"/>
+        <relationship name="movementPaths" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="MovementPath" inverseName="stop" inverseEntity="MovementPath" syncable="YES"/>
         <relationship name="venue" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Venue" inverseName="stops" inverseEntity="Venue" syncable="YES"/>
     </entity>
     <entity name="Venue" representedClassName="Venue" syncable="YES">

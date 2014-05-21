@@ -74,7 +74,7 @@
                         } else {
                             [stops addObject:stop];
                         }
-                    } else {
+                    } else if (activity.activityType == RawMotionActivityTypeStationary) {
                         MovementPath *path = [MovementPath MR_createInContext:localContext];
 
                         path.locations = [NSSet setWithArray:currentObjects];
@@ -83,6 +83,10 @@
                         path.startTime = [(RawLocation *)currentObjects.firstObject timestamp];
                         path.endTime = activity.timestamp;
                         [paths addObject:path];
+                    } else {
+                        MovementPath *previousPath = paths.lastObject;
+                        [previousPath addLocations:currentObjects];
+                        previousPath.endTime = activity.timestamp;
                     }
                     currentObjects = [NSMutableArray new];
                 }
@@ -95,26 +99,32 @@
         for (Stop *stop in stops) {
             if (stop.duration < 60.0) {
                 [stopsToRemove addObject:stop];
-                [stop MR_deleteEntity];
+                [stop MR_deleteInContext:localContext];
             }
         }
         [stops removeObjectsInArray:stopsToRemove];
-    } completion:^(BOOL success, NSError *error) {
-        if (completion) {
-            NSArray *stops = [Stop MR_findAllSortedBy:@"startTime" ascending:YES];
-            NSArray *paths = [MovementPath MR_findAllSortedBy:@"startTime" ascending:YES];
 
-            completion(stops, paths);
+        NSMutableArray *pathsToRemove = [NSMutableArray new];
+        for (MovementPath *path in paths) {
+            if (path.duration < 60.0) {
+                [pathsToRemove addObject:path];
+                [path MR_deleteInContext:localContext];
+            }
         }
+        [paths removeObjectsInArray:pathsToRemove];
+    } completion:^(BOOL success, NSError *error) {
+        [self fetchStaleDataWithCompletion:completion];
     }];
 }
 
 - (void)fetchStaleDataWithCompletion:(void(^)(NSArray *stops, NSArray *paths))completion {
     if (completion) {
+        NSPredicate *onlyRealPaths = [NSPredicate predicateWithFormat:@"(stop = nil)"];
         NSArray *stops = [Stop MR_findAllSortedBy:@"startTime" ascending:YES];
-        NSArray *paths = [MovementPath MR_findAllSortedBy:@"startTime" ascending:YES];
+        NSArray *paths = [MovementPath MR_findAllSortedBy:@"startTime" ascending:YES withPredicate:onlyRealPaths];
 
         completion(stops, paths);
     }
 }
+
 @end

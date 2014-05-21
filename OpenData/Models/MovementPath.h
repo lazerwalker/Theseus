@@ -9,6 +9,7 @@
 @import MapKit;
 
 @class RawMotionActivity;
+@class Stop;
 
 typedef NS_ENUM(NSUInteger, MovementType) {
     MovementTypeUnknown,
@@ -24,9 +25,12 @@ typedef NS_ENUM(NSUInteger, MovementType) {
 @property (nonatomic, strong) NSDate *endTime;
 @property (nonatomic, strong) NSSet *locations;
 @property (nonatomic, strong) RawMotionActivity *activity;
+@property (nonatomic, strong) Stop *stop;
 
 @property (nonatomic, readonly) MovementType type;
 @property (nonatomic, readonly) NSTimeInterval duration;
 @property (nonatomic, readonly) NSString *typeString;
+
+- (void)addLocations:(NSArray *)locations;
 
 @end
