@@ -38,7 +38,8 @@ static NSString * const CellIdentifier = @"CellIdentifier";
     self.tableView.contentInset = UIEdgeInsetsMake(20, 0, self.tabBarController.tabBar.bounds.size.height, 0);
     DataProcessor *dataProcessor = [DataProcessor new];
     [dataProcessor fetchStaleDataWithCompletion:^(NSArray *stops, NSArray *paths) {
-        self.data = stops;
+        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"startTime" ascending:YES];
+        self.data = [[stops arrayByAddingObjectsFromArray:paths] sortedArrayUsingDescriptors:@[descriptor]];
         [self.tableView reloadData];
     }];
 }
@@ -68,25 +69,34 @@ static NSString * const CellIdentifier = @"CellIdentifier";
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    Stop *stop = self.data[indexPath.row];
+    id obj = self.data[indexPath.row];
 
-    if (stop.venue) {
-        cell.textLabel.text = stop.venue.name;
-        cell.textLabel.textColor = (stop.venueConfirmed.boolValue ? [UIColor blackColor] : [UIColor grayColor]);
-    } else {
-        cell.textLabel.text = [NSString stringWithFormat:@"%f, %f", stop.coordinate.latitude, stop.coordinate.longitude];
+    if ([obj isKindOfClass:Stop.class]) {
+        Stop *stop = obj;
+        if (stop.venue) {
+            cell.textLabel.text = stop.venue.name;
+            cell.textLabel.textColor = (stop.venueConfirmed.boolValue ? [UIColor blackColor] : [UIColor grayColor]);
+        } else {
+            cell.textLabel.text = [NSString stringWithFormat:@"%f, %f", stop.coordinate.latitude, stop.coordinate.longitude];
+        }
+
+        NSTimeInterval duration = stop.duration;
+        NSInteger hours = duration / 60 / 60;
+        NSInteger minutes = duration/60 - hours*60;
+        NSInteger seconds = duration - minutes*60;
+        NSString *timeString = [NSString stringWithFormat:@"%02lu:%02lu:%02lu", (long)hours, (long)minutes, (long)seconds];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ — %@ (%@)", [self.dateFormatter stringFromDate:stop.startTime], [self.dateFormatter stringFromDate:stop.endTime], timeString];
+    } else if ([obj isKindOfClass:MovementPath.class]){
+        MovementPath *path = obj;
+        cell.textLabel.text = [NSString stringWithFormat:@"Moving for %u seconds", (int)path.duration];
     }
-
-    NSTimeInterval duration = stop.duration;
-    NSInteger hours = duration / 60 / 60;
-    NSInteger minutes = duration/60 - hours*60;
-    NSInteger seconds = duration - minutes*60;
-    NSString *timeString = [NSString stringWithFormat:@"%02lu:%02lu:%02lu", (long)hours, (long)minutes, (long)seconds];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ — %@ (%@)", [self.dateFormatter stringFromDate:stop.startTime], [self.dateFormatter stringFromDate:stop.endTime], timeString];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     Stop *stop = self.data[indexPath.row];
+    if (![stop isKindOfClass:Stop.class]) return;
+
     VenueListViewController *venueList = [[VenueListViewController alloc] initWithStop:stop];
 
     venueList.didTapCancelButtonBlock = ^{
