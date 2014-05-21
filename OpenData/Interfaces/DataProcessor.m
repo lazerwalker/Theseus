@@ -90,7 +90,15 @@
                 previousActivity = obj;
             }
         }
-        NSLog(@"Done");
+
+        NSMutableArray *stopsToRemove = [NSMutableArray new];
+        for (Stop *stop in stops) {
+            if (stop.duration < 60.0) {
+                [stopsToRemove addObject:stop];
+                [stop MR_deleteEntity];
+            }
+        }
+        [stops removeObjectsInArray:stopsToRemove];
     } completion:^(BOOL success, NSError *error) {
         if (completion) {
             NSArray *stops = [Stop MR_findAllSortedBy:@"startTime" ascending:YES];
