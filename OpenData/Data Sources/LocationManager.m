@@ -22,6 +22,7 @@
     dispatch_once(&onceToken, ^{
         self.manager = [[CLLocationManager alloc] init];
         self.manager.delegate = self;
+        self.manager.pausesLocationUpdatesAutomatically = NO;
     });
 
     if (![CLLocationManager locationServicesEnabled]) return;
