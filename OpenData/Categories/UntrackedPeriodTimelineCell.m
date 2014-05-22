@@ -48,16 +48,15 @@
                             @"descriptionLabel": self.descriptionLabel};
 
     [self.contentView addConstraints: [NSLayoutConstraint
-                                       constraintsWithVisualFormat:@"|-[line(lineWidth)]-[descriptionLabel]-|"
+                                       constraintsWithVisualFormat:@"|-(==leftPadding)-[line(lineWidth)]-[descriptionLabel]-|"
                                        options:NSLayoutFormatAlignAllCenterY
-                                       metrics:@{@"lineWidth": @"3.0"}
+                                       metrics:@{@"lineWidth": @"3.0",
+                                                 @"leftPadding": @"40"}
                                        views:views]];
 
     [self.contentView addConstraints: [NSLayoutConstraint
                                        constraintsWithVisualFormat:@"V:|[line]|"
-                                       options:0
-                                       metrics:nil
-                                       views:views]];
+                                       options:0 metrics:nil views:views]];
 }
 
 #pragma mark -

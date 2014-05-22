@@ -13,6 +13,7 @@
 @interface MovementPathTimelineCell ()
 @property (nonatomic, strong) UIView *line;
 @property (nonatomic, strong) UILabel *descriptionLabel;
+
 @end
 
 @implementation MovementPathTimelineCell
@@ -49,9 +50,10 @@
                             @"descriptionLabel": self.descriptionLabel};
 
     [self.contentView addConstraints: [NSLayoutConstraint
-                                       constraintsWithVisualFormat:@"|-[line(lineWidth)]-[descriptionLabel]-|"
+                                       constraintsWithVisualFormat:@"|-(==leftPadding)-[line(lineWidth)]-[descriptionLabel]-|"
                                        options:NSLayoutFormatAlignAllCenterY
-                                       metrics:@{@"lineWidth": @"3.0"}
+                                       metrics:@{@"lineWidth": @"3.0",
+                                                 @"leftPadding": @"40"}
                                        views:views]];
 
     [self.contentView addConstraints: [NSLayoutConstraint
