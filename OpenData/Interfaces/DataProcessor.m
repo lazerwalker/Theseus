@@ -32,6 +32,11 @@
     for (MovementPath *path in movementPaths) {
         [path MR_deleteInContext:context];
     }
+
+    NSArray *untrackedPeriods = [UntrackedPeriod MR_findAllInContext:context];
+    for (UntrackedPeriod *period in untrackedPeriods) {
+        [period MR_deleteInContext:context];
+    }
 }
 
 - (void)processDataWithCompletion:(DataProcessorCompletionBlock)completion {
