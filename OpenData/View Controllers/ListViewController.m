@@ -14,6 +14,8 @@
 
 #import "TimedEvent.h"
 
+#import "StopTimelineCell.h"
+
 #import "FoursquareVenue.h"
 #import "Venue.h"
 #import "VenueListViewController.h"
@@ -33,6 +35,9 @@ static NSString * const CellIdentifier = @"CellIdentifier";
 
     self.title = @"List";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Process" style:UIBarButtonItemStylePlain target:self action:@selector(loadData)];
+
+    [self.tableView registerClass:[StopTimelineCell class] forCellReuseIdentifier:[StopTimelineCell reuseIdentifier]];
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
 
     return self;
 }
@@ -135,11 +140,14 @@ static NSString * const CellIdentifier = @"CellIdentifier";
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    id<TimedEvent> obj = self.data[indexPath.row];
 
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    NSString *cellIdentifier = CellIdentifier;
+    if ([obj isKindOfClass:Stop.class]) {
+        cellIdentifier = StopTimelineCell.reuseIdentifier;
     }
+
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
 
     return cell;
 }

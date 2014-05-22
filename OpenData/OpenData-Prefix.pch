@@ -15,4 +15,5 @@
     #import <Foundation/Foundation.h>
     #import <CoreData+MagicalRecord.h>
     #import "OpenData.h"
+    #import "UITableViewCell+ReuseIdentifier.h"
 #endif

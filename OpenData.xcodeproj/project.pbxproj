@@ -28,6 +28,8 @@
 		A68425CA192302CB0083D006 /* FoursquareVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = A68425C9192302CB0083D006 /* FoursquareVenue.m */; };
 		A68425CC1923047F0083D006 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = A68425CB1923047F0083D006 /* Configuration.plist */; };
 		A6B91CFA192D56F800F7106E /* UntrackedPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91CF9192D56F800F7106E /* UntrackedPeriod.m */; };
+		A6B91D03192E70BF00F7106E /* StopTimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D02192E70BF00F7106E /* StopTimelineCell.m */; };
+		A6B91D08192E737200F7106E /* UITableViewCell+ReuseIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D07192E737200F7106E /* UITableViewCell+ReuseIdentifier.m */; };
 		A6BD97B719299AE000264548 /* MovementPathPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BD97B619299AE000264548 /* MovementPathPolyline.m */; };
 		A6BD97BA192A4B2900264548 /* VenueListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BD97B9192A4B2900264548 /* VenueListViewController.m */; };
 		A6C7CFDE192A7760001A6DAC /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFDD192A7760001A6DAC /* Venue.m */; };
@@ -96,6 +98,10 @@
 		A6B91CF8192D56F800F7106E /* UntrackedPeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UntrackedPeriod.h; path = Models/UntrackedPeriod.h; sourceTree = "<group>"; };
 		A6B91CF9192D56F800F7106E /* UntrackedPeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UntrackedPeriod.m; path = Models/UntrackedPeriod.m; sourceTree = "<group>"; };
 		A6B91CFB192E6C8E00F7106E /* TimedEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TimedEvent.h; path = Models/TimedEvent.h; sourceTree = "<group>"; };
+		A6B91D01192E70BF00F7106E /* StopTimelineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StopTimelineCell.h; path = "Views/Timeline Cells/StopTimelineCell.h"; sourceTree = "<group>"; };
+		A6B91D02192E70BF00F7106E /* StopTimelineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StopTimelineCell.m; path = "Views/Timeline Cells/StopTimelineCell.m"; sourceTree = "<group>"; };
+		A6B91D06192E737200F7106E /* UITableViewCell+ReuseIdentifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableViewCell+ReuseIdentifier.h"; path = "Categories/UITableViewCell+ReuseIdentifier.h"; sourceTree = "<group>"; };
+		A6B91D07192E737200F7106E /* UITableViewCell+ReuseIdentifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableViewCell+ReuseIdentifier.m"; path = "Categories/UITableViewCell+ReuseIdentifier.m"; sourceTree = "<group>"; };
 		A6BD97B519299AE000264548 /* MovementPathPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovementPathPolyline.h; path = Presenters/MovementPathPolyline.h; sourceTree = "<group>"; };
 		A6BD97B619299AE000264548 /* MovementPathPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovementPathPolyline.m; path = Presenters/MovementPathPolyline.m; sourceTree = "<group>"; };
 		A6BD97B8192A4B2900264548 /* VenueListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueListViewController.h; path = "View Controllers/VenueListViewController.h"; sourceTree = "<group>"; };
@@ -200,6 +206,8 @@
 		A6748AA4192127E90073CE19 /* OpenData */ = {
 			isa = PBXGroup;
 			children = (
+				A6B91D05192E735C00F7106E /* Categories */,
+				A6B91CFC192E700300F7106E /* Views */,
 				A6748AAD192127E90073CE19 /* AppDelegate.h */,
 				A6748AAE192127E90073CE19 /* AppDelegate.m */,
 				A6748AD4192128B20073CE19 /* Data Sources */,
@@ -292,6 +300,32 @@
 				A6B91CFB192E6C8E00F7106E /* TimedEvent.h */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		A6B91CFC192E700300F7106E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A6B91CFD192E700600F7106E /* Timeline Cells */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		A6B91CFD192E700600F7106E /* Timeline Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A6B91D01192E70BF00F7106E /* StopTimelineCell.h */,
+				A6B91D02192E70BF00F7106E /* StopTimelineCell.m */,
+			);
+			name = "Timeline Cells";
+			sourceTree = "<group>";
+		};
+		A6B91D05192E735C00F7106E /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				A6B91D06192E737200F7106E /* UITableViewCell+ReuseIdentifier.h */,
+				A6B91D07192E737200F7106E /* UITableViewCell+ReuseIdentifier.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		A6BD97B419299AC600264548 /* Presenters */ = {
@@ -495,6 +529,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6B91D03192E70BF00F7106E /* StopTimelineCell.m in Sources */,
+				A6B91D08192E737200F7106E /* UITableViewCell+ReuseIdentifier.m in Sources */,
 				A6F4D9731922FE33006C7034 /* FoursquareClient.m in Sources */,
 				A6748AD7192128D70073CE19 /* LocationManager.m in Sources */,
 				A6BD97BA192A4B2900264548 /* VenueListViewController.m in Sources */,
