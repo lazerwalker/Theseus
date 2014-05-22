@@ -17,14 +17,18 @@
 
 @implementation LocationManager
 
-- (void)startMonitoring {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        self.manager = [[CLLocationManager alloc] init];
-        self.manager.delegate = self;
-        self.manager.pausesLocationUpdatesAutomatically = NO;
-    });
+- (id)init {
+    self = [super init];
+    if (!self) return nil;
 
+    self.manager = [[CLLocationManager alloc] init];
+    self.manager.delegate = self;
+    self.manager.pausesLocationUpdatesAutomatically = NO;
+    self.manager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+    return self;
+}
+
+- (void)startMonitoring {
     if (![CLLocationManager locationServicesEnabled]) return;
 
     [self.manager startUpdatingLocation];
