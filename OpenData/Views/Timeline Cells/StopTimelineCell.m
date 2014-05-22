@@ -86,8 +86,8 @@
     [self.contentView addConstraints: [NSLayoutConstraint
                                        constraintsWithVisualFormat:@"|-(==leftPadding)-[line(lineWidth)]-[venueLabel]-|"
                                        options:NSLayoutFormatAlignAllCenterY
-                                       metrics:@{@"lineWidth": @"3.0",
-                                                 @"leftPadding": @"40"}
+                                       metrics:@{@"lineWidth": TimelineLineWidth,
+                                                 @"leftPadding": TimelineLineLeftPadding}
                                        views:views]];
 
     [self.contentView addConstraints: [NSLayoutConstraint
