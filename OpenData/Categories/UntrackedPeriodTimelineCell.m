@@ -18,7 +18,7 @@
 @implementation UntrackedPeriodTimelineCell
 
 + (CGFloat)heightForTimedEvent:(UntrackedPeriod *)period {
-    return 44.0;
+    return TimelineCellHeightDefault;
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {

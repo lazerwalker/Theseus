@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+static CGFloat TimelineCellHeightMax = 200.0;
+static CGFloat TimelineCellHeightDefault = 44.0;
+
 @interface UITableViewCell (TimelineCell)
 
 - (void)applyDefaultStyles;

@@ -19,7 +19,9 @@
 @implementation MovementPathTimelineCell
 
 + (CGFloat)heightForTimedEvent:(MovementPath *)path {
-    return 44.0;
+    CGFloat duration = path.duration / 60;
+    duration = MIN(duration, TimelineCellHeightMax);
+    return MAX(TimelineCellHeightDefault, duration);
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

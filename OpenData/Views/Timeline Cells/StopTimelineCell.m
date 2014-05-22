@@ -23,7 +23,9 @@
 @implementation StopTimelineCell
 
 + (CGFloat)heightForTimedEvent:(Stop *)stop {
-    return 200.0;
+    CGFloat duration = stop.duration / 60;
+    duration = MIN(duration, TimelineCellHeightMax);
+    return MAX(TimelineCellHeightDefault, duration);
 }
 
 + (NSDateFormatter *)dateFormatter {
