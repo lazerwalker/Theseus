@@ -22,7 +22,6 @@
     dispatch_once(&onceToken, ^{
         self.manager = [[CLLocationManager alloc] init];
         self.manager.delegate = self;
-        [self.manager allowDeferredLocationUpdatesUntilTraveled:CLLocationDistanceMax timeout:CLTimeIntervalMax];
     });
 
     if (![CLLocationManager locationServicesEnabled]) return;
