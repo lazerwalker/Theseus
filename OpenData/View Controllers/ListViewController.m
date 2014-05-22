@@ -35,7 +35,7 @@
     if (!self) return nil;
 
     self.title = @"List";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Process" style:UIBarButtonItemStylePlain target:self action:@selector(loadData)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Process" style:UIBarButtonItemStylePlain target:self action:@selector(reprocess)];
 
     [self.tableView registerClass:[StopTimelineCell class] forCellReuseIdentifier:[StopTimelineCell reuseIdentifier]];
     [self.tableView registerClass:[MovementPathTimelineCell class] forCellReuseIdentifier:[MovementPathTimelineCell reuseIdentifier]];
@@ -50,16 +50,19 @@
     [super viewDidLoad];
     self.tableView.contentInset = UIEdgeInsetsMake(20, 0, self.tabBarController.tabBar.bounds.size.height, 0);
     DataProcessor *dataProcessor = [DataProcessor new];
-    [dataProcessor fetchStaleDataWithCompletion:^(NSArray *results, NSArray *stops, NSArray *paths, NSArray *untrackedPeriods) {
+    DataProcessorCompletionBlock completion = ^(NSArray *results, NSArray *stops, NSArray *paths, NSArray *untrackedPeriods) {
         self.data = results;
         [self.tableView reloadData];
-    }];
+    };
+
+    [dataProcessor fetchStaleDataWithCompletion:completion];
+    [dataProcessor processNewDataWithCompletion:completion];
 }
 
 #pragma mark - 
-- (void)loadData {
+- (void)reprocess {
     DataProcessor *dataProcessor = [DataProcessor new];
-    [dataProcessor processDataWithCompletion:^(NSArray *results, NSArray *stops, NSArray *paths, NSArray *untrackedPeriods) {
+    [dataProcessor reprocessDataWithCompletion:^(NSArray *results, NSArray *stops, NSArray *paths, NSArray *untrackedPeriods) {
         self.data = results;
         [self.tableView reloadData];
     }];

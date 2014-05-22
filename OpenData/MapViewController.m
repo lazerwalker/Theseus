@@ -31,7 +31,7 @@
     self.mapView.delegate = self;
     self.title = @"Map";
 
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Process" style:UIBarButtonItemStylePlain target:self action:@selector(render)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Re-Process" style:UIBarButtonItemStylePlain target:self action:@selector(reprocess)];
 
     return self;
 }
@@ -41,7 +41,8 @@
     [super viewDidLoad];
 
     DataProcessor *dataProcessor = [DataProcessor new];
-    [dataProcessor fetchStaleDataWithCompletion:^(NSArray *results, NSArray *stops, NSArray *paths, NSArray *untrackedPeriods) {
+
+    DataProcessorCompletionBlock completion = ^(NSArray *results, NSArray *stops, NSArray *paths, NSArray *untrackedPeriods) {
         NSMutableArray *polylines = [NSMutableArray new];
         for (MovementPath *path in paths) {
             MovementPathPolyline *polyline = [MovementPathPolyline polylineWithMovementPath:path];
@@ -54,12 +55,15 @@
 
             [self.mapView setRegion:MKCoordinateRegionMake([stops.lastObject coordinate], MKCoordinateSpanMake(0.01, 0.01))];
         });
-    }];
+    };
+
+    [dataProcessor fetchStaleDataWithCompletion:completion];
+    [dataProcessor reprocessDataWithCompletion:completion];
 }
 
-- (void)render {
+- (void)reprocess {
     DataProcessor *dataProcessor = [DataProcessor new];
-    [dataProcessor processDataWithCompletion:^(NSArray *results, NSArray *stops, NSArray *paths, NSArray *untrackedPeriods) {
+    [dataProcessor reprocessDataWithCompletion:^(NSArray *results, NSArray *stops, NSArray *paths, NSArray *untrackedPeriods) {
         NSMutableArray *polylines = [NSMutableArray new];
         for (MovementPath *path in paths) {
             MovementPathPolyline *polyline = [MovementPathPolyline polylineWithMovementPath:path];

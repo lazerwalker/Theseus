@@ -10,7 +10,8 @@ typedef void (^DataProcessorCompletionBlock)(NSArray *allObjects, NSArray *stops
 
 @interface DataProcessor : NSObject
 
-- (void)processDataWithCompletion:(DataProcessorCompletionBlock)completion;
+- (void)processNewDataWithCompletion:(DataProcessorCompletionBlock)completion;
+- (void)reprocessDataWithCompletion:(DataProcessorCompletionBlock)completion;
 - (void)fetchStaleDataWithCompletion:(DataProcessorCompletionBlock)completion;
 
 @end
