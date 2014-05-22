@@ -22,6 +22,10 @@
 
 @implementation StopTimelineCell
 
++ (CGFloat)heightForTimedEvent:(Stop *)stop {
+    return 200.0;
+}
+
 + (NSDateFormatter *)dateFormatter {
     static NSDateFormatter *_dateFormatter = nil;
     static dispatch_once_t onceToken;
@@ -93,7 +97,7 @@
                                        options:0 metrics:nil views:views]];
 
     [self.contentView addConstraints: [NSLayoutConstraint
-                                       constraintsWithVisualFormat:@"V:|[startTime]-[endTime]|"
+                                       constraintsWithVisualFormat:@"V:|[startTime]-(>=0)-[endTime]|"
                                        options:NSLayoutFormatAlignAllRight
                                        metrics:nil views:views]];
 }

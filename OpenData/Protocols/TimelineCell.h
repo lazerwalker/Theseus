@@ -10,5 +10,8 @@
 
 @protocol TimelineCell <NSObject>
 
++ (CGFloat)heightForTimedEvent:(id<TimedEvent>)event;
+
 - (void)setupWithTimedEvent:(id<TimedEvent>)event;
+
 @end

@@ -18,6 +18,10 @@
 
 @implementation MovementPathTimelineCell
 
++ (CGFloat)heightForTimedEvent:(MovementPath *)path {
+    return 44.0;
+}
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

@@ -8,7 +8,6 @@
 
 #import "UntrackedPeriod.h"
 
-
 @implementation UntrackedPeriod
 
 @dynamic startTime;
