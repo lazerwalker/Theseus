@@ -56,10 +56,11 @@
                             @"descriptionLabel": self.descriptionLabel};
 
     [self.contentView addConstraints: [NSLayoutConstraint
-                                       constraintsWithVisualFormat:@"|-(==leftPadding)-[line(lineWidth)]-[descriptionLabel]-|"
+                                       constraintsWithVisualFormat:@"|-(==leftPadding)-[line(lineWidth)]-(==rightPadding)-[descriptionLabel]-|"
                                        options:NSLayoutFormatAlignAllCenterY
                                        metrics:@{@"lineWidth": TimelineLineWidth,
-                                                 @"leftPadding": TimelineLineLeftPadding}
+                                                 @"leftPadding": TimelineLineLeftPadding,
+                                                 @"rightPadding": TimelineLineRightPadding}
                                        views:views]];
 
     [self.contentView addConstraints: [NSLayoutConstraint

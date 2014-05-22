@@ -12,7 +12,8 @@ static CGFloat TimelineCellHeightMax = 200.0;
 static CGFloat TimelineCellHeightDefault = 44.0;
 
 static NSString * const TimelineLineWidth = @"3.0";
-static NSString * const TimelineLineLeftPadding = @"45.0";
+static NSString * const TimelineLineLeftPadding = @"60.0";
+static NSString * const TimelineLineRightPadding = @"20.0";
 
 @interface UITableViewCell (TimelineCell)
 

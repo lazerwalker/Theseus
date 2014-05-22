@@ -60,7 +60,7 @@
 
     self.bubble = [UIView new];
     self.bubble.translatesAutoresizingMaskIntoConstraints = NO;
-    self.bubble.backgroundColor = [[UIColor greenColor] colorWithAlphaComponent:0.3];
+    self.bubble.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.3];
     self.bubble.layer.cornerRadius = 5.0;
     [self.contentView addSubview:self.bubble];
 
@@ -91,10 +91,11 @@
                         };
 
     [self.contentView addConstraints: [NSLayoutConstraint
-                                       constraintsWithVisualFormat:@"|-(==leftPadding)-[line(lineWidth)]-[venueLabel]-|"
+                                       constraintsWithVisualFormat:@"|-(==leftPadding)-[line(lineWidth)]-(==rightPadding)-[venueLabel]-|"
                                        options:NSLayoutFormatAlignAllCenterY
                                        metrics:@{@"lineWidth": TimelineLineWidth,
-                                                 @"leftPadding": TimelineLineLeftPadding}
+                                                 @"leftPadding": TimelineLineLeftPadding,
+                                                 @"rightPadding": TimelineLineRightPadding}
                                        views:views]];
 
     [self.contentView addConstraints: [NSLayoutConstraint
@@ -102,7 +103,7 @@
                                        options:0 metrics:nil views:views]];
 
     [self.contentView addConstraints: [NSLayoutConstraint
-                                       constraintsWithVisualFormat:@"|-(==10)-[startTime]"
+                                       constraintsWithVisualFormat:@"[startTime]-(==15)-[line]"
                                        options:0 metrics:nil views:views]];
 
     [self.contentView addConstraints: [NSLayoutConstraint
