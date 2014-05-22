@@ -1,5 +1,5 @@
 //
-//  StopTimelineCell.h
+//  TimelineCell.h
 //  OpenData
 //
 //  Created by Michael Walker on 5/22/14.
@@ -8,8 +8,7 @@
 
 @protocol TimedEvent;
 
-@interface StopTimelineCell : UITableViewCell
+@protocol TimelineCell <NSObject>
 
 - (void)setupWithTimedEvent:(id<TimedEvent>)event;
-
 @end

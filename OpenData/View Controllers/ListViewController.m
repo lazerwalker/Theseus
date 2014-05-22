@@ -13,14 +13,15 @@
 #import "UntrackedPeriod.h"
 
 #import "TimedEvent.h"
+#import "TimelineCell.h"
 
 #import "StopTimelineCell.h"
+#import "MovementPathTimelineCell.h"
+#import "UntrackedPeriodTimelineCell.h"
 
 #import "FoursquareVenue.h"
 #import "Venue.h"
 #import "VenueListViewController.h"
-
-static NSString * const CellIdentifier = @"CellIdentifier";
 
 @interface ListViewController ()
 @property (strong, nonatomic) NSArray *data;
@@ -37,7 +38,10 @@ static NSString * const CellIdentifier = @"CellIdentifier";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Process" style:UIBarButtonItemStylePlain target:self action:@selector(loadData)];
 
     [self.tableView registerClass:[StopTimelineCell class] forCellReuseIdentifier:[StopTimelineCell reuseIdentifier]];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellIdentifier];
+    [self.tableView registerClass:[MovementPathTimelineCell class] forCellReuseIdentifier:[MovementPathTimelineCell reuseIdentifier]];
+    [self.tableView registerClass:[UntrackedPeriodTimelineCell class] forCellReuseIdentifier:[UntrackedPeriodTimelineCell reuseIdentifier]];
+
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
     return self;
 }
@@ -61,45 +65,10 @@ static NSString * const CellIdentifier = @"CellIdentifier";
     }];
 }
 
-- (NSDateFormatter *)dateFormatter {
-    static NSDateFormatter *_dateFormatter = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _dateFormatter = [[NSDateFormatter alloc] init];
-        _dateFormatter.dateStyle = NSDateFormatterShortStyle;
-        _dateFormatter.timeStyle = NSDateFormatterShortStyle;
-    });
-
-    return _dateFormatter;
-}
-
 #pragma mark - UITableViewDelegate
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell<TimelineCell> *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     id<TimedEvent> obj = self.data[indexPath.row];
-
-    NSTimeInterval duration = [obj duration];
-    NSInteger hours = duration / 60 / 60;
-    NSInteger minutes = duration/60 - hours*60;
-    NSInteger seconds = duration - minutes*60;
-    NSString *timeString = [NSString stringWithFormat:@"%02lu:%02lu:%02lu", (long)hours, (long)minutes, (long)seconds];
-
-    if ([obj isKindOfClass:Stop.class]) {
-        Stop *stop = (Stop *)obj;
-        if (stop.venue) {
-            cell.textLabel.text = stop.venue.name;
-            cell.textLabel.textColor = (stop.venueConfirmed.boolValue ? [UIColor blackColor] : [UIColor grayColor]);
-        } else {
-            cell.textLabel.text = [NSString stringWithFormat:@"%f, %f", stop.coordinate.latitude, stop.coordinate.longitude];
-        }
-
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ — %@ (%@)", [self.dateFormatter stringFromDate:stop.startTime], [self.dateFormatter stringFromDate:stop.endTime], timeString];
-    } else if ([obj isKindOfClass:MovementPath.class]){
-        cell.textLabel.text = [NSString stringWithFormat:@"Moving for %@", timeString];
-        cell.detailTextLabel.text = nil;
-    } else if ([obj isKindOfClass:UntrackedPeriod.class]) {
-        cell.textLabel.text = [NSString stringWithFormat:@"Inactive for %@", timeString];
-        cell.detailTextLabel.text = nil;
-    }
+    [cell setupWithTimedEvent:obj];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -142,9 +111,13 @@ static NSString * const CellIdentifier = @"CellIdentifier";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     id<TimedEvent> obj = self.data[indexPath.row];
 
-    NSString *cellIdentifier = CellIdentifier;
+    NSString *cellIdentifier;
     if ([obj isKindOfClass:Stop.class]) {
         cellIdentifier = StopTimelineCell.reuseIdentifier;
+    } else if ([obj isKindOfClass:MovementPath.class]) {
+        cellIdentifier = MovementPathTimelineCell.reuseIdentifier;
+    } else if ([obj isKindOfClass:UntrackedPeriod.class]) {
+        cellIdentifier = UntrackedPeriodTimelineCell.reuseIdentifier;
     }
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];

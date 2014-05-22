@@ -7,8 +7,28 @@
 //
 
 #import "StopTimelineCell.h"
+#import "UITableViewCell+TimelineCell.h"
+
+#import "Stop.h"
+#import "Venue.h"
+
+@interface StopTimelineCell ()
+@property (nonatomic, strong) UIView *line;
+@property (nonatomic, strong) UILabel *venueLabel;
+@end
 
 @implementation StopTimelineCell
+
++ (NSDateFormatter *)dateFormatter {
+    static NSDateFormatter *_dateFormatter = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        _dateFormatter.timeStyle = NSDateFormatterShortStyle;
+    });
+
+    return _dateFormatter;
+}
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -21,32 +41,47 @@
 }
 
 - (void)render {
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.backgroundColor = [UIColor blackColor];
-    self.textLabel.textColor = [UIColor whiteColor];
-    self.detailTextLabel.textColor = [UIColor lightGrayColor];
+    [self applyDefaultStyles];
 
-    UIView *line = [UIView new];
-    line.translatesAutoresizingMaskIntoConstraints = NO;
-    line.backgroundColor = [UIColor lightGrayColor];
-    [self.contentView addSubview:line];
+    self.line = [UIView new];
+    self.line.translatesAutoresizingMaskIntoConstraints = NO;
+    self.line.backgroundColor = [UIColor darkGrayColor];
+    [self.contentView addSubview:self.line];
 
-    NSDictionary *views = @{@"line": line,
-                            @"text": self.textLabel};
+    self.venueLabel = [UILabel new];
+    self.venueLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:self.venueLabel];
 
     self.textLabel.translatesAutoresizingMaskIntoConstraints = NO;
-
-    [self.contentView addConstraints:[NSLayoutConstraint
-                                      constraintsWithVisualFormat:@"|-[line(lineWidth)]-[text]"
-                                      options:0
-                                      metrics:@{@"lineWidth": @"3.0"}
-                                      views:views]];
-    [self.contentView addConstraints:[NSLayoutConstraint
-                                      constraintsWithVisualFormat:@"V:|[line]|"
-                                      options:0
-                                      metrics:nil
-                                      views:views]];
-
+    [self setNeedsUpdateConstraints];
 }
 
+- (void)updateConstraints {
+    [super updateConstraints];
+
+    NSDictionary *views = @{@"line": self.line,
+                            @"venueLabel": self.venueLabel};
+
+    [self.contentView addConstraints: [NSLayoutConstraint
+                                       constraintsWithVisualFormat:@"|-[line(lineWidth)]-[venueLabel]-|"
+                                       options:NSLayoutFormatAlignAllCenterY
+                                       metrics:@{@"lineWidth": @"3.0"}
+                                       views:views]];
+
+    [self.contentView addConstraints: [NSLayoutConstraint
+                                       constraintsWithVisualFormat:@"V:|[line]|"
+                                       options:0
+                                       metrics:nil
+                                       views:views]];
+ }
+
+- (void)setupWithTimedEvent:(Stop *)stop {
+    if (![stop isKindOfClass:Stop.class]) return;
+
+    if (stop.venue) {
+        self.venueLabel.text = stop.venue.name;
+    } else {
+        self.venueLabel.text = [NSString stringWithFormat:@"%f, %f", stop.coordinate.latitude, stop.coordinate.longitude];
+    }
+}
 @end

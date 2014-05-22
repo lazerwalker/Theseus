@@ -1,5 +1,5 @@
 //
-//  StopTimelineCell.h
+//  MovementPathTimelineCell.h
 //  OpenData
 //
 //  Created by Michael Walker on 5/22/14.
@@ -8,7 +8,7 @@
 
 @protocol TimedEvent;
 
-@interface StopTimelineCell : UITableViewCell
+@interface MovementPathTimelineCell : UITableViewCell
 
 - (void)setupWithTimedEvent:(id<TimedEvent>)event;
 
