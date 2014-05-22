@@ -14,6 +14,7 @@
 
 @interface StopTimelineCell ()
 @property (nonatomic, strong) UIView *line;
+@property (nonatomic, strong) UIView *bubble;
 @property (nonatomic, strong) UILabel *venueLabel;
 
 @property (nonatomic, strong) UILabel *startTime;
@@ -56,6 +57,12 @@
     self.line.translatesAutoresizingMaskIntoConstraints = NO;
     self.line.backgroundColor = [UIColor darkGrayColor];
     [self.contentView addSubview:self.line];
+
+    self.bubble = [UIView new];
+    self.bubble.translatesAutoresizingMaskIntoConstraints = NO;
+    self.bubble.backgroundColor = [[UIColor greenColor] colorWithAlphaComponent:0.3];
+    self.bubble.layer.cornerRadius = 5.0;
+    [self.contentView addSubview:self.bubble];
 
     self.venueLabel = [UILabel new];
     self.venueLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -102,6 +109,34 @@
                                        constraintsWithVisualFormat:@"V:|[startTime]-(>=0)-[endTime]|"
                                        options:NSLayoutFormatAlignAllRight
                                        metrics:nil views:views]];
+
+    [self.contentView addConstraint: [NSLayoutConstraint constraintWithItem:self.bubble
+                                                                   attribute:NSLayoutAttributeCenterX
+                                                                   relatedBy:NSLayoutRelationEqual
+                                                                      toItem:self.line
+                                                                  attribute:NSLayoutAttributeCenterX
+                                                                 multiplier:1.0 constant:0]];
+
+    [self.contentView addConstraint: [NSLayoutConstraint constraintWithItem:self.bubble
+                                                                   attribute:NSLayoutAttributeTop
+                                                                   relatedBy:NSLayoutRelationEqual
+                                                                      toItem:self.line
+                                                                  attribute:NSLayoutAttributeTop
+                                                                 multiplier:1.0 constant:0]];
+
+    [self.contentView addConstraint: [NSLayoutConstraint constraintWithItem:self.bubble
+                                                                  attribute:NSLayoutAttributeBottom
+                                                                  relatedBy:NSLayoutRelationEqual
+                                                                     toItem:self.line
+                                                                  attribute:NSLayoutAttributeBottom
+                                                                 multiplier:1.0 constant:0]];
+
+    [self.contentView addConstraint: [NSLayoutConstraint constraintWithItem:self.bubble
+                                                                   attribute:NSLayoutAttributeWidth
+                                                                   relatedBy:NSLayoutRelationEqual
+                                                                      toItem:self.line
+                                                                  attribute:NSLayoutAttributeWidth
+                                                                 multiplier:1.0 constant:10]];
 }
 
 #pragma mark -
