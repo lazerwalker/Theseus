@@ -12,6 +12,8 @@
 #import "Stop.h"
 #import "UntrackedPeriod.h"
 
+#import "TimedEvent.h"
+
 #import "FoursquareVenue.h"
 #import "Venue.h"
 #import "VenueListViewController.h"
@@ -68,7 +70,7 @@ static NSString * const CellIdentifier = @"CellIdentifier";
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    id obj = self.data[indexPath.row];
+    id<TimedEvent> obj = self.data[indexPath.row];
 
     NSTimeInterval duration = [obj duration];
     NSInteger hours = duration / 60 / 60;
@@ -77,7 +79,7 @@ static NSString * const CellIdentifier = @"CellIdentifier";
     NSString *timeString = [NSString stringWithFormat:@"%02lu:%02lu:%02lu", (long)hours, (long)minutes, (long)seconds];
 
     if ([obj isKindOfClass:Stop.class]) {
-        Stop *stop = obj;
+        Stop *stop = (Stop *)obj;
         if (stop.venue) {
             cell.textLabel.text = stop.venue.name;
             cell.textLabel.textColor = (stop.venueConfirmed.boolValue ? [UIColor blackColor] : [UIColor grayColor]);

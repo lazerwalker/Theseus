@@ -6,13 +6,15 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
+#import "TimedEvent.h"
+
 #import <Mantle.h>
 @import MapKit;
 
 @class MovementPath;
 @class Venue;
 
-@interface Stop : NSManagedObject<MKAnnotation>
+@interface Stop : NSManagedObject<MKAnnotation, TimedEvent>
 
 @property (nonatomic) NSDate *startTime;
 @property (nonatomic) NSDate *endTime;

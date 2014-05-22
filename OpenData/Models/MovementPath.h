@@ -8,6 +8,8 @@
 
 @import MapKit;
 
+#import "TimedEvent.h"
+
 @class RawMotionActivity;
 @class Stop;
 
@@ -19,7 +21,7 @@ typedef NS_ENUM(NSUInteger, MovementType) {
     MovementTypeTransit
 };
 
-@interface MovementPath : NSManagedObject
+@interface MovementPath : NSManagedObject<TimedEvent>
 
 @property (nonatomic, strong) NSDate *startTime;
 @property (nonatomic, strong) NSDate *endTime;
