@@ -10,6 +10,11 @@
 #import "UITableViewCell+TimelineCell.h"
 #import "MovementPath.h"
 
+@interface MovementPathTimelineCell ()
+@property (nonatomic, strong) UIView *line;
+@property (nonatomic, strong) UILabel *descriptionLabel;
+@end
+
 @implementation MovementPathTimelineCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -24,7 +29,39 @@
 
 - (void)render {
     [self applyDefaultStyles];
+
+    self.line = [UIView new];
+    self.line.translatesAutoresizingMaskIntoConstraints = NO;
+    self.line.backgroundColor = [UIColor darkGrayColor];
+    [self.contentView addSubview:self.line];
+
+    self.descriptionLabel = [UILabel new];
+    self.descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:self.descriptionLabel];
+
+    [self setNeedsUpdateConstraints];
 }
+
+- (void)updateConstraints {
+    [super updateConstraints];
+
+    NSDictionary *views = @{@"line": self.line,
+                            @"descriptionLabel": self.descriptionLabel};
+
+    [self.contentView addConstraints: [NSLayoutConstraint
+                                       constraintsWithVisualFormat:@"|-[line(lineWidth)]-[descriptionLabel]-|"
+                                       options:NSLayoutFormatAlignAllCenterY
+                                       metrics:@{@"lineWidth": @"3.0"}
+                                       views:views]];
+
+    [self.contentView addConstraints: [NSLayoutConstraint
+                                       constraintsWithVisualFormat:@"V:|[line]|"
+                                       options:0
+                                       metrics:nil
+                                       views:views]];
+}
+
+#pragma mark -
 
 - (void)setupWithTimedEvent:(MovementPath *)path {
     NSTimeInterval duration = path.duration;
@@ -33,6 +70,6 @@
     NSInteger seconds = duration - minutes*60;
     NSString *timeString = [NSString stringWithFormat:@"%02lu:%02lu:%02lu", (long)hours, (long)minutes, (long)seconds];
 
-    self.textLabel.text = [NSString stringWithFormat:@"Moving for %@", timeString];
+    self.descriptionLabel.text = [NSString stringWithFormat:@"Moving for %@", timeString];
 }
 @end

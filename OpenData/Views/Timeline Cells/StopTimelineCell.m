@@ -52,7 +52,6 @@
     self.venueLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.venueLabel];
 
-    self.textLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self setNeedsUpdateConstraints];
 }
 
@@ -73,7 +72,9 @@
                                        options:0
                                        metrics:nil
                                        views:views]];
- }
+}
+
+#pragma mark -
 
 - (void)setupWithTimedEvent:(Stop *)stop {
     if (![stop isKindOfClass:Stop.class]) return;
