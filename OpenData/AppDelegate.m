@@ -29,14 +29,10 @@
 
     [self setupDropbox];
 
-    UITabBarController *tabController = [UITabBarController new];
-    UINavigationController *mapNav = [[UINavigationController alloc] initWithRootViewController:[MapViewController new]];
     UINavigationController *listNav = [[UINavigationController alloc] initWithRootViewController:[ListViewController new]];
 
-    tabController.viewControllers = @[listNav, mapNav];
-
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = tabController;
+    self.window.rootViewController = listNav;
     [self.window makeKeyAndVisible];
 
     [self startMonitoring];
