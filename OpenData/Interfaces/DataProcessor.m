@@ -165,6 +165,7 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
                 if (previousActivity.activityType == RawMotionActivityTypeStationary) {
                     Stop *stop = [Stop MR_createInContext:localContext];
                     [stop setupWithLocations:currentObjects];
+                    stop.startTime = previousActivity.timestamp;
                     stop.endTime = activity.timestamp;
 
                     Stop *previousStop = stops.lastObject;
@@ -183,7 +184,7 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
                     path.locations = [NSSet setWithArray:currentObjects];
                     path.activity = previousActivity;
 
-                    path.startTime = [(RawLocation *)currentObjects.firstObject timestamp];
+                    path.startTime = previousActivity.timestamp;
                     path.endTime = activity.timestamp;
                     [paths addObject:path];
                 } else {
@@ -198,30 +199,53 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
         }
     }
 
-    NSMutableArray *stopsToRemove = [NSMutableArray new];
-    for (Stop *stop in stops) {
-        if (stop.duration < 60.0) {
-            [stopsToRemove addObject:stop];
-            [stop MR_deleteInContext:localContext];
-        }
-    }
-    [stops removeObjectsInArray:stopsToRemove];
-
-    NSMutableArray *pathsToRemove = [NSMutableArray new];
-    for (MovementPath *path in paths) {
-        if (path.duration < 60.0) {
-            [pathsToRemove addObject:path];
-            [path MR_deleteInContext:localContext];
-        }
-    }
-    [paths removeObjectsInArray:pathsToRemove];
-
     NSSortDescriptor *startTimeDescriptor = [[NSSortDescriptor alloc] initWithKey:@"startTime" ascending:YES];
-    NSArray *allObjects = [[stops arrayByAddingObjectsFromArray:paths] sortedArrayUsingDescriptors:@[startTimeDescriptor]];
-    NSMutableArray *untrackedPeriods = [NSMutableArray new];
+    NSMutableArray *allObjects = [[[stops arrayByAddingObjectsFromArray:paths]
+                                   sortedArrayUsingDescriptors:@[startTimeDescriptor]]
+                                  mutableCopy];
     id<TimedEvent> previousObj;
+
+    NSMutableArray *objectsToRemove = [NSMutableArray new];
+
+    // Fold too-short events into the previous ones
+    for (NSManagedObject<TimedEvent> *obj in allObjects) {
+        if (obj.duration < 60.0) {
+            [objectsToRemove addObject:obj];
+            if (previousObj) {
+                previousObj.endTime = [previousObj.endTime laterDate:obj.endTime];
+            }
+
+            [obj MR_deleteInContext:localContext];
+        } else {
+            previousObj = obj;
+        }
+    }
+    [allObjects removeObjectsInArray:objectsToRemove];
+
+    // If two events of the same type are now next to each other, combine 'em.
+    objectsToRemove = [NSMutableArray new];
+    previousObj = nil;
+    for (NSManagedObject<TimedEvent> *obj in allObjects) {
+        if (previousObj && obj.class == previousObj.class) {
+            [objectsToRemove addObject:obj];
+            previousObj.endTime = [previousObj.endTime laterDate:obj.endTime];
+            if ([obj isKindOfClass:MovementPath.class]) {
+                // TODO: This discards activity data.
+                [(MovementPath *)previousObj addLocations:[[(MovementPath *)previousObj locations] allObjects]];
+            } else if ([obj isKindOfClass:Stop.class]) {
+                [(Stop *)previousObj mergeWithStop:(Stop *)obj];
+            }
+            [obj MR_deleteInContext:localContext];
+        }
+        previousObj = obj;
+    }
+    [allObjects removeObjectsInArray:objectsToRemove];
+
+    // Add untracked periods when gaps still remain
+    NSMutableArray *untrackedPeriods = [NSMutableArray new];
+    previousObj = nil;
     for (id<TimedEvent> obj in allObjects) {
-        if (fabsf([previousObj.endTime timeIntervalSinceDate:obj.startTime]) > 10) {
+        if (previousObj && fabsf([previousObj.endTime timeIntervalSinceDate:obj.startTime]) > 120) {
             UntrackedPeriod *time = [UntrackedPeriod MR_createInContext:localContext];
             time.startTime = previousObj.endTime;
             time.endTime = [obj startTime];

@@ -78,7 +78,7 @@
 - (void)reprocess {
     DataProcessor *dataProcessor = [DataProcessor new];
     [dataProcessor reprocessDataWithCompletion:^(NSArray *results, NSArray *stops, NSArray *paths, NSArray *untrackedPeriods) {
-        [[[UIAlertView alloc] initWithTitle:@"Completed Processing" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:@"Completed Full Processing" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         self.data = results;
         [self.tableView reloadData];
     }];
