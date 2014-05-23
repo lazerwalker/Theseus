@@ -34,6 +34,7 @@
 		A6B91D0E192E76DA00F7106E /* MovementPathTimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D0D192E76DA00F7106E /* MovementPathTimelineCell.m */; };
 		A6B91D11192E770C00F7106E /* UntrackedPeriodTimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D10192E770C00F7106E /* UntrackedPeriodTimelineCell.m */; };
 		A6B91D16192EA60200F7106E /* NSString+TimeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D15192EA60200F7106E /* NSString+TimeFormatter.m */; };
+		A6B91D19192FA98F00F7106E /* DaysAgoDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D18192FA98F00F7106E /* DaysAgoDataSource.m */; };
 		A6BD97B719299AE000264548 /* MovementPathPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BD97B619299AE000264548 /* MovementPathPolyline.m */; };
 		A6BD97BA192A4B2900264548 /* VenueListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BD97B9192A4B2900264548 /* VenueListViewController.m */; };
 		A6C7CFDE192A7760001A6DAC /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFDD192A7760001A6DAC /* Venue.m */; };
@@ -115,6 +116,8 @@
 		A6B91D13192E866500F7106E /* TimelineCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TimelineCell.h; path = Protocols/TimelineCell.h; sourceTree = "<group>"; };
 		A6B91D14192EA60200F7106E /* NSString+TimeFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TimeFormatter.h"; path = "Categories/NSString+TimeFormatter.h"; sourceTree = "<group>"; };
 		A6B91D15192EA60200F7106E /* NSString+TimeFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TimeFormatter.m"; path = "Categories/NSString+TimeFormatter.m"; sourceTree = "<group>"; };
+		A6B91D17192FA98F00F7106E /* DaysAgoDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DaysAgoDataSource.h; path = "Data Sources/DaysAgoDataSource.h"; sourceTree = "<group>"; };
+		A6B91D18192FA98F00F7106E /* DaysAgoDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DaysAgoDataSource.m; path = "Data Sources/DaysAgoDataSource.m"; sourceTree = "<group>"; };
 		A6BD97B519299AE000264548 /* MovementPathPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovementPathPolyline.h; path = Presenters/MovementPathPolyline.h; sourceTree = "<group>"; };
 		A6BD97B619299AE000264548 /* MovementPathPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovementPathPolyline.m; path = Presenters/MovementPathPolyline.m; sourceTree = "<group>"; };
 		A6BD97B8192A4B2900264548 /* VenueListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueListViewController.h; path = "View Controllers/VenueListViewController.h"; sourceTree = "<group>"; };
@@ -290,6 +293,8 @@
 				A6748AD6192128D70073CE19 /* LocationManager.m */,
 				A6748ADC1921344F0073CE19 /* MotionManager.h */,
 				A6748ADD1921344F0073CE19 /* MotionManager.m */,
+				A6B91D17192FA98F00F7106E /* DaysAgoDataSource.h */,
+				A6B91D18192FA98F00F7106E /* DaysAgoDataSource.m */,
 			);
 			name = "Data Sources";
 			sourceTree = "<group>";
@@ -567,6 +572,7 @@
 				A6BD97BA192A4B2900264548 /* VenueListViewController.m in Sources */,
 				A6C7CFF0192AAD2A001A6DAC /* Configuration.m in Sources */,
 				A6B91CFA192D56F800F7106E /* UntrackedPeriod.m in Sources */,
+				A6B91D19192FA98F00F7106E /* DaysAgoDataSource.m in Sources */,
 				A6F4D9601922D684006C7034 /* RawLocation.m in Sources */,
 				A68425CA192302CB0083D006 /* FoursquareVenue.m in Sources */,
 				A6F4D96F1922E9F5006C7034 /* ListViewController.m in Sources */,

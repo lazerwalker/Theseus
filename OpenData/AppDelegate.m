@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "MapViewController.h"
 #import "ListViewController.h"
-
+#import "DaysAgoDataSource.h"
 #import "LocationManager.h"
 #import "MotionManager.h"
 #import "Configuration.h"
@@ -20,6 +20,7 @@
 
 @property (strong, nonatomic) LocationManager *locationManager;
 @property (strong, nonatomic) MotionManager *motionManager;
+@property (strong, nonatomic) DaysAgoDataSource *daysAgoDataSource;
 
 @end
 @implementation AppDelegate
@@ -29,10 +30,15 @@
 
     [self setupDropbox];
 
-    UINavigationController *listNav = [[UINavigationController alloc] initWithRootViewController:[ListViewController new]];
+    UIPageViewController *dayPages = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
+                                                                     navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
+                                                                                   options:nil];
+    dayPages.dataSource = self.daysAgoDataSource = [DaysAgoDataSource new];
+    UIViewController *initialController = [self.daysAgoDataSource controllerForDaysAgo:0];
+    [dayPages setViewControllers:@[initialController] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = listNav;
+    self.window.rootViewController = dayPages;
     [self.window makeKeyAndVisible];
 
     [self startMonitoring];

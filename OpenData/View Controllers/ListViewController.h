@@ -10,4 +10,8 @@
 
 @interface ListViewController : UITableViewController
 
+@property (nonatomic, assign) NSInteger daysAgo;
+
+- (id)initWithDaysAgo:(NSInteger)daysAgo;
+
 @end

@@ -29,12 +29,20 @@
 
 @implementation ListViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
+- (id)initWithDaysAgo:(NSInteger)daysAgo {
+    self = [super initWithStyle:UITableViewStylePlain];
     if (!self) return nil;
 
-    self.title = @"List";
+    self.daysAgo = daysAgo;
+
+    if (daysAgo == 0) {
+        self.title = @"Today";
+    } else if (daysAgo == 1) {
+        self.title = @"Yesterday";
+    } else {
+        self.title = [NSString stringWithFormat:@"%lu Days Ago", (long)daysAgo];
+    }
+
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Process" style:UIBarButtonItemStylePlain target:self action:@selector(reprocess)];
 
     [self.tableView registerClass:[StopTimelineCell class] forCellReuseIdentifier:[StopTimelineCell reuseIdentifier]];
@@ -43,26 +51,28 @@
 
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
+
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.contentInset = UIEdgeInsetsMake(20, 0, self.tabBarController.tabBar.bounds.size.height, 0);
+
     DataProcessor *dataProcessor = [DataProcessor new];
     DataProcessorCompletionBlock completion = ^(NSArray *results, NSArray *stops, NSArray *paths, NSArray *untrackedPeriods) {
         self.data = results;
         [self.tableView reloadData];
     };
 
-    [dataProcessor fetchStaleDataWithCompletion:completion];
-    [dataProcessor processNewDataWithCompletion:completion];
+    [dataProcessor fetchDataForDaysAgo:self.daysAgo completion:completion];
 }
 
 #pragma mark - 
 - (void)reprocess {
     DataProcessor *dataProcessor = [DataProcessor new];
     [dataProcessor reprocessDataWithCompletion:^(NSArray *results, NSArray *stops, NSArray *paths, NSArray *untrackedPeriods) {
+        [[[UIAlertView alloc] initWithTitle:@"Completed Processing" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         self.data = results;
         [self.tableView reloadData];
     }];
