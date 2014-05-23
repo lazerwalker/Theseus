@@ -8,7 +8,6 @@
 
 #import "StopTimelineCell.h"
 #import "UITableViewCell+TimelineCell.h"
-
 #import "Stop.h"
 #import "Venue.h"
 
