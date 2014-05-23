@@ -158,11 +158,11 @@
     NSSortDescriptor *startTimeDescriptor = [[NSSortDescriptor alloc] initWithKey:@"startTime" ascending:YES];
     NSArray *allObjects = [[stops arrayByAddingObjectsFromArray:paths] sortedArrayUsingDescriptors:@[startTimeDescriptor]];
     NSMutableArray *untrackedPeriods = [NSMutableArray new];
-    id previousObj;
-    for (id obj in allObjects) {
-        if (fabsf([[previousObj endTime] timeIntervalSinceDate:[obj startTime]]) > 10) {
+    id<TimedEvent> previousObj;
+    for (id<TimedEvent> obj in allObjects) {
+        if (fabsf([previousObj.endTime timeIntervalSinceDate:obj.startTime]) > 10) {
             UntrackedPeriod *time = [UntrackedPeriod MR_createInContext:localContext];
-            time.startTime = [previousObj endTime];
+            time.startTime = previousObj.endTime;
             time.endTime = [obj startTime];
             [untrackedPeriods addObject:time];
         }
