@@ -67,12 +67,8 @@
 #pragma mark - 
 - (void)reload {
     DataProcessor *dataProcessor = [DataProcessor new];
-    DataProcessorCompletionBlock completion = ^(NSArray *results, NSArray *stops, NSArray *paths, NSArray *untrackedPeriods) {
-        self.data = results;
-        [self.tableView reloadData];
-    };
-
-    [dataProcessor fetchDataForDaysAgo:self.daysAgo completion:completion];
+    self.data = [dataProcessor eventsForDaysAgo:self.daysAgo];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (void)reprocess {

@@ -14,9 +14,8 @@ typedef void (^DataProcessorCompletionBlock)(NSArray *allObjects, NSArray *stops
 
 + (instancetype)sharedInstance;
 
-- (void)fetchDataForDaysAgo:(NSInteger)daysAgo completion:(DataProcessorCompletionBlock)completion;
+- (NSArray *)eventsForDaysAgo:(NSInteger)daysAgo;
 - (void)processNewData;
 - (void)reprocessDataWithCompletion:(DataProcessorCompletionBlock)completion;
-- (void)fetchStaleDataWithCompletion:(DataProcessorCompletionBlock)completion;
 
 @end

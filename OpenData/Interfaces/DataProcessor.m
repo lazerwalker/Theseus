@@ -61,7 +61,7 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
     return [calendar dateFromComponents:components];
 }
 
-- (void)fetchDataForDaysAgo:(NSInteger)daysAgo completion:(DataProcessorCompletionBlock)completion {
+- (NSArray *)eventsForDaysAgo:(NSInteger)daysAgo {
     NSPredicate *onlyRealPaths = [NSPredicate predicateWithFormat:@"(stop = nil)"];
 
     NSDate *startOfDay = [self dateForNDaysAgo:daysAgo];
@@ -75,14 +75,24 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
     NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"startTime" ascending:YES];
     NSArray *allObjects = [[[stops arrayByAddingObjectsFromArray:paths] arrayByAddingObjectsFromArray:untrackedPeriods] sortedArrayUsingDescriptors:@[descriptor]];
 
-    if (completion) {
-        completion(allObjects, stops, paths, untrackedPeriods);
-    }
+    return allObjects;
 }
 
 - (void)processNewData {
     [self.operationQueue addOperationWithBlock:^{
         [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+            id<TimedEvent> previousEvent = ({
+                NSPredicate *onlyRealPaths = [NSPredicate predicateWithFormat:@"(stop = nil)"];
+                NSArray *stops = [Stop MR_findAllSortedBy:@"startTime" ascending:YES inContext:localContext];
+                NSArray *paths = [MovementPath MR_findAllSortedBy:@"startTime" ascending:YES withPredicate:onlyRealPaths inContext:localContext];
+                NSArray *untrackedPeriods = [UntrackedPeriod MR_findAllSortedBy:@"startTime" ascending:YES inContext:localContext];
+
+                NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"startTime" ascending:YES];
+                NSArray *allObjects = [[[stops arrayByAddingObjectsFromArray:paths] arrayByAddingObjectsFromArray:untrackedPeriods] sortedArrayUsingDescriptors:@[descriptor]];
+
+                allObjects.lastObject;
+            });
+
             NSPredicate *locationPredicate = [NSPredicate predicateWithFormat:@"(movementPath == nil) AND (stop == nil)"];
             NSArray *locationArray = [RawLocation MR_findAllSortedBy:@"timestamp" ascending:YES withPredicate:locationPredicate inContext:localContext];
 
@@ -90,7 +100,8 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
             NSArray *motionArray = [RawMotionActivity MR_findAllSortedBy:@"timestamp" ascending:YES withPredicate:motionPredicate inContext:localContext];
 
             NSArray *array = [locationArray arrayByAddingObjectsFromArray:motionArray];
-            [self processArray:array withContext:localContext];
+            
+            [self processArray:array previousEvent:previousEvent withContext:localContext];
         }];
 
         [[NSNotificationCenter defaultCenter] postNotificationName:DataProcessorDidFinishProcessingNotification object:self];
@@ -108,23 +119,10 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
 
         [self processArray:array withContext:localContext];
     } completion:^(BOOL success, NSError *error) {
-        [self fetchStaleDataWithCompletion:completion];
+        // TODO
     }];
 }
 
-- (void)fetchStaleDataWithCompletion:(void(^)(NSArray *allObjects, NSArray *stops, NSArray *paths, NSArray *untrackedPeriods))completion {
-    NSPredicate *onlyRealPaths = [NSPredicate predicateWithFormat:@"(stop = nil)"];
-    NSArray *stops = [Stop MR_findAllSortedBy:@"startTime" ascending:YES];
-    NSArray *paths = [MovementPath MR_findAllSortedBy:@"startTime" ascending:YES withPredicate:onlyRealPaths];
-    NSArray *untrackedPeriods = [UntrackedPeriod MR_findAllSortedBy:@"startTime" ascending:YES];
-
-    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"startTime" ascending:YES];
-    NSArray *allObjects = [[[stops arrayByAddingObjectsFromArray:paths] arrayByAddingObjectsFromArray:untrackedPeriods] sortedArrayUsingDescriptors:@[descriptor]];
-
-    if (completion) {
-        completion(allObjects, stops, paths, untrackedPeriods);
-    }
-}
 
 #pragma mark - Private
 - (void)removeAllProcessedDataWithContext:(NSManagedObjectContext *)context {
@@ -142,9 +140,13 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
     for (UntrackedPeriod *period in untrackedPeriods) {
         [period MR_deleteInContext:context];
     }
+
+}
+- (void)processArray:(NSArray *)array withContext:(NSManagedObjectContext *)localContext {
+    [self processArray:array previousEvent:nil withContext:localContext];
 }
 
-- (void)processArray:(NSArray *)array withContext:(NSManagedObjectContext *)localContext {
+- (void)processArray:(NSArray *)array previousEvent:(id<TimedEvent>)previousObject withContext:(NSManagedObjectContext *)localContext {
     NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:YES];
     array = [array sortedArrayUsingDescriptors:@[descriptor]];
 
@@ -154,6 +156,22 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
     NSMutableArray *paths = [NSMutableArray new];
 
     NSMutableArray *currentObjects = [NSMutableArray new];
+
+    if (previousObject) {
+        if ([previousObject isKindOfClass:Stop.class]) {
+            [stops addObject:previousObject];
+            previousActivity = ({
+                Stop *stop = (Stop *)previousObject;
+                NSSet *movementPaths = stop.movementPaths;
+                NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"endTime" ascending:NO];
+                NSArray *sortedPaths = [movementPaths sortedArrayUsingDescriptors:@[descriptor]];
+                [(MovementPath *)sortedPaths.firstObject activity];
+            });
+        } else if ([previousObject isKindOfClass:MovementPath.class]) {
+            [paths addObject:previousObject];
+            previousActivity = [(MovementPath *)previousActivity activity];
+        }
+    }
 
     for (id obj in array) {
         if ([obj isKindOfClass:RawLocation.class]) {

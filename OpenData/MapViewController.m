@@ -57,7 +57,6 @@
         });
     };
 
-    [dataProcessor fetchStaleDataWithCompletion:completion];
     [dataProcessor reprocessDataWithCompletion:completion];
 }
 
