@@ -199,16 +199,17 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
         }
     }
 
+
     NSSortDescriptor *startTimeDescriptor = [[NSSortDescriptor alloc] initWithKey:@"startTime" ascending:YES];
     NSMutableArray *allObjects = [[[stops arrayByAddingObjectsFromArray:paths]
                                    sortedArrayUsingDescriptors:@[startTimeDescriptor]]
                                   mutableCopy];
-    id<TimedEvent> previousObj;
-
-    NSMutableArray *objectsToRemove = [NSMutableArray new];
 
     // Fold too-short events into the previous ones
-    for (NSManagedObject<TimedEvent> *obj in allObjects) {
+     id<TimedEvent> previousObj;
+     NSMutableArray *objectsToRemove = [NSMutableArray new];
+
+     for (NSManagedObject<TimedEvent> *obj in allObjects) {
         if (obj.duration < 60.0) {
             [objectsToRemove addObject:obj];
             if (previousObj) {
@@ -222,7 +223,21 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
     }
     [allObjects removeObjectsInArray:objectsToRemove];
 
-    // If two events of the same type are now next to each other, combine 'em.
+    // Add untracked periods when gaps still remain
+    NSMutableArray *untrackedPeriods = [NSMutableArray new];
+    previousObj = nil;
+    for (id<TimedEvent> obj in allObjects) {
+        if (previousObj && fabsf([previousObj.endTime timeIntervalSinceDate:obj.startTime]) > 120) {
+            UntrackedPeriod *time = [UntrackedPeriod MR_createInContext:localContext];
+            time.startTime = previousObj.endTime;
+            time.endTime = [obj startTime];
+            [untrackedPeriods addObject:time];
+        }
+        previousObj = obj;
+    }
+
+    // If two subsequent events are of the same type, combine 'em.
+    allObjects = [[[allObjects arrayByAddingObjectsFromArray:untrackedPeriods] sortedArrayUsingDescriptors:@[startTimeDescriptor]] mutableCopy];
     objectsToRemove = [NSMutableArray new];
     previousObj = nil;
     for (NSManagedObject<TimedEvent> *obj in allObjects) {
@@ -240,19 +255,6 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
         previousObj = obj;
     }
     [allObjects removeObjectsInArray:objectsToRemove];
-
-    // Add untracked periods when gaps still remain
-    NSMutableArray *untrackedPeriods = [NSMutableArray new];
-    previousObj = nil;
-    for (id<TimedEvent> obj in allObjects) {
-        if (previousObj && fabsf([previousObj.endTime timeIntervalSinceDate:obj.startTime]) > 120) {
-            UntrackedPeriod *time = [UntrackedPeriod MR_createInContext:localContext];
-            time.startTime = previousObj.endTime;
-            time.endTime = [obj startTime];
-            [untrackedPeriods addObject:time];
-        }
-        previousObj = obj;
-    }
 }
 
 @end
