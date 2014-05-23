@@ -8,6 +8,7 @@
 
 #import "MotionManager.h"
 #import "RawMotionActivity.h"
+#import "DataProcessor.h"
 
 @import CoreMotion;
 
@@ -37,6 +38,10 @@
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
             RawMotionActivity *rawActivity = [RawMotionActivity MR_createInContext:localContext];
             [rawActivity setupWithMotionActivity:activity];
+        } completion:^(BOOL success, NSError *error) {
+            if (success) {
+                [[DataProcessor sharedInstance] processNewData];
+            }
         }];
     }];
 }
@@ -61,6 +66,10 @@
             for (CMMotionActivity *activity in activities) {
                 RawMotionActivity *rawActivity = [RawMotionActivity MR_createInContext:localContext];
                 [rawActivity setupWithMotionActivity:activity];
+            }
+        } completion:^(BOOL success, NSError *error) {
+            if (success) {
+                [[DataProcessor sharedInstance] processNewData];
             }
         }];
     }];

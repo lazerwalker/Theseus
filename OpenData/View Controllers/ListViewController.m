@@ -59,6 +59,13 @@
     [super viewDidLoad];
     self.tableView.contentInset = UIEdgeInsetsMake(20, 0, self.tabBarController.tabBar.bounds.size.height, 0);
 
+    [self reload];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reload) name:DataProcessorDidFinishProcessingNotification object:nil];
+}
+
+#pragma mark - 
+- (void)reload {
     DataProcessor *dataProcessor = [DataProcessor new];
     DataProcessorCompletionBlock completion = ^(NSArray *results, NSArray *stops, NSArray *paths, NSArray *untrackedPeriods) {
         self.data = results;
@@ -68,7 +75,6 @@
     [dataProcessor fetchDataForDaysAgo:self.daysAgo completion:completion];
 }
 
-#pragma mark - 
 - (void)reprocess {
     DataProcessor *dataProcessor = [DataProcessor new];
     [dataProcessor reprocessDataWithCompletion:^(NSArray *results, NSArray *stops, NSArray *paths, NSArray *untrackedPeriods) {

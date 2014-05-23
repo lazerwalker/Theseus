@@ -13,14 +13,27 @@
 #import "MovementPath.h"
 #import "UntrackedPeriod.h"
 
+NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorDidFinishProcessingNotification";
+
 @interface DataProcessor ()
 
 @property (nonatomic) NSArray *thePaths;
 @property (nonatomic) NSArray *theStops;
 
+@property (nonatomic) NSOperationQueue *operationQueue;
 @end
 
 @implementation DataProcessor
+
++ (instancetype)sharedInstance {
+    static id _sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedInstance = [self new];
+    });
+
+    return _sharedInstance;
+}
 
 + (NSDateFormatter *)dateFormatter {
     static NSDateFormatter *_dateFormatter = nil;
@@ -33,6 +46,14 @@
     return _dateFormatter;
 }
 
+- (instancetype)init {
+    self = [super init];
+    if (!self) return nil;
+
+    self.operationQueue = [NSOperationQueue new];
+
+    return self;
+}
 - (NSDate *)dateForNDaysAgo:(NSInteger)daysAgo {
     NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
     NSDateComponents *components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:NSDate.date];
@@ -59,20 +80,23 @@
     }
 }
 
-- (void)processNewDataWithCompletion:(DataProcessorCompletionBlock)completion {
-    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+- (void)processNewData {
+    [self.operationQueue addOperationWithBlock:^{
+        [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+            NSPredicate *locationPredicate = [NSPredicate predicateWithFormat:@"(movementPath == nil) AND (stop == nil)"];
+            NSArray *locationArray = [RawLocation MR_findAllSortedBy:@"timestamp" ascending:YES withPredicate:locationPredicate inContext:localContext];
 
-        NSPredicate *locationPredicate = [NSPredicate predicateWithFormat:@"movementPath == nil AND stop == nil"];
-        NSArray *locationArray = [RawLocation MR_findAllSortedBy:@"timestamp" ascending:YES withPredicate:locationPredicate inContext:localContext];
+            NSPredicate *motionPredicate = [NSPredicate predicateWithFormat:@"movementPath == nil"];
+            NSArray *motionArray = [RawMotionActivity MR_findAllSortedBy:@"timestamp" ascending:YES withPredicate:motionPredicate inContext:localContext];
 
-        NSPredicate *motionPredicate = [NSPredicate predicateWithFormat:@"movementPath == nil"];
-        NSArray *motionArray = [RawMotionActivity MR_findAllSortedBy:@"timestamp" ascending:YES withPredicate:motionPredicate inContext:localContext];
+            NSArray *array = [locationArray arrayByAddingObjectsFromArray:motionArray];
+            [self processArray:array withContext:localContext];
+        }];
 
-        NSArray *array = [locationArray arrayByAddingObjectsFromArray:motionArray];
-        [self processArray:array withContext:localContext];
-    } completion:^(BOOL success, NSError *error) {
-        [self fetchStaleDataWithCompletion:completion];
-    }];}
+        [[NSNotificationCenter defaultCenter] postNotificationName:DataProcessorDidFinishProcessingNotification object:self];
+    }];
+}
+
 
 - (void)reprocessDataWithCompletion:(DataProcessorCompletionBlock)completion {
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {

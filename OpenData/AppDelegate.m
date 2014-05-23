@@ -13,6 +13,7 @@
 #import "LocationManager.h"
 #import "MotionManager.h"
 #import "Configuration.h"
+#import "DataProcessor.h"
 
 #import <DropboxSDK.h>
 
@@ -70,6 +71,8 @@
 
     self.motionManager = [MotionManager new];
     [self.motionManager startMonitoring];
+
+    [DataProcessor.sharedInstance processNewData];
 }
 
 @end
