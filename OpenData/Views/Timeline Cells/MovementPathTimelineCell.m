@@ -10,6 +10,8 @@
 #import "UITableViewCell+TimelineCell.h"
 #import "MovementPath.h"
 
+#import "NSString+TimeFormatter.h"
+
 @interface MovementPathTimelineCell ()
 @property (nonatomic, strong) UIView *line;
 @property (nonatomic, strong) UILabel *descriptionLabel;
@@ -73,12 +75,6 @@
 #pragma mark -
 
 - (void)setupWithTimedEvent:(MovementPath *)path {
-    NSTimeInterval duration = path.duration;
-    NSInteger hours = duration / 60 / 60;
-    NSInteger minutes = duration/60 - hours*60;
-    NSInteger seconds = duration - minutes*60;
-    NSString *timeString = [NSString stringWithFormat:@"%02lu:%02lu:%02lu", (long)hours, (long)minutes, (long)seconds];
-
-    self.descriptionLabel.text = [NSString stringWithFormat:@"Moving for %@", timeString];
+     self.descriptionLabel.text = [NSString stringWithFormat:@"Moving for %@", [NSString stringWithTimeInterval:path.duration]];
 }
 @end

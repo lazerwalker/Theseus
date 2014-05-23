@@ -10,6 +10,8 @@
 #import "UITableViewCell+TimelineCell.h"
 #import "UntrackedPeriod.h"
 
+#import "NSString+TimeFormatter.h"
+
 @interface UntrackedPeriodTimelineCell ()
 @property (nonatomic, strong) UIView *line;
 @property (nonatomic, strong) UILabel *descriptionLabel;
@@ -115,12 +117,6 @@
 
 #pragma mark -
 - (void)setupWithTimedEvent:(UntrackedPeriod *)period {
-    NSTimeInterval duration = period.duration;
-    NSInteger hours = duration / 60 / 60;
-    NSInteger minutes = duration/60 - hours*60;
-    NSInteger seconds = duration - minutes*60;
-    NSString *timeString = [NSString stringWithFormat:@"%02lu:%02lu:%02lu", (long)hours, (long)minutes, (long)seconds];
-
-    self.descriptionLabel.text = [NSString stringWithFormat:@"Inactive for %@", timeString];
+    self.descriptionLabel.text = [NSString stringWithFormat:@"Inactive for %@", [NSString stringWithTimeInterval:period.duration]];
 }
 @end
