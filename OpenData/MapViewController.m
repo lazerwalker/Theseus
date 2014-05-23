@@ -31,51 +31,12 @@
     self.mapView.delegate = self;
     self.title = @"Map";
 
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Re-Process" style:UIBarButtonItemStylePlain target:self action:@selector(reprocess)];
-
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    DataProcessor *dataProcessor = [DataProcessor new];
-
-    DataProcessorCompletionBlock completion = ^(NSArray *results, NSArray *stops, NSArray *paths, NSArray *untrackedPeriods) {
-        NSMutableArray *polylines = [NSMutableArray new];
-        for (MovementPath *path in paths) {
-            MovementPathPolyline *polyline = [MovementPathPolyline polylineWithMovementPath:path];
-            [polylines addObject:polyline];
-        }
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.mapView addAnnotations:stops];
-            [self.mapView addOverlays:polylines];
-
-            [self.mapView setRegion:MKCoordinateRegionMake([stops.lastObject coordinate], MKCoordinateSpanMake(0.01, 0.01))];
-        });
-    };
-
-    [dataProcessor reprocessDataWithCompletion:completion];
-}
-
-- (void)reprocess {
-    DataProcessor *dataProcessor = [DataProcessor new];
-    [dataProcessor reprocessDataWithCompletion:^(NSArray *results, NSArray *stops, NSArray *paths, NSArray *untrackedPeriods) {
-        NSMutableArray *polylines = [NSMutableArray new];
-        for (MovementPath *path in paths) {
-            MovementPathPolyline *polyline = [MovementPathPolyline polylineWithMovementPath:path];
-            [polylines addObject:polyline];
-        }
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.mapView addAnnotations:stops];
-            [self.mapView addOverlays:polylines];
-
-            [self.mapView setRegion:MKCoordinateRegionMake([stops.lastObject coordinate], MKCoordinateSpanMake(0.01, 0.01))];
-        });
-    }];
 }
 
 #pragma mark - MKMapViewDelegate

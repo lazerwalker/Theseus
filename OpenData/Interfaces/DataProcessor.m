@@ -109,7 +109,7 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
 }
 
 
-- (void)reprocessDataWithCompletion:(DataProcessorCompletionBlock)completion {
+- (void)reprocessData {
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
         [self removeAllProcessedDataWithContext:localContext];
 
@@ -118,8 +118,8 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
                  [RawMotionActivity MR_findAllSortedBy:@"timestamp" ascending:YES inContext:localContext]];
 
         [self processArray:array withContext:localContext];
-    } completion:^(BOOL success, NSError *error) {
-        // TODO
+
+        [[NSNotificationCenter defaultCenter] postNotificationName:DataProcessorDidFinishProcessingNotification object:self];
     }];
 }
 

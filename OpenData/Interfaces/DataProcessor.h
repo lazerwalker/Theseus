@@ -8,14 +8,12 @@
 
 extern NSString * const DataProcessorDidFinishProcessingNotification;
 
-typedef void (^DataProcessorCompletionBlock)(NSArray *allObjects, NSArray *stops, NSArray *paths, NSArray *untrackedPeriods);
-
 @interface DataProcessor : NSObject
 
 + (instancetype)sharedInstance;
 
 - (NSArray *)eventsForDaysAgo:(NSInteger)daysAgo;
 - (void)processNewData;
-- (void)reprocessDataWithCompletion:(DataProcessorCompletionBlock)completion;
+- (void)reprocessData;
 
 @end
