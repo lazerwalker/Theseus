@@ -19,12 +19,15 @@
 #import "MovementPathTimelineCell.h"
 #import "UntrackedPeriodTimelineCell.h"
 
+#import "DayPresenter.h"
+
 #import "FoursquareVenue.h"
 #import "Venue.h"
 #import "VenueListViewController.h"
 
 @interface ListViewController ()
 @property (strong, nonatomic) NSArray *data;
+@property (nonatomic, strong) DayPresenter *presenter;
 @end
 
 @implementation ListViewController
@@ -33,15 +36,8 @@
     self = [super initWithStyle:UITableViewStylePlain];
     if (!self) return nil;
 
-    self.daysAgo = daysAgo;
-
-    if (daysAgo == 0) {
-        self.title = @"Today";
-    } else if (daysAgo == 1) {
-        self.title = @"Yesterday";
-    } else {
-        self.title = [NSString stringWithFormat:@"%lu Days Ago", (long)daysAgo];
-    }
+    self.presenter = [[DayPresenter alloc] initWithDaysAgo:daysAgo];
+    self.title = self.presenter.dayTitle;
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Process" style:UIBarButtonItemStylePlain target:self action:@selector(reprocess)];
 
@@ -52,49 +48,46 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
 
+    [self.presenter addObserver:self forKeyPath:DayPresenterDataChangedKey options:0 context:nil];
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.contentInset = UIEdgeInsetsMake(20, 0, self.tabBarController.tabBar.bounds.size.height, 0);
-
-    [self reload];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reload) name:DataProcessorDidFinishProcessingNotification object:nil];
 }
 
-#pragma mark - 
-- (void)reload {
-    DataProcessor *dataProcessor = [DataProcessor new];
-    self.data = [dataProcessor eventsForDaysAgo:self.daysAgo];
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+- (void)observeValueForKeyPath:(NSString*)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary*)change
+                       context:(void*)context {
+    if ([keyPath isEqualToString:DayPresenterDataChangedKey]) {
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
 }
+
+#pragma mark -
 
 - (void)reprocess {
     DataProcessor *dataProcessor = [DataProcessor new];
-    [dataProcessor reprocessDataWithCompletion:^(NSArray *results, NSArray *stops, NSArray *paths, NSArray *untrackedPeriods) {
-        [[[UIAlertView alloc] initWithTitle:@"Completed Full Processing" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-        self.data = results;
-        [self.tableView reloadData];
-    }];
+    [dataProcessor reprocessData];
 }
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id<TimedEvent> obj = self.data[indexPath.row];
+    id<TimedEvent> obj = [self.presenter eventForIndex:indexPath.row];
     Class cellClass = [self timelineCellClassForObject:obj];
     return [cellClass heightForTimedEvent:obj];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell<TimelineCell> *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    id<TimedEvent> obj = self.data[indexPath.row];
+    id<TimedEvent> obj = [self.presenter eventForIndex:indexPath.row];
     [cell setupWithTimedEvent:obj];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    Stop *stop = self.data[indexPath.row];
+    Stop *stop = (Stop *)[self.presenter eventForIndex:indexPath.row];
     if (![stop isKindOfClass:Stop.class]) return;
 
     VenueListViewController *venueList = [[VenueListViewController alloc] initWithStop:stop];
@@ -125,13 +118,12 @@
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.data.count;
+    return self.presenter.numberOfEvents;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id<TimedEvent> obj = self.data[indexPath.row];
-
+    id<TimedEvent> obj = [self.presenter eventForIndex:indexPath.row];
     NSString *cellIdentifier = [[self timelineCellClassForObject:obj] reuseIdentifier];
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
