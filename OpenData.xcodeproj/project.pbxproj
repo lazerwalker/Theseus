@@ -38,6 +38,7 @@
 		A6B91D16192EA60200F7106E /* NSString+TimeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D15192EA60200F7106E /* NSString+TimeFormatter.m */; };
 		A6B91D19192FA98F00F7106E /* DaysAgoDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D18192FA98F00F7106E /* DaysAgoDataSource.m */; };
 		A6B91D1C1930017200F7106E /* DayPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D1B1930017200F7106E /* DayPresenter.m */; };
+		A6B91D1F193007AD00F7106E /* ListViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D1E193007AD00F7106E /* ListViewControllerSpec.m */; };
 		A6BD97B719299AE000264548 /* MovementPathPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BD97B619299AE000264548 /* MovementPathPolyline.m */; };
 		A6BD97BA192A4B2900264548 /* VenueListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BD97B9192A4B2900264548 /* VenueListViewController.m */; };
 		A6C7CFDE192A7760001A6DAC /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFDD192A7760001A6DAC /* Venue.m */; };
@@ -124,6 +125,7 @@
 		A6B91D18192FA98F00F7106E /* DaysAgoDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DaysAgoDataSource.m; path = "Data Sources/DaysAgoDataSource.m"; sourceTree = "<group>"; };
 		A6B91D1A1930017200F7106E /* DayPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DayPresenter.h; path = Presenters/DayPresenter.h; sourceTree = "<group>"; };
 		A6B91D1B1930017200F7106E /* DayPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DayPresenter.m; path = Presenters/DayPresenter.m; sourceTree = "<group>"; };
+		A6B91D1E193007AD00F7106E /* ListViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListViewControllerSpec.m; path = "View Controllers/ListViewControllerSpec.m"; sourceTree = "<group>"; };
 		A6BD97B519299AE000264548 /* MovementPathPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovementPathPolyline.h; path = Presenters/MovementPathPolyline.h; sourceTree = "<group>"; };
 		A6BD97B619299AE000264548 /* MovementPathPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovementPathPolyline.m; path = Presenters/MovementPathPolyline.m; sourceTree = "<group>"; };
 		A6BD97B8192A4B2900264548 /* VenueListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueListViewController.h; path = "View Controllers/VenueListViewController.h"; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 		A6748AC3192127EA0073CE19 /* OpenDataTests */ = {
 			isa = PBXGroup;
 			children = (
+				A6B91D1D1930078B00F7106E /* View Controllers */,
 				A6C7CFF2192AAD77001A6DAC /* Interfaces */,
 				A6748AC4192127EA0073CE19 /* Supporting Files */,
 				A6C7CFE2192A806B001A6DAC /* OpenDataSpec.m */,
@@ -368,6 +371,14 @@
 				A6B91D13192E866500F7106E /* TimelineCell.h */,
 			);
 			name = Protocols;
+			sourceTree = "<group>";
+		};
+		A6B91D1D1930078B00F7106E /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A6B91D1E193007AD00F7106E /* ListViewControllerSpec.m */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		A6BD97B419299AC600264548 /* Presenters */ = {
@@ -614,6 +625,7 @@
 				A6C7CFE3192A806B001A6DAC /* OpenDataSpec.m in Sources */,
 				A6C7CFF4192AAD87001A6DAC /* ConfigurationSpec.m in Sources */,
 				A61D6461192ABF6800F7EB88 /* AppDelegateSpec.m in Sources */,
+				A6B91D1F193007AD00F7106E /* ListViewControllerSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

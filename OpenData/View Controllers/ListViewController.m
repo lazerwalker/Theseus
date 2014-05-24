@@ -33,11 +33,26 @@
 @implementation ListViewController
 
 - (id)initWithDaysAgo:(NSInteger)daysAgo {
+    DayPresenter *presenter = [[DayPresenter alloc] initWithDaysAgo:daysAgo];
+    return [self initWithPresenter:presenter];
+}
+
+- (id)initWithPresenter:(DayPresenter *)presenter {
     self = [super initWithStyle:UITableViewStylePlain];
     if (!self) return nil;
 
-    self.presenter = [[DayPresenter alloc] initWithDaysAgo:daysAgo];
+    self.presenter = presenter;
+    [self.presenter addObserver:self forKeyPath:DayPresenterDataChangedKey options:0 context:nil];
+
     self.title = self.presenter.dayTitle;
+
+    return self;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    self.tableView.contentInset = UIEdgeInsetsMake(20, 0, self.tabBarController.tabBar.bounds.size.height, 0);
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Process" style:UIBarButtonItemStylePlain target:self action:@selector(reprocess)];
 
@@ -46,15 +61,6 @@
     [self.tableView registerClass:[UntrackedPeriodTimelineCell class] forCellReuseIdentifier:[UntrackedPeriodTimelineCell reuseIdentifier]];
 
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
-
-    [self.presenter addObserver:self forKeyPath:DayPresenterDataChangedKey options:0 context:nil];
-    return self;
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.tableView.contentInset = UIEdgeInsetsMake(20, 0, self.tabBarController.tabBar.bounds.size.height, 0);
 }
 
 - (void)observeValueForKeyPath:(NSString*)keyPath
@@ -66,8 +72,12 @@
     }
 }
 
-#pragma mark -
+#pragma mark - 
+- (NSInteger)daysAgo {
+    return self.presenter.daysAgo;
+}
 
+#pragma mark -
 - (void)reprocess {
     DataProcessor *dataProcessor = [DataProcessor new];
     [dataProcessor reprocessData];
@@ -93,11 +103,11 @@
     VenueListViewController *venueList = [[VenueListViewController alloc] initWithStop:stop];
 
     venueList.didTapCancelButtonBlock = ^{
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewControllerAnimated:YES completion:nil];
     };
 
     venueList.didSelectVenueBlock = ^(Venue *venue) {
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewControllerAnimated:YES completion:nil];
 
         [MagicalRecord saveUsingCurrentThreadContextWithBlock:^(NSManagedObjectContext *localContext) {
             Venue *oldVenue = stop.venue;
@@ -113,7 +123,7 @@
     };
 
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:venueList];
-    [self.navigationController presentViewController:navController animated:YES completion:nil];
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 #pragma mark - UITableViewDataSource
