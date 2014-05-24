@@ -29,6 +29,7 @@
 		A68425CA192302CB0083D006 /* FoursquareVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = A68425C9192302CB0083D006 /* FoursquareVenue.m */; };
 		A68425CC1923047F0083D006 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = A68425CB1923047F0083D006 /* Configuration.plist */; };
 		A6AAB14A1930512A000DE81E /* Configuration.plist.example in Resources */ = {isa = PBXBuildFile; fileRef = A66211651930507F00982704 /* Configuration.plist.example */; };
+		A6AAB14D19305F70000DE81E /* NSString+TimeFormatterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A6AAB14C19305F70000DE81E /* NSString+TimeFormatterSpec.m */; };
 		A6B91CFA192D56F800F7106E /* UntrackedPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91CF9192D56F800F7106E /* UntrackedPeriod.m */; };
 		A6B91D03192E70BF00F7106E /* StopTimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D02192E70BF00F7106E /* StopTimelineCell.m */; };
 		A6B91D08192E737200F7106E /* UITableViewCell+ReuseIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D07192E737200F7106E /* UITableViewCell+ReuseIdentifier.m */; };
@@ -105,6 +106,7 @@
 		A68425C8192302CB0083D006 /* FoursquareVenue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FoursquareVenue.h; path = Models/FoursquareVenue.h; sourceTree = "<group>"; };
 		A68425C9192302CB0083D006 /* FoursquareVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FoursquareVenue.m; path = Models/FoursquareVenue.m; sourceTree = "<group>"; };
 		A68425CB1923047F0083D006 /* Configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Configuration.plist; path = ../Configuration.plist; sourceTree = "<group>"; };
+		A6AAB14C19305F70000DE81E /* NSString+TimeFormatterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TimeFormatterSpec.m"; path = "Categories/NSString+TimeFormatterSpec.m"; sourceTree = "<group>"; };
 		A6B91CF8192D56F800F7106E /* UntrackedPeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UntrackedPeriod.h; path = Models/UntrackedPeriod.h; sourceTree = "<group>"; };
 		A6B91CF9192D56F800F7106E /* UntrackedPeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UntrackedPeriod.m; path = Models/UntrackedPeriod.m; sourceTree = "<group>"; };
 		A6B91CFB192E6C8E00F7106E /* TimedEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TimedEvent.h; path = Models/TimedEvent.h; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 		A6748AC3192127EA0073CE19 /* OpenDataTests */ = {
 			isa = PBXGroup;
 			children = (
+				A6AAB14B19305F59000DE81E /* Categories */,
 				A6B91D1D1930078B00F7106E /* View Controllers */,
 				A6C7CFF2192AAD77001A6DAC /* Interfaces */,
 				A6748AC4192127EA0073CE19 /* Supporting Files */,
@@ -328,6 +331,14 @@
 				A68425C9192302CB0083D006 /* FoursquareVenue.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		A6AAB14B19305F59000DE81E /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				A6AAB14C19305F70000DE81E /* NSString+TimeFormatterSpec.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		A6B91CFC192E700300F7106E /* Views */ = {
@@ -621,6 +632,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6AAB14D19305F70000DE81E /* NSString+TimeFormatterSpec.m in Sources */,
 				A6C7CFF1192AAD2A001A6DAC /* Configuration.m in Sources */,
 				A6C7CFE3192A806B001A6DAC /* OpenDataSpec.m in Sources */,
 				A6C7CFF4192AAD87001A6DAC /* ConfigurationSpec.m in Sources */,
