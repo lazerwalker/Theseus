@@ -79,6 +79,7 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
 }
 
 - (void)processNewData {
+    [OpenData showNetworkActivitySpinner];
     [self.operationQueue addOperationWithBlock:^{
         [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
             id<TimedEvent> previousEvent = ({
@@ -105,12 +106,14 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
             [self processArray:array previousEvent:previousEvent withContext:localContext];
         }];
 
+        [OpenData hideNetworkActivitySpinner];
         [[NSNotificationCenter defaultCenter] postNotificationName:DataProcessorDidFinishProcessingNotification object:self];
     }];
 }
 
 
 - (void)reprocessData {
+    [OpenData showNetworkActivitySpinner];
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
         [self removeAllProcessedDataWithContext:localContext];
 
@@ -120,7 +123,9 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
 
         [self processArray:array withContext:localContext];
 
+    } completion:^(BOOL success, NSError *error) {
         [[NSNotificationCenter defaultCenter] postNotificationName:DataProcessorDidFinishProcessingNotification object:self];
+        [OpenData hideNetworkActivitySpinner];
     }];
 }
 
