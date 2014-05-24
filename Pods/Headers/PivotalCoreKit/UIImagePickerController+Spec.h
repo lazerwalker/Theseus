@@ -1,0 +1,1 @@
+../../PivotalCoreKit/UIKit/SpecHelper/Stubs/UIImagePickerController+Spec.h

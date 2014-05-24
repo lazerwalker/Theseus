@@ -10,6 +10,13 @@ PODS:
   - OCHamcrest (3.0.1)
   - OCMockito (1.2.0):
     - OCHamcrest (~> 3.0)
+  - PivotalCoreKit/UIKit/SpecHelper (0.0.3):
+    - PivotalCoreKit/UIKit/SpecHelper/Extensions
+    - PivotalCoreKit/UIKit/SpecHelper/Matchers
+    - PivotalCoreKit/UIKit/SpecHelper/Stubs
+  - PivotalCoreKit/UIKit/SpecHelper/Extensions (0.0.3)
+  - PivotalCoreKit/UIKit/SpecHelper/Matchers (0.0.3)
+  - PivotalCoreKit/UIKit/SpecHelper/Stubs (0.0.3)
   - SDWebImage (3.6):
     - SDWebImage/Core
   - SDWebImage/Core (3.6)
@@ -21,6 +28,7 @@ DEPENDENCIES:
   - MagicalRecord
   - Mantle
   - OCMockito
+  - PivotalCoreKit/UIKit/SpecHelper
   - SDWebImage
   - Specta
 
@@ -31,6 +39,7 @@ SPEC CHECKSUMS:
   Mantle: 0714cdb2b8559d9e6c2410d6a8529e3307bff189
   OCHamcrest: 782c52ae8c673e5d6060a65005cfd26d20d519ba
   OCMockito: 050fca9528760faa8b5fafc82faad9d54f0864c0
+  PivotalCoreKit: 349c342734a46c11fc1e0cfc1fb02d010392f8e5
   SDWebImage: 7eb273e54ca8a2e506ad9bd5e80c35b2a4d7c95e
   Specta: 2d06220591110c6d9757d8be8ecf8e63aa40dc2a
 

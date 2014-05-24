@@ -1,0 +1,1 @@
+../../PivotalCoreKit/UIKit/SpecHelper/Extensions/UISlider+Spec.h

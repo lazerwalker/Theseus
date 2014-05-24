@@ -1,0 +1,1 @@
+../../PivotalCoreKit/UIKit/SpecHelper/Extensions/UIWindow+Spec.h

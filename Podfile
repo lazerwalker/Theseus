@@ -7,4 +7,5 @@ target :OpenDataTests do
     pod "Expecta"
     pod "Specta"
     pod "OCMockito"
+    pod "PivotalCoreKit/UIKit/SpecHelper"
 end
