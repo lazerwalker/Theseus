@@ -93,11 +93,12 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
                 allObjects.lastObject;
             });
 
-            NSPredicate *locationPredicate = [NSPredicate predicateWithFormat:@"(movementPath == nil) AND (stop == nil)"];
-            NSArray *locationArray = [RawLocation MR_findAllSortedBy:@"timestamp" ascending:YES withPredicate:locationPredicate inContext:localContext];
+            [(Stop *)previousEvent MR_deleteInContext:localContext];
 
-            NSPredicate *motionPredicate = [NSPredicate predicateWithFormat:@"movementPath == nil"];
-            NSArray *motionArray = [RawMotionActivity MR_findAllSortedBy:@"timestamp" ascending:YES withPredicate:motionPredicate inContext:localContext];
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"timestamp >= %@", previousEvent.startTime];
+            NSArray *locationArray = [RawLocation MR_findAllSortedBy:@"timestamp" ascending:YES withPredicate:predicate inContext:localContext];
+
+            NSArray *motionArray = [RawMotionActivity MR_findAllSortedBy:@"timestamp" ascending:YES withPredicate:predicate inContext:localContext];
 
             NSArray *array = [locationArray arrayByAddingObjectsFromArray:motionArray];
             
