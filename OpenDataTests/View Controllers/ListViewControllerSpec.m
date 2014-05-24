@@ -24,6 +24,7 @@
 #import "MovementPathTimelineCell.h"
 #import "UntrackedPeriodTimelineCell.h"
 #import "VenueListViewController.h"
+#import "SettingsViewController.h"
 
 #import <PivotalCoreKit/UIKit+PivotalSpecHelper.h>
 
@@ -35,6 +36,7 @@ SpecBegin(ListViewController)
 
 describe(@"ListViewController", ^{
     __block ListViewController *controller;
+    __block UINavigationController *navController;
     __block DayPresenter *presenter;
     __block Stop *stop;
     __block NSIndexPath *stopIndexPath, *pathIndexPath, *untrackedIndexPath;
@@ -53,7 +55,15 @@ describe(@"ListViewController", ^{
         untrackedIndexPath = [NSIndexPath indexPathForRow:2 inSection:0];
 
         controller = [[ListViewController alloc] initWithPresenter:presenter];
+        navController = [[UINavigationController alloc] initWithRootViewController:controller];
         [controller viewDidLoad];
+    });
+
+    describe(@"tapping the settings button", ^{
+        it(@"should display the settings view", ^{
+            [controller.navigationItem.rightBarButtonItem tap];
+            expect(navController.topViewController).to.beInstanceOf(SettingsViewController.class);
+        });
     });
 
     describe(@"daysAgo", ^{
@@ -71,7 +81,7 @@ describe(@"ListViewController", ^{
         it(@"should trigger a table view refresh on change", ^{
             controller.tableView = mock(UITableView.class);
             [controller observeValueForKeyPath:DayPresenterDataChangedKey ofObject:presenter change:@{} context:nil];
-            [verify(controller.tableView) reloadSections:anything() withRowAnimation:UITableViewRowAnimationAutomatic];
+            [MKTVerify(controller.tableView) reloadSections:anything() withRowAnimation:UITableViewRowAnimationAutomatic];
         });
     });
 

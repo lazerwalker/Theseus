@@ -24,6 +24,7 @@
 #import "FoursquareVenue.h"
 #import "Venue.h"
 #import "VenueListViewController.h"
+#import "SettingsViewController.h"
 
 @interface ListViewController ()
 @property (strong, nonatomic) NSArray *data;
@@ -54,7 +55,9 @@
 
     self.tableView.contentInset = UIEdgeInsetsMake(20, 0, self.tabBarController.tabBar.bounds.size.height, 0);
 
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Process" style:UIBarButtonItemStylePlain target:self action:@selector(reprocess)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Process" style:UIBarButtonItemStylePlain target:self action:@selector(reprocess)];
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(didTapSettingsButton)];
 
     [self.tableView registerClass:[StopTimelineCell class] forCellReuseIdentifier:[StopTimelineCell reuseIdentifier]];
     [self.tableView registerClass:[MovementPathTimelineCell class] forCellReuseIdentifier:[MovementPathTimelineCell reuseIdentifier]];
@@ -81,6 +84,11 @@
 - (void)reprocess {
     DataProcessor *dataProcessor = [DataProcessor new];
     [dataProcessor reprocessData];
+}
+
+- (void)didTapSettingsButton {
+    SettingsViewController *settingsController = [SettingsViewController new];
+    [self.navigationController pushViewController:settingsController animated:YES];
 }
 
 #pragma mark - UITableViewDelegate
