@@ -94,7 +94,7 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
                 allObjects.lastObject;
             });
 
-            [(Stop *)previousEvent MR_deleteInContext:localContext];
+            [previousEvent destroy];
 
             NSPredicate *predicate = [NSPredicate predicateWithFormat:@"timestamp >= %@", previousEvent.startTime];
             NSArray *locationArray = [RawLocation MR_findAllSortedBy:@"timestamp" ascending:YES withPredicate:predicate inContext:localContext];
@@ -134,17 +134,17 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
 - (void)removeAllProcessedDataWithContext:(NSManagedObjectContext *)context {
     NSArray *stops = [Stop MR_findAllInContext:context];
     for (Stop *stop in stops) {
-        [stop MR_deleteInContext:context];
+        [stop destroy];
     }
 
     NSArray *movementPaths = [Path MR_findAllInContext:context];
     for (Path *path in movementPaths) {
-        [path MR_deleteInContext:context];
+        [path destroy];
     }
 
     NSArray *untrackedPeriods = [UntrackedPeriod MR_findAllInContext:context];
     for (UntrackedPeriod *period in untrackedPeriods) {
-        [period MR_deleteInContext:context];
+        [period destroy];
     }
 
 }
@@ -187,7 +187,7 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
             if (!(previousActivity.activity == activity.activity)) {
                 if (currentObjects.count == 0) continue;
                 if (previousActivity.activity == RawMotionActivityTypeStationary) {
-                    Stop *stop = [Stop MR_createInContext:localContext];
+                    Stop *stop = [[Stop alloc] initWithContext:localContext];
                     [stop setupWithLocations:currentObjects];
                     stop.startTime = previousActivity.timestamp;
                     stop.endTime = activity.timestamp;
@@ -198,12 +198,12 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
                         [previousStop addPath:previousPath];
                         [paths removeLastObject];
                         [previousStop mergeWithStop:stop];
-                        [stop MR_deleteEntity];
+                        [stop destroy];
                     } else {
                         [stops addObject:stop];
                     }
                 } else if (activity.activity == RawMotionActivityTypeStationary) {
-                    Path *path = [Path MR_createInContext:localContext];
+                    Path *path = [[Path alloc] initWithContext:localContext];
 
                     path.locations = [NSSet setWithArray:currentObjects];
                     path.activity = previousActivity;
@@ -240,7 +240,7 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
                 previousObj.endTime = [previousObj.endTime laterDate:obj.endTime];
             }
 
-            [obj MR_deleteInContext:localContext];
+            [obj destroy];
         } else {
             previousObj = obj;
         }
@@ -252,7 +252,7 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
     previousObj = nil;
     for (TimedEvent *obj in allObjects) {
         if (previousObj && fabsf([previousObj.endTime timeIntervalSinceDate:obj.startTime]) > 120) {
-            UntrackedPeriod *time = [UntrackedPeriod MR_createInContext:localContext];
+            UntrackedPeriod *time = [[UntrackedPeriod alloc] initWithContext:localContext];
             time.startTime = previousObj.endTime;
             time.endTime = [obj startTime];
             [untrackedPeriods addObject:time];
@@ -274,7 +274,7 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
             } else if ([obj isKindOfClass:Stop.class]) {
                 [(Stop *)previousObj mergeWithStop:(Stop *)obj];
             }
-            [obj MR_deleteInContext:localContext];
+            [obj destroy];
         }
         previousObj = obj;
     }

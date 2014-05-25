@@ -43,12 +43,12 @@ describe(@"ListViewController", ^{
 
     beforeEach(^{
         presenter = mock([DayPresenter class]);
-        stop = [Stop MR_createEntity];
+        stop = [Stop new];
 
         [given([presenter numberOfEvents]) willReturnInt:3];
         [given([presenter eventForIndex:0]) willReturn:stop];
-        [given([presenter eventForIndex:1]) willReturn:[Path MR_createEntity]];
-        [given([presenter eventForIndex:2]) willReturn:[UntrackedPeriod MR_createEntity]];
+        [given([presenter eventForIndex:1]) willReturn:[Path new]];
+        [given([presenter eventForIndex:2]) willReturn:[UntrackedPeriod new]];
 
         stopIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         pathIndexPath = [NSIndexPath indexPathForRow:1 inSection:0];

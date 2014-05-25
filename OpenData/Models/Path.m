@@ -19,10 +19,6 @@
     return _MovementPath.class;
 }
 
-- (NSTimeInterval)duration {
-    return [self.endTime timeIntervalSinceDate:self.startTime];
-}
-
 - (NSString *)typeString {
     NSArray *types = @[@"Unknown",
                        @"Walking",
@@ -49,22 +45,6 @@
 }
 
 #pragma mark - Core Data Attributes
-- (NSDate *)startTime {
-    return self.model.startTime;
-}
-
-- (void)setStartTime:(NSDate *)startTime {
-    self.model.startTime = startTime;
-}
-
-- (NSDate *)endTime {
-    return self.model.endTime;
-}
-
-- (void)setEndTime:(NSDate *)endTime {
-    self.model.endTime = endTime;
-}
-
 - (NSSet *)locations {
     return self.model.locations;
 }
@@ -75,38 +55,6 @@
 
 - (void)setActivity:(_RawMotionActivity *)activity {
     self.model.activity = activity;
-}
-
-
-#pragma mark - MagicalRecord
-+ (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate *)searchTerm {
-    return [self.modelClass MR_findAllSortedBy:sortTerm ascending:ascending withPredicate:searchTerm];
-}
-
-+ (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending inContext:(NSManagedObjectContext *)context {
-    return [self.modelClass MR_findAllSortedBy:sortTerm ascending:ascending inContext:context];
-}
-
-+ (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate *)searchTerm inContext:(NSManagedObjectContext *)context {
-    return [self.modelClass MR_findAllSortedBy:sortTerm ascending:ascending withPredicate:searchTerm inContext:context];
-}
-
-+ (NSArray *) MR_findAllInContext:(NSManagedObjectContext *)context {
-    return [self.modelClass MR_findAllInContext:context];
-}
-
-+ (id) MR_createInContext:(NSManagedObjectContext *)context {
-    Path *obj = [self new];
-    obj.model = [self.modelClass MR_createInContext:context];
-    return obj;
-}
-
-- (BOOL) MR_deleteInContext:(NSManagedObjectContext *)context {
-    return [self.model MR_deleteInContext:context];
-}
-
-- (BOOL) MR_deleteEntity {
-    return [self.model MR_deleteEntity];
 }
 
 @end

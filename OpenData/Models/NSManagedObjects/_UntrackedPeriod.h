@@ -6,9 +6,8 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
-@interface _UntrackedPeriod : NSManagedObject
+#import "_TimedEvent.h"
 
-@property (nonatomic, retain) NSDate * startTime;
-@property (nonatomic, retain) NSDate * endTime;
+@interface _UntrackedPeriod : NSManagedObject<_TimedEvent>
 
 @end

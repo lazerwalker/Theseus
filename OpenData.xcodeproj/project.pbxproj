@@ -142,6 +142,7 @@
 		A6A874FA1932355F00D8C7DD /* _Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _Venue.h; path = Models/NSManagedObjects/_Venue.h; sourceTree = "<group>"; };
 		A6A874FB1932355F00D8C7DD /* _Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _Venue.m; path = Models/NSManagedObjects/_Venue.m; sourceTree = "<group>"; };
 		A6A8750219323A0300D8C7DD /* TimedEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimedEvent.m; path = Models/TimedEvent.m; sourceTree = "<group>"; };
+		A6A8750719323BF800D8C7DD /* _TimedEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = _TimedEvent.h; path = Protocols/_TimedEvent.h; sourceTree = "<group>"; };
 		A6AAB14C19305F70000DE81E /* NSString+TimeFormatterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TimeFormatterSpec.m"; path = "Categories/NSString+TimeFormatterSpec.m"; sourceTree = "<group>"; };
 		A6AAB14E1930F548000DE81E /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = "View Controllers/SettingsViewController.h"; sourceTree = "<group>"; };
 		A6AAB14F1930F548000DE81E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = "View Controllers/SettingsViewController.m"; sourceTree = "<group>"; };
@@ -347,7 +348,6 @@
 		A6748AD819212E7C0073CE19 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A6B91CFB192E6C8E00F7106E /* TimedEvent.h */,
 				A6806ACA19320DB100B2B0F3 /* NSManagedObjects */,
 				A68425C8192302CB0083D006 /* FoursquareVenue.h */,
 				A68425C9192302CB0083D006 /* FoursquareVenue.m */,
@@ -363,6 +363,7 @@
 				A6A874EB193230C700D8C7DD /* RawLocation.m */,
 				A6A874ED1932331300D8C7DD /* RawMotionActivity.h */,
 				A6A874EE1932331300D8C7DD /* RawMotionActivity.m */,
+				A6B91CFB192E6C8E00F7106E /* TimedEvent.h */,
 				A6A8750219323A0300D8C7DD /* TimedEvent.m */,
 			);
 			name = Models;
@@ -433,6 +434,7 @@
 			isa = PBXGroup;
 			children = (
 				A6B91D13192E866500F7106E /* TimelineCell.h */,
+				A6A8750719323BF800D8C7DD /* _TimedEvent.h */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";

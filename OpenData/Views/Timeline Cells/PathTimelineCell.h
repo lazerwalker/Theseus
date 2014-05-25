@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
-@protocol TimedEvent;
+@class TimedEvent;
 
 @interface PathTimelineCell : UITableViewCell
 
 @property (nonatomic, assign) BOOL isFirstEvent;
 @property (nonatomic, assign) BOOL isNow;
 
-- (void)setupWithTimedEvent:(id<TimedEvent>)event;
+- (void)setupWithTimedEvent:(TimedEvent *)event;
 
 @end

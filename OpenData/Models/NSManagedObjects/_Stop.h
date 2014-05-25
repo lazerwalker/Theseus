@@ -6,15 +6,13 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
-#import "TimedEvent.h"
+#import "_TimedEvent.h"
 
 @class _MovementPath;
 @class _Venue;
 
-@interface _Stop : NSManagedObject
+@interface _Stop : NSManagedObject<_TimedEvent>
 
-@property (nonatomic) NSDate *startTime;
-@property (nonatomic) NSDate *endTime;
 @property (nonatomic) NSSet *locations;
 @property (nonatomic) NSSet *movementPaths;
 @property (nonatomic) NSNumber *venueConfirmed;

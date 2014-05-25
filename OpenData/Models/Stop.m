@@ -65,60 +65,13 @@
     return [[self.locations valueForKeyPath:@"@avg.altitude"] doubleValue];
 }
 
-- (NSTimeInterval)duration {
-    return [self.endTime timeIntervalSinceDate:self.startTime];
-}
-
 #pragma mark - Core Data Attributes
-- (NSDate *)startTime {
-    return self.model.startTime;
-}
-
-- (void)setStartTime:(NSDate *)startTime {
-    self.model.startTime = startTime;
-}
-
-- (NSDate *)endTime {
-    return self.model.endTime;
-}
-
-- (void)setEndTime:(NSDate *)endTime {
-    self.model.endTime = endTime;
-}
-
 - (NSSet *)locations {
     return self.model.locations;
 }
 
 - (NSSet *)movementPaths {
     return self.model.movementPaths;
-}
-
-#pragma mark - MagicalRecord
-+ (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate *)searchTerm {
-    return [self.modelClass MR_findAllSortedBy:sortTerm ascending:ascending withPredicate:searchTerm];
-}
-
-+ (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending inContext:(NSManagedObjectContext *)context {
-    return [self.modelClass MR_findAllSortedBy:sortTerm ascending:ascending inContext:context];
-}
-
-+ (NSArray *) MR_findAllInContext:(NSManagedObjectContext *)context {
-    return [self.modelClass MR_findAllInContext:context];
-}
-
-+ (id) MR_createInContext:(NSManagedObjectContext *)context {
-    Stop *obj = [self new];
-    obj.model = [self.modelClass MR_createInContext:context];
-    return obj;
-}
-
-- (BOOL) MR_deleteInContext:(NSManagedObjectContext *)context {
-    return [self.model MR_deleteInContext:context];
-}
-
-- (BOOL) MR_deleteEntity {
-    return [self.model MR_deleteEntity];
 }
 
 @end
