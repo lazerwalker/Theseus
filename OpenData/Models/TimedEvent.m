@@ -11,10 +11,6 @@
 
 #import <Asterism.h>
 
-@interface TimedEvent ()
-@property (nonatomic, strong) NSManagedObjectContext *context;
-@end
-
 @implementation TimedEvent
 
 + (Class)modelClass {

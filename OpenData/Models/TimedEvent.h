@@ -15,6 +15,7 @@
 @property (nonatomic) NSDate *startTime;
 @property (nonatomic) NSDate *endTime;
 @property (nonatomic) NSManagedObject<CDTimedEvent> *model;
+@property (nonatomic) NSManagedObjectContext *context;
 
 @property (nonatomic, readonly) NSTimeInterval duration;
 

@@ -8,7 +8,12 @@
 
 #import "Path.h"
 #import "CDPath.h"
+
 #import "RawMotionActivity.h"
+#import "RawLocation.h"
+#import "CDRawLocation.h"
+
+#import <Asterism.h>
 
 @interface Path ()
 @property (nonatomic, strong) CDPath *model;
@@ -41,12 +46,27 @@
 }
 
 - (void)addLocations:(NSArray *)locations {
-    self.locations = [self.locations setByAddingObjectsFromArray:locations];
+    NSArray *coreDataObjects = ASTMap(locations, ^id(RawLocation *location) {
+        return location.model;
+    });
+
+    self.model.locations = [self.model.locations setByAddingObjectsFromArray:coreDataObjects];
 }
 
 #pragma mark - Core Data Attributes
 - (NSSet *)locations {
-    return self.model.locations;
+    NSSet *locations = self.model.locations;
+    return ASTMap(locations, ^id(CDRawLocation *location) {
+        return [[RawLocation alloc] initWithModel:location context:self.context];
+    });
+}
+
+- (void)setLocations:(NSSet *)locations {
+    NSSet *coreDataObjects = ASTMap(locations, ^id(RawLocation *location) {
+        return location.model;
+    });
+
+    self.model.locations = coreDataObjects;
 }
 
 - (CDRawMotionActivity *)activity {

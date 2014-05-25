@@ -8,7 +8,13 @@
 
 #import "Stop.h"
 #import "CDStop.h"
+
 #import "Path.h"
+#import "RawLocation.h"
+#import "CDPath.h"
+#import "CDRawLocation.h"
+
+#import <Asterism.h>
 
 @interface Stop ()
 @property (nonatomic, strong) CDStop *model;
@@ -67,11 +73,25 @@
 
 #pragma mark - Core Data Attributes
 - (NSSet *)locations {
-    return self.model.locations;
+    NSSet *locations = self.model.locations;
+    return ASTMap(locations, ^id(CDRawLocation *location) {
+        return [[RawLocation alloc] initWithModel:location context:self.context];
+    });
+}
+
+- (void)setLocations:(NSSet *)locations {
+    NSSet *coreDataObjects = ASTMap(locations, ^id(RawLocation *location) {
+        return location.model;
+    });
+
+    self.model.locations = coreDataObjects;
 }
 
 - (NSSet *)movementPaths {
-    return self.model.movementPaths;
+    NSSet *paths = self.model.movementPaths;
+    return ASTMap(paths, ^id(CDPath *path) {
+        return [[Path alloc] initWithModel:path context:self.context];
+    });
 }
 
 @end
