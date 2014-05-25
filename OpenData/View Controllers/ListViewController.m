@@ -50,6 +50,10 @@
     return self;
 }
 
+- (void)dealloc {
+    [self.presenter removeObserver:self forKeyPath:DayPresenterDataChangedKey];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
