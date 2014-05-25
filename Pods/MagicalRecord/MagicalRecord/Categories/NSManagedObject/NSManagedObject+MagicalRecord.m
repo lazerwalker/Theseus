@@ -78,7 +78,7 @@ static NSUInteger defaultBatchSize = kMagicalRecordDefaultBatchSize;
 
 + (NSString *) MR_entityName
 {
-    return [NSStringFromClass(self) substringFromIndex:1];
+    return NSStringFromClass(self);
 }
 
 + (NSEntityDescription *) MR_entityDescriptionInContext:(NSManagedObjectContext *)context

@@ -14,20 +14,17 @@ typedef NS_ENUM(NSUInteger, RawMotionActivityType) {
     RawMotionActivityTypeAutomotive
 };
 
+#import "RawDataPoint.h"
+
 @import CoreMotion;
 
-@interface RawMotionActivity : NSObject
+@interface RawMotionActivity : RawDataPoint
 
-@property (nonatomic) NSDate* timestamp;
++ (NSDate *)mostRecentTimestamp;
+
 @property (nonatomic) RawMotionActivityType activity;
 @property (nonatomic) CMMotionActivityConfidence confidence;
 
 - (void)setupWithMotionActivity:(CMMotionActivity *)activity;
-
-// MagicalRecord
-+ (id) MR_createInContext:(NSManagedObjectContext *)context;
-+ (id) MR_findFirstOrderedByAttribute:(NSString *)attribute ascending:(BOOL)ascending;
-+ (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate *)searchTerm inContext:(NSManagedObjectContext *)context;
-+ (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending inContext:(NSManagedObjectContext *)context;
 
 @end

@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
-#import "_RawLocation.h"
+#import "CDRawLocation.h"
 
-@implementation _RawLocation
+@implementation CDRawLocation
 
 @dynamic timestamp, altitude, horizontalAccuracy, verticalAccuracy, latitude, longitude, speed;
 

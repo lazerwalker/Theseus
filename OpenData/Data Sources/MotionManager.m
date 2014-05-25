@@ -36,7 +36,7 @@
     [self.manager startActivityUpdatesToQueue:NSOperationQueue.mainQueue withHandler:^(CMMotionActivity *activity) {
 
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-            RawMotionActivity *rawActivity = [RawMotionActivity MR_createInContext:localContext];
+            RawMotionActivity *rawActivity = [[RawMotionActivity alloc] initWithContext:localContext];
             [rawActivity setupWithMotionActivity:activity];
         } completion:^(BOOL success, NSError *error) {
             if (success) {
@@ -52,8 +52,7 @@
 
 - (void)fetchUpdatesWhileInactive {
     if (![CMMotionActivityManager isActivityAvailable]) return;
-    RawMotionActivity *mostRecent = [RawMotionActivity MR_findFirstOrderedByAttribute:@"timestamp" ascending:NO];
-    NSDate *date = mostRecent.timestamp ?: [NSDate distantPast];
+    NSDate *date = [RawMotionActivity mostRecentTimestamp];
 
     [self.manager queryActivityStartingFromDate:date toDate:NSDate.date toQueue:self.operationQueue withHandler:^(NSArray *activities, NSError *error) {
 
@@ -64,7 +63,7 @@
 
         [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
             for (CMMotionActivity *activity in activities) {
-                RawMotionActivity *rawActivity = [RawMotionActivity MR_createInContext:localContext];
+                RawMotionActivity *rawActivity = [[RawMotionActivity alloc] initWithContext:localContext];
                 [rawActivity setupWithMotionActivity:activity];
             }
         } completion:^(BOOL success, NSError *error) {

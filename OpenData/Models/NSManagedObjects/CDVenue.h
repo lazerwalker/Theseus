@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
-@interface _Venue : NSManagedObject
+@interface CDVenue : NSManagedObject
 
 @property (nonatomic, retain) NSString* foursquareId;
 @property (nonatomic, retain) NSNumber* latitude;

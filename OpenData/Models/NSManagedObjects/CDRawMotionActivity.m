@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
-#import "_RawMotionActivity.h"
+#import "CDRawMotionActivity.h"
 
-@implementation _RawMotionActivity
+@implementation CDRawMotionActivity
 
 @dynamic timestamp;
 @dynamic activity;

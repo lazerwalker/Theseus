@@ -1,13 +1,16 @@
 //
-//  UntrackedPeriod.h
+//  UntrackedPeriod.m
 //  OpenData
 //
 //  Created by Michael Walker on 5/21/14.
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
-#import "_TimedEvent.h"
+#import "CDUntrackedPeriod.h"
 
-@interface _UntrackedPeriod : NSManagedObject<_TimedEvent>
+@implementation CDUntrackedPeriod
+
+@dynamic startTime;
+@dynamic endTime;
 
 @end

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C1021" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="MovementPath" representedClassName="_MovementPath" syncable="YES">
+    <entity name="MovementPath" representedClassName="_MovementPath" elementID="MovementPath" syncable="YES">
         <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="activity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RawMotionActivity" inverseName="movementPath" inverseEntity="RawMotionActivity" syncable="YES"/>
         <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RawLocation" inverseName="movementPath" inverseEntity="RawLocation" syncable="YES"/>
         <relationship name="stop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Stop" inverseName="movementPaths" inverseEntity="Stop" syncable="YES"/>
     </entity>
-    <entity name="RawLocation" representedClassName="_RawLocation" syncable="YES">
+    <entity name="RawLocation" representedClassName="_RawLocation" elementID="RawLocation" syncable="YES">
         <attribute name="altitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="horizontalAccuracy" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -18,13 +18,13 @@
         <relationship name="movementPath" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MovementPath" inverseName="locations" inverseEntity="MovementPath" syncable="YES"/>
         <relationship name="stop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Stop" inverseName="locations" inverseEntity="Stop" syncable="YES"/>
     </entity>
-    <entity name="RawMotionActivity" representedClassName="_RawMotionActivity" syncable="YES">
+    <entity name="RawMotionActivity" representedClassName="CDRawMotionActivity" elementID="RawMotionActivity" syncable="YES">
         <attribute name="activity" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
         <attribute name="confidence" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="movementPath" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MovementPath" inverseName="activity" inverseEntity="MovementPath" syncable="YES"/>
     </entity>
-    <entity name="Stop" representedClassName="_Stop" syncable="YES">
+    <entity name="Stop" representedClassName="CDStop" elementID="Stop" syncable="YES">
         <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="venueConfirmed" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
@@ -32,11 +32,11 @@
         <relationship name="movementPaths" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="MovementPath" inverseName="stop" inverseEntity="MovementPath" syncable="YES"/>
         <relationship name="venue" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Venue" inverseName="stops" inverseEntity="Venue" syncable="YES"/>
     </entity>
-    <entity name="UntrackedPeriod" representedClassName="_UntrackedPeriod" syncable="YES">
+    <entity name="UntrackedPeriod" representedClassName="CDUntrackedPeriod" elementID="UntrackedPeriod" syncable="YES">
         <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
     </entity>
-    <entity name="Venue" representedClassName="_Venue" syncable="YES">
+    <entity name="Venue" representedClassName="CDVenue" elementID="Venue" syncable="YES">
         <attribute name="foursquareIconPrefix" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="foursquareIconSuffix" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="foursquareId" optional="YES" attributeType="String" syncable="YES"/>
@@ -46,11 +46,11 @@
         <relationship name="stops" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Stop" inverseName="venue" inverseEntity="Stop" syncable="YES"/>
     </entity>
     <elements>
-        <element name="MovementPath" positionX="0" positionY="0" width="128" height="120"/>
-        <element name="RawLocation" positionX="0" positionY="0" width="128" height="180"/>
-        <element name="RawMotionActivity" positionX="0" positionY="0" width="128" height="105"/>
-        <element name="Stop" positionX="0" positionY="0" width="128" height="135"/>
-        <element name="UntrackedPeriod" positionX="0" positionY="0" width="128" height="75"/>
-        <element name="Venue" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="MovementPath" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="RawLocation" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="RawMotionActivity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Stop" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="UntrackedPeriod" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Venue" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

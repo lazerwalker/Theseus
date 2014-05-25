@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
-#import "_MovementPath.h"
-#import "_RawMotionActivity.h"
+#import "CDPath.h"
+#import "CDRawMotionActivity.h"
 
-@implementation _MovementPath
+@implementation CDPath
 
 @dynamic startTime, endTime, locations, activity, stop;
 

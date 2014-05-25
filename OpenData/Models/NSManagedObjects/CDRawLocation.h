@@ -7,7 +7,7 @@
 //
 
 
-@interface _RawLocation : NSManagedObject
+@interface CDRawLocation : NSManagedObject
 
 @property (nonatomic) NSDate *timestamp;
 

@@ -7,16 +7,16 @@
 //
 
 #import "Stop.h"
-#import "_Stop.h"
+#import "CDStop.h"
 #import "Path.h"
 
 @interface Stop ()
-@property (nonatomic, strong) _Stop *model;
+@property (nonatomic, strong) CDStop *model;
 @end
 
 @implementation Stop
 + (Class)modelClass {
-    return _Stop.class;
+    return CDStop.class;
 }
 
 - (void)addPath:(Path *)path {

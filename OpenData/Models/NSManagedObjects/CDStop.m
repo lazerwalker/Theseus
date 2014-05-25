@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
-#import "_Stop.h"
-#import "_MovementPath.h"
+#import "CDStop.h"
+#import "CDPath.h"
 
-@implementation _Stop
+@implementation CDStop
 
 @dynamic startTime, endTime, locations, movementPaths, venue, venueConfirmed;
 

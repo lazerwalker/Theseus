@@ -8,7 +8,7 @@
 
 
 
-@interface _RawMotionActivity : NSManagedObject
+@interface CDRawMotionActivity : NSManagedObject
 
 @property (nonatomic) NSDate* timestamp;
 

@@ -7,12 +7,12 @@
 //
 
 #import "UntrackedPeriod.h"
-#import "_UntrackedPeriod.h"
+#import "CDUntrackedPeriod.h"
 
 @implementation UntrackedPeriod
 
 + (Class)modelClass {
-    return _UntrackedPeriod.class;
+    return CDUntrackedPeriod.class;
 }
 
 @end

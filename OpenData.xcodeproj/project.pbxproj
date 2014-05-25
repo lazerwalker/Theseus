@@ -12,6 +12,7 @@
 		A6107DCE19314B13003B7837 /* DataExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = A6107DC919310B2B003B7837 /* DataExporter.m */; };
 		A61D6461192ABF6800F7EB88 /* AppDelegateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A61D6460192ABF6800F7EB88 /* AppDelegateSpec.m */; };
 		A66211661930507F00982704 /* Configuration.plist.example in Resources */ = {isa = PBXBuildFile; fileRef = A66211651930507F00982704 /* Configuration.plist.example */; };
+		A668A1F0193246ED00C6363F /* RawDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A8750519323B9E00D8C7DD /* RawDataPoint.m */; };
 		A6748A9F192127E90073CE19 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748A9E192127E90073CE19 /* Foundation.framework */; };
 		A6748AA1192127E90073CE19 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748AA0192127E90073CE19 /* CoreGraphics.framework */; };
 		A6748AA3192127E90073CE19 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748AA2192127E90073CE19 /* UIKit.framework */; };
@@ -35,12 +36,12 @@
 		A6A874E919322E7400D8C7DD /* UntrackedPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874E819322E7400D8C7DD /* UntrackedPeriod.m */; };
 		A6A874EC193230C700D8C7DD /* RawLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874EB193230C700D8C7DD /* RawLocation.m */; };
 		A6A874EF1932331300D8C7DD /* RawMotionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874EE1932331300D8C7DD /* RawMotionActivity.m */; };
-		A6A874FC1932355F00D8C7DD /* _MovementPath.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874F11932355F00D8C7DD /* _MovementPath.m */; };
-		A6A874FD1932355F00D8C7DD /* _RawLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874F31932355F00D8C7DD /* _RawLocation.m */; };
-		A6A874FE1932355F00D8C7DD /* _RawMotionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874F51932355F00D8C7DD /* _RawMotionActivity.m */; };
-		A6A874FF1932355F00D8C7DD /* _Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874F71932355F00D8C7DD /* _Stop.m */; };
-		A6A875001932355F00D8C7DD /* _UntrackedPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874F91932355F00D8C7DD /* _UntrackedPeriod.m */; };
-		A6A875011932355F00D8C7DD /* _Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874FB1932355F00D8C7DD /* _Venue.m */; };
+		A6A874FC1932355F00D8C7DD /* CDPath.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874F11932355F00D8C7DD /* CDPath.m */; };
+		A6A874FD1932355F00D8C7DD /* CDRawLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874F31932355F00D8C7DD /* CDRawLocation.m */; };
+		A6A874FE1932355F00D8C7DD /* CDRawMotionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874F51932355F00D8C7DD /* CDRawMotionActivity.m */; };
+		A6A874FF1932355F00D8C7DD /* CDStop.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874F71932355F00D8C7DD /* CDStop.m */; };
+		A6A875001932355F00D8C7DD /* CDUntrackedPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874F91932355F00D8C7DD /* CDUntrackedPeriod.m */; };
+		A6A875011932355F00D8C7DD /* CDVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874FB1932355F00D8C7DD /* CDVenue.m */; };
 		A6A8750319323A0300D8C7DD /* TimedEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A8750219323A0300D8C7DD /* TimedEvent.m */; };
 		A6AAB14A1930512A000DE81E /* Configuration.plist.example in Resources */ = {isa = PBXBuildFile; fileRef = A66211651930507F00982704 /* Configuration.plist.example */; };
 		A6AAB14D19305F70000DE81E /* NSString+TimeFormatterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A6AAB14C19305F70000DE81E /* NSString+TimeFormatterSpec.m */; };
@@ -92,6 +93,8 @@
 		A6107DC919310B2B003B7837 /* DataExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataExporter.m; path = Interfaces/DataExporter.m; sourceTree = "<group>"; };
 		A61D6460192ABF6800F7EB88 /* AppDelegateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegateSpec.m; sourceTree = "<group>"; };
 		A66211651930507F00982704 /* Configuration.plist.example */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Configuration.plist.example; sourceTree = "<group>"; };
+		A668A1EF1932469D00C6363F /* _RawDataPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = _RawDataPoint.h; path = Protocols/_RawDataPoint.h; sourceTree = "<group>"; };
+		A668A1F319324D6300C6363F /* OpenData (2014-05-25).xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OpenData (2014-05-25).xcdatamodel"; sourceTree = "<group>"; };
 		A6748A9B192127E90073CE19 /* OpenData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6748A9E192127E90073CE19 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A6748AA0192127E90073CE19 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -129,19 +132,21 @@
 		A6A874EB193230C700D8C7DD /* RawLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RawLocation.m; path = Models/RawLocation.m; sourceTree = "<group>"; };
 		A6A874ED1932331300D8C7DD /* RawMotionActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RawMotionActivity.h; path = Models/RawMotionActivity.h; sourceTree = "<group>"; };
 		A6A874EE1932331300D8C7DD /* RawMotionActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RawMotionActivity.m; path = Models/RawMotionActivity.m; sourceTree = "<group>"; };
-		A6A874F01932355F00D8C7DD /* _MovementPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _MovementPath.h; path = Models/NSManagedObjects/_MovementPath.h; sourceTree = "<group>"; };
-		A6A874F11932355F00D8C7DD /* _MovementPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _MovementPath.m; path = Models/NSManagedObjects/_MovementPath.m; sourceTree = "<group>"; };
-		A6A874F21932355F00D8C7DD /* _RawLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _RawLocation.h; path = Models/NSManagedObjects/_RawLocation.h; sourceTree = "<group>"; };
-		A6A874F31932355F00D8C7DD /* _RawLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _RawLocation.m; path = Models/NSManagedObjects/_RawLocation.m; sourceTree = "<group>"; };
-		A6A874F41932355F00D8C7DD /* _RawMotionActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _RawMotionActivity.h; path = Models/NSManagedObjects/_RawMotionActivity.h; sourceTree = "<group>"; };
-		A6A874F51932355F00D8C7DD /* _RawMotionActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _RawMotionActivity.m; path = Models/NSManagedObjects/_RawMotionActivity.m; sourceTree = "<group>"; };
-		A6A874F61932355F00D8C7DD /* _Stop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _Stop.h; path = Models/NSManagedObjects/_Stop.h; sourceTree = "<group>"; };
-		A6A874F71932355F00D8C7DD /* _Stop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _Stop.m; path = Models/NSManagedObjects/_Stop.m; sourceTree = "<group>"; };
-		A6A874F81932355F00D8C7DD /* _UntrackedPeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _UntrackedPeriod.h; path = Models/NSManagedObjects/_UntrackedPeriod.h; sourceTree = "<group>"; };
-		A6A874F91932355F00D8C7DD /* _UntrackedPeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _UntrackedPeriod.m; path = Models/NSManagedObjects/_UntrackedPeriod.m; sourceTree = "<group>"; };
-		A6A874FA1932355F00D8C7DD /* _Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _Venue.h; path = Models/NSManagedObjects/_Venue.h; sourceTree = "<group>"; };
-		A6A874FB1932355F00D8C7DD /* _Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _Venue.m; path = Models/NSManagedObjects/_Venue.m; sourceTree = "<group>"; };
+		A6A874F01932355F00D8C7DD /* CDPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDPath.h; path = Models/NSManagedObjects/CDPath.h; sourceTree = "<group>"; };
+		A6A874F11932355F00D8C7DD /* CDPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDPath.m; path = Models/NSManagedObjects/CDPath.m; sourceTree = "<group>"; };
+		A6A874F21932355F00D8C7DD /* CDRawLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDRawLocation.h; path = Models/NSManagedObjects/CDRawLocation.h; sourceTree = "<group>"; };
+		A6A874F31932355F00D8C7DD /* CDRawLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDRawLocation.m; path = Models/NSManagedObjects/CDRawLocation.m; sourceTree = "<group>"; };
+		A6A874F41932355F00D8C7DD /* CDRawMotionActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDRawMotionActivity.h; path = Models/NSManagedObjects/CDRawMotionActivity.h; sourceTree = "<group>"; };
+		A6A874F51932355F00D8C7DD /* CDRawMotionActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDRawMotionActivity.m; path = Models/NSManagedObjects/CDRawMotionActivity.m; sourceTree = "<group>"; };
+		A6A874F61932355F00D8C7DD /* CDStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDStop.h; path = Models/NSManagedObjects/CDStop.h; sourceTree = "<group>"; };
+		A6A874F71932355F00D8C7DD /* CDStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDStop.m; path = Models/NSManagedObjects/CDStop.m; sourceTree = "<group>"; };
+		A6A874F81932355F00D8C7DD /* CDUntrackedPeriod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDUntrackedPeriod.h; path = Models/NSManagedObjects/CDUntrackedPeriod.h; sourceTree = "<group>"; };
+		A6A874F91932355F00D8C7DD /* CDUntrackedPeriod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDUntrackedPeriod.m; path = Models/NSManagedObjects/CDUntrackedPeriod.m; sourceTree = "<group>"; };
+		A6A874FA1932355F00D8C7DD /* CDVenue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDVenue.h; path = Models/NSManagedObjects/CDVenue.h; sourceTree = "<group>"; };
+		A6A874FB1932355F00D8C7DD /* CDVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDVenue.m; path = Models/NSManagedObjects/CDVenue.m; sourceTree = "<group>"; };
 		A6A8750219323A0300D8C7DD /* TimedEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimedEvent.m; path = Models/TimedEvent.m; sourceTree = "<group>"; };
+		A6A8750419323B9E00D8C7DD /* RawDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RawDataPoint.h; path = Models/RawDataPoint.h; sourceTree = "<group>"; };
+		A6A8750519323B9E00D8C7DD /* RawDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RawDataPoint.m; path = Models/RawDataPoint.m; sourceTree = "<group>"; };
 		A6A8750719323BF800D8C7DD /* _TimedEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = _TimedEvent.h; path = Protocols/_TimedEvent.h; sourceTree = "<group>"; };
 		A6AAB14C19305F70000DE81E /* NSString+TimeFormatterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TimeFormatterSpec.m"; path = "Categories/NSString+TimeFormatterSpec.m"; sourceTree = "<group>"; };
 		A6AAB14E1930F548000DE81E /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = "View Controllers/SettingsViewController.h"; sourceTree = "<group>"; };
@@ -180,7 +185,7 @@
 		A6C7CFF3192AAD87001A6DAC /* ConfigurationSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfigurationSpec.m; path = Interfaces/ConfigurationSpec.m; sourceTree = "<group>"; };
 		A6D7DFD8192417B20036C2DF /* DataProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataProcessor.h; path = Interfaces/DataProcessor.h; sourceTree = "<group>"; };
 		A6D7DFD9192417B20036C2DF /* DataProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataProcessor.m; path = Interfaces/DataProcessor.m; sourceTree = "<group>"; };
-		A6F4D9101922CF13006C7034 /* OpenData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OpenData.xcdatamodel; sourceTree = "<group>"; };
+		A6F4D9101922CF13006C7034 /* OpenData (initial).xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OpenData (initial).xcdatamodel"; sourceTree = "<group>"; };
 		A6F4D95C1922D2AA006C7034 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A6F4D96D1922E9F5006C7034 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListViewController.h; path = "View Controllers/ListViewController.h"; sourceTree = "<group>"; };
 		A6F4D96E1922E9F5006C7034 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListViewController.m; path = "View Controllers/ListViewController.m"; sourceTree = "<group>"; };
@@ -221,6 +226,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A668A1F219324D4C00C6363F /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				A6F4D90F1922CF13006C7034 /* OpenData.xcdatamodeld */,
+			);
+			name = "Data Models";
+			sourceTree = "<group>";
+		};
 		A6748A92192127E90073CE19 = {
 			isa = PBXGroup;
 			children = (
@@ -284,11 +297,11 @@
 		A6748AA5192127E90073CE19 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A668A1F219324D4C00C6363F /* Data Models */,
 				A6748AA6192127E90073CE19 /* OpenData-Info.plist */,
 				A6748AA7192127E90073CE19 /* InfoPlist.strings */,
 				A6748AAA192127E90073CE19 /* main.m */,
 				A6748AAC192127E90073CE19 /* OpenData-Prefix.pch */,
-				A6F4D90F1922CF13006C7034 /* OpenData.xcdatamodeld */,
 				A68425CB1923047F0083D006 /* Configuration.plist */,
 			);
 			name = "Supporting Files";
@@ -365,6 +378,8 @@
 				A6A874EE1932331300D8C7DD /* RawMotionActivity.m */,
 				A6B91CFB192E6C8E00F7106E /* TimedEvent.h */,
 				A6A8750219323A0300D8C7DD /* TimedEvent.m */,
+				A6A8750419323B9E00D8C7DD /* RawDataPoint.h */,
+				A6A8750519323B9E00D8C7DD /* RawDataPoint.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -372,18 +387,18 @@
 		A6806ACA19320DB100B2B0F3 /* NSManagedObjects */ = {
 			isa = PBXGroup;
 			children = (
-				A6A874F01932355F00D8C7DD /* _MovementPath.h */,
-				A6A874F11932355F00D8C7DD /* _MovementPath.m */,
-				A6A874F21932355F00D8C7DD /* _RawLocation.h */,
-				A6A874F31932355F00D8C7DD /* _RawLocation.m */,
-				A6A874F41932355F00D8C7DD /* _RawMotionActivity.h */,
-				A6A874F51932355F00D8C7DD /* _RawMotionActivity.m */,
-				A6A874F61932355F00D8C7DD /* _Stop.h */,
-				A6A874F71932355F00D8C7DD /* _Stop.m */,
-				A6A874F81932355F00D8C7DD /* _UntrackedPeriod.h */,
-				A6A874F91932355F00D8C7DD /* _UntrackedPeriod.m */,
-				A6A874FA1932355F00D8C7DD /* _Venue.h */,
-				A6A874FB1932355F00D8C7DD /* _Venue.m */,
+				A6A874F01932355F00D8C7DD /* CDPath.h */,
+				A6A874F11932355F00D8C7DD /* CDPath.m */,
+				A6A874F21932355F00D8C7DD /* CDRawLocation.h */,
+				A6A874F31932355F00D8C7DD /* CDRawLocation.m */,
+				A6A874F41932355F00D8C7DD /* CDRawMotionActivity.h */,
+				A6A874F51932355F00D8C7DD /* CDRawMotionActivity.m */,
+				A6A874F61932355F00D8C7DD /* CDStop.h */,
+				A6A874F71932355F00D8C7DD /* CDStop.m */,
+				A6A874F81932355F00D8C7DD /* CDUntrackedPeriod.h */,
+				A6A874F91932355F00D8C7DD /* CDUntrackedPeriod.m */,
+				A6A874FA1932355F00D8C7DD /* CDVenue.h */,
+				A6A874FB1932355F00D8C7DD /* CDVenue.m */,
 			);
 			name = NSManagedObjects;
 			sourceTree = "<group>";
@@ -435,6 +450,7 @@
 			children = (
 				A6B91D13192E866500F7106E /* TimelineCell.h */,
 				A6A8750719323BF800D8C7DD /* _TimedEvent.h */,
+				A668A1EF1932469D00C6363F /* _RawDataPoint.h */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -689,23 +705,24 @@
 				A6A8750319323A0300D8C7DD /* TimedEvent.m in Sources */,
 				A6B91D08192E737200F7106E /* UITableViewCell+ReuseIdentifier.m in Sources */,
 				A6B91D0B192E768800F7106E /* UITableViewCell+TimelineCell.m in Sources */,
-				A6A875001932355F00D8C7DD /* _UntrackedPeriod.m in Sources */,
-				A6A875011932355F00D8C7DD /* _Venue.m in Sources */,
+				A6A875001932355F00D8C7DD /* CDUntrackedPeriod.m in Sources */,
+				A6A875011932355F00D8C7DD /* CDVenue.m in Sources */,
 				A6B91D1C1930017200F7106E /* DayPresenter.m in Sources */,
-				A6A874FE1932355F00D8C7DD /* _RawMotionActivity.m in Sources */,
+				A6A874FE1932355F00D8C7DD /* CDRawMotionActivity.m in Sources */,
 				A6107DCE19314B13003B7837 /* DataExporter.m in Sources */,
 				A6F4D9731922FE33006C7034 /* FoursquareClient.m in Sources */,
 				A6748AD7192128D70073CE19 /* LocationManager.m in Sources */,
 				A6BD97BA192A4B2900264548 /* VenueListViewController.m in Sources */,
 				A6806ACD1932170A00B2B0F3 /* Stop.m in Sources */,
 				A6C7CFF0192AAD2A001A6DAC /* Configuration.m in Sources */,
-				A6A874FD1932355F00D8C7DD /* _RawLocation.m in Sources */,
+				A6A874FD1932355F00D8C7DD /* CDRawLocation.m in Sources */,
 				A6A874EC193230C700D8C7DD /* RawLocation.m in Sources */,
+				A668A1F0193246ED00C6363F /* RawDataPoint.m in Sources */,
 				A6B91D19192FA98F00F7106E /* DaysAgoDataSource.m in Sources */,
 				A6AAB1501930F548000DE81E /* SettingsViewController.m in Sources */,
 				A6A874E31932270000D8C7DD /* Path.m in Sources */,
 				A68425CA192302CB0083D006 /* FoursquareVenue.m in Sources */,
-				A6A874FC1932355F00D8C7DD /* _MovementPath.m in Sources */,
+				A6A874FC1932355F00D8C7DD /* CDPath.m in Sources */,
 				A6F4D96F1922E9F5006C7034 /* ListViewController.m in Sources */,
 				A6748ADE1921344F0073CE19 /* MotionManager.m in Sources */,
 				A6748AB5192127E90073CE19 /* MapViewController.m in Sources */,
@@ -718,7 +735,7 @@
 				A6B91D16192EA60200F7106E /* NSString+TimeFormatter.m in Sources */,
 				A6B91D0E192E76DA00F7106E /* PathTimelineCell.m in Sources */,
 				A6F4D9111922CF13006C7034 /* OpenData.xcdatamodeld in Sources */,
-				A6A874FF1932355F00D8C7DD /* _Stop.m in Sources */,
+				A6A874FF1932355F00D8C7DD /* CDStop.m in Sources */,
 				A6B91D11192E770C00F7106E /* UntrackedPeriodTimelineCell.m in Sources */,
 				A6A874EF1932331300D8C7DD /* RawMotionActivity.m in Sources */,
 			);
@@ -957,9 +974,10 @@
 		A6F4D90F1922CF13006C7034 /* OpenData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				A6F4D9101922CF13006C7034 /* OpenData.xcdatamodel */,
+				A668A1F319324D6300C6363F /* OpenData (2014-05-25).xcdatamodel */,
+				A6F4D9101922CF13006C7034 /* OpenData (initial).xcdatamodel */,
 			);
-			currentVersion = A6F4D9101922CF13006C7034 /* OpenData.xcdatamodel */;
+			currentVersion = A668A1F319324D6300C6363F /* OpenData (2014-05-25).xcdatamodel */;
 			path = OpenData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

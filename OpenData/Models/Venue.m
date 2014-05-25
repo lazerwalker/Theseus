@@ -7,17 +7,17 @@
 //
 
 #import "Venue.h"
-#import "_Venue.h"
+#import "CDVenue.h"
 #import "FoursquareVenue.h"
 
 @interface Venue ()
-@property (nonatomic, strong) _Venue *model;
+@property (nonatomic, strong) CDVenue *model;
 @end
 
 @implementation Venue
 
 + (Class)modelClass {
-    return _Venue.class;
+    return CDVenue.class;
 }
 
 - (void)setupWithFoursquareVenue:(FoursquareVenue *)venue {

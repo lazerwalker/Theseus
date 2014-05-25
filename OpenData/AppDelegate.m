@@ -67,7 +67,7 @@
     self.motionManager = [MotionManager new];
     [self.motionManager startMonitoring];
 
-    [DataProcessor.sharedInstance processNewData];
+//    [DataProcessor.sharedInstance processNewData];
 }
 
 #pragma mark - Dropbox

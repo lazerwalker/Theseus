@@ -7,16 +7,16 @@
 //
 
 #import "Path.h"
-#import "_MovementPath.h"
+#import "CDPath.h"
 #import "RawMotionActivity.h"
 
 @interface Path ()
-@property (nonatomic, strong) _MovementPath *model;
+@property (nonatomic, strong) CDPath *model;
 @end
 
 @implementation Path
 + (Class)modelClass {
-    return _MovementPath.class;
+    return CDPath.class;
 }
 
 - (NSString *)typeString {
@@ -49,11 +49,11 @@
     return self.model.locations;
 }
 
-- (_RawMotionActivity *)activity {
+- (CDRawMotionActivity *)activity {
     return self.model.activity;
 }
 
-- (void)setActivity:(_RawMotionActivity *)activity {
+- (void)setActivity:(CDRawMotionActivity *)activity {
     self.model.activity = activity;
 }
 

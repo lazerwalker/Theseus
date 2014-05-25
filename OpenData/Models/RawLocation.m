@@ -7,16 +7,16 @@
 //
 
 #import "RawLocation.h"
-#import "_RawLocation.h"
+#import "CDRawLocation.h"
 
 @interface RawLocation ()
-@property (nonatomic, strong) _RawLocation *model;
+@property (nonatomic, strong) CDRawLocation *model;
 @end
 
 @implementation RawLocation
 
 + (Class)modelClass {
-    return _RawLocation.class;
+    return CDRawLocation.class;
 }
 
 - (void)setupWithLocation:(CLLocation *)location {
@@ -86,19 +86,5 @@
 - (void)setSpeed:(CLLocationSpeed)speed {
     self.model.speed = @(speed);
 }
-
-#pragma mark - MagicalRecord
-+ (id) MR_createInContext:(NSManagedObjectContext *)context {
-    return [self.modelClass MR_createInContext:context];
-}
-
-+ (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate *)searchTerm inContext:(NSManagedObjectContext *)context {
-    return [self.modelClass MR_findAllSortedBy:sortTerm ascending:ascending withPredicate:searchTerm inContext:context];
-}
-
-+ (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending inContext:(NSManagedObjectContext *)context {
-    return [self.modelClass MR_findAllSortedBy:sortTerm ascending:ascending inContext:context];
-}
-
 
 @end

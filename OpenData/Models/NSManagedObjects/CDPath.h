@@ -8,13 +8,13 @@
 
 #import "_TimedEvent.h"
 
-@class _RawMotionActivity;
-@class _Stop;
+@class CDRawMotionActivity;
+@class CDStop;
 
-@interface _MovementPath : NSManagedObject<_TimedEvent>
+@interface CDPath : NSManagedObject<_TimedEvent>
 
 @property (nonatomic, strong) NSSet *locations;
-@property (nonatomic, strong) _RawMotionActivity *activity;
-@property (nonatomic, strong) _Stop *stop;
+@property (nonatomic, strong) CDRawMotionActivity *activity;
+@property (nonatomic, strong) CDStop *stop;
 
 @end

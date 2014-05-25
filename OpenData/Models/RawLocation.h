@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
+#import "RawDataPoint.h"
 @import MapKit;
 
-@interface RawLocation : NSObject
+@interface RawLocation : RawDataPoint
 
-@property (nonatomic) NSDate *timestamp;
 @property (nonatomic) CLLocationCoordinate2D coordinate;
 @property (nonatomic) CLLocationDistance altitude;
 @property (nonatomic) CLLocationSpeed speed;
@@ -19,10 +19,5 @@
 
 - (void)setupWithLocation:(CLLocation *)location;
 - (CLLocationDistance)distanceFromLocation:(RawLocation *)location;
-
-// MagicalRecord
-+ (id) MR_createInContext:(NSManagedObjectContext *)context;
-+ (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate *)searchTerm inContext:(NSManagedObjectContext *)context;
-+ (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending inContext:(NSManagedObjectContext *)context;
 
 @end

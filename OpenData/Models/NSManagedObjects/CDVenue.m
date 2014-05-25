@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
-#import "_Venue.h"
+#import "CDVenue.h"
 #import "FoursquareVenue.h"
 
-@implementation _Venue
+@implementation CDVenue
 
 @dynamic foursquareId;
 @dynamic foursquareIconSuffix;

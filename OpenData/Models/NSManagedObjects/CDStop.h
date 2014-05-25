@@ -8,14 +8,14 @@
 
 #import "_TimedEvent.h"
 
-@class _MovementPath;
-@class _Venue;
+@class CDPath;
+@class CDVenue;
 
-@interface _Stop : NSManagedObject<_TimedEvent>
+@interface CDStop : NSManagedObject<_TimedEvent>
 
 @property (nonatomic) NSSet *locations;
 @property (nonatomic) NSSet *movementPaths;
 @property (nonatomic) NSNumber *venueConfirmed;
-@property (nonatomic) _Venue *venue;
+@property (nonatomic) CDVenue *venue;
 
 @end

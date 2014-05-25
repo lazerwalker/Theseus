@@ -7,16 +7,21 @@
 //
 
 #import "RawMotionActivity.h"
-#import "_RawMotionActivity.h"
+#import "CDRawMotionActivity.h"
 
 @interface RawMotionActivity ()
-@property (nonatomic) _RawMotionActivity *model;
+@property (nonatomic) CDRawMotionActivity *model;
 @end
 
 @implementation RawMotionActivity
 
 + (Class)modelClass {
-    return _RawMotionActivity.class;
+    return CDRawMotionActivity.class;
+}
+
++ (NSDate *)mostRecentTimestamp {
+    RawMotionActivity *activity = [self.modelClass MR_findFirstOrderedByAttribute:@"timestamp" ascending:NO];
+    return activity.timestamp ?: [NSDate distantPast];
 }
 
 - (void)setupWithMotionActivity:(CMMotionActivity *)activity {
@@ -36,15 +41,7 @@
     }
 }
 
-#pragma mark - Core Data accessors
-- (NSDate *)timestamp {
-    return self.model.timestamp;
-}
-
-- (void)setTimestamp:(NSDate *)timestamp {
-    self.model.timestamp = timestamp;
-}
-
+#pragma mark - Accessors
 - (RawMotionActivityType)activity {
     return (RawMotionActivityType)self.model.activity.integerValue;
 }
@@ -59,22 +56,5 @@
 
 - (void)setConfidence:(CMMotionActivityConfidence)confidence {
     self.model.confidence = @(confidence);
-}
-
-#pragma mark - MagicalRecord
-+ (id) MR_createInContext:(NSManagedObjectContext *)context {
-    return [self.modelClass MR_createInContext:context];
-}
-
-+ (id) MR_findFirstOrderedByAttribute:(NSString *)attribute ascending:(BOOL)ascending {
-    return [self.modelClass MR_findFirstOrderedByAttribute:attribute ascending:ascending];
-}
-
-+ (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate *)searchTerm inContext:(NSManagedObjectContext *)context {
-    return [self.modelClass MR_findAllSortedBy:sortTerm ascending:ascending withPredicate:searchTerm inContext:context];
-}
-
-+ (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending inContext:(NSManagedObjectContext *)context {
-    return [self.modelClass MR_findAllSortedBy:sortTerm ascending:ascending inContext:context];
 }
 @end

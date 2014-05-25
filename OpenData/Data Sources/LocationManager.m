@@ -42,7 +42,7 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
         for (CLLocation *location in locations) {
-            RawLocation *rawLocation = [RawLocation MR_createInContext:localContext];
+            RawLocation *rawLocation = [[RawLocation alloc] initWithContext:localContext];
             [rawLocation setupWithLocation:location];
         }
     }];
