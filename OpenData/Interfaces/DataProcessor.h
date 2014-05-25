@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
-extern NSString * const DataProcessorDidFinishProcessingNotification;
+extern NSString *DataProcessorDidFinishProcessingNotification;
 
 @interface DataProcessor : NSObject
 

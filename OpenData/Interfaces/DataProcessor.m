@@ -13,7 +13,7 @@
 #import "Path.h"
 #import "UntrackedPeriod.h"
 
-NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorDidFinishProcessingNotification";
+NSString *DataProcessorDidFinishProcessingNotification = @"DataProcessorDidFinishProcessingNotification";
 
 @interface DataProcessor ()
 
