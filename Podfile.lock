@@ -1,4 +1,5 @@
 PODS:
+  - Asterism (1.0.0-RC3)
   - Dropbox-iOS-SDK (1.3.10)
   - Expecta (0.3.0)
   - MagicalRecord (2.2):
@@ -23,6 +24,7 @@ PODS:
   - Specta (0.2.1)
 
 DEPENDENCIES:
+  - Asterism (= 1.0.0-RC3)
   - Dropbox-iOS-SDK
   - Expecta
   - MagicalRecord
@@ -33,6 +35,7 @@ DEPENDENCIES:
   - Specta
 
 SPEC CHECKSUMS:
+  Asterism: 6e29615a8106e2a8f3000b0d771f106c9d415d18
   Dropbox-iOS-SDK: 9cc160cd7fa2edfae25adf11346bff3496d6dbad
   Expecta: 322f1dc42610106a5ba9871b4924cf1635d80833
   MagicalRecord: 95d49d74ef752cd52f6ad87bcb474817fc3978cf

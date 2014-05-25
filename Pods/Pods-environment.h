@@ -6,6 +6,12 @@
 // project.
 
 
+// Asterism
+#define COCOAPODS_POD_AVAILABLE_Asterism
+#define COCOAPODS_VERSION_MAJOR_Asterism 1
+#define COCOAPODS_VERSION_MINOR_Asterism 0
+#define COCOAPODS_VERSION_PATCH_Asterism 0
+
 // Dropbox-iOS-SDK
 #define COCOAPODS_POD_AVAILABLE_Dropbox_iOS_SDK
 #define COCOAPODS_VERSION_MAJOR_Dropbox_iOS_SDK 1
