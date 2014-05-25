@@ -17,6 +17,8 @@
 
 static NSString * const CellIdentifier = @"cell";
 
+static CGFloat NearbyLocalResultsRadius = 0.01;
+
 typedef NS_ENUM(NSUInteger, TableSections) {
     TableSectionNewResult,
     TableSectionLocalResults,
@@ -192,7 +194,7 @@ typedef NS_ENUM(NSUInteger, TableSections) {
 
 #pragma mark - Private
 - (void)fetchLocalNearbyResults {
-    NSPredicate *nearby = [NSPredicate predicateWithFormat:@"(latitude > %@) AND (latitude < %@) AND (longitude > %@) AND (longitude < %@)", @(self.stop.coordinate.latitude - 0.1), @(self.stop.coordinate.latitude + 0.1), @(self.stop.coordinate.longitude - 0.1), @(self.stop.coordinate.longitude + 0.1)];
+    NSPredicate *nearby = [NSPredicate predicateWithFormat:@"(latitude > %@) AND (latitude < %@) AND (longitude > %@) AND (longitude < %@)", @(self.stop.coordinate.latitude - NearbyLocalResultsRadius), @(self.stop.coordinate.latitude + NearbyLocalResultsRadius), @(self.stop.coordinate.longitude - NearbyLocalResultsRadius), @(self.stop.coordinate.longitude + NearbyLocalResultsRadius)];
     NSArray *results = [Venue MR_findAllWithPredicate:nearby];
     self.localResults = [results sortedArrayUsingComparator:^NSComparisonResult(Venue *obj1, Venue *obj2) {
         NSNumber *distance1 = @([self.stop distanceFromCoordinate:obj1.coordinate]);
