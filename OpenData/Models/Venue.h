@@ -8,12 +8,14 @@
 
 @import CoreLocation;
 
+@class CDVenue;
 @class FoursquareVenue;
 
 @interface Venue : NSObject
 
-@property (nonatomic, readonly) NSString* foursquareId;
-@property (nonatomic, strong) NSString* name;
+@property (nonatomic) CDVenue *model;
+@property (nonatomic) NSString *name;
+@property (nonatomic, readonly) NSString *foursquareId;
 @property (nonatomic, readonly) NSSet *stops;
 
 @property (nonatomic) CLLocationCoordinate2D coordinate;
@@ -22,12 +24,13 @@
 @property (nonatomic, retain) NSString* foursquareIconSuffix;
 @property (nonatomic, retain) NSString* foursquareIconPrefix;
 
+- (id)initWithModel:(CDVenue *)model;
+
+- (void)destroy;
 - (void)setupWithFoursquareVenue:(FoursquareVenue *)venue;
 
 // MagicalRecord methods to remove
-+ (id)MR_createEntity;
 + (id)MR_findFirstByAttribute:(NSString *)attribute withValue:(id)searchValue;
 + (NSArray *) MR_findAllWithPredicate:(NSPredicate *)searchTerm;
-- (BOOL)MR_deleteEntity;
 
 @end

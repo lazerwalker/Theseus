@@ -13,6 +13,7 @@
 #import "RawLocation.h"
 #import "CDPath.h"
 #import "CDRawLocation.h"
+#import "Venue.h"
 
 #import <Asterism.h>
 
@@ -92,6 +93,14 @@
     return ASTMap(paths, ^id(CDPath *path) {
         return [[Path alloc] initWithModel:path context:self.context];
     });
+}
+
+- (Venue *)venue {
+    return [[Venue alloc] initWithModel:self.model.venue];
+}
+
+- (void)setVenue:(Venue *)venue {
+    self.model.venue = venue.model;
 }
 
 @end

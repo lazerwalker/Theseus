@@ -110,7 +110,7 @@ typedef NS_ENUM(NSUInteger, TableSections) {
 
     Venue *venue;
     if (indexPath.section == TableSectionNewResult) {
-        venue = [Venue MR_createEntity];
+        venue = [Venue new];
         venue.coordinate = self.stop.coordinate;
         venue.name = self.searchBar.text;
     } else if (indexPath.section == TableSectionLocalResults) {
@@ -119,7 +119,7 @@ typedef NS_ENUM(NSUInteger, TableSections) {
         FoursquareVenue *foursquareVenue = self.results[indexPath.row];
         venue = [Venue MR_findFirstByAttribute:@"foursquareId" withValue:foursquareVenue.foursquareId];
         if (!venue) {
-            venue = [Venue MR_createEntity];
+            venue = [Venue new];
             [venue setupWithFoursquareVenue:foursquareVenue];
         }
     }

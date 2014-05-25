@@ -131,7 +131,7 @@
         [MagicalRecord saveUsingCurrentThreadContextWithBlock:^(NSManagedObjectContext *localContext) {
             Venue *oldVenue = stop.venue;
             if (oldVenue && oldVenue.stops.count == 1) {
-                [oldVenue MR_deleteEntity];
+                [oldVenue destroy];
             }
 
             stop.venue = venue;

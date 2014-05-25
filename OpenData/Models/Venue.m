@@ -10,9 +10,7 @@
 #import "CDVenue.h"
 #import "FoursquareVenue.h"
 
-@interface Venue ()
-@property (nonatomic, strong) CDVenue *model;
-@end
+#import <Asterism.h>
 
 @implementation Venue
 
@@ -20,9 +18,26 @@
     return CDVenue.class;
 }
 
+- (id)initWithModel:(CDVenue *)model {
+    if (!model) return nil;
+    if (!(self = [super init])) return nil;
+    self.model = model;
+    return self;
+}
+
+- (id)init {
+    if (!(self = [super init])) return nil;
+    self.model = [CDVenue MR_createEntity];
+    return self;
+}
+
+- (void)destroy {
+    [self.model MR_deleteEntity];
+}
+
 - (void)setupWithFoursquareVenue:(FoursquareVenue *)venue {
-    self.model.name = venue.name;
-    self.model.foursquareId = venue.foursquareId;
+    self.name = venue.name;
+    self.foursquareId = venue.foursquareId;
     self.model.latitude = venue.latitude;
     self.model.longitude = venue.longitude;
 
@@ -50,6 +65,10 @@
     return self.model.foursquareId;
 }
 
+- (void)setFoursquareId:(NSString *)foursquareId {
+    self.model.foursquareId = foursquareId;
+}
+
 - (NSString *)name {
     return self.model.name;
 }
@@ -63,20 +82,16 @@
 }
 
 #pragma mark - Magical Record
-+ (id)MR_createEntity {
-    return [self.modelClass MR_createEntity];
++ (id)MR_findFirstByAttribute:(NSString *)attribute withValue:(id)searchValue {
+    CDVenue *venue = [self.modelClass MR_findFirstByAttribute:attribute withValue:searchValue];
+    return [[self alloc] initWithModel:venue];
 }
 
-- (BOOL)MR_deleteEntity {
-    return [self.model MR_deleteEntity];
-}
-
-+ (id) MR_findFirstByAttribute:(NSString *)attribute withValue:(id)searchValue {
-    return [self.modelClass MR_findFirstByAttribute:attribute withValue:searchValue];
-}
-
-+ (NSArray *) MR_findAllWithPredicate:(NSPredicate *)searchTerm {
-    return [self.modelClass MR_findAllWithPredicate:searchTerm];
++ (NSArray *)MR_findAllWithPredicate:(NSPredicate *)searchTerm {
+    NSArray *array = [self.modelClass MR_findAllWithPredicate:searchTerm];
+    return ASTMap(array, ^id(CDVenue *venue) {
+        return [[self alloc] initWithModel:venue];
+    });
 }
 
 @end
