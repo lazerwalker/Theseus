@@ -31,6 +31,7 @@
 }
 
 - (id)initWithModel:(NSManagedObject<CDTimedEvent> *)model {
+    if (!model) return nil;
     if (!(self = [super init])) return nil;
     self.model = model;
     return self;
@@ -38,6 +39,7 @@
 
 - (id)initWithModel:(NSManagedObject<CDTimedEvent> *)model
             context:(NSManagedObjectContext *)context {
+    if (!model) return nil;
     if (!(self = [super init])) return nil;
     self.model = model;
     self.context = context;

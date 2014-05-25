@@ -11,6 +11,7 @@
 
 #import "RawMotionActivity.h"
 #import "RawLocation.h"
+#import "CDRawMotionActivity.h"
 #import "CDRawLocation.h"
 
 #import <Asterism.h>
@@ -69,12 +70,12 @@
     self.model.locations = coreDataObjects;
 }
 
-- (CDRawMotionActivity *)activity {
-    return self.model.activity;
+- (RawMotionActivity *)activity {
+    return [[RawMotionActivity alloc] initWithModel:self.model.activity];
 }
 
-- (void)setActivity:(CDRawMotionActivity *)activity {
-    self.model.activity = activity;
+- (void)setActivity:(RawMotionActivity *)activity {
+    self.model.activity = (CDRawMotionActivity *)activity.model;
 }
 
 @end

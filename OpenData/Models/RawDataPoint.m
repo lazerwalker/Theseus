@@ -29,6 +29,7 @@
 }
 
 - (id)initWithModel:(NSManagedObject<CDRawDataPoint> *)model {
+    if (!model) return nil;
     if (!(self = [super init])) return nil;
     self.model = model;
     return self;
@@ -36,6 +37,7 @@
 
 - (id)initWithModel:(NSManagedObject<CDRawDataPoint> *)model
             context:(NSManagedObjectContext *)context {
+    if (!model) return nil;
     if (!(self = [super init])) return nil;
     self.model = model;
     self.context = context;

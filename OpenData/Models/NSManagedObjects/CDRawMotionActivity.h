@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
+#import "CDRawDataPoint.h"
 
-
-@interface CDRawMotionActivity : NSManagedObject
+@interface CDRawMotionActivity : NSManagedObject<CDRawDataPoint>
 
 @property (nonatomic) NSDate* timestamp;
 
