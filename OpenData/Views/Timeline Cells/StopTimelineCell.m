@@ -65,16 +65,17 @@
 
     self.venueLabel = [UILabel new];
     self.venueLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.venueLabel.font = [UIFont fontWithName:@"STHeitiTC-Medium" size:22.0];
     [self.contentView addSubview:self.venueLabel];
 
     self.startTime = [UILabel new];
     self.startTime.translatesAutoresizingMaskIntoConstraints = NO;
-    self.startTime.font = [UIFont systemFontOfSize:10.0];
+    self.startTime.font = [UIFont fontWithName:@"STHeitiTC-Light" size:10.0];
     [self.contentView addSubview:self.startTime];
 
     self.endTime = [UILabel new];
     self.endTime.translatesAutoresizingMaskIntoConstraints = NO;
-    self.endTime.font = [UIFont systemFontOfSize:10.0];
+    self.endTime.font = [UIFont fontWithName:@"STHeitiTC-Light" size:10.0];
     [self.contentView addSubview:self.endTime];
 
     [self setNeedsUpdateConstraints];

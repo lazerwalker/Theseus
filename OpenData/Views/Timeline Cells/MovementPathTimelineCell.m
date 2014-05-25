@@ -47,13 +47,14 @@
 
     self.descriptionLabel = [UILabel new];
     self.descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.descriptionLabel.font = [UIFont fontWithName:@"STHeitiTC-Light" size:14.0];
+
     [self.contentView addSubview:self.descriptionLabel];
 
     self.startTime = [UILabel new];
     self.startTime.translatesAutoresizingMaskIntoConstraints = NO;
-    self.startTime.font = [UIFont systemFontOfSize:10.0];
+    self.startTime.font = [UIFont fontWithName:@"STHeitiTC-Light" size:10.0];
     [self.contentView addSubview:self.startTime];
-    [self setNeedsUpdateConstraints];
 
     [self setNeedsUpdateConstraints];
 }
