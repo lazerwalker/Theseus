@@ -47,6 +47,7 @@
 
     self.descriptionLabel = [UILabel new];
     self.descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.descriptionLabel.textColor = [UIColor darkGrayColor];
     self.descriptionLabel.font = [UIFont fontWithName:@"STHeitiTC-Light" size:12.0];
 
     [self.contentView addSubview:self.descriptionLabel];
