@@ -51,7 +51,7 @@
 
     self.descriptionLabel = [UILabel new];
     self.descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    self.descriptionLabel.font = [UIFont fontWithName:@"STHeitiTC-Light" size:14.0];
+    self.descriptionLabel.font = [UIFont fontWithName:@"STHeitiTC-Light" size:12.0];
     [self.contentView addSubview:self.descriptionLabel];
 
     self.traintrackTop = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 16, TimelineLineWidth.floatValue)];
