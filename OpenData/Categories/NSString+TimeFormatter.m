@@ -17,8 +17,8 @@
 
     NSDateComponents *components = [calendar components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:d1 toDate:d2 options:0];
 
-    NSString *minuteString = [NSString stringWithFormat:@"%lum", (long)components.minute];
-    NSString *hourString = [NSString stringWithFormat:@"%luh", (long)components.hour];
+    NSString *minuteString = [NSString stringWithFormat:@"%lu min", (long)components.minute];
+    NSString *hourString = [NSString stringWithFormat:@"%lu hr", (long)components.hour];
 
     if (components.hour == 0) {
         return minuteString;
