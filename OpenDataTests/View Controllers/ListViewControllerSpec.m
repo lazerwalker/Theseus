@@ -21,7 +21,7 @@
 #import "Path.h"
 #import "UntrackedPeriod.h"
 #import "StopTimelineCell.h"
-#import "MovementPathTimelineCell.h"
+#import "PathTimelineCell.h"
 #import "UntrackedPeriodTimelineCell.h"
 #import "VenueListViewController.h"
 #import "SettingsViewController.h"
@@ -224,7 +224,7 @@ describe(@"ListViewController", ^{
             context(@"when the event is a MovementPath", ^{
                 it(@"should return a Stop cell", ^{
                     UITableViewCell *cell = [controller tableView:controller.tableView cellForRowAtIndexPath:pathIndexPath];
-                    expect(cell).to.beAnInstanceOf(MovementPathTimelineCell.class);
+                    expect(cell).to.beAnInstanceOf(PathTimelineCell.class);
                 });
             });
 

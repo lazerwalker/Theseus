@@ -8,7 +8,7 @@
 
 @protocol TimedEvent;
 
-@interface MovementPathTimelineCell : UITableViewCell
+@interface PathTimelineCell : UITableViewCell
 
 @property (nonatomic, assign) BOOL isFirstEvent;
 @property (nonatomic, assign) BOOL isNow;

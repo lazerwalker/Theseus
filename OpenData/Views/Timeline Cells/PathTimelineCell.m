@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
-#import "MovementPathTimelineCell.h"
+#import "PathTimelineCell.h"
 #import "UITableViewCell+TimelineCell.h"
 #import "Path.h"
 
 #import "NSString+TimeFormatter.h"
 
-@interface MovementPathTimelineCell ()
+@interface PathTimelineCell ()
 @property (nonatomic, strong) UIView *line;
 @property (nonatomic, strong) UILabel *descriptionLabel;
 
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation MovementPathTimelineCell
+@implementation PathTimelineCell
 
 + (CGFloat)heightForTimedEvent:(Path *)path {
     CGFloat duration = path.duration / 60;

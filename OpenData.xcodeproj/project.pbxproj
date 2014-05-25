@@ -49,7 +49,7 @@
 		A6B91D03192E70BF00F7106E /* StopTimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D02192E70BF00F7106E /* StopTimelineCell.m */; };
 		A6B91D08192E737200F7106E /* UITableViewCell+ReuseIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D07192E737200F7106E /* UITableViewCell+ReuseIdentifier.m */; };
 		A6B91D0B192E768800F7106E /* UITableViewCell+TimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D0A192E768800F7106E /* UITableViewCell+TimelineCell.m */; };
-		A6B91D0E192E76DA00F7106E /* MovementPathTimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D0D192E76DA00F7106E /* MovementPathTimelineCell.m */; };
+		A6B91D0E192E76DA00F7106E /* PathTimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D0D192E76DA00F7106E /* PathTimelineCell.m */; };
 		A6B91D11192E770C00F7106E /* UntrackedPeriodTimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D10192E770C00F7106E /* UntrackedPeriodTimelineCell.m */; };
 		A6B91D16192EA60200F7106E /* NSString+TimeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D15192EA60200F7106E /* NSString+TimeFormatter.m */; };
 		A6B91D19192FA98F00F7106E /* DaysAgoDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D18192FA98F00F7106E /* DaysAgoDataSource.m */; };
@@ -153,8 +153,8 @@
 		A6B91D07192E737200F7106E /* UITableViewCell+ReuseIdentifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableViewCell+ReuseIdentifier.m"; path = "Categories/UITableViewCell+ReuseIdentifier.m"; sourceTree = "<group>"; };
 		A6B91D09192E768800F7106E /* UITableViewCell+TimelineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableViewCell+TimelineCell.h"; path = "Categories/UITableViewCell+TimelineCell.h"; sourceTree = "<group>"; };
 		A6B91D0A192E768800F7106E /* UITableViewCell+TimelineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableViewCell+TimelineCell.m"; path = "Categories/UITableViewCell+TimelineCell.m"; sourceTree = "<group>"; };
-		A6B91D0C192E76DA00F7106E /* MovementPathTimelineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovementPathTimelineCell.h; path = "Views/Timeline Cells/MovementPathTimelineCell.h"; sourceTree = "<group>"; };
-		A6B91D0D192E76DA00F7106E /* MovementPathTimelineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovementPathTimelineCell.m; path = "Views/Timeline Cells/MovementPathTimelineCell.m"; sourceTree = "<group>"; };
+		A6B91D0C192E76DA00F7106E /* PathTimelineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PathTimelineCell.h; path = "Views/Timeline Cells/PathTimelineCell.h"; sourceTree = "<group>"; };
+		A6B91D0D192E76DA00F7106E /* PathTimelineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PathTimelineCell.m; path = "Views/Timeline Cells/PathTimelineCell.m"; sourceTree = "<group>"; };
 		A6B91D0F192E770C00F7106E /* UntrackedPeriodTimelineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UntrackedPeriodTimelineCell.h; path = Categories/UntrackedPeriodTimelineCell.h; sourceTree = "<group>"; };
 		A6B91D10192E770C00F7106E /* UntrackedPeriodTimelineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UntrackedPeriodTimelineCell.m; path = Categories/UntrackedPeriodTimelineCell.m; sourceTree = "<group>"; };
 		A6B91D13192E866500F7106E /* TimelineCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TimelineCell.h; path = Protocols/TimelineCell.h; sourceTree = "<group>"; };
@@ -408,8 +408,8 @@
 			children = (
 				A6B91D01192E70BF00F7106E /* StopTimelineCell.h */,
 				A6B91D02192E70BF00F7106E /* StopTimelineCell.m */,
-				A6B91D0C192E76DA00F7106E /* MovementPathTimelineCell.h */,
-				A6B91D0D192E76DA00F7106E /* MovementPathTimelineCell.m */,
+				A6B91D0C192E76DA00F7106E /* PathTimelineCell.h */,
+				A6B91D0D192E76DA00F7106E /* PathTimelineCell.m */,
 				A6B91D0F192E770C00F7106E /* UntrackedPeriodTimelineCell.h */,
 				A6B91D10192E770C00F7106E /* UntrackedPeriodTimelineCell.m */,
 			);
@@ -714,7 +714,7 @@
 				A6748AAB192127E90073CE19 /* main.m in Sources */,
 				A6C7CFE1192A7FF1001A6DAC /* OpenData.m in Sources */,
 				A6B91D16192EA60200F7106E /* NSString+TimeFormatter.m in Sources */,
-				A6B91D0E192E76DA00F7106E /* MovementPathTimelineCell.m in Sources */,
+				A6B91D0E192E76DA00F7106E /* PathTimelineCell.m in Sources */,
 				A6F4D9111922CF13006C7034 /* OpenData.xcdatamodeld in Sources */,
 				A6A874FF1932355F00D8C7DD /* _Stop.m in Sources */,
 				A6B91D11192E770C00F7106E /* UntrackedPeriodTimelineCell.m in Sources */,

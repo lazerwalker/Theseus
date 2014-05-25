@@ -14,7 +14,7 @@
 #import "TimelineCell.h"
 
 #import "StopTimelineCell.h"
-#import "MovementPathTimelineCell.h"
+#import "PathTimelineCell.h"
 #import "UntrackedPeriodTimelineCell.h"
 
 #import "DayPresenter.h"
@@ -62,7 +62,7 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(didTapSettingsButton)];
 
     [self.tableView registerClass:[StopTimelineCell class] forCellReuseIdentifier:[StopTimelineCell reuseIdentifier]];
-    [self.tableView registerClass:[MovementPathTimelineCell class] forCellReuseIdentifier:[MovementPathTimelineCell reuseIdentifier]];
+    [self.tableView registerClass:[PathTimelineCell class] forCellReuseIdentifier:[PathTimelineCell reuseIdentifier]];
     [self.tableView registerClass:[UntrackedPeriodTimelineCell class] forCellReuseIdentifier:[UntrackedPeriodTimelineCell reuseIdentifier]];
 
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
