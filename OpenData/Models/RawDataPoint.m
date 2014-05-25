@@ -7,7 +7,7 @@
 //
 
 #import "RawDataPoint.h"
-#import "_RawDataPoint.h"
+#import "CDRawDataPoint.h"
 
 #import <Asterism.h>
 
@@ -28,13 +28,13 @@
     return self;
 }
 
-- (id)initWithModel:(NSManagedObject<_RawDataPoint> *)model {
+- (id)initWithModel:(NSManagedObject<CDRawDataPoint> *)model {
     if (!(self = [super init])) return nil;
     self.model = model;
     return self;
 }
 
-- (id)initWithModel:(NSManagedObject<_RawDataPoint> *)model
+- (id)initWithModel:(NSManagedObject<CDRawDataPoint> *)model
             context:(NSManagedObjectContext *)context {
     if (!(self = [super init])) return nil;
     self.model = model;
@@ -54,14 +54,14 @@
 #pragma mark - MagicalRecord
 + (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate *)searchTerm inContext:(NSManagedObjectContext *)context {
     NSArray *array = [self.modelClass MR_findAllSortedBy:sortTerm ascending:ascending withPredicate:searchTerm inContext:context];
-    return ASTMap(array, ^id(id<_RawDataPoint> obj) {
+    return ASTMap(array, ^id(id<CDRawDataPoint> obj) {
         return [[self alloc] initWithModel:obj context:context];
     });
 }
 
 + (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending inContext:(NSManagedObjectContext *)context {
     NSArray *array = [self.modelClass MR_findAllSortedBy:sortTerm ascending:ascending inContext:context];
-    return ASTMap(array, ^id(id<_RawDataPoint> obj) {
+    return ASTMap(array, ^id(id<CDRawDataPoint> obj) {
         return [[self alloc] initWithModel:obj context:context];
     });
 }

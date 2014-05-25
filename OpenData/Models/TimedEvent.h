@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
-@protocol _TimedEvent;
+@protocol CDTimedEvent;
 
 @interface TimedEvent : NSObject
 
@@ -14,13 +14,13 @@
 
 @property (nonatomic) NSDate *startTime;
 @property (nonatomic) NSDate *endTime;
-@property (nonatomic) NSManagedObject<_TimedEvent> *model;
+@property (nonatomic) NSManagedObject<CDTimedEvent> *model;
 
 @property (nonatomic, readonly) NSTimeInterval duration;
 
 - (id)initWithContext:(NSManagedObjectContext *)context;
-- (id)initWithModel:(NSManagedObject<_TimedEvent> *)model;
-- (id)initWithModel:(NSManagedObject<_TimedEvent> *)model
+- (id)initWithModel:(NSManagedObject<CDTimedEvent> *)model;
+- (id)initWithModel:(NSManagedObject<CDTimedEvent> *)model
             context:(NSManagedObjectContext *)context;
 
 - (BOOL)destroy;

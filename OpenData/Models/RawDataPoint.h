@@ -6,18 +6,18 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
-@protocol _RawDataPoint;
+@protocol CDRawDataPoint;
 
 @interface RawDataPoint : NSObject
 
 + (Class)modelClass;
 
 @property (nonatomic) NSDate *timestamp;
-@property (nonatomic) NSManagedObject<_RawDataPoint> *model;
+@property (nonatomic) NSManagedObject<CDRawDataPoint> *model;
 
 - (id)initWithContext:(NSManagedObjectContext *)context;
-- (id)initWithModel:(NSManagedObject<_RawDataPoint> *)model;
-- (id)initWithModel:(NSManagedObject<_RawDataPoint> *)model
+- (id)initWithModel:(NSManagedObject<CDRawDataPoint> *)model;
+- (id)initWithModel:(NSManagedObject<CDRawDataPoint> *)model
             context:(NSManagedObjectContext *)context;
 
 // MagicalRecord

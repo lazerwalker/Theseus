@@ -6,10 +6,9 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
+#import "CDRawDataPoint.h"
 
-@interface CDRawLocation : NSManagedObject
-
-@property (nonatomic) NSDate *timestamp;
+@interface CDRawLocation : NSManagedObject<CDRawDataPoint>
 
 @property (nonatomic) NSNumber *altitude;
 @property (nonatomic) NSNumber *speed;

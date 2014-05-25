@@ -7,7 +7,7 @@
 //
 
 #import "TimedEvent.h"
-#import "_TimedEvent.h"
+#import "CDTimedEvent.h"
 
 #import <Asterism.h>
 
@@ -34,13 +34,13 @@
     return self;
 }
 
-- (id)initWithModel:(NSManagedObject<_TimedEvent> *)model {
+- (id)initWithModel:(NSManagedObject<CDTimedEvent> *)model {
     if (!(self = [super init])) return nil;
     self.model = model;
     return self;
 }
 
-- (id)initWithModel:(NSManagedObject<_TimedEvent> *)model
+- (id)initWithModel:(NSManagedObject<CDTimedEvent> *)model
             context:(NSManagedObjectContext *)context {
     if (!(self = [super init])) return nil;
     self.model = model;
@@ -81,7 +81,7 @@
 #pragma mark - MagicalRecord
 + (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate *)searchTerm {
     NSArray *array = [self.modelClass MR_findAllSortedBy:sortTerm ascending:ascending withPredicate:searchTerm];
-    return ASTMap(array, ^id(id<_TimedEvent> obj) {
+    return ASTMap(array, ^id(id<CDTimedEvent> obj) {
         return [[self alloc] initWithModel:obj];
     });
 }
@@ -89,7 +89,7 @@
 + (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending inContext:(NSManagedObjectContext *)context {
     NSArray *array = [self.modelClass MR_findAllSortedBy:sortTerm ascending:ascending inContext:context];
 
-    return ASTMap(array, ^id(id<_TimedEvent> obj) {
+    return ASTMap(array, ^id(id<CDTimedEvent> obj) {
         return [[self alloc] initWithModel:obj
                                    context:context];
     });
@@ -98,7 +98,7 @@
 
 + (NSArray *) MR_findAllInContext:(NSManagedObjectContext *)context {
     NSArray *array = [self.modelClass MR_findAllInContext:context];
-    return ASTMap(array, ^id(id<_TimedEvent> obj) {
+    return ASTMap(array, ^id(id<CDTimedEvent> obj) {
         return [[self alloc] initWithModel:obj
                                    context:context];
     });
@@ -106,7 +106,7 @@
 
 + (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate *)searchTerm inContext:(NSManagedObjectContext *)context {
     NSArray *array = [self.modelClass MR_findAllSortedBy:sortTerm ascending:ascending withPredicate:searchTerm inContext:context];
-    return ASTMap(array, ^id(id<_TimedEvent> obj) {
+    return ASTMap(array, ^id(id<CDTimedEvent> obj) {
         return [[self alloc] initWithModel:obj
                                    context:context];
     });

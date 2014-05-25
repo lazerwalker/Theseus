@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
-#import "_TimedEvent.h"
+#import "CDTimedEvent.h"
 
-@interface CDUntrackedPeriod : NSManagedObject<_TimedEvent>
+@interface CDUntrackedPeriod : NSManagedObject<CDTimedEvent>
 
 @end

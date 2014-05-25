@@ -8,7 +8,7 @@
 
 @import CoreData;
 
-@protocol _TimedEvent <NSObject>
+@protocol CDTimedEvent <NSObject>
 
 @property (nonatomic) NSDate *startTime;
 @property (nonatomic) NSDate *endTime;

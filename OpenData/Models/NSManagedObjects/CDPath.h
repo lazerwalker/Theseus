@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
-#import "_TimedEvent.h"
+#import "CDTimedEvent.h"
 
 @class CDRawMotionActivity;
 @class CDStop;
 
-@interface CDPath : NSManagedObject<_TimedEvent>
+@interface CDPath : NSManagedObject<CDTimedEvent>
 
 @property (nonatomic, strong) NSSet *locations;
 @property (nonatomic, strong) CDRawMotionActivity *activity;

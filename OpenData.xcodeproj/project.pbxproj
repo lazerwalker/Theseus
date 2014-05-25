@@ -93,7 +93,7 @@
 		A6107DC919310B2B003B7837 /* DataExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataExporter.m; path = Interfaces/DataExporter.m; sourceTree = "<group>"; };
 		A61D6460192ABF6800F7EB88 /* AppDelegateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegateSpec.m; sourceTree = "<group>"; };
 		A66211651930507F00982704 /* Configuration.plist.example */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Configuration.plist.example; sourceTree = "<group>"; };
-		A668A1EF1932469D00C6363F /* _RawDataPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = _RawDataPoint.h; path = Protocols/_RawDataPoint.h; sourceTree = "<group>"; };
+		A668A1EF1932469D00C6363F /* CDRawDataPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CDRawDataPoint.h; path = Protocols/CDRawDataPoint.h; sourceTree = "<group>"; };
 		A668A1F319324D6300C6363F /* OpenData (2014-05-25).xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OpenData (2014-05-25).xcdatamodel"; sourceTree = "<group>"; };
 		A6748A9B192127E90073CE19 /* OpenData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6748A9E192127E90073CE19 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -147,7 +147,7 @@
 		A6A8750219323A0300D8C7DD /* TimedEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimedEvent.m; path = Models/TimedEvent.m; sourceTree = "<group>"; };
 		A6A8750419323B9E00D8C7DD /* RawDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RawDataPoint.h; path = Models/RawDataPoint.h; sourceTree = "<group>"; };
 		A6A8750519323B9E00D8C7DD /* RawDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RawDataPoint.m; path = Models/RawDataPoint.m; sourceTree = "<group>"; };
-		A6A8750719323BF800D8C7DD /* _TimedEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = _TimedEvent.h; path = Protocols/_TimedEvent.h; sourceTree = "<group>"; };
+		A6A8750719323BF800D8C7DD /* CDTimedEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CDTimedEvent.h; path = Protocols/CDTimedEvent.h; sourceTree = "<group>"; };
 		A6AAB14C19305F70000DE81E /* NSString+TimeFormatterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TimeFormatterSpec.m"; path = "Categories/NSString+TimeFormatterSpec.m"; sourceTree = "<group>"; };
 		A6AAB14E1930F548000DE81E /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = "View Controllers/SettingsViewController.h"; sourceTree = "<group>"; };
 		A6AAB14F1930F548000DE81E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = "View Controllers/SettingsViewController.m"; sourceTree = "<group>"; };
@@ -449,8 +449,8 @@
 			isa = PBXGroup;
 			children = (
 				A6B91D13192E866500F7106E /* TimelineCell.h */,
-				A6A8750719323BF800D8C7DD /* _TimedEvent.h */,
-				A668A1EF1932469D00C6363F /* _RawDataPoint.h */,
+				A6A8750719323BF800D8C7DD /* CDTimedEvent.h */,
+				A668A1EF1932469D00C6363F /* CDRawDataPoint.h */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";

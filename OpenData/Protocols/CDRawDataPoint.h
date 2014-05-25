@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
-@protocol _RawDataPoint <NSObject>
+@protocol CDRawDataPoint <NSObject>
 
 @property (nonatomic) NSDate *timestamp;
 
