@@ -103,4 +103,8 @@
     self.model.venue = venue.model;
 }
 
+- (BOOL)venueConfirmed {
+    return self.model.venueConfirmed.boolValue;
+}
+
 @end

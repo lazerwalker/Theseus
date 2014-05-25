@@ -17,7 +17,7 @@
 
 @property (nonatomic) NSSet *locations;
 @property (nonatomic) NSSet *movementPaths;
-@property (nonatomic) NSNumber *venueConfirmed;
+@property (nonatomic, assign) BOOL venueConfirmed;
 @property (nonatomic) Venue *venue;
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
