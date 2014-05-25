@@ -28,14 +28,14 @@
     return self;
 }
 
-- (id)initWithModel:(NSManagedObject<CDRawDataPoint> *)model {
+- (id)initWithCDModel:(NSManagedObject<CDRawDataPoint> *)model {
     if (!model) return nil;
     if (!(self = [super init])) return nil;
     self.model = model;
     return self;
 }
 
-- (id)initWithModel:(NSManagedObject<CDRawDataPoint> *)model
+- (id)initWithCDModel:(NSManagedObject<CDRawDataPoint> *)model
             context:(NSManagedObjectContext *)context {
     if (!model) return nil;
     if (!(self = [super init])) return nil;
@@ -57,14 +57,14 @@
 + (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate *)searchTerm inContext:(NSManagedObjectContext *)context {
     NSArray *array = [self.modelClass MR_findAllSortedBy:sortTerm ascending:ascending withPredicate:searchTerm inContext:context];
     return ASTMap(array, ^id(id<CDRawDataPoint> obj) {
-        return [[self alloc] initWithModel:obj context:context];
+        return [[self alloc] initWithCDModel:obj context:context];
     });
 }
 
 + (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending inContext:(NSManagedObjectContext *)context {
     NSArray *array = [self.modelClass MR_findAllSortedBy:sortTerm ascending:ascending inContext:context];
     return ASTMap(array, ^id(id<CDRawDataPoint> obj) {
-        return [[self alloc] initWithModel:obj context:context];
+        return [[self alloc] initWithCDModel:obj context:context];
     });
 }
 @end

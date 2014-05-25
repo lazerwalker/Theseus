@@ -24,7 +24,7 @@
 @property (nonatomic, retain) NSString* foursquareIconSuffix;
 @property (nonatomic, retain) NSString* foursquareIconPrefix;
 
-- (id)initWithModel:(CDVenue *)model;
+- (id)initWithCDModel:(CDVenue *)model;
 
 - (void)destroy;
 - (void)setupWithFoursquareVenue:(FoursquareVenue *)venue;

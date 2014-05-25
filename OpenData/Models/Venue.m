@@ -18,7 +18,7 @@
     return CDVenue.class;
 }
 
-- (id)initWithModel:(CDVenue *)model {
+- (id)initWithCDModel:(CDVenue *)model {
     if (!model) return nil;
     if (!(self = [super init])) return nil;
     self.model = model;
@@ -84,13 +84,13 @@
 #pragma mark - Magical Record
 + (id)MR_findFirstByAttribute:(NSString *)attribute withValue:(id)searchValue {
     CDVenue *venue = [self.modelClass MR_findFirstByAttribute:attribute withValue:searchValue];
-    return [[self alloc] initWithModel:venue];
+    return [[self alloc] initWithCDModel:venue];
 }
 
 + (NSArray *)MR_findAllWithPredicate:(NSPredicate *)searchTerm {
     NSArray *array = [self.modelClass MR_findAllWithPredicate:searchTerm];
     return ASTMap(array, ^id(CDVenue *venue) {
-        return [[self alloc] initWithModel:venue];
+        return [[self alloc] initWithCDModel:venue];
     });
 }
 

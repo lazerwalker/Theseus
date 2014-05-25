@@ -16,8 +16,8 @@
 @property (nonatomic) NSManagedObject<CDRawDataPoint> *model;
 
 - (id)initWithContext:(NSManagedObjectContext *)context;
-- (id)initWithModel:(NSManagedObject<CDRawDataPoint> *)model;
-- (id)initWithModel:(NSManagedObject<CDRawDataPoint> *)model
+- (id)initWithCDModel:(NSManagedObject<CDRawDataPoint> *)model;
+- (id)initWithCDModel:(NSManagedObject<CDRawDataPoint> *)model
             context:(NSManagedObjectContext *)context;
 
 // MagicalRecord

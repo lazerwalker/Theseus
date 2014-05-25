@@ -58,7 +58,7 @@
 - (NSSet *)locations {
     NSSet *locations = self.model.locations;
     return ASTMap(locations, ^id(CDRawLocation *location) {
-        return [[RawLocation alloc] initWithModel:location context:self.context];
+        return [[RawLocation alloc] initWithCDModel:location context:self.context];
     });
 }
 
@@ -71,7 +71,7 @@
 }
 
 - (RawMotionActivity *)activity {
-    return [[RawMotionActivity alloc] initWithModel:self.model.activity];
+    return [[RawMotionActivity alloc] initWithCDModel:self.model.activity];
 }
 
 - (void)setActivity:(RawMotionActivity *)activity {

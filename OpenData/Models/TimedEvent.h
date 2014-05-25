@@ -20,8 +20,8 @@
 @property (nonatomic, readonly) NSTimeInterval duration;
 
 - (id)initWithContext:(NSManagedObjectContext *)context;
-- (id)initWithModel:(NSManagedObject<CDTimedEvent> *)model;
-- (id)initWithModel:(NSManagedObject<CDTimedEvent> *)model
+- (id)initWithCDModel:(NSManagedObject<CDTimedEvent> *)model;
+- (id)initWithCDModel:(NSManagedObject<CDTimedEvent> *)model
             context:(NSManagedObjectContext *)context;
 
 - (BOOL)destroy;

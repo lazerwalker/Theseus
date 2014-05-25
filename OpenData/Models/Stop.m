@@ -76,7 +76,7 @@
 - (NSSet *)locations {
     NSSet *locations = self.model.locations;
     return ASTMap(locations, ^id(CDRawLocation *location) {
-        return [[RawLocation alloc] initWithModel:location context:self.context];
+        return [[RawLocation alloc] initWithCDModel:location context:self.context];
     });
 }
 
@@ -91,12 +91,12 @@
 - (NSSet *)movementPaths {
     NSSet *paths = self.model.movementPaths;
     return ASTMap(paths, ^id(CDPath *path) {
-        return [[Path alloc] initWithModel:path context:self.context];
+        return [[Path alloc] initWithCDModel:path context:self.context];
     });
 }
 
 - (Venue *)venue {
-    return [[Venue alloc] initWithModel:self.model.venue];
+    return [[Venue alloc] initWithCDModel:self.model.venue];
 }
 
 - (void)setVenue:(Venue *)venue {
