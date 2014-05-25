@@ -17,7 +17,7 @@
 #import "PathTimelineCell.h"
 #import "UntrackedPeriodTimelineCell.h"
 
-#import "DayPresenter.h"
+#import "Day.h"
 
 #import "FoursquareVenue.h"
 #import "Venue.h"
@@ -26,30 +26,30 @@
 
 @interface ListViewController ()
 @property (strong, nonatomic) NSArray *data;
-@property (nonatomic, strong) DayPresenter *presenter;
+@property (nonatomic, strong) Day *day;
 @end
 
 @implementation ListViewController
 
 - (id)initWithDaysAgo:(NSInteger)daysAgo {
-    DayPresenter *presenter = [[DayPresenter alloc] initWithDaysAgo:daysAgo];
-    return [self initWithPresenter:presenter];
+    Day *day = [[Day alloc] initWithDaysAgo:daysAgo];
+    return [self initWithDay:day];
 }
 
-- (id)initWithPresenter:(DayPresenter *)presenter {
+- (id)initWithDay:(Day *)day {
     self = [super initWithStyle:UITableViewStylePlain];
     if (!self) return nil;
 
-    self.presenter = presenter;
-    [self.presenter addObserver:self forKeyPath:DayPresenterDataChangedKey options:0 context:nil];
+    self.day = day;
+    [self.day addObserver:self forKeyPath:DayDataChangedKey options:0 context:nil];
 
-    self.title = self.presenter.dayTitle;
+    self.title = self.day.title;
 
     return self;
 }
 
 - (void)dealloc {
-    [self.presenter removeObserver:self forKeyPath:DayPresenterDataChangedKey];
+    [self.day removeObserver:self forKeyPath:DayDataChangedKey];
 }
 
 - (void)viewDidLoad {
@@ -72,14 +72,14 @@
                       ofObject:(id)object
                         change:(NSDictionary*)change
                        context:(void*)context {
-    if ([keyPath isEqualToString:DayPresenterDataChangedKey]) {
+    if ([keyPath isEqualToString:DayDataChangedKey]) {
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }
 
 #pragma mark - 
 - (NSInteger)daysAgo {
-    return self.presenter.daysAgo;
+    return self.day.daysAgo;
 }
 
 #pragma mark -
@@ -95,7 +95,7 @@
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TimedEvent *obj = [self.presenter eventForIndex:indexPath.row];
+    TimedEvent *obj = [self.day eventForIndex:indexPath.row];
     Class cellClass = [self timelineCellClassForObject:obj];
     return [cellClass heightForTimedEvent:obj];
 }
@@ -110,13 +110,13 @@
         cell.isNow = YES;
     }
 
-    TimedEvent *obj = [self.presenter eventForIndex:indexPath.row];
+    TimedEvent *obj = [self.day eventForIndex:indexPath.row];
     [cell setupWithTimedEvent:obj];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    Stop *stop = (Stop *)[self.presenter eventForIndex:indexPath.row];
+    Stop *stop = (Stop *)[self.day eventForIndex:indexPath.row];
     if (![stop isKindOfClass:Stop.class]) return;
 
     VenueListViewController *venueList = [[VenueListViewController alloc] initWithStop:stop];
@@ -147,12 +147,12 @@
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.presenter.numberOfEvents;
+    return self.day.numberOfEvents;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TimedEvent *obj = [self.presenter eventForIndex:indexPath.row];
+    TimedEvent *obj = [self.day eventForIndex:indexPath.row];
     NSString *cellIdentifier = [[self timelineCellClassForObject:obj] reuseIdentifier];
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];

@@ -6,16 +6,20 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
-#import "DayPresenter.h"
+#import "Day.h"
 #import "DataProcessor.h"
 
-NSString * const DayPresenterDataChangedKey = @"DayPresenterDataChangedKey";
+NSString * const DayDataChangedKey = @"DayDataChangedKey";
 
-@interface DayPresenter ()
+@interface Day ()
 @property (nonatomic, strong) NSArray *data;
 @end
 
-@implementation DayPresenter
+@implementation Day
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{};
+}
 
 - (id)initWithDaysAgo:(NSUInteger)daysAgo {
     self = [super init];
@@ -37,7 +41,7 @@ NSString * const DayPresenterDataChangedKey = @"DayPresenterDataChangedKey";
     return self.data.count;
 }
 
-- (NSString *)dayTitle {
+- (NSString *)title {
     if (self.daysAgo == 0) {
         return @"Today";
     } else if (self.daysAgo == 1) {
@@ -50,6 +54,8 @@ NSString * const DayPresenterDataChangedKey = @"DayPresenterDataChangedKey";
 - (TimedEvent *)eventForIndex:(NSInteger)index {
     if (index < self.data.count) {
         return self.data[index];
+    } else {
+        return nil;
     }
 }
 

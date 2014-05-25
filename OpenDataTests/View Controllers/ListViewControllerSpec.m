@@ -16,7 +16,7 @@
 
 #import "ListViewController.h"
 
-#import "DayPresenter.h"
+#import "Day.h"
 #import "Stop.h"
 #import "Path.h"
 #import "UntrackedPeriod.h"
@@ -28,7 +28,7 @@
 
 #import <PivotalCoreKit/UIKit+PivotalSpecHelper.h>
 
-@interface DayPresenter ()
+@interface Day ()
 @property (nonatomic, strong) NSArray *data;
 @end
 
@@ -37,24 +37,24 @@ SpecBegin(ListViewController)
 describe(@"ListViewController", ^{
     __block ListViewController *controller;
     __block UINavigationController *navController;
-    __block DayPresenter *presenter;
+    __block Day *day;
     __block Stop *stop;
     __block NSIndexPath *stopIndexPath, *pathIndexPath, *untrackedIndexPath;
 
     beforeEach(^{
-        presenter = mock([DayPresenter class]);
+        day = mock([Day class]);
         stop = [Stop new];
 
-        [given([presenter numberOfEvents]) willReturnInt:3];
-        [given([presenter eventForIndex:0]) willReturn:stop];
-        [given([presenter eventForIndex:1]) willReturn:[Path new]];
-        [given([presenter eventForIndex:2]) willReturn:[UntrackedPeriod new]];
+        [given([day numberOfEvents]) willReturnInt:3];
+        [given([day eventForIndex:0]) willReturn:stop];
+        [given([day eventForIndex:1]) willReturn:[Path new]];
+        [given([day eventForIndex:2]) willReturn:[UntrackedPeriod new]];
 
         stopIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         pathIndexPath = [NSIndexPath indexPathForRow:1 inSection:0];
         untrackedIndexPath = [NSIndexPath indexPathForRow:2 inSection:0];
 
-        controller = [[ListViewController alloc] initWithPresenter:presenter];
+        controller = [[ListViewController alloc] initWithDay:day];
         navController = [[UINavigationController alloc] initWithRootViewController:controller];
         [controller viewDidLoad];
     });
@@ -68,19 +68,19 @@ describe(@"ListViewController", ^{
 
     describe(@"daysAgo", ^{
         it(@"should return the same value as the presenter", ^{
-            [given([presenter daysAgo]) willReturnInt:1];
+            [given([day daysAgo]) willReturnInt:1];
             expect(controller.daysAgo).to.equal(1);
         });
     });
 
     context(@"updating the data", ^{
         it(@"should have registered the presenter for KVO", ^{
-            [MKTVerify(presenter) addObserver:controller forKeyPath:DayPresenterDataChangedKey options:0 context:nil];
+            [MKTVerify(day) addObserver:controller forKeyPath:DayDataChangedKey options:0 context:nil];
         });
 
         it(@"should trigger a table view refresh on change", ^{
             controller.tableView = mock(UITableView.class);
-            [controller observeValueForKeyPath:DayPresenterDataChangedKey ofObject:presenter change:@{} context:nil];
+            [controller observeValueForKeyPath:DayDataChangedKey ofObject:day change:@{} context:nil];
             [MKTVerify(controller.tableView) reloadSections:anything() withRowAnimation:UITableViewRowAnimationAutomatic];
         });
     });
@@ -126,7 +126,7 @@ describe(@"ListViewController", ^{
             context(@"the last cell", ^{
                 context(@"when the controller is a 'today' controller", ^{
                     it(@"should set the cell's isNow property", ^{
-                        [given([presenter daysAgo]) willReturnInt:0];
+                        [given([day daysAgo]) willReturnInt:0];
                         UITableViewCell *cell = mock(StopTimelineCell.class);
                         [controller tableView:controller.tableView willDisplayCell:cell forRowAtIndexPath:untrackedIndexPath];
 
@@ -136,7 +136,7 @@ describe(@"ListViewController", ^{
 
                 context(@"when the controller is a past controller", ^{
                     it(@"should not set the cell's isNow property", ^{
-                        [given([presenter daysAgo]) willReturnInt:1];
+                        [given([day daysAgo]) willReturnInt:1];
                         UITableViewCell *cell = mock(StopTimelineCell.class);
                         [controller tableView:controller.tableView willDisplayCell:cell forRowAtIndexPath:untrackedIndexPath];
 

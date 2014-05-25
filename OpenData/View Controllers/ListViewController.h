@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
-@class DayPresenter;
+@class Day;
 
 @interface ListViewController : UITableViewController
 
 @property (nonatomic, readonly) NSInteger daysAgo;
 
 - (id)initWithDaysAgo:(NSInteger)daysAgo;
-- (id)initWithPresenter:(DayPresenter *)presenter;
+- (id)initWithDay:(Day *)day;
 
 @end
