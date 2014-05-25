@@ -18,6 +18,8 @@
 
 @property (nonatomic, strong) UIView *traintrackTop;
 @property (nonatomic, strong) UIView *traintrackBottom;
+@property (nonatomic, strong) UIView *lineCover;
+
 @end
 
 @implementation UntrackedPeriodTimelineCell
@@ -38,6 +40,8 @@
 - (void)render {
     [self applyDefaultStyles];
 
+    self.clipsToBounds = NO;
+
     self.line = [UIView new];
     self.line.translatesAutoresizingMaskIntoConstraints = NO;
     self.line.backgroundColor = [UIColor darkGrayColor];
@@ -47,15 +51,23 @@
     self.descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [self.contentView addSubview:self.descriptionLabel];
 
-    self.traintrackTop = [UIView new];
-    self.traintrackTop.translatesAutoresizingMaskIntoConstraints = NO;
+    self.traintrackTop = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 16, TimelineLineWidth.floatValue)];
+    self.traintrackTop.center = CGPointMake(TimelineLineLeftPadding.floatValue + 1.5, 15);
     self.traintrackTop.backgroundColor = [UIColor darkGrayColor];
+    self.traintrackTop.transform = CGAffineTransformMakeRotation(-M_PI/9);
     [self.contentView addSubview:self.traintrackTop];
 
-    self.traintrackBottom = [UIView new];
-    self.traintrackBottom.translatesAutoresizingMaskIntoConstraints = NO;
+    self.traintrackBottom = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 16, TimelineLineWidth.floatValue)];
     self.traintrackBottom.backgroundColor = [UIColor darkGrayColor];
+    self.traintrackBottom.transform = CGAffineTransformMakeRotation(-M_PI/9);
     [self.contentView addSubview:self.traintrackBottom];
+
+    self.lineCover = [UIView new];
+    self.lineCover.backgroundColor = [UIColor whiteColor];
+    [self.contentView addSubview:self.lineCover];
+
+    [self.contentView bringSubviewToFront:self.traintrackTop];
+    [self.contentView bringSubviewToFront:self.traintrackBottom];
 
     [self setNeedsUpdateConstraints];
 }
@@ -64,9 +76,7 @@
     [super updateConstraints];
 
     NSDictionary *views = @{@"line": self.line,
-                            @"descriptionLabel": self.descriptionLabel,
-                            @"traintrackTop": self.traintrackTop,
-                            @"traintrackBottom": self.traintrackBottom};
+                            @"descriptionLabel": self.descriptionLabel};
 
     [self.contentView addConstraints: [NSLayoutConstraint
                                        constraintsWithVisualFormat:@"|-(==leftPadding)-[line(lineWidth)]-(==rightPadding)-[descriptionLabel]-|"
@@ -79,44 +89,19 @@
     [self.contentView addConstraints: [NSLayoutConstraint
                                        constraintsWithVisualFormat:@"V:|[line]|"
                                        options:0 metrics:nil views:views]];
-
-    [self.contentView addConstraints: [NSLayoutConstraint
-                                       constraintsWithVisualFormat:@"V:|[traintrackTop]-(>=0)-[traintrackBottom]|"
-                                       options:NSLayoutFormatAlignAllCenterX|NSLayoutFormatAlignAllLeft|NSLayoutFormatAlignAllRight
-                                       metrics:nil views:views]];
-
-    [self.contentView addConstraint: [NSLayoutConstraint constraintWithItem:self.traintrackTop
-                                                                  attribute:NSLayoutAttributeCenterX
-                                                                  relatedBy:NSLayoutRelationEqual
-                                                                     toItem:self.line
-                                                                  attribute:NSLayoutAttributeCenterX
-                                                                 multiplier:1.0 constant:0]];
-
-    [self.contentView addConstraint: [NSLayoutConstraint constraintWithItem:self.traintrackTop
-                                                                  attribute:NSLayoutAttributeWidth
-                                                                  relatedBy:NSLayoutRelationEqual
-                                                                     toItem:NSLayoutAttributeNotAnAttribute
-                                                                  attribute:NSLayoutAttributeNotAnAttribute
-                                                                 multiplier:1.0 constant:20]];
-
-    [self.contentView addConstraint: [NSLayoutConstraint constraintWithItem:self.traintrackTop
-                                                                  attribute:NSLayoutAttributeHeight
-                                                                  relatedBy:NSLayoutRelationEqual
-                                                                     toItem:NSLayoutAttributeNotAnAttribute
-                                                                  attribute:NSLayoutAttributeNotAnAttribute
-                                                                 multiplier:1.0 constant:3.0]];
-
-    [self.contentView addConstraint: [NSLayoutConstraint constraintWithItem:self.traintrackBottom
-                                                                  attribute:NSLayoutAttributeHeight
-                                                                  relatedBy:NSLayoutRelationEqual
-                                                                     toItem:self.traintrackTop
-                                                                  attribute:NSLayoutAttributeHeight
-                                                                 multiplier:1.0 constant:0]];
-
 }
 
 #pragma mark -
 - (void)setupWithTimedEvent:(UntrackedPeriod *)period {
     self.descriptionLabel.text = [NSString stringWithFormat:@"Inactive for %@", [NSString stringWithTimeInterval:period.duration]];
+
+    self.traintrackBottom.center = CGPointMake(self.traintrackTop.center.x, self.contentView.bounds.size.height - self.traintrackBottom.bounds.size.height * 5);
+
+    self.lineCover.frame = CGRectMake(TimelineLineLeftPadding.floatValue,
+                                      15,
+                                      TimelineLineWidth.floatValue,
+                                      self.contentView.frame.size.height -
+                                      TimelineLineWidth.floatValue * 5 - 15);
+
 }
 @end
