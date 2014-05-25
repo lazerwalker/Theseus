@@ -8,7 +8,7 @@
 
 #import "MovementPathTimelineCell.h"
 #import "UITableViewCell+TimelineCell.h"
-#import "MovementPath.h"
+#import "Path.h"
 
 #import "NSString+TimeFormatter.h"
 
@@ -22,7 +22,7 @@
 
 @implementation MovementPathTimelineCell
 
-+ (CGFloat)heightForTimedEvent:(MovementPath *)path {
++ (CGFloat)heightForTimedEvent:(Path *)path {
     CGFloat duration = path.duration / 60;
     duration = MIN(duration, TimelineCellHeightMax);
     return MAX(TimelineCellHeightDefault, duration);
@@ -88,7 +88,7 @@
 
 #pragma mark -
 
-- (void)setupWithTimedEvent:(MovementPath *)path {
+- (void)setupWithTimedEvent:(Path *)path {
      self.descriptionLabel.text = [NSString stringWithFormat:@"Moving for %@", [NSString stringWithTimeInterval:path.duration]];
 
     if (self.isFirstEvent) {

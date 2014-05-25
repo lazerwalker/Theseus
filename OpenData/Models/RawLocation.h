@@ -2,26 +2,27 @@
 //  RawLocation.h
 //  OpenData
 //
-//  Created by Michael Walker on 5/13/14.
+//  Created by Michael Walker on 5/25/14.
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
 @import MapKit;
 
-@interface RawLocation : NSManagedObject
+@interface RawLocation : NSObject
 
 @property (nonatomic) NSDate *timestamp;
-@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
-@property (nonatomic) NSNumber *altitude;
-@property (nonatomic) NSNumber *speed;
-@property (nonatomic) NSNumber *horizontalAccuracy;
-@property (nonatomic) NSNumber *verticalAccuracy;
-
-@property (nonatomic) NSNumber *latitude;
-@property (nonatomic) NSNumber *longitude;
+@property (nonatomic) CLLocationCoordinate2D coordinate;
+@property (nonatomic) CLLocationDistance altitude;
+@property (nonatomic) CLLocationSpeed speed;
+@property (nonatomic) CLLocationAccuracy horizontalAccuracy;
+@property (nonatomic) CLLocationAccuracy verticalAccuracy;
 
 - (void)setupWithLocation:(CLLocation *)location;
-
 - (CLLocationDistance)distanceFromLocation:(RawLocation *)location;
+
+// MagicalRecord
++ (id) MR_createInContext:(NSManagedObjectContext *)context;
++ (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate *)searchTerm inContext:(NSManagedObjectContext *)context;
++ (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending inContext:(NSManagedObjectContext *)context;
 
 @end

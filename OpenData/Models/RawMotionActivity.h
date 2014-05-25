@@ -2,11 +2,9 @@
 //  RawMotionActivity.h
 //  OpenData
 //
-//  Created by Michael Walker on 5/13/14.
+//  Created by Michael Walker on 5/25/14.
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
-
-@import CoreMotion;
 
 typedef NS_ENUM(NSUInteger, RawMotionActivityType) {
     RawMotionActivityTypeUnknown,
@@ -16,14 +14,20 @@ typedef NS_ENUM(NSUInteger, RawMotionActivityType) {
     RawMotionActivityTypeAutomotive
 };
 
-@interface RawMotionActivity : NSManagedObject
+@import CoreMotion;
+
+@interface RawMotionActivity : NSObject
 
 @property (nonatomic) NSDate* timestamp;
-@property (readonly) RawMotionActivityType activityType;
-
-@property (nonatomic) NSNumber* activity;
-@property (nonatomic) NSNumber* confidence;
+@property (nonatomic) RawMotionActivityType activity;
+@property (nonatomic) CMMotionActivityConfidence confidence;
 
 - (void)setupWithMotionActivity:(CMMotionActivity *)activity;
+
+// MagicalRecord
++ (id) MR_createInContext:(NSManagedObjectContext *)context;
++ (id) MR_findFirstOrderedByAttribute:(NSString *)attribute ascending:(BOOL)ascending;
++ (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate *)searchTerm inContext:(NSManagedObjectContext *)context;
++ (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending inContext:(NSManagedObjectContext *)context;
 
 @end

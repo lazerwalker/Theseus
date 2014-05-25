@@ -18,7 +18,7 @@
 
 #import "DayPresenter.h"
 #import "Stop.h"
-#import "MovementPath.h"
+#import "Path.h"
 #import "UntrackedPeriod.h"
 #import "StopTimelineCell.h"
 #import "MovementPathTimelineCell.h"
@@ -47,7 +47,7 @@ describe(@"ListViewController", ^{
 
         [given([presenter numberOfEvents]) willReturnInt:3];
         [given([presenter eventForIndex:0]) willReturn:stop];
-        [given([presenter eventForIndex:1]) willReturn:[MovementPath MR_createEntity]];
+        [given([presenter eventForIndex:1]) willReturn:[Path MR_createEntity]];
         [given([presenter eventForIndex:2]) willReturn:[UntrackedPeriod MR_createEntity]];
 
         stopIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];

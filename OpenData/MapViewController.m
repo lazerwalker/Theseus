@@ -7,7 +7,7 @@
 //
 
 #import "MapViewController.h"
-#import "MovementPath.h"
+#import "Path.h"
 #import "Stop.h"
 #import "DataProcessor.h"
 #import "MovementPathPolyline.h"

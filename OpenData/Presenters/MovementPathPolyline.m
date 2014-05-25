@@ -11,17 +11,17 @@
 
 @implementation MovementPathPolyline
 
-+ (id)polylineWithMovementPath:(MovementPath *)movementPath {
-    CLLocationCoordinate2D* pointArr = malloc(sizeof(CLLocationCoordinate2D) * movementPath.locations.count);
++ (id)polylineWithMovementPath:(Path *)path {
+    CLLocationCoordinate2D* pointArr = malloc(sizeof(CLLocationCoordinate2D) * path.locations.count);
 
     NSUInteger idx = 0;
-    for (RawLocation *location in movementPath.locations) {
+    for (RawLocation *location in path.locations) {
         pointArr[idx] = location.coordinate;
         idx++;
     }
 
-    MovementPathPolyline *path = [MovementPathPolyline polylineWithCoordinates:pointArr count:movementPath.locations.count];
-    path.type = movementPath.type;
+    MovementPathPolyline *polyline = [MovementPathPolyline polylineWithCoordinates:pointArr count:path.locations.count];
+    polyline.type = path.type;
     return path;
 }
 

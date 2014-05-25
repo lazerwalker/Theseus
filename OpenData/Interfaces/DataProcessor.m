@@ -10,7 +10,7 @@
 #import "RawLocation.h"
 #import "RawMotionActivity.h"
 #import "Stop.h"
-#import "MovementPath.h"
+#import "Path.h"
 #import "UntrackedPeriod.h"
 
 NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorDidFinishProcessingNotification";
@@ -69,7 +69,7 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
     NSPredicate *day = [NSPredicate predicateWithFormat:@"(startTime > %@) AND (endTime < %@)", startOfDay, endOfDay];
 
     NSArray *stops = [Stop MR_findAllSortedBy:@"startTime" ascending:YES withPredicate:day];
-    NSArray *paths = [MovementPath MR_findAllSortedBy:@"startTime" ascending:YES withPredicate:[NSCompoundPredicate andPredicateWithSubpredicates:@[day, onlyRealPaths]]];
+    NSArray *paths = [Path MR_findAllSortedBy:@"startTime" ascending:YES withPredicate:[NSCompoundPredicate andPredicateWithSubpredicates:@[day, onlyRealPaths]]];
     NSArray *untrackedPeriods = [UntrackedPeriod MR_findAllSortedBy:@"startTime" ascending:YES withPredicate:day];
 
     NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"startTime" ascending:YES];
@@ -85,7 +85,7 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
             id<TimedEvent> previousEvent = ({
                 NSPredicate *onlyRealPaths = [NSPredicate predicateWithFormat:@"(stop = nil)"];
                 NSArray *stops = [Stop MR_findAllSortedBy:@"startTime" ascending:YES inContext:localContext];
-                NSArray *paths = [MovementPath MR_findAllSortedBy:@"startTime" ascending:YES withPredicate:onlyRealPaths inContext:localContext];
+                NSArray *paths = [Path MR_findAllSortedBy:@"startTime" ascending:YES withPredicate:onlyRealPaths inContext:localContext];
                 NSArray *untrackedPeriods = [UntrackedPeriod MR_findAllSortedBy:@"startTime" ascending:YES inContext:localContext];
 
                 NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"startTime" ascending:YES];
@@ -137,8 +137,8 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
         [stop MR_deleteInContext:context];
     }
 
-    NSArray *movementPaths = [MovementPath MR_findAllInContext:context];
-    for (MovementPath *path in movementPaths) {
+    NSArray *movementPaths = [Path MR_findAllInContext:context];
+    for (Path *path in movementPaths) {
         [path MR_deleteInContext:context];
     }
 
@@ -171,11 +171,11 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
                 NSSet *movementPaths = stop.movementPaths;
                 NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"endTime" ascending:NO];
                 NSArray *sortedPaths = [movementPaths sortedArrayUsingDescriptors:@[descriptor]];
-                [(MovementPath *)sortedPaths.firstObject activity];
+                [(Path *)sortedPaths.firstObject activity];
             });
-        } else if ([previousObject isKindOfClass:MovementPath.class]) {
+        } else if ([previousObject isKindOfClass:Path.class]) {
             [paths addObject:previousObject];
-            previousActivity = [(MovementPath *)previousActivity activity];
+            previousActivity = [(Path *)previousActivity activity];
         }
     }
 
@@ -184,9 +184,9 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
             [currentObjects addObject:obj];
         } else if ([obj isKindOfClass:RawMotionActivity.class]){
             RawMotionActivity *activity = (RawMotionActivity *)obj;
-            if (!(previousActivity.activityType == activity.activityType)) {
+            if (!(previousActivity.activity == activity.activity)) {
                 if (currentObjects.count == 0) continue;
-                if (previousActivity.activityType == RawMotionActivityTypeStationary) {
+                if (previousActivity.activity == RawMotionActivityTypeStationary) {
                     Stop *stop = [Stop MR_createInContext:localContext];
                     [stop setupWithLocations:currentObjects];
                     stop.startTime = previousActivity.timestamp;
@@ -194,16 +194,16 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
 
                     Stop *previousStop = stops.lastObject;
                     if ([stop isSameLocationAs:stops.lastObject]) {
-                        MovementPath *previousPath = paths.lastObject;
-                        [previousStop addMovementPath:previousPath];
+                        Path *previousPath = paths.lastObject;
+                        [previousStop addPath:previousPath];
                         [paths removeLastObject];
                         [previousStop mergeWithStop:stop];
                         [stop MR_deleteEntity];
                     } else {
                         [stops addObject:stop];
                     }
-                } else if (activity.activityType == RawMotionActivityTypeStationary) {
-                    MovementPath *path = [MovementPath MR_createInContext:localContext];
+                } else if (activity.activity == RawMotionActivityTypeStationary) {
+                    Path *path = [Path MR_createInContext:localContext];
 
                     path.locations = [NSSet setWithArray:currentObjects];
                     path.activity = previousActivity;
@@ -212,7 +212,7 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
                     path.endTime = activity.timestamp;
                     [paths addObject:path];
                 } else {
-                    MovementPath *previousPath = paths.lastObject;
+                    Path *previousPath = paths.lastObject;
                     [previousPath addLocations:currentObjects];
                     previousPath.endTime = activity.timestamp;
                 }
@@ -268,9 +268,9 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
         if (previousObj && obj.class == previousObj.class) {
             [objectsToRemove addObject:obj];
             previousObj.endTime = [previousObj.endTime laterDate:obj.endTime];
-            if ([obj isKindOfClass:MovementPath.class]) {
+            if ([obj isKindOfClass:Path.class]) {
                 // TODO: This discards activity data.
-                [(MovementPath *)previousObj addLocations:[[(MovementPath *)previousObj locations] allObjects]];
+                [(Path *)previousObj addLocations:[[(Path *)previousObj locations] allObjects]];
             } else if ([obj isKindOfClass:Stop.class]) {
                 [(Stop *)previousObj mergeWithStop:(Stop *)obj];
             }
