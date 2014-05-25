@@ -12,6 +12,9 @@
 
 + (CGFloat)heightForTimedEvent:(id<TimedEvent>)event;
 
+@property (nonatomic, assign) BOOL isFirstEvent;
+@property (nonatomic, assign) BOOL isNow;
+
 - (void)setupWithTimedEvent:(id<TimedEvent>)event;
 
 @end

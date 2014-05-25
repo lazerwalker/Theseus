@@ -113,6 +113,37 @@ describe(@"ListViewController", ^{
 
                 [MKTVerify(cell) setupWithTimedEvent:stop];
             });
+
+            context(@"the first cell", ^{
+                it(@"should set the cell's isFirstEvent property", ^{
+                    UITableViewCell *cell = mock(StopTimelineCell.class);
+                    [controller tableView:controller.tableView willDisplayCell:cell forRowAtIndexPath:stopIndexPath];
+
+                    [MKTVerify(cell) setIsFirstEvent:YES];
+                });
+            });
+
+            context(@"the last cell", ^{
+                context(@"when the controller is a 'today' controller", ^{
+                    it(@"should set the cell's isNow property", ^{
+                        [given([presenter daysAgo]) willReturnInt:0];
+                        UITableViewCell *cell = mock(StopTimelineCell.class);
+                        [controller tableView:controller.tableView willDisplayCell:cell forRowAtIndexPath:untrackedIndexPath];
+
+                        [MKTVerify(cell) setIsNow:YES];
+                    });
+                });
+
+                context(@"when the controller is a past controller", ^{
+                    it(@"should not set the cell's isNow property", ^{
+                        [given([presenter daysAgo]) willReturnInt:1];
+                        UITableViewCell *cell = mock(StopTimelineCell.class);
+                        [controller tableView:controller.tableView willDisplayCell:cell forRowAtIndexPath:untrackedIndexPath];
+
+                        [MKTVerifyCount(cell, never()) setIsNow:YES];
+                    });
+                });
+            });
         });
 
         describe(@"didSelectRowAtIndexPath", ^{

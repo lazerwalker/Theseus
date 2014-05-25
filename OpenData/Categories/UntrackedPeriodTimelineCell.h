@@ -10,4 +10,7 @@
 
 @interface UntrackedPeriodTimelineCell : UITableViewCell
 
+@property (nonatomic, assign) BOOL isFirstEvent;
+@property (nonatomic, assign) BOOL isNow;
+
 @end

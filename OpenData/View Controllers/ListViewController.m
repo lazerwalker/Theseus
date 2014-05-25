@@ -99,6 +99,15 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell<TimelineCell> *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    if (indexPath.row == 0) {
+        cell.isFirstEvent = YES;
+    }
+
+    if (indexPath.row == ([self.tableView numberOfRowsInSection:0] - 1) && self.daysAgo == 0) {
+        cell.isNow = YES;
+    }
+
     id<TimedEvent> obj = [self.presenter eventForIndex:indexPath.row];
     [cell setupWithTimedEvent:obj];
 }
