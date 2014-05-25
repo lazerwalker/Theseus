@@ -25,7 +25,9 @@
 @implementation UntrackedPeriodTimelineCell
 
 + (CGFloat)heightForTimedEvent:(UntrackedPeriod *)period {
-    return TimelineCellHeightDefault;
+    CGFloat duration = period.duration / 60;
+    duration = MIN(duration, TimelineCellHeightMax);
+    return MAX(TimelineCellHeightDefault, duration);
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
