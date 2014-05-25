@@ -38,6 +38,14 @@
 }
 
 #pragma mark - Core Data accessors
+- (CLLocationDegrees)latitude {
+    return self.model.latitude.doubleValue;
+}
+
+- (CLLocationDegrees)longitude {
+    return self.model.longitude.doubleValue;
+}
+
 - (CLLocationCoordinate2D)coordinate {
     return CLLocationCoordinate2DMake(self.model.latitude.doubleValue, self.model.longitude.doubleValue);
 }

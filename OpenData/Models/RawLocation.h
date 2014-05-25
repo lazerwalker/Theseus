@@ -12,10 +12,10 @@
 @interface RawLocation : RawDataPoint
 
 @property (nonatomic) CLLocationCoordinate2D coordinate;
+@property (nonatomic) CLLocationDegrees latitude, longitude;
 @property (nonatomic) CLLocationDistance altitude;
 @property (nonatomic) CLLocationSpeed speed;
-@property (nonatomic) CLLocationAccuracy horizontalAccuracy;
-@property (nonatomic) CLLocationAccuracy verticalAccuracy;
+@property (nonatomic) CLLocationAccuracy horizontalAccuracy,  verticalAccuracy;
 
 - (void)setupWithLocation:(CLLocation *)location;
 - (CLLocationDistance)distanceFromLocation:(RawLocation *)location;
