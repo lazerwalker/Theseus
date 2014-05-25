@@ -97,7 +97,7 @@
 
 #pragma mark -
 - (void)setupWithTimedEvent:(UntrackedPeriod *)period {
-    self.descriptionLabel.text = [NSString stringWithFormat:@"Inactive for %@", [NSString stringWithTimeInterval:period.duration]];
+    self.descriptionLabel.text = [NSString stringWithFormat:@"App Inactive for %@", [NSString stringWithTimeInterval:period.duration]];
 
     self.traintrackBottom.center = CGPointMake(self.traintrackTop.center.x, self.contentView.bounds.size.height - self.traintrackBottom.bounds.size.height * 5);
 

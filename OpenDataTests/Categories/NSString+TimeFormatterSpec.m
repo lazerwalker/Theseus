@@ -21,19 +21,19 @@ SpecBegin(NSStringTimeFormatter)
 describe(@"NSString+TimeFormatter", ^{
     describe(@"when the time is less than one hour", ^{
         it(@"should only include the minutes", ^{
-            expect([NSString stringWithTimeInterval:45 * 60]).to.equal(@"45m");
+            expect([NSString stringWithTimeInterval:45 * 60]).to.equal(@"45 min");
         });
     });
 
     describe(@"when the time is an exact number of hours", ^{
         it(@"should only include the hours", ^{
-            expect([NSString stringWithTimeInterval:3 * 60 * 60]).to.equal(@"3h");
+            expect([NSString stringWithTimeInterval:3 * 60 * 60]).to.equal(@"3 hr");
         });
     });
 
     describe(@"when the time is longer than one hour, but not an exact number of hours", ^{
         it(@"should include both hours and minutes", ^{
-            expect([NSString stringWithTimeInterval:(2 * 60 * 60) + (10 * 60)]).to.equal(@"2h10m");
+            expect([NSString stringWithTimeInterval:(2 * 60 * 60) + (10 * 60)]).to.equal(@"2 hr 10 min");
         });
     });
 });

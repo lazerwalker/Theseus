@@ -25,7 +25,7 @@
     } else if (components.minute == 0){
         return hourString;
     } else {
-        return [NSString stringWithFormat:@"%@%@", hourString, minuteString];
+        return [NSString stringWithFormat:@"%@ %@", hourString, minuteString];
     }
 }
 @end
