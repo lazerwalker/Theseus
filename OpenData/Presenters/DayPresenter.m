@@ -48,7 +48,9 @@ NSString * const DayPresenterDataChangedKey = @"DayPresenterDataChangedKey";
 }
 
 - (TimedEvent *)eventForIndex:(NSInteger)index {
-    return self.data[index];
+    if (index < self.data.count) {
+        return self.data[index];
+    }
 }
 
 @end
