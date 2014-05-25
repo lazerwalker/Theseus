@@ -95,7 +95,7 @@
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id<TimedEvent> obj = [self.presenter eventForIndex:indexPath.row];
+    TimedEvent *obj = [self.presenter eventForIndex:indexPath.row];
     Class cellClass = [self timelineCellClassForObject:obj];
     return [cellClass heightForTimedEvent:obj];
 }
@@ -110,7 +110,7 @@
         cell.isNow = YES;
     }
 
-    id<TimedEvent> obj = [self.presenter eventForIndex:indexPath.row];
+    TimedEvent *obj = [self.presenter eventForIndex:indexPath.row];
     [cell setupWithTimedEvent:obj];
 }
 
@@ -152,7 +152,7 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id<TimedEvent> obj = [self.presenter eventForIndex:indexPath.row];
+    TimedEvent *obj = [self.presenter eventForIndex:indexPath.row];
     NSString *cellIdentifier = [[self timelineCellClassForObject:obj] reuseIdentifier];
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
@@ -161,7 +161,7 @@
 }
 
 #pragma mark - Private
-- (Class)timelineCellClassForObject:(id<TimedEvent>)obj {
+- (Class)timelineCellClassForObject:(TimedEvent *)obj {
     NSString *className = [NSString stringWithFormat:@"%@TimelineCell", NSStringFromClass(obj.class)];
     return NSClassFromString(className);
 }

@@ -82,7 +82,7 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
     [OpenData showNetworkActivitySpinner];
     [self.operationQueue addOperationWithBlock:^{
         [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
-            id<TimedEvent> previousEvent = ({
+            TimedEvent *previousEvent = ({
                 NSPredicate *onlyRealPaths = [NSPredicate predicateWithFormat:@"(stop = nil)"];
                 NSArray *stops = [Stop MR_findAllSortedBy:@"startTime" ascending:YES inContext:localContext];
                 NSArray *paths = [Path MR_findAllSortedBy:@"startTime" ascending:YES withPredicate:onlyRealPaths inContext:localContext];
@@ -152,7 +152,7 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
     [self processArray:array previousEvent:nil withContext:localContext];
 }
 
-- (void)processArray:(NSArray *)array previousEvent:(id<TimedEvent>)previousObject withContext:(NSManagedObjectContext *)localContext {
+- (void)processArray:(NSArray *)array previousEvent:(TimedEvent *)previousObject withContext:(NSManagedObjectContext *)localContext {
     NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:YES];
     array = [array sortedArrayUsingDescriptors:@[descriptor]];
 
@@ -230,10 +230,10 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
                                   mutableCopy];
 
     // Fold too-short events into the previous ones
-     id<TimedEvent> previousObj;
+     TimedEvent *previousObj;
      NSMutableArray *objectsToRemove = [NSMutableArray new];
 
-     for (NSManagedObject<TimedEvent> *obj in allObjects) {
+     for (TimedEvent *obj in allObjects) {
         if (obj.duration < 60.0) {
             [objectsToRemove addObject:obj];
             if (previousObj) {
@@ -250,7 +250,7 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
     // Add untracked periods when gaps still remain
     NSMutableArray *untrackedPeriods = [NSMutableArray new];
     previousObj = nil;
-    for (id<TimedEvent> obj in allObjects) {
+    for (TimedEvent *obj in allObjects) {
         if (previousObj && fabsf([previousObj.endTime timeIntervalSinceDate:obj.startTime]) > 120) {
             UntrackedPeriod *time = [UntrackedPeriod MR_createInContext:localContext];
             time.startTime = previousObj.endTime;
@@ -264,7 +264,7 @@ NSString * const DataProcessorDidFinishProcessingNotification = @"DataProcessorD
     allObjects = [[[allObjects arrayByAddingObjectsFromArray:untrackedPeriods] sortedArrayUsingDescriptors:@[startTimeDescriptor]] mutableCopy];
     objectsToRemove = [NSMutableArray new];
     previousObj = nil;
-    for (NSManagedObject<TimedEvent> *obj in allObjects) {
+    for (TimedEvent *obj in allObjects) {
         if (previousObj && obj.class == previousObj.class) {
             [objectsToRemove addObject:obj];
             previousObj.endTime = [previousObj.endTime laterDate:obj.endTime];

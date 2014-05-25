@@ -19,7 +19,7 @@ typedef NS_ENUM(NSUInteger, MovementType) {
 @class Stop;
 @class RawMotionActivity;
 
-@interface Path : NSObject<TimedEvent>
+@interface Path : TimedEvent
 
 @property (nonatomic, strong) NSDate *startTime;
 @property (nonatomic, strong) NSDate *endTime;

@@ -13,7 +13,7 @@
 
 #import "TimedEvent.h"
 
-@interface Stop : NSObject<MKAnnotation, TimedEvent>
+@interface Stop : TimedEvent<MKAnnotation>
 
 @property (nonatomic) NSDate *startTime;
 @property (nonatomic) NSDate *endTime;

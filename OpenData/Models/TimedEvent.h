@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol TimedEvent <NSObject>
+@interface TimedEvent : NSObject
 
 @property (nonatomic, retain) NSDate * startTime;
 @property (nonatomic, retain) NSDate * endTime;

@@ -7,7 +7,7 @@
 //
 
 @class ListViewController;
-@protocol TimedEvent;
+@class TimedEvent;
 
 extern NSString * const DayPresenterDataChangedKey;
 
@@ -19,6 +19,6 @@ extern NSString * const DayPresenterDataChangedKey;
 
 - (id)initWithDaysAgo:(NSUInteger)daysAgo;
 
-- (id<TimedEvent>)eventForIndex:(NSInteger)index;
+- (TimedEvent *)eventForIndex:(NSInteger)index;
 
 @end

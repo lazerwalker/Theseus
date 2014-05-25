@@ -8,12 +8,7 @@
 
 #import "TimedEvent.h"
 
-@interface UntrackedPeriod : NSObject<TimedEvent>
-
-@property (nonatomic, retain) NSDate *startTime;
-@property (nonatomic, retain) NSDate *endTime;
-
-@property (nonatomic, readonly) NSTimeInterval duration;
+@interface UntrackedPeriod : TimedEvent
 
 // Core data
 + (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate *)searchTerm;

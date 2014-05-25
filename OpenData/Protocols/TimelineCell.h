@@ -6,15 +6,15 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
-@protocol TimedEvent;
+@class TimedEvent;
 
 @protocol TimelineCell <NSObject>
 
-+ (CGFloat)heightForTimedEvent:(id<TimedEvent>)event;
++ (CGFloat)heightForTimedEvent:(TimedEvent *)event;
 
 @property (nonatomic, assign) BOOL isFirstEvent;
 @property (nonatomic, assign) BOOL isNow;
 
-- (void)setupWithTimedEvent:(id<TimedEvent>)event;
+- (void)setupWithTimedEvent:(TimedEvent *)event;
 
 @end
