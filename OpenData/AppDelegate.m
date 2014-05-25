@@ -29,6 +29,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [MagicalRecord setupAutoMigratingCoreDataStack];
 
+    [self setupAppearance];
     [self setupDropbox];
 
     UIPageViewController *dayPages = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
@@ -55,14 +56,8 @@
 }
 
 #pragma mark - Private
-- (void)setupDropbox {
-    Configuration *config = [Configuration new];
-    DBSession *dbSession = [[DBSession alloc]
-                            initWithAppKey:config.dropboxAppKey
-                            appSecret:config.dropboxAppSecret
-                            root:kDBRootAppFolder];
-
-    DBSession.sharedSession = dbSession;
+- (void)setupAppearance {
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"STHeitiTC-Medium" size:18.0]}];
 }
 
 - (void)startMonitoring {
@@ -76,6 +71,16 @@
 }
 
 #pragma mark - Dropbox
+- (void)setupDropbox {
+    Configuration *config = [Configuration new];
+    DBSession *dbSession = [[DBSession alloc]
+                            initWithAppKey:config.dropboxAppKey
+                            appSecret:config.dropboxAppSecret
+                            root:kDBRootAppFolder];
+
+    DBSession.sharedSession = dbSession;
+}
+
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url
   sourceApplication:(NSString *)source annotation:(id)annotation {
     if ([[DBSession sharedSession] handleOpenURL:url]) {
