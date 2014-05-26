@@ -7,7 +7,7 @@
 //
 
 #import "DataExporter.h"
-
+#import "Day.h"
 #import <DropboxSDK/DropboxSDK.h>
 
 @interface DataExporter ()<DBRestClientDelegate>
@@ -27,21 +27,22 @@
     self.dropboxClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
     self.dropboxClient.delegate = self;
 
-    [self.dropboxClient loadMetadata:@"/"];
+    @autoreleasepool {
+        for (int i=0; i<4; i++) {
+            Day *day = [[Day alloc] initWithDaysAgo:i];
+            NSString *text = day.jsonRepresentation;
 
-    // Write a file to the local documents directory
-    NSString *text = @"Hello world.";
-    NSString *filename = @"working-draft.txt";
-    NSString *localDir = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    NSString *localPath = [localDir stringByAppendingPathComponent:filename];
-    [text writeToFile:localPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+            NSString *filename = [NSString stringWithFormat:@"%lu.txt", (long)day.daysAgo];
+            NSString *localDir = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+            NSString *localPath = [localDir stringByAppendingPathComponent:filename];
+            [text writeToFile:localPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 
-    // Upload file to Dropbox
-    NSString *destDir = @"/";
+            // Upload file to Dropbox
+            NSString *destDir = @"/";
 
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.dropboxClient uploadFile:filename toPath:destDir withParentRev:nil fromPath:localPath];
-    });
+            [self.dropboxClient uploadFile:filename toPath:destDir withParentRev:nil fromPath:localPath];
+        }
+    }
 }
 
 #pragma mark - DBRestClientDelegate

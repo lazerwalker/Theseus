@@ -21,6 +21,26 @@
     @throw @"Not implemented";
 }
 
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{@"model": NSNull.null};
+}
+
++ (NSDateFormatter *)dateFormatter {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
+    return dateFormatter;
+}
+
++ (NSValueTransformer *)timestampJSONTransformer {
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
+        return [self.dateFormatter dateFromString:str];
+    } reverseBlock:^(NSDate *date) {
+        return [self.dateFormatter stringFromDate:date];
+    }];
+}
+
+
 - (id)initWithContext:(NSManagedObjectContext *)context {
     if (!(self = [super init])) return nil;
     self.context = context;

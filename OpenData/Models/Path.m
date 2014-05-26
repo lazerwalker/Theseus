@@ -25,6 +25,13 @@
     return CDPath.class;
 }
 
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    NSDictionary *dict = [super JSONKeyPathsByPropertyKey];
+    return [dict mtl_dictionaryByAddingEntriesFromDictionary:@{@"locations": NSNull.null,
+                                                               @"activity": NSNull.null,
+                                                               @"stop":NSNull.null}];
+}
+
 - (NSString *)typeString {
     NSArray *types = @[@"Unknown",
                        @"Walking",

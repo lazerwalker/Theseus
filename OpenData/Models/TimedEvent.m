@@ -11,11 +11,45 @@
 
 #import <Asterism.h>
 
+@interface TimedEvent ()
+@property (nonatomic) NSString *eventType; // Exists solely for Mantle
+@end
+
 @implementation TimedEvent
 
 + (Class)modelClass {
     @throw @"Not implemented";
 }
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{@"model": NSNull.null,
+             @"context": NSNull.null,
+             @"duration": NSNull.null};
+}
+
++ (NSDateFormatter *)dateFormatter {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
+    return dateFormatter;
+}
+
++ (NSValueTransformer *)startTimeJSONTransformer {
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
+        return [self.dateFormatter dateFromString:str];
+    } reverseBlock:^(NSDate *date) {
+        return [self.dateFormatter stringFromDate:date];
+    }];
+}
+
++ (NSValueTransformer *)endTimeJSONTransformer {
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
+        return [self.dateFormatter dateFromString:str];
+    } reverseBlock:^(NSDate *date) {
+        return [self.dateFormatter stringFromDate:date];
+    }];
+}
+
 
 - (id)init {
     if (!(self = [super init])) return nil;
@@ -54,6 +88,10 @@
     }
 }
 
+#pragma mark -
+- (NSString *)eventType {
+    return NSStringFromClass(self.class);
+}
 
 #pragma mark - Accessors
 - (NSTimeInterval)duration {

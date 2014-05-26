@@ -18,6 +18,15 @@
     return CDVenue.class;
 }
 
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{@"model": NSNull.null,
+             @"foursquareIconSuffix": NSNull.null,
+             @"foursquareIconPrefix": NSNull.null,
+             @"coordinate": NSNull.null};
+}
+
+
+
 - (id)initWithCDModel:(CDVenue *)model {
     if (!model) return nil;
     if (!(self = [super init])) return nil;
@@ -79,6 +88,22 @@
 
 - (NSSet *)stops {
     return self.model.stops;
+}
+
+- (CLLocationDegrees)latitude {
+    return self.model.latitude.doubleValue;
+}
+
+- (void)setLatitude:(CLLocationDegrees)latitude {
+    self.model.latitude = @(latitude);
+}
+
+- (CLLocationDegrees)longitude {
+    return self.model.longitude.doubleValue;
+}
+
+- (void)setLongitude:(CLLocationDegrees)longitude {
+    self.model.longitude = @(longitude);
 }
 
 #pragma mark - Magical Record

@@ -6,12 +6,13 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
+#import <Mantle.h>
 @import CoreLocation;
 
 @class CDVenue;
 @class FoursquareVenue;
 
-@interface Venue : NSObject
+@interface Venue : MTLModel<MTLJSONSerializing>
 
 @property (nonatomic) CDVenue *model;
 @property (nonatomic) NSString *name;
@@ -19,6 +20,9 @@
 @property (nonatomic, readonly) NSSet *stops;
 
 @property (nonatomic) CLLocationCoordinate2D coordinate;
+@property (nonatomic) CLLocationDegrees latitude;
+@property (nonatomic) CLLocationDegrees longitude;
+
 @property (nonatomic, readonly) NSURL *iconURL;
 
 @property (nonatomic, retain) NSString* foursquareIconSuffix;

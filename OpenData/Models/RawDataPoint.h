@@ -6,9 +6,11 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
+#import <Mantle.h>
+
 @protocol CDRawDataPoint;
 
-@interface RawDataPoint : NSObject
+@interface RawDataPoint : MTLModel<MTLJSONSerializing>
 
 + (Class)modelClass;
 

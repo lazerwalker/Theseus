@@ -6,9 +6,10 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
+#import <Mantle.h>
 @protocol CDTimedEvent;
 
-@interface TimedEvent : NSObject
+@interface TimedEvent : MTLModel<MTLJSONSerializing>
 
 + (Class)modelClass;
 

@@ -8,6 +8,7 @@
 
 #import "Day.h"
 #import "DataProcessor.h"
+#import "TimedEvent.h"
 
 NSString * const DayDataChangedKey = @"DayDataChangedKey";
 
@@ -19,6 +20,10 @@ NSString * const DayDataChangedKey = @"DayDataChangedKey";
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{};
+}
+
++ (NSValueTransformer *)dataJSONTransformer {
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:TimedEvent.class];
 }
 
 - (id)initWithDaysAgo:(NSUInteger)daysAgo {
@@ -35,6 +40,24 @@ NSString * const DayDataChangedKey = @"DayDataChangedKey";
 
 - (void)fetch {
     self.data = [DataProcessor.sharedInstance eventsForDaysAgo:self.daysAgo];
+}
+
+- (NSString *)jsonRepresentation {
+    NSDictionary *dict = [MTLJSONAdapter JSONDictionaryFromModel:self];
+    NSError *error;
+
+    NSData *jsonData;
+    if ([NSJSONSerialization isValidJSONObject:dict]) {
+        jsonData = [NSJSONSerialization dataWithJSONObject:dict
+                                                       options:NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
+                                                         error:&error];
+    }
+
+    if (jsonData) {
+        return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    } else {
+        return nil;
+    }
 }
 
 - (NSUInteger)numberOfEvents {

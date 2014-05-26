@@ -23,4 +23,6 @@ extern NSString * const DayDataChangedKey;
 
 - (TimedEvent *)eventForIndex:(NSInteger)index;
 
+- (NSString *)jsonRepresentation;
+
 @end
