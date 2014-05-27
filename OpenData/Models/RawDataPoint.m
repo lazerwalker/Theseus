@@ -13,6 +13,7 @@
 
 @interface RawDataPoint ()
 @property (nonatomic, strong) NSManagedObjectContext *context;
+@property (nonatomic, strong) NSString *dataPointType; // Just for Mantle
 @end
 
 @implementation RawDataPoint
@@ -24,6 +25,10 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{@"model": NSNull.null,
              @"context": NSNull.null};
+}
+
++ (Class)classForParsingJSONDictionary:(NSDictionary *)dict {
+    return NSClassFromString(dict[@"dataPointType"]) ?: self.class;
 }
 
 + (NSDateFormatter *)dateFormatter {
@@ -41,6 +46,13 @@
     }];
 }
 
+- (id)init {
+    if (!(self = [super init])) return nil;
+
+    self.model = [self.class.modelClass MR_createEntity];
+
+    return self;
+}
 
 - (id)initWithContext:(NSManagedObjectContext *)context {
     if (!(self = [super init])) return nil;
@@ -63,6 +75,11 @@
     self.model = model;
     self.context = context;
     return self;
+}
+
+#pragma mark -
+- (NSString *)dataPointType {
+    return NSStringFromClass(self.class);
 }
 
 #pragma mark - Accessors

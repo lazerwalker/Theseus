@@ -47,8 +47,16 @@
     return self.model.latitude.doubleValue;
 }
 
+- (void)setLatitude:(CLLocationDegrees)latitude {
+    self.model.latitude = @(latitude);
+}
+
 - (CLLocationDegrees)longitude {
     return self.model.longitude.doubleValue;
+}
+
+- (void)setLongitude:(CLLocationDegrees)longitude {
+    self.model.longitude = @(longitude);
 }
 
 - (CLLocationCoordinate2D)coordinate {
