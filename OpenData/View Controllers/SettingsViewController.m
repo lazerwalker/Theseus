@@ -12,7 +12,8 @@
 #import <DropboxSDK/DropboxSDK.h>
 
 typedef NS_ENUM(NSInteger, SettingsRows) {
-    SettingsRowDropboxExport
+    SettingsRowDropboxExport,
+    SettingsRowFullDBExport
 };
 
 @interface SettingsViewController ()
@@ -29,15 +30,29 @@ typedef NS_ENUM(NSInteger, SettingsRows) {
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
 
-    if (cell.tag == SettingsRowDropboxExport) {
-        if (![[DBSession sharedSession] isLinked]) {
-            [[DBSession sharedSession] linkFromController:self];
-        }
+    switch (cell.tag) {
+        case SettingsRowDropboxExport: {
+            if (![[DBSession sharedSession] isLinked]) {
+                [[DBSession sharedSession] linkFromController:self];
+            }
 
-        self.exporter = [DataExporter new];
-        [self.exporter uploadToDropbox];
+            self.exporter = [DataExporter new];
+            [self.exporter uploadToDropbox];
+            break;
+        }
+        case SettingsRowFullDBExport: {
+            if (![[DBSession sharedSession] isLinked]) {
+                [[DBSession sharedSession] linkFromController:self];
+            }
+
+            self.exporter = [DataExporter new];
+            [self.exporter exportFullDatabase];
+            break;
+        }
     }
 }
 

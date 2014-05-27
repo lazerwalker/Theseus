@@ -9,6 +9,7 @@
 #import "DataExporter.h"
 #import "Day.h"
 #import <DropboxSDK/DropboxSDK.h>
+#import "DataProcessor.h"
 
 @interface DataExporter ()<DBRestClientDelegate>
 @property (nonatomic, strong) DBRestClient *dropboxClient;
@@ -20,13 +21,13 @@
     self = [super init];
     if (!self) return nil;
 
+    self.dropboxClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
+    self.dropboxClient.delegate = self;
+
     return self;
 }
 
 - (void)uploadToDropbox {
-    self.dropboxClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
-    self.dropboxClient.delegate = self;
-
     @autoreleasepool {
         for (int i=0; i<4; i++) {
             Day *day = [[Day alloc] initWithDaysAgo:i];
@@ -43,6 +44,28 @@
             [self.dropboxClient uploadFile:filename toPath:destDir withParentRev:nil fromPath:localPath];
         }
     }
+}
+
+- (void)exportFullDatabase {
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    dateFormatter.dateFormat = @"MM-dd-yyyy";
+
+    DataProcessor *processor = DataProcessor.sharedInstance;
+    NSArray *data = processor.allRawData;
+    data = [MTLJSONAdapter JSONArrayFromModels:data];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data
+                                                   options:NSJSONWritingPrettyPrinted
+                                                    error:nil];
+    if (!jsonData) return;
+
+    NSString *text = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+
+    NSString *filename = [NSString stringWithFormat:@"%@.json", [dateFormatter stringFromDate:NSDate.date]];
+    NSString *localDir = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString *localPath = [localDir stringByAppendingPathComponent:filename];
+    [text writeToFile:localPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+
+    [self.dropboxClient uploadFile:filename toPath:@"/" withParentRev:nil fromPath:localPath];
 }
 
 #pragma mark - DBRestClientDelegate

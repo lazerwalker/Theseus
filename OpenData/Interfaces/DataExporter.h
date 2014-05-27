@@ -11,5 +11,5 @@
 @interface DataExporter : NSObject
 
 - (void)uploadToDropbox;
-
+- (void)exportFullDatabase;
 @end

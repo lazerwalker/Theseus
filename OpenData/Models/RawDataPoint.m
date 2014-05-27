@@ -22,7 +22,8 @@
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"model": NSNull.null};
+    return @{@"model": NSNull.null,
+             @"context": NSNull.null};
 }
 
 + (NSDateFormatter *)dateFormatter {
@@ -85,6 +86,13 @@
     NSArray *array = [self.modelClass MR_findAllSortedBy:sortTerm ascending:ascending inContext:context];
     return ASTMap(array, ^id(id<CDRawDataPoint> obj) {
         return [[self alloc] initWithCDModel:obj context:context];
+    });
+}
+
++ (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending; {
+    NSArray *array = [self.modelClass MR_findAllSortedBy:sortTerm ascending:ascending];
+    return ASTMap(array, ^id(id<CDRawDataPoint> obj) {
+        return [[self alloc] initWithCDModel:obj];
     });
 }
 @end

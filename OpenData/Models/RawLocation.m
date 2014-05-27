@@ -19,6 +19,11 @@
     return CDRawLocation.class;
 }
 
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    NSDictionary *dict = [super JSONKeyPathsByPropertyKey];
+    return [dict mtl_dictionaryByAddingEntriesFromDictionary:@{@"coordinate": NSNull.null}];
+}
+
 - (void)setupWithLocation:(CLLocation *)location {
     self.timestamp = location.timestamp;
     self.altitude = location.altitude;

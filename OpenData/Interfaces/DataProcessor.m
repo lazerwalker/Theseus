@@ -78,6 +78,15 @@ NSString *DataProcessorDidFinishProcessingNotification = @"DataProcessorDidFinis
     return allObjects;
 }
 
+- (NSArray *)allRawData {
+    NSArray *motionEvents = [RawMotionActivity MR_findAllSortedBy:@"timestamp" ascending:YES];
+    NSArray *locationEvents = [RawLocation MR_findAllSortedBy:@"timestamp" ascending:YES];
+
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:YES];
+    NSArray *allObjects = [[motionEvents arrayByAddingObjectsFromArray:locationEvents] sortedArrayUsingDescriptors:@[descriptor]];
+    return allObjects;
+}
+
 - (void)processNewData {
     [OpenData showNetworkActivitySpinner];
     [self.operationQueue addOperationWithBlock:^{
