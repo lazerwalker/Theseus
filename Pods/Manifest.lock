@@ -5,9 +5,9 @@ PODS:
   - MagicalRecord (2.2):
     - MagicalRecord/Core
   - MagicalRecord/Core (2.2)
-  - Mantle (1.4.1):
+  - Mantle (1.5):
     - Mantle/extobjc
-  - Mantle/extobjc (1.4.1)
+  - Mantle/extobjc (1.5)
   - OCHamcrest (3.0.1)
   - OCMockito (1.2.0):
     - OCHamcrest (~> 3.0)
@@ -39,7 +39,7 @@ SPEC CHECKSUMS:
   Dropbox-iOS-SDK: 9cc160cd7fa2edfae25adf11346bff3496d6dbad
   Expecta: 322f1dc42610106a5ba9871b4924cf1635d80833
   MagicalRecord: 95d49d74ef752cd52f6ad87bcb474817fc3978cf
-  Mantle: 0714cdb2b8559d9e6c2410d6a8529e3307bff189
+  Mantle: c67a7e45e14196ed42b2a7cbb98ff6a9920e6b92
   OCHamcrest: 782c52ae8c673e5d6060a65005cfd26d20d519ba
   OCMockito: 050fca9528760faa8b5fafc82faad9d54f0864c0
   PivotalCoreKit: 349c342734a46c11fc1e0cfc1fb02d010392f8e5
