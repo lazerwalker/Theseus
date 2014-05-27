@@ -115,6 +115,20 @@
 }
 
 #pragma mark - MagicalRecord
++ (NSArray *)MR_findAll {
+    NSArray *array = [self.modelClass MR_findAll];
+    return ASTMap(array, ^id(id<CDTimedEvent> obj) {
+        return [[self alloc] initWithCDModel:obj];
+    });
+}
+
++ (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending {
+    NSArray *array = [self.modelClass MR_findAllSortedBy:sortTerm ascending:ascending];
+    return ASTMap(array, ^id(id<CDTimedEvent> obj) {
+        return [[self alloc] initWithCDModel:obj];
+    });
+}
+
 + (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate *)searchTerm {
     NSArray *array = [self.modelClass MR_findAllSortedBy:sortTerm ascending:ascending withPredicate:searchTerm];
     return ASTMap(array, ^id(id<CDTimedEvent> obj) {

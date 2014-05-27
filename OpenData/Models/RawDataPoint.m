@@ -75,6 +75,13 @@
 }
 
 #pragma mark - MagicalRecord
++ (NSArray *)MR_findAll {
+    NSArray *array = [self.modelClass MR_findAll];
+    return ASTMap(array, ^id(id<CDRawDataPoint> obj) {
+        return [[self alloc] initWithCDModel:obj];
+    });
+}
+
 + (NSArray *) MR_findAllSortedBy:(NSString *)sortTerm ascending:(BOOL)ascending withPredicate:(NSPredicate *)searchTerm inContext:(NSManagedObjectContext *)context {
     NSArray *array = [self.modelClass MR_findAllSortedBy:sortTerm ascending:ascending withPredicate:searchTerm inContext:context];
     return ASTMap(array, ^id(id<CDRawDataPoint> obj) {
@@ -95,4 +102,8 @@
         return [[self alloc] initWithCDModel:obj];
     });
 }
+- (BOOL)destroy {
+    return [self.model MR_deleteEntity];
+}
+
 @end
