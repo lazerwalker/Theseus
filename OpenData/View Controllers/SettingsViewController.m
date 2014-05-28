@@ -9,11 +9,13 @@
 #import "SettingsViewController.h"
 #import "DataExporter.h"
 
+#import <VTAcknowledgementsViewController.h>
 #import <DropboxSDK/DropboxSDK.h>
 
 typedef NS_ENUM(NSInteger, SettingsRows) {
     SettingsRowDropboxExport,
-    SettingsRowFullDBExport
+    SettingsRowFullDBExport,
+    SettingsRowAcknowledgements
 };
 
 @interface SettingsViewController ()
@@ -52,6 +54,10 @@ typedef NS_ENUM(NSInteger, SettingsRows) {
             self.exporter = [DataExporter new];
             [self.exporter exportFullDatabase];
             break;
+        }
+        case SettingsRowAcknowledgements: {
+            VTAcknowledgementsViewController *acknowledgementsController = [VTAcknowledgementsViewController acknowledgementsViewController];
+            [self.navigationController pushViewController:acknowledgementsController animated:YES];
         }
     }
 }

@@ -11,6 +11,7 @@
 		A6107DC7193108B1003B7837 /* SettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6AAB1521930F558000DE81E /* SettingsViewController.storyboard */; };
 		A6107DCE19314B13003B7837 /* DataExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = A6107DC919310B2B003B7837 /* DataExporter.m */; };
 		A61D6461192ABF6800F7EB88 /* AppDelegateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A61D6460192ABF6800F7EB88 /* AppDelegateSpec.m */; };
+		A644F0AD19366688009B7561 /* Pods-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = A644F0AC19366688009B7561 /* Pods-acknowledgements.plist */; };
 		A65C2EEA19350D8E001FA01D /* RawLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874EB193230C700D8C7DD /* RawLocation.m */; };
 		A65C2EEB19350D92001FA01D /* RawMotionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874EE1932331300D8C7DD /* RawMotionActivity.m */; };
 		A66211661930507F00982704 /* Configuration.plist.example in Resources */ = {isa = PBXBuildFile; fileRef = A66211651930507F00982704 /* Configuration.plist.example */; };
@@ -98,6 +99,7 @@
 		A6107DC819310B2B003B7837 /* DataExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataExporter.h; path = Interfaces/DataExporter.h; sourceTree = "<group>"; };
 		A6107DC919310B2B003B7837 /* DataExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataExporter.m; path = Interfaces/DataExporter.m; sourceTree = "<group>"; };
 		A61D6460192ABF6800F7EB88 /* AppDelegateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegateSpec.m; sourceTree = "<group>"; };
+		A644F0AC19366688009B7561 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
 		A66211651930507F00982704 /* Configuration.plist.example */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Configuration.plist.example; sourceTree = "<group>"; };
 		A668A1EF1932469D00C6363F /* CDRawDataPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CDRawDataPoint.h; path = Protocols/CDRawDataPoint.h; sourceTree = "<group>"; };
 		A668A1F319324D6300C6363F /* OpenData (2014-05-25).xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OpenData (2014-05-25).xcdatamodel"; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 		A6748A92192127E90073CE19 = {
 			isa = PBXGroup;
 			children = (
+				A644F0AC19366688009B7561 /* Pods-acknowledgements.plist */,
 				A66211651930507F00982704 /* Configuration.plist.example */,
 				A6748AA4192127E90073CE19 /* OpenData */,
 				A6748AC3192127EA0073CE19 /* OpenDataTests */,
@@ -619,6 +622,7 @@
 				A6AAB14A1930512A000DE81E /* Configuration.plist.example in Resources */,
 				A68425CC1923047F0083D006 /* Configuration.plist in Resources */,
 				A6AAB1531930F558000DE81E /* SettingsViewController.storyboard in Resources */,
+				A644F0AD19366688009B7561 /* Pods-acknowledgements.plist in Resources */,
 				A6748AB7192127E90073CE19 /* Images.xcassets in Resources */,
 				A6748AA9192127E90073CE19 /* InfoPlist.strings in Resources */,
 			);
