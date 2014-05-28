@@ -14,16 +14,32 @@ NSString * const DayDataChangedKey = @"DayDataChangedKey";
 
 @interface Day ()
 @property (nonatomic, strong) NSArray *data;
+@property (nonatomic, readwrite) NSDate *date;
 @end
 
 @implementation Day
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{};
+    return @{@"daysAgo": NSNull.null};
 }
 
 + (NSValueTransformer *)dataJSONTransformer {
     return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:TimedEvent.class];
+}
+
++ (NSValueTransformer *)dateJSONTransformer {
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSString *str) {
+        return [self.dateFormatter dateFromString:str];
+    } reverseBlock:^(NSDate *date) {
+        return [self.dateFormatter stringFromDate:date];
+    }];
+}
+
++ (NSDateFormatter *)dateFormatter {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
+    return dateFormatter;
 }
 
 - (id)initWithDaysAgo:(NSUInteger)daysAgo {
@@ -31,6 +47,13 @@ NSString * const DayDataChangedKey = @"DayDataChangedKey";
     if (!self) return nil;
 
     self.daysAgo = daysAgo;
+    self.date = ({
+        NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
+        NSDateComponents *components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:NSDate.date];
+        components.day -= daysAgo;
+        [calendar dateFromComponents:components];
+    });
+
     [self fetch];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetch) name:DataProcessorDidFinishProcessingNotification object:nil];

@@ -17,6 +17,7 @@ extern NSString * const DayDataChangedKey;
 
 @property (nonatomic, readonly) NSUInteger numberOfEvents;
 @property (nonatomic, readonly) NSString *title;
+@property (nonatomic, readonly) NSDate *date;
 @property (nonatomic, assign) NSUInteger daysAgo;
 
 - (id)initWithDaysAgo:(NSUInteger)daysAgo;

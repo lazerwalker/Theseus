@@ -28,12 +28,16 @@
 }
 
 - (void)uploadToDropbox {
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    dateFormatter.dateFormat = @"MM-dd-yyyy";
+
     @autoreleasepool {
         for (int i=0; i<4; i++) {
             Day *day = [[Day alloc] initWithDaysAgo:i];
             NSString *text = day.jsonRepresentation;
+            if (!text) continue;
 
-            NSString *filename = [NSString stringWithFormat:@"%lu.txt", (long)day.daysAgo];
+            NSString *filename = [NSString stringWithFormat:@"%@.json", [dateFormatter stringFromDate:day.date]];
             NSString *localDir = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
             NSString *localPath = [localDir stringByAppendingPathComponent:filename];
             [text writeToFile:localPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
