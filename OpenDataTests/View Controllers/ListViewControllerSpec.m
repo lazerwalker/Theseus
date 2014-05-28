@@ -146,10 +146,10 @@ describe(@"ListViewController", ^{
             });
         });
 
-        describe(@"didSelectRowAtIndexPath", ^{
+        describe(@"didTapAccessoryView", ^{
             context(@"when the cell is a stop cell", ^{
                 beforeEach(^{
-                    [controller tableView:controller.tableView didSelectRowAtIndexPath:stopIndexPath];
+                    [controller didTapAccessoryViewForTimedEvent:stop];
                 });
 
                 it(@"should display a venue selector", ^{
@@ -190,7 +190,7 @@ describe(@"ListViewController", ^{
 
             context(@"when the cell is a movement path cell", ^{
                 it(@"should do nothing", ^{
-                    [controller tableView:controller.tableView didSelectRowAtIndexPath:pathIndexPath];
+                    [controller didTapAccessoryViewForTimedEvent:[Path new]];
 
                     expect(controller.presentedViewController).to.beNil();
                 });
@@ -198,7 +198,7 @@ describe(@"ListViewController", ^{
 
             context(@"when the cell is an untracked period cell", ^{
                 it(@"should do nothing", ^{
-                    [controller tableView:controller.tableView didSelectRowAtIndexPath:untrackedIndexPath];
+                    [controller didTapAccessoryViewForTimedEvent:[UntrackedPeriod new]];
 
                     expect(controller.presentedViewController).to.beNil();
                 });

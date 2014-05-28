@@ -10,6 +10,10 @@
 #import "Stop.h"
 #import "Venue.h"
 
+#import <FAKFontAwesome.h>
+
+static CGFloat EditIconSize = 18.0;
+
 @interface StopTimelineCell ()
 @property (nonatomic, strong) UIView *line;
 @property (nonatomic, strong) UIView *bubble;
@@ -17,6 +21,8 @@
 
 @property (nonatomic, strong) UILabel *startTime;
 @property (nonatomic, strong) UILabel *endTime;
+
+@property (nonatomic, weak) Stop *stop;
 @end
 
 @implementation StopTimelineCell
@@ -50,6 +56,14 @@
 
 - (void)render {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    FAKFontAwesome *pencil = [FAKFontAwesome pencilIconWithSize:EditIconSize];
+    [pencil addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor]];
+    UIImage *editIcon = [pencil imageWithSize:CGSizeMake(EditIconSize, EditIconSize)];
+    self.accessoryView = [[UIImageView alloc] initWithImage:editIcon];
+    self.accessoryView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapAccessoryView)];
+    [self.accessoryView addGestureRecognizer:tapRecognizer];
 
     self.line = [UIView new];
     self.line.translatesAutoresizingMaskIntoConstraints = NO;
@@ -144,6 +158,8 @@
 - (void)setupWithTimedEvent:(Stop *)stop {
     if (![stop isKindOfClass:Stop.class]) return;
 
+    self.stop = stop;
+
     if (stop.venue) {
         self.venueLabel.text = stop.venue.name;
     } else {
@@ -159,5 +175,13 @@
 
     [self.startTime sizeToFit];
     [self.endTime sizeToFit];
+}
+
+#pragma mark - 
+
+- (void)didTapAccessoryView {
+    if (self.delegate) {
+        [self.delegate didTapAccessoryViewForTimedEvent:self.stop];
+    }
 }
 @end

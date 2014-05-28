@@ -6,9 +6,11 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
+#import "TimelineCell.h"
+
 @class Day;
 
-@interface ListViewController : UITableViewController
+@interface ListViewController : UITableViewController<TimelineCellDelegate>
 
 @property (nonatomic, readonly) NSInteger daysAgo;
 

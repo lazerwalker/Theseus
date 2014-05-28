@@ -24,7 +24,7 @@
 #import "VenueListViewController.h"
 #import "SettingsViewController.h"
 
-@interface ListViewController ()<TimelineCellDelegate>
+@interface ListViewController ()
 @property (strong, nonatomic) NSArray *data;
 @property (nonatomic, strong) Day *day;
 @end
