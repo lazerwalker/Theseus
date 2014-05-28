@@ -6,13 +6,9 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
+#import "TimelineCell.h"
+
 @class TimedEvent;
 
-@interface StopTimelineCell : UITableViewCell
-
-@property (nonatomic, assign) BOOL isFirstEvent;
-@property (nonatomic, assign) BOOL isNow;
-
-- (void)setupWithTimedEvent:(TimedEvent *)event;
-
+@interface StopTimelineCell : TimelineCell
 @end

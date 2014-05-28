@@ -12,6 +12,7 @@
 		A6107DCE19314B13003B7837 /* DataExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = A6107DC919310B2B003B7837 /* DataExporter.m */; };
 		A61D6461192ABF6800F7EB88 /* AppDelegateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A61D6460192ABF6800F7EB88 /* AppDelegateSpec.m */; };
 		A644F0AD19366688009B7561 /* Pods-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = A644F0AC19366688009B7561 /* Pods-acknowledgements.plist */; };
+		A644F0B4193679F3009B7561 /* TimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A644F0B3193679F3009B7561 /* TimelineCell.m */; };
 		A65C2EEA19350D8E001FA01D /* RawLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874EB193230C700D8C7DD /* RawLocation.m */; };
 		A65C2EEB19350D92001FA01D /* RawMotionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874EE1932331300D8C7DD /* RawMotionActivity.m */; };
 		A66211661930507F00982704 /* Configuration.plist.example in Resources */ = {isa = PBXBuildFile; fileRef = A66211651930507F00982704 /* Configuration.plist.example */; };
@@ -52,7 +53,6 @@
 		A6AAB1531930F558000DE81E /* SettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6AAB1521930F558000DE81E /* SettingsViewController.storyboard */; };
 		A6B91D03192E70BF00F7106E /* StopTimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D02192E70BF00F7106E /* StopTimelineCell.m */; };
 		A6B91D08192E737200F7106E /* UITableViewCell+ReuseIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D07192E737200F7106E /* UITableViewCell+ReuseIdentifier.m */; };
-		A6B91D0B192E768800F7106E /* UITableViewCell+TimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D0A192E768800F7106E /* UITableViewCell+TimelineCell.m */; };
 		A6B91D0E192E76DA00F7106E /* PathTimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D0D192E76DA00F7106E /* PathTimelineCell.m */; };
 		A6B91D11192E770C00F7106E /* UntrackedPeriodTimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D10192E770C00F7106E /* UntrackedPeriodTimelineCell.m */; };
 		A6B91D16192EA60200F7106E /* NSString+TimeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D15192EA60200F7106E /* NSString+TimeFormatter.m */; };
@@ -100,6 +100,7 @@
 		A6107DC919310B2B003B7837 /* DataExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataExporter.m; path = Interfaces/DataExporter.m; sourceTree = "<group>"; };
 		A61D6460192ABF6800F7EB88 /* AppDelegateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegateSpec.m; sourceTree = "<group>"; };
 		A644F0AC19366688009B7561 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
+		A644F0B3193679F3009B7561 /* TimelineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimelineCell.m; path = "Views/Timeline Cells/TimelineCell.m"; sourceTree = "<group>"; };
 		A66211651930507F00982704 /* Configuration.plist.example */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Configuration.plist.example; sourceTree = "<group>"; };
 		A668A1EF1932469D00C6363F /* CDRawDataPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CDRawDataPoint.h; path = Protocols/CDRawDataPoint.h; sourceTree = "<group>"; };
 		A668A1F319324D6300C6363F /* OpenData (2014-05-25).xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OpenData (2014-05-25).xcdatamodel"; sourceTree = "<group>"; };
@@ -165,8 +166,6 @@
 		A6B91D02192E70BF00F7106E /* StopTimelineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StopTimelineCell.m; path = "Views/Timeline Cells/StopTimelineCell.m"; sourceTree = "<group>"; };
 		A6B91D06192E737200F7106E /* UITableViewCell+ReuseIdentifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableViewCell+ReuseIdentifier.h"; path = "Categories/UITableViewCell+ReuseIdentifier.h"; sourceTree = "<group>"; };
 		A6B91D07192E737200F7106E /* UITableViewCell+ReuseIdentifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableViewCell+ReuseIdentifier.m"; path = "Categories/UITableViewCell+ReuseIdentifier.m"; sourceTree = "<group>"; };
-		A6B91D09192E768800F7106E /* UITableViewCell+TimelineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableViewCell+TimelineCell.h"; path = "Categories/UITableViewCell+TimelineCell.h"; sourceTree = "<group>"; };
-		A6B91D0A192E768800F7106E /* UITableViewCell+TimelineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableViewCell+TimelineCell.m"; path = "Categories/UITableViewCell+TimelineCell.m"; sourceTree = "<group>"; };
 		A6B91D0C192E76DA00F7106E /* PathTimelineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PathTimelineCell.h; path = "Views/Timeline Cells/PathTimelineCell.h"; sourceTree = "<group>"; };
 		A6B91D0D192E76DA00F7106E /* PathTimelineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PathTimelineCell.m; path = "Views/Timeline Cells/PathTimelineCell.m"; sourceTree = "<group>"; };
 		A6B91D0F192E770C00F7106E /* UntrackedPeriodTimelineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UntrackedPeriodTimelineCell.h; path = Categories/UntrackedPeriodTimelineCell.h; sourceTree = "<group>"; };
@@ -439,12 +438,14 @@
 		A6B91CFD192E700600F7106E /* Timeline Cells */ = {
 			isa = PBXGroup;
 			children = (
+				A6B91D13192E866500F7106E /* TimelineCell.h */,
 				A6B91D01192E70BF00F7106E /* StopTimelineCell.h */,
 				A6B91D02192E70BF00F7106E /* StopTimelineCell.m */,
 				A6B91D0C192E76DA00F7106E /* PathTimelineCell.h */,
 				A6B91D0D192E76DA00F7106E /* PathTimelineCell.m */,
 				A6B91D0F192E770C00F7106E /* UntrackedPeriodTimelineCell.h */,
 				A6B91D10192E770C00F7106E /* UntrackedPeriodTimelineCell.m */,
+				A644F0B3193679F3009B7561 /* TimelineCell.m */,
 			);
 			name = "Timeline Cells";
 			sourceTree = "<group>";
@@ -454,8 +455,6 @@
 			children = (
 				A6B91D06192E737200F7106E /* UITableViewCell+ReuseIdentifier.h */,
 				A6B91D07192E737200F7106E /* UITableViewCell+ReuseIdentifier.m */,
-				A6B91D09192E768800F7106E /* UITableViewCell+TimelineCell.h */,
-				A6B91D0A192E768800F7106E /* UITableViewCell+TimelineCell.m */,
 				A6B91D14192EA60200F7106E /* NSString+TimeFormatter.h */,
 				A6B91D15192EA60200F7106E /* NSString+TimeFormatter.m */,
 			);
@@ -465,7 +464,6 @@
 		A6B91D12192E865100F7106E /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				A6B91D13192E866500F7106E /* TimelineCell.h */,
 				A6A8750719323BF800D8C7DD /* CDTimedEvent.h */,
 				A668A1EF1932469D00C6363F /* CDRawDataPoint.h */,
 			);
@@ -739,7 +737,6 @@
 				A6B91D03192E70BF00F7106E /* StopTimelineCell.m in Sources */,
 				A6A8750319323A0300D8C7DD /* TimedEvent.m in Sources */,
 				A6B91D08192E737200F7106E /* UITableViewCell+ReuseIdentifier.m in Sources */,
-				A6B91D0B192E768800F7106E /* UITableViewCell+TimelineCell.m in Sources */,
 				A6A875001932355F00D8C7DD /* CDUntrackedPeriod.m in Sources */,
 				A6A875011932355F00D8C7DD /* CDVenue.m in Sources */,
 				A6B91D1C1930017200F7106E /* Day.m in Sources */,
@@ -767,6 +764,7 @@
 				A6BD97B719299AE000264548 /* MovementPathPolyline.m in Sources */,
 				A6748AAB192127E90073CE19 /* main.m in Sources */,
 				A6C7CFE1192A7FF1001A6DAC /* OpenData.m in Sources */,
+				A644F0B4193679F3009B7561 /* TimelineCell.m in Sources */,
 				A6B91D16192EA60200F7106E /* NSString+TimeFormatter.m in Sources */,
 				A6B91D0E192E76DA00F7106E /* PathTimelineCell.m in Sources */,
 				A6F4D9111922CF13006C7034 /* OpenData.xcdatamodeld in Sources */,

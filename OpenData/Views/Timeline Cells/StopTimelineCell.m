@@ -7,7 +7,6 @@
 //
 
 #import "StopTimelineCell.h"
-#import "UITableViewCell+TimelineCell.h"
 #import "Stop.h"
 #import "Venue.h"
 
@@ -50,7 +49,7 @@
 }
 
 - (void)render {
-    [self applyDefaultStyles];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 
     self.line = [UIView new];
     self.line.translatesAutoresizingMaskIntoConstraints = NO;

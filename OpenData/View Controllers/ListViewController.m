@@ -24,7 +24,7 @@
 #import "VenueListViewController.h"
 #import "SettingsViewController.h"
 
-@interface ListViewController ()
+@interface ListViewController ()<TimelineCellDelegate>
 @property (strong, nonatomic) NSArray *data;
 @property (nonatomic, strong) Day *day;
 @end
@@ -100,7 +100,7 @@
     return [cellClass heightForTimedEvent:obj];
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell<TimelineCell> *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView willDisplayCell:(TimelineCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
 
     if (indexPath.row == 0) {
         cell.isFirstEvent = YES;
@@ -114,10 +114,26 @@
     [cell setupWithTimedEvent:obj];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    Stop *stop = (Stop *)[self.day eventForIndex:indexPath.row];
-    if (![stop isKindOfClass:Stop.class]) return;
+#pragma mark - UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.day.numberOfEvents;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    TimedEvent *obj = [self.day eventForIndex:indexPath.row];
+    NSString *cellIdentifier = [[self timelineCellClassForObject:obj] reuseIdentifier];
+
+    TimelineCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    cell.delegate = self;
+
+    return cell;
+}
+
+#pragma mark - TimelineCellDelegate
+- (void)didTapAccessoryViewForTimedEvent:(TimedEvent *)event {
+    if (![event isKindOfClass:Stop.class]) return;
+    Stop *stop = (Stop *)event;
 
     VenueListViewController *venueList = [[VenueListViewController alloc] initWithStop:stop];
 
@@ -137,27 +153,12 @@
             stop.venue = venue;
             stop.venueConfirmed = @(YES);
 
-            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView reloadData];
         } completion:nil];
     };
 
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:venueList];
     [self presentViewController:navController animated:YES completion:nil];
-}
-
-#pragma mark - UITableViewDataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.day.numberOfEvents;
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TimedEvent *obj = [self.day eventForIndex:indexPath.row];
-    NSString *cellIdentifier = [[self timelineCellClassForObject:obj] reuseIdentifier];
-
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-
-    return cell;
 }
 
 #pragma mark - Private

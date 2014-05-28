@@ -6,9 +6,11 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
+#import "TimelineCell.h"
+
 @class TimedEvent;
 
-@interface PathTimelineCell : UITableViewCell
+@interface PathTimelineCell : TimelineCell
 
 @property (nonatomic, assign) BOOL isFirstEvent;
 @property (nonatomic, assign) BOOL isNow;

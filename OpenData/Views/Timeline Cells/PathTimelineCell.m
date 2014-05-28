@@ -7,7 +7,6 @@
 //
 
 #import "PathTimelineCell.h"
-#import "UITableViewCell+TimelineCell.h"
 #import "Path.h"
 
 #import "NSString+TimeFormatter.h"
@@ -38,7 +37,7 @@
 }
 
 - (void)render {
-    [self applyDefaultStyles];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 
     self.line = [UIView new];
     self.line.translatesAutoresizingMaskIntoConstraints = NO;
@@ -100,9 +99,5 @@
     } else {
         self.startTime.hidden = YES;
     }
-}
-
-- (void)setIsFirstEvent:(BOOL)isFirstEvent {
-    _isFirstEvent = isFirstEvent;
 }
 @end

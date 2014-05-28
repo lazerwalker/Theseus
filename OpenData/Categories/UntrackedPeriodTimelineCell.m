@@ -7,7 +7,7 @@
 //
 
 #import "UntrackedPeriodTimelineCell.h"
-#import "UITableViewCell+TimelineCell.h"
+
 #import "UntrackedPeriod.h"
 
 #import "NSString+TimeFormatter.h"
@@ -40,8 +40,6 @@
 }
 
 - (void)render {
-    [self applyDefaultStyles];
-
     self.clipsToBounds = NO;
 
     self.line = [UIView new];

@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "TimelineCell.h"
 
-@interface UntrackedPeriodTimelineCell : UITableViewCell
+@interface UntrackedPeriodTimelineCell : TimelineCell
 
 @property (nonatomic, assign) BOOL isFirstEvent;
 @property (nonatomic, assign) BOOL isNow;
