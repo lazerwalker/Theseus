@@ -85,8 +85,9 @@
   sourceApplication:(NSString *)source annotation:(id)annotation {
     if ([[DBSession sharedSession] handleOpenURL:url]) {
         if ([[DBSession sharedSession] isLinked]) {
-            NSLog(@"App linked successfully!");
-            // At this point you can start making API calls
+            [[[UIAlertView alloc] initWithTitle:@"Linked With Dropbox" message:@"Successfully linked. Try your export again!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+        } else {
+            [[[UIAlertView alloc] initWithTitle:@"An Error Occurred" message:@"Could not link with Dropbox. Try again!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         }
         return YES;
     }

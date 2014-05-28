@@ -40,19 +40,19 @@ typedef NS_ENUM(NSInteger, SettingsRows) {
         case SettingsRowDropboxExport: {
             if (![[DBSession sharedSession] isLinked]) {
                 [[DBSession sharedSession] linkFromController:self];
+            } else {
+                self.exporter = [DataExporter new];
+                [self.exporter uploadToDropbox];
             }
-
-            self.exporter = [DataExporter new];
-            [self.exporter uploadToDropbox];
             break;
         }
         case SettingsRowFullDBExport: {
             if (![[DBSession sharedSession] isLinked]) {
                 [[DBSession sharedSession] linkFromController:self];
+            } else {
+                self.exporter = [DataExporter new];
+                [self.exporter exportFullDatabase];
             }
-
-            self.exporter = [DataExporter new];
-            [self.exporter exportFullDatabase];
             break;
         }
         case SettingsRowAcknowledgements: {
