@@ -1,0 +1,5 @@
+#import <Foundation/Foundation.h>
+@interface PodsDummy_Pods_OpenDataTests_VTAcknowledgementsViewController : NSObject
+@end
+@implementation PodsDummy_Pods_OpenDataTests_VTAcknowledgementsViewController
+@end

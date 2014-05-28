@@ -22,6 +22,7 @@ PODS:
     - SDWebImage/Core
   - SDWebImage/Core (3.6)
   - Specta (0.2.1)
+  - VTAcknowledgementsViewController (0.11)
 
 DEPENDENCIES:
   - Asterism (= 1.0.0-RC3)
@@ -33,6 +34,7 @@ DEPENDENCIES:
   - PivotalCoreKit/UIKit/SpecHelper
   - SDWebImage
   - Specta
+  - VTAcknowledgementsViewController
 
 SPEC CHECKSUMS:
   Asterism: 6e29615a8106e2a8f3000b0d771f106c9d415d18
@@ -45,5 +47,6 @@ SPEC CHECKSUMS:
   PivotalCoreKit: 349c342734a46c11fc1e0cfc1fb02d010392f8e5
   SDWebImage: 7eb273e54ca8a2e506ad9bd5e80c35b2a4d7c95e
   Specta: 2d06220591110c6d9757d8be8ecf8e63aa40dc2a
+  VTAcknowledgementsViewController: 9c81860d820d6e7ff9df696d4c3573591821b5f0
 
 COCOAPODS: 0.33.1
