@@ -9,6 +9,8 @@
 #import "Path.h"
 #import "CDPath.h"
 
+#import "Stop.h"
+#import "CDStop.h"
 #import "RawMotionActivity.h"
 #import "RawLocation.h"
 #import "CDRawMotionActivity.h"
@@ -83,6 +85,14 @@
 
 - (void)setActivity:(RawMotionActivity *)activity {
     self.model.activity = (CDRawMotionActivity *)activity.model;
+}
+
+- (Stop *)stop {
+    return [[Stop alloc] initWithCDModel:self.model.stop];
+}
+
+- (void)setStop:(Stop *)stop {
+    self.model.stop = (CDStop *)stop.model;
 }
 
 @end

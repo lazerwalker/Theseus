@@ -11,6 +11,8 @@
 		A6107DC7193108B1003B7837 /* SettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6AAB1521930F558000DE81E /* SettingsViewController.storyboard */; };
 		A6107DCE19314B13003B7837 /* DataExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = A6107DC919310B2B003B7837 /* DataExporter.m */; };
 		A61D6461192ABF6800F7EB88 /* AppDelegateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A61D6460192ABF6800F7EB88 /* AppDelegateSpec.m */; };
+		A65C2EEA19350D8E001FA01D /* RawLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874EB193230C700D8C7DD /* RawLocation.m */; };
+		A65C2EEB19350D92001FA01D /* RawMotionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874EE1932331300D8C7DD /* RawMotionActivity.m */; };
 		A66211661930507F00982704 /* Configuration.plist.example in Resources */ = {isa = PBXBuildFile; fileRef = A66211651930507F00982704 /* Configuration.plist.example */; };
 		A668A1F0193246ED00C6363F /* RawDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A8750519323B9E00D8C7DD /* RawDataPoint.m */; };
 		A6748A9F192127E90073CE19 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748A9E192127E90073CE19 /* Foundation.framework */; };
@@ -68,6 +70,10 @@
 		A6C7CFF1192AAD2A001A6DAC /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFEF192AAD2A001A6DAC /* Configuration.m */; };
 		A6C7CFF4192AAD87001A6DAC /* ConfigurationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFF3192AAD87001A6DAC /* ConfigurationSpec.m */; };
 		A6D7DFDA192417B20036C2DF /* DataProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D7DFD9192417B20036C2DF /* DataProcessor.m */; };
+		A6E5429C1934EFF60056C20F /* ProcessAll.json in Resources */ = {isa = PBXBuildFile; fileRef = A6E5429B1934EFF60056C20F /* ProcessAll.json */; };
+		A6E5429E1934F0240056C20F /* DataProcessorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E5429D1934F0240056C20F /* DataProcessorSpec.m */; };
+		A6E542A2193505DC0056C20F /* Fixture.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E542A1193505DC0056C20F /* Fixture.m */; };
+		A6E542A3193509440056C20F /* RawDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A8750519323B9E00D8C7DD /* RawDataPoint.m */; };
 		A6F4D9111922CF13006C7034 /* OpenData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6F4D90F1922CF13006C7034 /* OpenData.xcdatamodeld */; };
 		A6F4D95D1922D2AA006C7034 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F4D95C1922D2AA006C7034 /* CoreData.framework */; };
 		A6F4D96F1922E9F5006C7034 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F4D96E1922E9F5006C7034 /* ListViewController.m */; };
@@ -185,6 +191,10 @@
 		A6C7CFF3192AAD87001A6DAC /* ConfigurationSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfigurationSpec.m; path = Interfaces/ConfigurationSpec.m; sourceTree = "<group>"; };
 		A6D7DFD8192417B20036C2DF /* DataProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataProcessor.h; path = Interfaces/DataProcessor.h; sourceTree = "<group>"; };
 		A6D7DFD9192417B20036C2DF /* DataProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataProcessor.m; path = Interfaces/DataProcessor.m; sourceTree = "<group>"; };
+		A6E5429B1934EFF60056C20F /* ProcessAll.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ProcessAll.json; sourceTree = "<group>"; };
+		A6E5429D1934F0240056C20F /* DataProcessorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataProcessorSpec.m; path = Interfaces/DataProcessorSpec.m; sourceTree = "<group>"; };
+		A6E542A0193505DC0056C20F /* Fixture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Fixture.h; path = Helpers/Fixture.h; sourceTree = "<group>"; };
+		A6E542A1193505DC0056C20F /* Fixture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Fixture.m; path = Helpers/Fixture.m; sourceTree = "<group>"; };
 		A6F4D9101922CF13006C7034 /* OpenData (initial).xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OpenData (initial).xcdatamodel"; sourceTree = "<group>"; };
 		A6F4D95C1922D2AA006C7034 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A6F4D96D1922E9F5006C7034 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListViewController.h; path = "View Controllers/ListViewController.h"; sourceTree = "<group>"; };
@@ -310,6 +320,8 @@
 		A6748AC3192127EA0073CE19 /* OpenDataTests */ = {
 			isa = PBXGroup;
 			children = (
+				A6E5429F193505C80056C20F /* Helpers */,
+				A6E5429A1934EFE80056C20F /* Fixtures */,
 				A6AAB14B19305F59000DE81E /* Categories */,
 				A6B91D1D1930078B00F7106E /* View Controllers */,
 				A6C7CFF2192AAD77001A6DAC /* Interfaces */,
@@ -478,8 +490,26 @@
 			isa = PBXGroup;
 			children = (
 				A6C7CFF3192AAD87001A6DAC /* ConfigurationSpec.m */,
+				A6E5429D1934F0240056C20F /* DataProcessorSpec.m */,
 			);
 			name = Interfaces;
+			sourceTree = "<group>";
+		};
+		A6E5429A1934EFE80056C20F /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				A6E5429B1934EFF60056C20F /* ProcessAll.json */,
+			);
+			name = Fixtures;
+			sourceTree = "<group>";
+		};
+		A6E5429F193505C80056C20F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A6E542A0193505DC0056C20F /* Fixture.h */,
+				A6E542A1193505DC0056C20F /* Fixture.m */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		A6F4D9701922FDF3006C7034 /* Interfaces */ = {
@@ -600,6 +630,7 @@
 			files = (
 				A6107DC7193108B1003B7837 /* SettingsViewController.storyboard in Resources */,
 				A66211661930507F00982704 /* Configuration.plist.example in Resources */,
+				A6E5429C1934EFF60056C20F /* ProcessAll.json in Resources */,
 				A6748AC8192127EA0073CE19 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -746,9 +777,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6AAB14D19305F70000DE81E /* NSString+TimeFormatterSpec.m in Sources */,
+				A65C2EEA19350D8E001FA01D /* RawLocation.m in Sources */,
+				A6E5429E1934F0240056C20F /* DataProcessorSpec.m in Sources */,
 				A6C7CFF1192AAD2A001A6DAC /* Configuration.m in Sources */,
+				A6E542A2193505DC0056C20F /* Fixture.m in Sources */,
 				A6C7CFE3192A806B001A6DAC /* OpenDataSpec.m in Sources */,
 				A6C7CFF4192AAD87001A6DAC /* ConfigurationSpec.m in Sources */,
+				A6E542A3193509440056C20F /* RawDataPoint.m in Sources */,
+				A65C2EEB19350D92001FA01D /* RawMotionActivity.m in Sources */,
 				A61D6461192ABF6800F7EB88 /* AppDelegateSpec.m in Sources */,
 				A6B91D1F193007AD00F7106E /* ListViewControllerSpec.m in Sources */,
 			);

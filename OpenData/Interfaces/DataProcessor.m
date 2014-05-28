@@ -54,6 +54,7 @@ NSString *DataProcessorDidFinishProcessingNotification = @"DataProcessorDidFinis
 
     return self;
 }
+
 - (NSDate *)dateForNDaysAgo:(NSInteger)daysAgo {
     NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
     NSDateComponents *components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:NSDate.date];
@@ -71,6 +72,19 @@ NSString *DataProcessorDidFinishProcessingNotification = @"DataProcessorDidFinis
     NSArray *stops = [Stop MR_findAllSortedBy:@"startTime" ascending:YES withPredicate:day];
     NSArray *paths = [Path MR_findAllSortedBy:@"startTime" ascending:YES withPredicate:[NSCompoundPredicate andPredicateWithSubpredicates:@[day, onlyRealPaths]]];
     NSArray *untrackedPeriods = [UntrackedPeriod MR_findAllSortedBy:@"startTime" ascending:YES withPredicate:day];
+
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"startTime" ascending:YES];
+    NSArray *allObjects = [[[stops arrayByAddingObjectsFromArray:paths] arrayByAddingObjectsFromArray:untrackedPeriods] sortedArrayUsingDescriptors:@[descriptor]];
+
+    return allObjects;
+}
+
+- (NSArray *)allEvents {
+    NSPredicate *onlyRealPaths = [NSPredicate predicateWithFormat:@"(stop = nil)"];
+
+    NSArray *stops = [Stop MR_findAllSortedBy:@"startTime" ascending:YES];
+    NSArray *paths = [Path MR_findAllSortedBy:@"startTime" ascending:YES withPredicate:onlyRealPaths];
+    NSArray *untrackedPeriods = [UntrackedPeriod MR_findAllSortedBy:@"startTime" ascending:YES];
 
     NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"startTime" ascending:YES];
     NSArray *allObjects = [[[stops arrayByAddingObjectsFromArray:paths] arrayByAddingObjectsFromArray:untrackedPeriods] sortedArrayUsingDescriptors:@[descriptor]];
@@ -120,8 +134,7 @@ NSString *DataProcessorDidFinishProcessingNotification = @"DataProcessorDidFinis
     }];
 }
 
-
-- (void)reprocessData {
+- (void)reprocessDataWithCompletion:(void (^)(BOOL, NSError *))completion {
     [OpenData showNetworkActivitySpinner];
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
         [self removeAllProcessedDataWithContext:localContext];
@@ -133,9 +146,17 @@ NSString *DataProcessorDidFinishProcessingNotification = @"DataProcessorDidFinis
         [self processArray:array withContext:localContext];
 
     } completion:^(BOOL success, NSError *error) {
+        if (completion) {
+            completion(success, error);
+        }
+
         [[NSNotificationCenter defaultCenter] postNotificationName:DataProcessorDidFinishProcessingNotification object:self];
         [OpenData hideNetworkActivitySpinner];
     }];
+}
+
+- (void)reprocessData {
+    [self reprocessDataWithCompletion:nil];
 }
 
 
@@ -155,8 +176,8 @@ NSString *DataProcessorDidFinishProcessingNotification = @"DataProcessorDidFinis
     for (UntrackedPeriod *period in untrackedPeriods) {
         [period destroy];
     }
-
 }
+
 - (void)processArray:(NSArray *)array withContext:(NSManagedObjectContext *)localContext {
     [self processArray:array previousEvent:nil withContext:localContext];
 }

@@ -46,10 +46,9 @@
 }
 
 - (void)addPath:(Path *)path {
-    NSSet *paths = self.movementPaths ?: [NSSet new];
-    paths = [paths setByAddingObject:path];
-    path.stop = self;
-    self.movementPaths = paths;
+    NSSet *paths = self.model.movementPaths ?: [NSSet new];
+    paths = [paths setByAddingObject:path.model];
+    self.model.movementPaths = paths;
 }
 
 - (void)mergeWithStop:(Stop *)stop {
@@ -110,13 +109,6 @@
     });
 
     self.model.locations = coreDataObjects;
-}
-
-- (NSSet *)movementPaths {
-    NSSet *paths = self.model.movementPaths;
-    return ASTMap(paths, ^id(CDPath *path) {
-        return [[Path alloc] initWithCDModel:path context:self.context];
-    });
 }
 
 - (Venue *)venue {

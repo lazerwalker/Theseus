@@ -13,8 +13,11 @@ extern NSString *DataProcessorDidFinishProcessingNotification;
 + (instancetype)sharedInstance;
 
 - (NSArray *)eventsForDaysAgo:(NSInteger)daysAgo;
+- (NSArray *)allEvents;
 - (NSArray *)allRawData;
 - (void)processNewData;
+
+- (void)reprocessDataWithCompletion:(void (^)(BOOL, NSError *))completion;
 - (void)reprocessData;
 
 @end
