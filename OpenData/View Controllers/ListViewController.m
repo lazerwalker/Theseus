@@ -61,9 +61,9 @@
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(didTapSettingsButton)];
 
-    [self.tableView registerClass:[StopTimelineCell class] forCellReuseIdentifier:[StopTimelineCell reuseIdentifier]];
-    [self.tableView registerClass:[PathTimelineCell class] forCellReuseIdentifier:[PathTimelineCell reuseIdentifier]];
-    [self.tableView registerClass:[UntrackedPeriodTimelineCell class] forCellReuseIdentifier:[UntrackedPeriodTimelineCell reuseIdentifier]];
+    [self.tableView registerClass:[StopTimelineCell class] forCellReuseIdentifier:[StopTimelineCell classReuseIdentifier]];
+    [self.tableView registerClass:[PathTimelineCell class] forCellReuseIdentifier:[PathTimelineCell classReuseIdentifier]];
+    [self.tableView registerClass:[UntrackedPeriodTimelineCell class] forCellReuseIdentifier:[UntrackedPeriodTimelineCell classReuseIdentifier]];
 
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
@@ -122,7 +122,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TimedEvent *obj = [self.day eventForIndex:indexPath.row];
-    NSString *cellIdentifier = [[self timelineCellClassForObject:obj] reuseIdentifier];
+    NSString *cellIdentifier = [[self timelineCellClassForObject:obj] classReuseIdentifier];
 
     TimelineCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.delegate = self;

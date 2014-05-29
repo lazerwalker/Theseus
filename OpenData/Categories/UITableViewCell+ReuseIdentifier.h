@@ -10,6 +10,6 @@
 
 @interface UITableViewCell (ReuseIdentifier)
 
-+ (NSString *)reuseIdentifier;
++ (NSString *)classReuseIdentifier;
 
 @end
