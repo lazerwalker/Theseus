@@ -53,6 +53,7 @@
     self.descriptionLabel.font = [UIFont fontWithName:@"STHeitiTC-Light" size:12.0];
     [self.contentView addSubview:self.descriptionLabel];
 
+    // TODO: HERE BE DRAGONS. This layout code is super-ugly.
     self.traintrackTop = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 16, TimelineLineWidth.floatValue)];
     self.traintrackTop.center = CGPointMake(TimelineLineLeftPadding.floatValue + 1.5, 15);
     self.traintrackTop.backgroundColor = [UIColor darkGrayColor];
