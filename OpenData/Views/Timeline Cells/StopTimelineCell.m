@@ -59,7 +59,7 @@ static CGFloat EditIconSize = 18.0;
 
     FAKFontAwesome *pencil = [FAKFontAwesome pencilIconWithSize:EditIconSize];
     [pencil addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor]];
-    UIImage *editIcon = [pencil imageWithSize:CGSizeMake(EditIconSize, EditIconSize)];
+    UIImage *editIcon = [pencil imageWithSize:CGSizeMake(44.0, 44.0)];
     self.accessoryView = [[UIImageView alloc] initWithImage:editIcon];
     self.accessoryView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapAccessoryView)];
