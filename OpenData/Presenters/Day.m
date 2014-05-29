@@ -10,7 +10,7 @@
 #import "DataProcessor.h"
 #import "TimedEvent.h"
 
-NSString * const DayDataChangedKey = @"DayDataChangedKey";
+NSString * const DayDataChangedKey = @"data";
 
 @interface Day ()
 @property (nonatomic, strong) NSArray *data;
