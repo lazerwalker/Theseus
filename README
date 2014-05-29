@@ -26,10 +26,18 @@ Assuming you want to run OpenData on your physical iPhone, you will need to be a
 5. Build and run the app. It should just work!
 
 
+Issues
+------
+OpenData is currently early alpha software intended for developers. If you care about losing data, you will want to export your data regularly.
+
+If you run into problems, please file bugs using this repo's [GitHub Issues](https://github.com/lazerwalker/OpenData/issues). If you run into problems with how your movement is being categorized (incorrect timestamps, coordinates, etc) and feel comfortable sharing your data, you can get a raw export of your movement and motion data by choosing the "Export Raw Data" option from the app's settings page; this will be very helpful.
+
+
 Running Tests from the Command Line
 -----------------------------------
 You can run OpenData's test suite from the command line by running the `rake test` command from inside the root project directory.
 
+Right now, test coverage is a bit shaky; this is a relatively high near-term priority.
 
 Contributing
 ------------
