@@ -61,6 +61,10 @@ NSString * const DayDataChangedKey = @"DayDataChangedKey";
     return self;
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)fetch {
     self.data = [DataProcessor.sharedInstance eventsForDaysAgo:self.daysAgo];
 }
