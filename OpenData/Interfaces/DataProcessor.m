@@ -117,9 +117,12 @@ NSString *DataProcessorDidFinishProcessingNotification = @"DataProcessorDidFinis
                 allObjects.lastObject;
             });
 
-            [previousEvent destroy];
-
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"timestamp >= %@", previousEvent.startTime];
+            NSPredicate *predicate;
+            if (previousEvent && previousEvent.startTime) {
+                predicate = [NSPredicate predicateWithFormat:@"timestamp >= %@", previousEvent.startTime];
+                [previousEvent destroy];
+            }
+            
             NSArray *locationArray = [RawLocation MR_findAllSortedBy:@"timestamp" ascending:YES withPredicate:predicate inContext:localContext];
 
             NSArray *motionArray = [RawMotionActivity MR_findAllSortedBy:@"timestamp" ascending:YES withPredicate:predicate inContext:localContext];
