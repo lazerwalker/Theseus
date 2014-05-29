@@ -101,6 +101,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(TimelineCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.isNow = NO;
+    cell.isFirstEvent = NO;
 
     if (indexPath.row == 0) {
         cell.isFirstEvent = YES;
