@@ -151,7 +151,7 @@
             }
 
             stop.venue = venue;
-            stop.venueConfirmed = @(YES);
+            stop.venueConfirmed = YES;
 
             [self.tableView reloadData];
         } completion:nil];
