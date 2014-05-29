@@ -218,7 +218,10 @@ NSString *DataProcessorDidFinishProcessingNotification = @"DataProcessorDidFinis
         } else if ([obj isKindOfClass:RawMotionActivity.class]){
             RawMotionActivity *activity = (RawMotionActivity *)obj;
             if (!(previousActivity.activity == activity.activity)) {
-                if (currentObjects.count == 0) continue;
+                if (currentObjects.count == 0) {
+                    previousActivity = obj;
+                    continue;
+                }
                 if (previousActivity.activity == RawMotionActivityTypeStationary) {
                     Stop *stop = [[Stop alloc] initWithContext:localContext];
                     [stop setupWithLocations:currentObjects];
@@ -228,8 +231,10 @@ NSString *DataProcessorDidFinishProcessingNotification = @"DataProcessorDidFinis
                     Stop *previousStop = stops.lastObject;
                     if ([stop isSameLocationAs:stops.lastObject]) {
                         Path *previousPath = paths.lastObject;
-                        [previousStop addPath:previousPath];
-                        [paths removeLastObject];
+                        if (previousPath) {
+                            [previousStop addPath:previousPath];
+                            [paths removeLastObject];
+                        }
                         [previousStop mergeWithStop:stop];
                         [stop destroy];
                     } else {
@@ -255,7 +260,6 @@ NSString *DataProcessorDidFinishProcessingNotification = @"DataProcessorDidFinis
             previousActivity = obj;
         }
     }
-
 
     NSSortDescriptor *startTimeDescriptor = [[NSSortDescriptor alloc] initWithKey:@"startTime" ascending:YES];
     NSMutableArray *allObjects = [[[stops arrayByAddingObjectsFromArray:paths]
@@ -300,6 +304,7 @@ NSString *DataProcessorDidFinishProcessingNotification = @"DataProcessorDidFinis
     for (TimedEvent *obj in allObjects) {
         if (previousObj && obj.class == previousObj.class) {
             [objectsToRemove addObject:obj];
+            previousObj.startTime = [previousObj.startTime earlierDate:obj.startTime];
             previousObj.endTime = [previousObj.endTime laterDate:obj.endTime];
             if ([obj isKindOfClass:Path.class]) {
                 // TODO: This discards activity data.
