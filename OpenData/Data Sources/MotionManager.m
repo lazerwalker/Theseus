@@ -63,9 +63,7 @@
                 [rawActivity setupWithMotionActivity:activity];
             }
         } completion:^(BOOL success, NSError *error) {
-            if (success) {
-                [[DataProcessor sharedInstance] processNewData];
-            }
+            [[DataProcessor sharedInstance] processNewData];
         }];
     }];
 }

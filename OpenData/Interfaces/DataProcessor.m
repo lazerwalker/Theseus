@@ -55,8 +55,16 @@ NSString *DataProcessorDidFinishProcessingNotification = @"DataProcessorDidFinis
     return self;
 }
 
+- (NSDate *)beginningOfDay:(NSDate *)date {
+    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
+    calendar.timeZone = [NSTimeZone localTimeZone];
+    NSDateComponents *components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
+    return [calendar dateFromComponents:components];
+}
+
 - (NSDate *)dateForNDaysAgo:(NSInteger)daysAgo {
     NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
+    calendar.timeZone = [NSTimeZone localTimeZone];
     NSDateComponents *components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:NSDate.date];
     components.day -= daysAgo;
     return [calendar dateFromComponents:components];
@@ -119,8 +127,11 @@ NSString *DataProcessorDidFinishProcessingNotification = @"DataProcessorDidFinis
 
             NSPredicate *predicate;
             if (previousEvent && previousEvent.startTime) {
-                predicate = [NSPredicate predicateWithFormat:@"timestamp >= %@", previousEvent.startTime];
-                [previousEvent destroy];
+                NSDate *startDate = [self beginningOfDay:previousEvent.startTime];
+                predicate = [NSPredicate predicateWithFormat:@"timestamp >= %@", startDate];
+
+                NSPredicate *deletePredicate = [NSPredicate predicateWithFormat:@"startTime >= %@", startDate];
+                [self removeAllProcessedDataWithPredicate:deletePredicate inContext:localContext];
             }
             
             NSArray *locationArray = [RawLocation MR_findAllSortedBy:@"timestamp" ascending:YES withPredicate:predicate inContext:localContext];
@@ -164,6 +175,23 @@ NSString *DataProcessorDidFinishProcessingNotification = @"DataProcessorDidFinis
 
 
 #pragma mark - Private
+- (void)removeAllProcessedDataWithPredicate:(NSPredicate *)predicate inContext:(NSManagedObjectContext *)context {
+    NSArray *stops = [Stop MR_findAllSortedBy:nil ascending:NO withPredicate:predicate inContext:context];
+    for (Stop *stop in stops) {
+        [stop destroy];
+    }
+
+    NSArray *movementPaths = [Path MR_findAllSortedBy:nil ascending:NO withPredicate:predicate inContext:context];
+    for (Path *path in movementPaths) {
+        [path destroy];
+    }
+
+    NSArray *untrackedPeriods = [UntrackedPeriod MR_findAllSortedBy:nil ascending:NO withPredicate:predicate inContext:context];
+    for (UntrackedPeriod *period in untrackedPeriods) {
+        [period destroy];
+    }
+}
+
 - (void)removeAllProcessedDataWithContext:(NSManagedObjectContext *)context {
     NSArray *stops = [Stop MR_findAllInContext:context];
     for (Stop *stop in stops) {
