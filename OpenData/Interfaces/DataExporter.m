@@ -64,7 +64,7 @@
 
     NSString *text = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 
-    NSString *filename = [NSString stringWithFormat:@"%@.json", [dateFormatter stringFromDate:NSDate.date]];
+    NSString *filename = [NSString stringWithFormat:@"Raw-%@.json", [dateFormatter stringFromDate:NSDate.date]];
     NSString *localDir = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     NSString *localPath = [localDir stringByAppendingPathComponent:filename];
     [text writeToFile:localPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
