@@ -32,7 +32,7 @@
     NSData *data = [NSData dataWithContentsOfFile:path options:0 error:nil];
     NSArray *array = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
 
-    [MagicalRecord saveWithBlockAndWait:^(NSManagedObjectContext *localContext) {
+    [MagicalRecord saveUsingCurrentThreadContextWithBlockAndWait:^(NSManagedObjectContext *localContext) {
         NSArray *objects = [MTLJSONAdapter modelsOfClass:RawDataPoint.class fromJSONArray:array error:nil];
         NSLog(@"Loaded %lu objects from disk", (long)objects.count);
     }];
