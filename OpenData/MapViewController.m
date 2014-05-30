@@ -12,6 +12,7 @@
 #import "DataProcessor.h"
 #import "Day.h"
 #import "PathPolyline.h"
+#import "StopAnnotation.h"
 
 #import <Asterism.h>
 
@@ -34,13 +35,16 @@
     self.view = self.mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
     self.mapView.delegate = self;
 
-    [self.mapView addAnnotations:self.day.stops];
+    NSArray *stops = ASTMap(self.day.stops, ^id(Stop *stop) {
+        return [[StopAnnotation alloc] initWithStop:stop];
+    });
+    [self.mapView addAnnotations:stops];
 
     NSArray *paths = ASTMap(self.day.paths, ^id(Path *path) {
         return [PathPolyline polylineWithPath:path];
     });
-
     [self.mapView addOverlays:paths];
+    
     [self.mapView setRegion:day.region];
 
     self.title = day.title;

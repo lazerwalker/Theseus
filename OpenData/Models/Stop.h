@@ -13,7 +13,7 @@
 
 #import "TimedEvent.h"
 
-@interface Stop : TimedEvent<MKAnnotation>
+@interface Stop : TimedEvent
 
 @property (nonatomic) NSSet *locations;
 @property (nonatomic) NSSet *movementPaths;
