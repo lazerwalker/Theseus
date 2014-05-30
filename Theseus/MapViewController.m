@@ -41,6 +41,7 @@ static NSString * const AnnotationIdentifier = @"AnnotationIdentifier";
 
     self.view = self.mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
     self.mapView.delegate = self;
+    self.mapView.showsPointsOfInterest = NO;
 
     NSArray *annotations = ASTMap(self.day.stops, ^id(Stop *stop) {
         return [[StopAnnotation alloc] initWithStop:stop];
