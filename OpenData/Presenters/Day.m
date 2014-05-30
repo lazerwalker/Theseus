@@ -126,17 +126,26 @@ NSString * const DayDataChangedKey = @"data";
 }
 
 - (MKCoordinateRegion)region {
-    NSArray *stops = self.stops;
-    CLLocationCoordinate2D center = CLLocationCoordinate2DMake([[stops valueForKeyPath:@"@avg.latitude"] doubleValue], [[stops valueForKeyPath:@"@avg.longitude"] doubleValue]);
+    // TODO: This can be made more elegant by exending Asterism's `ASTFlatten` method to operate on NSSets.
+    NSArray *locationSets = [self.paths valueForKeyPath:@"locations"];
+    NSMutableArray *pathLocations = [NSMutableArray new];
+    for (NSSet *set in locationSets) {
+        [pathLocations addObjectsFromArray:set.allObjects];
+    }
 
-    CLLocationDegrees minLat = [[stops valueForKeyPath:@"@min.latitude"] doubleValue];
-    CLLocationDegrees maxLat = [[stops valueForKeyPath:@"@max.latitude"] doubleValue];
+    NSArray *locations = [pathLocations arrayByAddingObjectsFromArray:self.stops];
+
+    CLLocationCoordinate2D center = CLLocationCoordinate2DMake([[locations valueForKeyPath:@"@avg.latitude"] doubleValue], [[locations valueForKeyPath:@"@avg.longitude"] doubleValue]);
+
+
+    CLLocationDegrees minLat = [[locations valueForKeyPath:@"@min.latitude"] doubleValue];
+    CLLocationDegrees maxLat = [[locations valueForKeyPath:@"@max.latitude"] doubleValue];
     CLLocation *location1 = [[CLLocation alloc] initWithLatitude:minLat longitude:0];
     CLLocation *location2 = [[CLLocation alloc] initWithLatitude:maxLat longitude:0];
     CLLocationDistance latitudeDelta = [location1 distanceFromLocation:location2];
 
-    CLLocationDegrees minLong = [[stops valueForKeyPath:@"@min.longitude"] doubleValue];
-    CLLocationDegrees maxLong = [[stops valueForKeyPath:@"@max.longitude"] doubleValue];
+    CLLocationDegrees minLong = [[locations valueForKeyPath:@"@min.longitude"] doubleValue];
+    CLLocationDegrees maxLong = [[locations valueForKeyPath:@"@max.longitude"] doubleValue];
     location1 = [[CLLocation alloc] initWithLatitude:0 longitude:minLong];
     location2 = [[CLLocation alloc] initWithLatitude:0 longitude:maxLong];
     CLLocationDistance longitudeDelta = [location1 distanceFromLocation:location2];
