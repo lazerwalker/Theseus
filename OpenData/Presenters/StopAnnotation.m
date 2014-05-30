@@ -28,17 +28,20 @@
 - (id)initWithStop:(Stop *)stop {
     if (!(self = [super init])) return nil;
 
-    if (stop.venue) {
-        self.title = stop.venue.name;
-    } else {
-        self.title = @"Unidentified Location";
-    }
-
+    self.stop = stop;
+    
     self.subtitle = [NSString stringWithFormat:@"%@ - %@ (%@)", [self.dateFormatter stringFromDate:stop.startTime], [self.dateFormatter stringFromDate:stop.endTime], [NSString stringWithTimeInterval:stop.duration]];
 
     self.coordinate = stop.coordinate;
 
     return self;
+}
+
+- (NSString *)title {
+    if (self.stop.venue) {
+        return self.stop.venue.name;
+    }
+    return @"Unidentified Location";
 }
 
 

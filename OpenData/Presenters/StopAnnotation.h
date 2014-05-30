@@ -11,6 +11,7 @@
 
 @interface StopAnnotation : NSObject<MKAnnotation>
 
+@property (nonatomic, strong) Stop *stop;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *subtitle;
 @property (nonatomic) CLLocationCoordinate2D coordinate;

@@ -13,10 +13,15 @@
 #import "Day.h"
 #import "PathPolyline.h"
 #import "StopAnnotation.h"
+#import "VenueListViewController.h"
+#import "Venue.h"
 
+#import <FAKFontAwesome.h>
 #import <Asterism.h>
 
 @import MapKit;
+
+static NSString * const AnnotationIdentifier = @"AnnotationIdentifier";
 
 @interface MapViewController ()<MKMapViewDelegate>
 
@@ -88,5 +93,54 @@
     polylineView.lineWidth = 10.0;
 
     return polylineView;
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    MKAnnotationView *annotationView = [self.mapView dequeueReusableAnnotationViewWithIdentifier:AnnotationIdentifier];
+    if (!annotationView) {
+        annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier];
+        UIButton *editButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        editButton.frame = CGRectMake(0, 0, 44.0, 44.0);
+
+        FAKFontAwesome *pencil = [FAKFontAwesome pencilIconWithSize:18.0];
+        UIImage *editIcon = [pencil imageWithSize:CGSizeMake(44.0, 44.0)];
+        editButton.tintColor = [UIColor lightGrayColor];
+        [editButton setImage:editIcon forState:UIControlStateNormal];
+
+        annotationView.rightCalloutAccessoryView = editButton;
+        annotationView.canShowCallout = YES;
+    }
+
+    return annotationView;
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    Stop *stop = [(StopAnnotation *)view.annotation stop];
+
+    VenueListViewController *venueList = [[VenueListViewController alloc] initWithStop:stop];
+
+    venueList.didTapCancelButtonBlock = ^{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    };
+
+    venueList.didSelectVenueBlock = ^(Venue *venue) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+
+        [MagicalRecord saveUsingCurrentThreadContextWithBlock:^(NSManagedObjectContext *localContext) {
+            Venue *oldVenue = stop.venue;
+            if (oldVenue && oldVenue.stops.count == 1) {
+                [oldVenue destroy];
+            }
+
+            stop.venue = venue;
+            stop.venueConfirmed = YES;
+
+            [self.mapView deselectAnnotation:view.annotation animated:NO];
+            [self.mapView selectAnnotation:view.annotation animated:NO];
+        } completion:nil];
+    };
+
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:venueList];
+    [self presentViewController:navController animated:YES completion:nil];
 }
 @end
