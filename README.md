@@ -9,11 +9,9 @@ One key difference between Theseus and other similar apps is its approach to pri
 
 Installation
 ------------
-Although Theseus will eventually be available on the iOS App Store, you must currently compile it from source.
+Although Theseus will eventually be available on the App Store, you must currently compile it from source. Assuming you want to run Theseus on your physical iPhone, you'll also need to be a member of Apple's [iOS Developer Program](https://developer.apple.com/devcenter/ios/index.action).
 
-Right now it will only work on an iPhone 5S, as it requires the M7 motion coprocessor. This will likely change.
-
-Assuming you want to run Theseus on your physical iPhone, you will need to be a member of Apple's [iOS Developer Program](https://developer.apple.com/devcenter/ios/index.action).
+Right now it will only work on an iPhone 5S, as it requires the M7 motion coprocessor. This will likely change. 
 
 1. Clone this git repo: `git clone git@github.com:lazerwalker/Theseus.git`
 
