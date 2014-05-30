@@ -9,13 +9,11 @@ Installation
 ------------
 Although Theseus will eventually be available on the iOS App Store, you must currently compile it from source.
 
-It currently requires an iPhone 5S, as it makes use of the M7 motion coprocessor.
+Right now it will only work on an iPhone 5S, as it requires the M7 motion coprocessor. This will likely change.
 
 Assuming you want to run Theseus on your physical iPhone, you will need to be a member of Apple's [iOS Developer Program](https://developer.apple.com/devcenter/ios/index.action).
 
-1. Clone this git repo
-
-`git clone git@github.com:lazerwalker/Theseus.git`
+1. Clone this git repo: `git clone git@github.com:lazerwalker/Theseus.git`
 
 2. Copy `Configuration.plist.example` to `Configuration.plist`.
 
@@ -26,9 +24,18 @@ Assuming you want to run Theseus on your physical iPhone, you will need to be a 
 5. Build and run the app. It should just work!
 
 
+Usage
+-----
+After you grant Theseus permission to access motion and location data, it will start collecting data about where you spend your time. Currently, it will group all of your actions into either a stop, where you are staying in a discrete location for a period of time, or a movement event, when you're travelling. Stops can either be correlated to nearby Foursquare venues or given their own names; as you categorize locations, Theseus will begin to suggest those names when you are in that place again.
+
+Theseus visualizes your data in a timeline per day, letting you change days by swiping. You can also tap any item to see that day's movement visualized on a map.
+
+For now, you may manually need to tap the 'Process' button in the top-left to trigger processing of your location data into a higher-level collection of stop and movement events.
+
+
 Issues
 ------
-Theseus is currently early alpha software intended for developers. If you care about losing data, you will want to export your data regularly.
+Theseus is currently VERY EARLY alpha software. It will crash a lot. You may lose your data, so export regularly if you care.
 
 If you run into problems, please file bugs using this repo's [GitHub Issues](https://github.com/lazerwalker/Theseus/issues). If you run into problems with how your movement is being categorized (incorrect timestamps, coordinates, etc) and feel comfortable sharing your data, you can get a raw export of your movement and motion data by choosing the "Export Raw Data" option from the app's settings page; this will be very helpful.
 
@@ -41,14 +48,24 @@ As a warning: the test suite *will* overwrite the app's database in the simulato
 
 Right now, test coverage is a bit shaky; this is a relatively high near-term priority.
 
+
 Contributing
 ------------
 Contributions of all shapes and forms are welcome! If you're looking for something to do, check out the [GitHub Issues] issue tracker or feel free to get in touch directly.
 
-Before your first pull request is accepted, you will need to submit a Contributor License Agreement by filling out this form: [Theseus CLA](https://docs.google.com/forms/d/1aQZYW0zHQYSrKaFlCgZUnRvwz0gy-ZIgokbMKLOFL5M/viewform). Without a signed CLA, I won't be able to include your code in any builds I submit to Apple for distribution on the App Store.
+Before your first pull request is accepted, you will need to submit a Contributor License Agreement by filling out this form:
+
+**[Theseus CLA](https://docs.google.com/forms/d/1aQZYW0zHQYSrKaFlCgZUnRvwz0gy-ZIgokbMKLOFL5M/viewform)**
+
+Without a signed CLA, I won't be able to include your code in any builds I submit to Apple for distribution on the App Store.
 
 ### Info.plist
-Using the Dropbox API requires the app to register a URI scheme of the form "db-<APP KEY>". This automated as part of the build process; whatever app key you have in your Configuration.plist file will be used. Unfortunately, this means it will show up as part of your git changeset. Since gitignoring Info.plist would have other consequences, and we can't selectively gitignore that part of it, for now you'll have to manually discard it from your working index when you commit. Please try to remember to do this, but don't freak out if you accidentally do commit it; a Dropbox app key isn't considered sensitive information, so it isn't the end of the world.
+Using the Dropbox API requires the app to register a URI scheme of the form `db-<APP KEY>`. This automated as part of the build process; whatever app key you have in your `Configuration.plist` file will be used.
+
+Because the info plist is versioned (and adding it to `gitignore` isn't a viable option), this means it will show up as part of your git changeset. For now, you'll have to manually discard it from your working index when you commit.
+
+Please try to remember to do this, but don't freak out if you accidentally do commit it; a Dropbox app key isn't considered sensitive information, so it isn't the end of the world.
+
 
 Contact
 -------
