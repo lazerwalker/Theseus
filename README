@@ -37,6 +37,8 @@ Running Tests from the Command Line
 -----------------------------------
 You can run OpenData's test suite from the command line by running the `rake test` command from inside the root project directory.
 
+As a warning: the test suite *will* overwrite the app's database in the simulator with test data. It's unlikely you will have meaningful data stored in your simulator instance of the app, but keep this in mind.
+
 Right now, test coverage is a bit shaky; this is a relatively high near-term priority.
 
 Contributing
