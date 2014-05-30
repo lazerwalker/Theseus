@@ -34,6 +34,8 @@ After you grant Theseus permission to access motion and location data, it will s
 
 Theseus visualizes your data in a timeline per day, letting you change days by swiping. You can also tap any item to see that day's movement visualized on a map.
 
+If you would like to export your data, the Settings menu offers a one-button JSON export to Dropbox. More export options will be coming soon.
+
 For now, you may manually need to tap the 'Process' button in the top-left to trigger processing of your location data into a higher-level collection of stop and movement events.
 
 
