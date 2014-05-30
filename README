@@ -47,6 +47,8 @@ Contributions of all shapes and forms are welcome! If you're looking for somethi
 
 Before your first pull request is accepted, you will need to submit a Contributor License Agreement by filling out this form: [OpenData CLA](https://docs.google.com/forms/d/1aQZYW0zHQYSrKaFlCgZUnRvwz0gy-ZIgokbMKLOFL5M/viewform). Without a signed CLA, I won't be able to include your code in any builds I submit to Apple for distribution on the App Store.
 
+### Info.plist
+Using the Dropbox API requires the app to register a URI scheme of the form "db-<APP KEY>". This automated as part of the build process; whatever app key you have in your Configuration.plist file will be used. Unfortunately, this means it will show up as part of your git changeset. Since gitignoring Info.plist would have other consequences, and we can't selectively gitignore that part of it, for now you'll have to manually discard it from your working index when you commit. Please try to remember to do this, but don't freak out if you accidentally do commit it; a Dropbox app key isn't considered sensitive information, so it isn't the end of the world.
 
 Contact
 -------
