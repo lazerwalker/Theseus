@@ -2,9 +2,7 @@ Theseus [![Build Status](https://travis-ci.org/lazerwalker/Theseus.png)](https:/
 =======
 Theseus is an open-source personal tracking tool that uses your iPhone 5S's location and motion sensors to help you track and visualize where you spend your time. It's very similar to [Moves](http://moves-app.com) or [Google Latitude](https://en.wikipedia.org/wiki/Google_Latitude).
 
-![Example of timeline](https://raw.github.com/lazerwalker/Theseus/master/ReadmeImages/timeline.png)
-![Example of map](https://raw.github.com/lazerwalker/Theseus/master/ReadmeImages/map.png)
-![Example of venue selection](https://raw.github.com/lazerwalker/Theseus/master/ReadmeImages/venue-select.png)
+![Example images](https://raw.github.com/lazerwalker/Theseus/master/ReadmeImages/triptych.png)
 
 One key difference between Theseus and other similar apps is its approach to privacy and data accessibility. By default, your data never leaves your phone; all processing happens on-device rather than an external server. If you want to access your data for personal usage, Theseus can export your data to Dropbox in JSON format for easy access.
 
