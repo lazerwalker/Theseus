@@ -30,7 +30,7 @@ describe(@"DataProcessor", ^{
             [Fixture loadFixtureNamed:@"ProcessAll"];
         });
         
-        it(@"should do the thing", ^AsyncBlock {
+        xit(@"should do the thing", ^AsyncBlock {
             setAsyncSpecTimeout(60);
             [processor reprocessDataWithCompletion:^(BOOL success, NSError *error) {
                 expect(processor.allEvents.count).to.equal(4);
