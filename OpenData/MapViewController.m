@@ -20,7 +20,9 @@
 
 @interface MapViewController ()<MKMapViewDelegate>
 
-@property (strong, nonatomic) MKMapView *mapView;
+@property (nonatomic, strong) MKMapView *mapView;
+@property (nonatomic, strong) NSOrderedSet *annotations;
+@property (nonatomic, strong) NSOrderedSet *stops;
 
 @end
 
@@ -35,10 +37,12 @@
     self.view = self.mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
     self.mapView.delegate = self;
 
-    NSArray *stops = ASTMap(self.day.stops, ^id(Stop *stop) {
+    NSArray *annotations = ASTMap(self.day.stops, ^id(Stop *stop) {
         return [[StopAnnotation alloc] initWithStop:stop];
     });
-    [self.mapView addAnnotations:stops];
+    [self.mapView addAnnotations:annotations];
+    self.annotations = [NSOrderedSet orderedSetWithArray:annotations];
+    self.stops = [NSOrderedSet orderedSetWithArray:self.day.stops];
 
     NSArray *paths = ASTMap(self.day.paths, ^id(Path *path) {
         return [PathPolyline polylineWithPath:path];
@@ -55,6 +59,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+}
+
+- (void)selectAnnotationForStop:(Stop *)stop {
+    NSUInteger index = [self.stops indexOfObject:stop];
+    if (self.annotations[index]) {
+        StopAnnotation *annotation = self.annotations[index];
+        [self.mapView selectAnnotation:annotation animated:YES];
+    }
 }
 
 #pragma mark - MKMapViewDelegate

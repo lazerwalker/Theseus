@@ -128,6 +128,12 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     MapViewController *mapController = [[MapViewController alloc] initWithDay:self.day];
+
+    TimedEvent *obj = [self.day eventForIndex:indexPath.row];
+    if ([obj isKindOfClass:Stop.class]) {
+        [mapController selectAnnotationForStop:(Stop *)obj];
+    }
+
     [self.navigationController pushViewController:mapController animated:YES];
 }
 

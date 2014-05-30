@@ -7,11 +7,13 @@
 //
 
 @class Day;
+@class Stop;
 
 @interface MapViewController : UIViewController
 
 @property (nonatomic) Day *day;
 
 - (id)initWithDay:(Day *)day;
+- (void)selectAnnotationForStop:(Stop *)stop;
 
 @end
