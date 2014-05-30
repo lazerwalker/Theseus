@@ -59,7 +59,7 @@ static CGFloat EditIconSize = 18.0;
 
     FAKFontAwesome *pencil = [FAKFontAwesome pencilIconWithSize:EditIconSize];
     [pencil addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor]];
-    UIImage *editIcon = [pencil imageWithSize:CGSizeMake(44.0, 44.0)];
+    UIImage *editIcon = [pencil imageWithSize:CGSizeMake(30.0, 30.0)];
     self.accessoryView = [[UIImageView alloc] initWithImage:editIcon];
     self.accessoryView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapAccessoryView)];
@@ -77,6 +77,7 @@ static CGFloat EditIconSize = 18.0;
     [self.contentView addSubview:self.bubble];
 
     self.venueLabel = [UILabel new];
+    self.venueLabel.adjustsFontSizeToFitWidth = YES;
     self.venueLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.venueLabel.font = [UIFont fontWithName:@"STHeitiTC-Medium" size:22.0];
     [self.contentView addSubview:self.venueLabel];
