@@ -156,7 +156,7 @@ typedef NS_ENUM(NSUInteger, TableSections) {
         FoursquareVenue *venue = self.results[indexPath.row];
 
         cell.textLabel.text = venue.name;
-        [cell.imageView setImageWithURL:venue.iconURL];
+        [cell.imageView setImageWithURL:venue.iconURL placeholderImage:[UIImage imageNamed:@"placeholder"]];
     }
 }
 
