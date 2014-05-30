@@ -10,10 +10,10 @@
 #import "Path.h"
 #import "Stop.h"
 #import "DataProcessor.h"
+#import "Day.h"
 #import "MovementPathPolyline.h"
 
 @import MapKit;
-@import CoreMotion;
 
 @interface MapViewController ()<MKMapViewDelegate>
 
@@ -23,13 +23,15 @@
 
 @implementation MapViewController
 
-- (instancetype)init {
+- (instancetype)initWithDay:(Day *)day {
     self = [super init];
     if (!self) return nil;
 
+    self.day = day;
+
     self.view = self.mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
     self.mapView.delegate = self;
-    self.title = @"Map";
+    self.title = day.title;
 
     return self;
 }

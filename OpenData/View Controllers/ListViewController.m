@@ -23,6 +23,7 @@
 #import "Venue.h"
 #import "VenueListViewController.h"
 #import "SettingsViewController.h"
+#import "MapViewController.h"
 
 @interface ListViewController ()
 @property (strong, nonatomic) NSArray *data;
@@ -60,6 +61,13 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Process" style:UIBarButtonItemStylePlain target:self action:@selector(reprocess)];
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(didTapSettingsButton)];
+
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"Timeline"
+                                                                 style:UIBarButtonItemStyleDone
+                                                                target:nil
+                                                                action:nil];
+    self.navigationItem.backBarButtonItem = backItem;
+
 
     [self.tableView registerClass:[StopTimelineCell class] forCellReuseIdentifier:[StopTimelineCell classReuseIdentifier]];
     [self.tableView registerClass:[PathTimelineCell class] forCellReuseIdentifier:[PathTimelineCell classReuseIdentifier]];
@@ -114,6 +122,13 @@
 
     TimedEvent *obj = [self.day eventForIndex:indexPath.row];
     [cell setupWithTimedEvent:obj];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    MapViewController *mapController = [[MapViewController alloc] initWithDay:self.day];
+    [self.navigationController pushViewController:mapController animated:YES];
 }
 
 #pragma mark - UITableViewDataSource

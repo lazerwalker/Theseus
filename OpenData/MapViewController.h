@@ -6,8 +6,12 @@
 //  Copyright (c) 2014 Lazer-Walker. All rights reserved.
 //
 
-@import CoreData;
+@class Day;
 
 @interface MapViewController : UIViewController
+
+@property (nonatomic) Day *day;
+
+- (id)initWithDay:(Day *)day;
 
 @end
