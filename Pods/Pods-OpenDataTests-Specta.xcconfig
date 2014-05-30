@@ -1,2 +1,2 @@
-PODS_OPENDATATESTS_SPECTA_FRAMEWORK_SEARCH_PATHS = $(inherited) "$(SDKROOT)/Developer/Library/Frameworks" "$(DEVELOPER_LIBRARY_DIR)/Frameworks"
-PODS_OPENDATATESTS_SPECTA_OTHER_LDFLAGS = -framework Foundation -framework XCTest
+PODS_TheseusTESTS_SPECTA_FRAMEWORK_SEARCH_PATHS = $(inherited) "$(SDKROOT)/Developer/Library/Frameworks" "$(DEVELOPER_LIBRARY_DIR)/Frameworks"
+PODS_TheseusTESTS_SPECTA_OTHER_LDFLAGS = -framework Foundation -framework XCTest

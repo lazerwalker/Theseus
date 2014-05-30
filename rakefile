@@ -1,9 +1,9 @@
 task :default => :test
 
 task :test do
-  sh 'xcodebuild clean test -workspace OpenData.xcworkspace -scheme OpenData -sdk iphonesimulator ONLY_ACTIVE_ARCHS=NO | xcpretty -tc'
+  sh 'xcodebuild clean test -workspace Theseus.xcworkspace -scheme Theseus -sdk iphonesimulator ONLY_ACTIVE_ARCHS=NO | xcpretty -tc'
 end
 
 task :travis do
-  sh 'xcodebuild clean test -workspace OpenData.xcworkspace -scheme OpenData -sdk iphonesimulator | xcpretty -tc && exit ${PIPESTATUS[0]}'
+  sh 'xcodebuild clean test -workspace Theseus.xcworkspace -scheme Theseus -sdk iphonesimulator | xcpretty -tc && exit ${PIPESTATUS[0]}'
 end

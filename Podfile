@@ -6,7 +6,7 @@ pod "Mantle"
 pod "SDWebImage"
 pod "VTAcknowledgementsViewController"
 
-target :OpenDataTests do
+target :TheseusTests do
     pod "Expecta"
     pod "OCMockito"
     pod "PivotalCoreKit/UIKit/SpecHelper"
