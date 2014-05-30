@@ -11,7 +11,9 @@
 #import "Stop.h"
 #import "DataProcessor.h"
 #import "Day.h"
-#import "MovementPathPolyline.h"
+#import "PathPolyline.h"
+
+#import <Asterism.h>
 
 @import MapKit;
 
@@ -31,6 +33,16 @@
 
     self.view = self.mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
     self.mapView.delegate = self;
+
+    [self.mapView addAnnotations:self.day.stops];
+
+    NSArray *paths = ASTMap(self.day.paths, ^id(Path *path) {
+        return [PathPolyline polylineWithPath:path];
+    });
+
+    [self.mapView addOverlays:paths];
+    [self.mapView setRegion:day.region];
+
     self.title = day.title;
 
     return self;
@@ -42,7 +54,7 @@
 }
 
 #pragma mark - MKMapViewDelegate
-- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(MovementPathPolyline *)overlay {
+- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(PathPolyline *)overlay {
     MKPolylineView *polylineView = [[MKPolylineView alloc] initWithPolyline:overlay];
 
     if (overlay.type == MovementTypeWalking) {

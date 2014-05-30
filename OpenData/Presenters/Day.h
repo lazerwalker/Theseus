@@ -10,6 +10,7 @@
 
 @class ListViewController;
 @class TimedEvent;
+@import MapKit;
 
 extern NSString * const DayDataChangedKey;
 
@@ -17,7 +18,10 @@ extern NSString * const DayDataChangedKey;
 
 @property (nonatomic, readonly) NSUInteger numberOfEvents;
 @property (nonatomic, readonly) NSString *title;
+@property (nonatomic, readonly) NSArray *stops;
+@property (nonatomic, readonly) NSArray *paths;
 @property (nonatomic, readonly) NSDate *date;
+@property (nonatomic, readonly) MKCoordinateRegion region;
 @property (nonatomic, assign) NSUInteger daysAgo;
 
 - (id)initWithDaysAgo:(NSUInteger)daysAgo;

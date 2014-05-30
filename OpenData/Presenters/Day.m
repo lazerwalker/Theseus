@@ -9,6 +9,10 @@
 #import "Day.h"
 #import "DataProcessor.h"
 #import "TimedEvent.h"
+#import "Path.h"
+#import "Stop.h"
+
+#import <Asterism.h>
 
 NSString * const DayDataChangedKey = @"data";
 
@@ -69,6 +73,18 @@ NSString * const DayDataChangedKey = @"data";
     self.data = [DataProcessor.sharedInstance eventsForDaysAgo:self.daysAgo];
 }
 
+- (NSArray *)paths {
+    return ASTFilter(self.data, ^BOOL(TimedEvent *obj) {
+        return [obj isKindOfClass:Path.class];
+    });
+}
+
+- (NSArray *)stops {
+    return ASTFilter(self.data, ^BOOL(TimedEvent *obj) {
+        return [obj isKindOfClass:Stop.class];
+    });
+}
+
 - (NSString *)jsonRepresentation {
     NSDictionary *dict = [MTLJSONAdapter JSONDictionaryFromModel:self];
     NSError *error;
@@ -109,6 +125,24 @@ NSString * const DayDataChangedKey = @"data";
     }
 }
 
+- (MKCoordinateRegion)region {
+    NSArray *stops = self.stops;
+    CLLocationCoordinate2D center = CLLocationCoordinate2DMake([[stops valueForKeyPath:@"@avg.latitude"] doubleValue], [[stops valueForKeyPath:@"@avg.longitude"] doubleValue]);
+
+    CLLocationDegrees minLat = [[stops valueForKeyPath:@"@min.latitude"] doubleValue];
+    CLLocationDegrees maxLat = [[stops valueForKeyPath:@"@max.latitude"] doubleValue];
+    CLLocation *location1 = [[CLLocation alloc] initWithLatitude:minLat longitude:0];
+    CLLocation *location2 = [[CLLocation alloc] initWithLatitude:maxLat longitude:0];
+    CLLocationDistance latitudeDelta = [location1 distanceFromLocation:location2];
+
+    CLLocationDegrees minLong = [[stops valueForKeyPath:@"@min.longitude"] doubleValue];
+    CLLocationDegrees maxLong = [[stops valueForKeyPath:@"@max.longitude"] doubleValue];
+    location1 = [[CLLocation alloc] initWithLatitude:0 longitude:minLong];
+    location2 = [[CLLocation alloc] initWithLatitude:0 longitude:maxLong];
+    CLLocationDistance longitudeDelta = [location1 distanceFromLocation:location2];
+
+    return MKCoordinateRegionMakeWithDistance(center, latitudeDelta, longitudeDelta);
+}
 
 
 @end

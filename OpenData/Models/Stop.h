@@ -21,6 +21,8 @@
 @property (nonatomic) Venue *venue;
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+@property (nonatomic, readonly) CLLocationDegrees latitude;
+@property (nonatomic, readonly) CLLocationDegrees longitude;
 @property (nonatomic, readonly) CLLocationDistance altitude;
 
 - (void)setupWithLocations:(NSArray *)locations;

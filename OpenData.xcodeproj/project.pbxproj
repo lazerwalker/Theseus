@@ -13,6 +13,7 @@
 		A61D6461192ABF6800F7EB88 /* AppDelegateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A61D6460192ABF6800F7EB88 /* AppDelegateSpec.m */; };
 		A644F0AD19366688009B7561 /* Pods-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = A644F0AC19366688009B7561 /* Pods-acknowledgements.plist */; };
 		A644F0B4193679F3009B7561 /* TimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A644F0B3193679F3009B7561 /* TimelineCell.m */; };
+		A644F0B91938F240009B7561 /* PathPolylineSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A644F0B81938F240009B7561 /* PathPolylineSpec.m */; };
 		A65C2EEA19350D8E001FA01D /* RawLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874EB193230C700D8C7DD /* RawLocation.m */; };
 		A65C2EEB19350D92001FA01D /* RawMotionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874EE1932331300D8C7DD /* RawMotionActivity.m */; };
 		A66211661930507F00982704 /* Configuration.plist.example in Resources */ = {isa = PBXBuildFile; fileRef = A66211651930507F00982704 /* Configuration.plist.example */; };
@@ -59,7 +60,7 @@
 		A6B91D19192FA98F00F7106E /* DaysAgoDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D18192FA98F00F7106E /* DaysAgoDataSource.m */; };
 		A6B91D1C1930017200F7106E /* Day.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D1B1930017200F7106E /* Day.m */; };
 		A6B91D1F193007AD00F7106E /* ListViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D1E193007AD00F7106E /* ListViewControllerSpec.m */; };
-		A6BD97B719299AE000264548 /* MovementPathPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BD97B619299AE000264548 /* MovementPathPolyline.m */; };
+		A6BD97B719299AE000264548 /* PathPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BD97B619299AE000264548 /* PathPolyline.m */; };
 		A6BD97BA192A4B2900264548 /* VenueListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BD97B9192A4B2900264548 /* VenueListViewController.m */; };
 		A6C7CFE1192A7FF1001A6DAC /* OpenData.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFE0192A7FF1001A6DAC /* OpenData.m */; };
 		A6C7CFE3192A806B001A6DAC /* OpenDataSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFE2192A806B001A6DAC /* OpenDataSpec.m */; };
@@ -101,6 +102,7 @@
 		A61D6460192ABF6800F7EB88 /* AppDelegateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegateSpec.m; sourceTree = "<group>"; };
 		A644F0AC19366688009B7561 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
 		A644F0B3193679F3009B7561 /* TimelineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimelineCell.m; path = "Views/Timeline Cells/TimelineCell.m"; sourceTree = "<group>"; };
+		A644F0B81938F240009B7561 /* PathPolylineSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PathPolylineSpec.m; path = Presenters/PathPolylineSpec.m; sourceTree = "<group>"; };
 		A66211651930507F00982704 /* Configuration.plist.example */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Configuration.plist.example; sourceTree = "<group>"; };
 		A668A1EF1932469D00C6363F /* CDRawDataPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CDRawDataPoint.h; path = Protocols/CDRawDataPoint.h; sourceTree = "<group>"; };
 		A668A1F319324D6300C6363F /* OpenData (2014-05-25).xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OpenData (2014-05-25).xcdatamodel"; sourceTree = "<group>"; };
@@ -178,8 +180,8 @@
 		A6B91D1A1930017200F7106E /* Day.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Day.h; path = Presenters/Day.h; sourceTree = "<group>"; };
 		A6B91D1B1930017200F7106E /* Day.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Day.m; path = Presenters/Day.m; sourceTree = "<group>"; };
 		A6B91D1E193007AD00F7106E /* ListViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListViewControllerSpec.m; path = "View Controllers/ListViewControllerSpec.m"; sourceTree = "<group>"; };
-		A6BD97B519299AE000264548 /* MovementPathPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MovementPathPolyline.h; path = Presenters/MovementPathPolyline.h; sourceTree = "<group>"; };
-		A6BD97B619299AE000264548 /* MovementPathPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MovementPathPolyline.m; path = Presenters/MovementPathPolyline.m; sourceTree = "<group>"; };
+		A6BD97B519299AE000264548 /* PathPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PathPolyline.h; path = Presenters/PathPolyline.h; sourceTree = "<group>"; };
+		A6BD97B619299AE000264548 /* PathPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PathPolyline.m; path = Presenters/PathPolyline.m; sourceTree = "<group>"; };
 		A6BD97B8192A4B2900264548 /* VenueListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueListViewController.h; path = "View Controllers/VenueListViewController.h"; sourceTree = "<group>"; };
 		A6BD97B9192A4B2900264548 /* VenueListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueListViewController.m; path = "View Controllers/VenueListViewController.m"; sourceTree = "<group>"; };
 		A6C7CFDF192A7FF1001A6DAC /* OpenData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenData.h; sourceTree = "<group>"; };
@@ -237,6 +239,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A644F0B71938F227009B7561 /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				A644F0B81938F240009B7561 /* PathPolylineSpec.m */,
+			);
+			name = Presenters;
+			sourceTree = "<group>";
+		};
 		A668A1F219324D4C00C6363F /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -322,6 +332,7 @@
 		A6748AC3192127EA0073CE19 /* OpenDataTests */ = {
 			isa = PBXGroup;
 			children = (
+				A644F0B71938F227009B7561 /* Presenters */,
 				A6E5429F193505C80056C20F /* Helpers */,
 				A6E5429A1934EFE80056C20F /* Fixtures */,
 				A6AAB14B19305F59000DE81E /* Categories */,
@@ -481,8 +492,8 @@
 		A6BD97B419299AC600264548 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
-				A6BD97B519299AE000264548 /* MovementPathPolyline.h */,
-				A6BD97B619299AE000264548 /* MovementPathPolyline.m */,
+				A6BD97B519299AE000264548 /* PathPolyline.h */,
+				A6BD97B619299AE000264548 /* PathPolyline.m */,
 			);
 			name = Presenters;
 			sourceTree = "<group>";
@@ -761,7 +772,7 @@
 				A6748AAF192127E90073CE19 /* AppDelegate.m in Sources */,
 				A6D7DFDA192417B20036C2DF /* DataProcessor.m in Sources */,
 				A6A874E919322E7400D8C7DD /* UntrackedPeriod.m in Sources */,
-				A6BD97B719299AE000264548 /* MovementPathPolyline.m in Sources */,
+				A6BD97B719299AE000264548 /* PathPolyline.m in Sources */,
 				A6748AAB192127E90073CE19 /* main.m in Sources */,
 				A6C7CFE1192A7FF1001A6DAC /* OpenData.m in Sources */,
 				A644F0B4193679F3009B7561 /* TimelineCell.m in Sources */,
@@ -779,6 +790,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6AAB14D19305F70000DE81E /* NSString+TimeFormatterSpec.m in Sources */,
+				A644F0B91938F240009B7561 /* PathPolylineSpec.m in Sources */,
 				A65C2EEA19350D8E001FA01D /* RawLocation.m in Sources */,
 				A6E5429E1934F0240056C20F /* DataProcessorSpec.m in Sources */,
 				A6C7CFF1192AAD2A001A6DAC /* Configuration.m in Sources */,

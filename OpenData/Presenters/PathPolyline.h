@@ -9,10 +9,10 @@
 @import MapKit;
 #import "Path.h"
 
-@interface MovementPathPolyline : MKPolyline
+@interface PathPolyline : MKPolyline
 
 @property (nonatomic, assign) MovementType type;
 
-+ (id)polylineWithMovementPath:(Path *)movementPath;
++ (id)polylineWithPath:(Path *)path;
 
 @end
