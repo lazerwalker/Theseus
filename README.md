@@ -55,7 +55,7 @@ Right now, test coverage is a bit shaky; this is a relatively high near-term pri
 
 Contributing
 ------------
-Contributions of all shapes and forms are welcome! If you're looking for something to do, check out the [GitHub Issues] issue tracker or feel free to get in touch directly.
+Contributions of all shapes and forms are welcome! If you're looking for something to do, check out the [GitHub Issues](https://github.com/lazerwalker/Theseus/issues) or feel free to get in touch directly.
 
 Before your first pull request is accepted, you will need to submit a Contributor License Agreement by filling out this form:
 
