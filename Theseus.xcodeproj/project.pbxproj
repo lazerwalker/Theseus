@@ -8,10 +8,39 @@
 
 /* Begin PBXBuildFile section */
 		233D261913FA48D99FA6F1DA /* libPods-TheseusTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11A05698B66A478A80DE58EE /* libPods-TheseusTests.a */; };
-		52B113583BE24591AC8CB7D6 /* libPods-TheseusTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D971CDBFFFA4B76AEF7147C /* libPods-TheseusTests.a */; };
 		A6107DC7193108B1003B7837 /* SettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6AAB1521930F558000DE81E /* SettingsViewController.storyboard */; };
 		A6107DCE19314B13003B7837 /* DataExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = A6107DC919310B2B003B7837 /* DataExporter.m */; };
 		A61D6461192ABF6800F7EB88 /* AppDelegateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A61D6460192ABF6800F7EB88 /* AppDelegateSpec.m */; };
+		A6360000193984CC0059AEBF /* TimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A644F0B3193679F3009B7561 /* TimelineCell.m */; };
+		A6360001193984D00059AEBF /* PathPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BD97B619299AE000264548 /* PathPolyline.m */; };
+		A6360002193984D50059AEBF /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748AB4192127E90073CE19 /* MapViewController.m */; };
+		A6360003193985040059AEBF /* StopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A654D888193904C400E5D0B6 /* StopAnnotation.m */; };
+		A6360004193985090059AEBF /* PathTimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D0D192E76DA00F7106E /* PathTimelineCell.m */; };
+		A63600051939850C0059AEBF /* FoursquareClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F4D9721922FE33006C7034 /* FoursquareClient.m */; };
+		A63600061939850F0059AEBF /* DataExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = A6107DC919310B2B003B7837 /* DataExporter.m */; };
+		A6360007193985120059AEBF /* CDVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874FB1932355F00D8C7DD /* CDVenue.m */; };
+		A6360008193985160059AEBF /* CDUntrackedPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874F91932355F00D8C7DD /* CDUntrackedPeriod.m */; };
+		A6360009193985240059AEBF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748AAE192127E90073CE19 /* AppDelegate.m */; };
+		A636000A1939852A0059AEBF /* CDPath.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874F11932355F00D8C7DD /* CDPath.m */; };
+		A636000B1939852E0059AEBF /* Day.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D1B1930017200F7106E /* Day.m */; };
+		A636000C193985310059AEBF /* CDRawLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874F31932355F00D8C7DD /* CDRawLocation.m */; };
+		A636000D193985370059AEBF /* CDRawMotionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874F51932355F00D8C7DD /* CDRawMotionActivity.m */; };
+		A636000E1939853B0059AEBF /* CDStop.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874F71932355F00D8C7DD /* CDStop.m */; };
+		A636000F1939853E0059AEBF /* FoursquareVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = A68425C9192302CB0083D006 /* FoursquareVenue.m */; };
+		A63600101939854A0059AEBF /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748AD6192128D70073CE19 /* LocationManager.m */; };
+		A63600111939854D0059AEBF /* MotionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748ADD1921344F0073CE19 /* MotionManager.m */; };
+		A6360012193985520059AEBF /* DaysAgoDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D18192FA98F00F7106E /* DaysAgoDataSource.m */; };
+		A636FFF4193984810059AEBF /* Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = A6806ACC1932170A00B2B0F3 /* Stop.m */; };
+		A636FFF51939848C0059AEBF /* TimedEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A8750219323A0300D8C7DD /* TimedEvent.m */; };
+		A636FFF6193984910059AEBF /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874E51932294900D8C7DD /* Venue.m */; };
+		A636FFF7193984940059AEBF /* VenueListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BD97B9192A4B2900264548 /* VenueListViewController.m */; };
+		A636FFF8193984980059AEBF /* UntrackedPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874E819322E7400D8C7DD /* UntrackedPeriod.m */; };
+		A636FFF91939849A0059AEBF /* Theseus.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFE0192A7FF1001A6DAC /* Theseus.m */; };
+		A636FFFA193984A70059AEBF /* UntrackedPeriodTimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D10192E770C00F7106E /* UntrackedPeriodTimelineCell.m */; };
+		A636FFFC193984AF0059AEBF /* Path.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874E21932270000D8C7DD /* Path.m */; };
+		A636FFFD193984B30059AEBF /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F4D96E1922E9F5006C7034 /* ListViewController.m */; };
+		A636FFFE193984B80059AEBF /* DataProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D7DFD9192417B20036C2DF /* DataProcessor.m */; };
+		A636FFFF193984BC0059AEBF /* StopTimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D02192E70BF00F7106E /* StopTimelineCell.m */; };
 		A644F0AD19366688009B7561 /* Pods-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = A644F0AC19366688009B7561 /* Pods-acknowledgements.plist */; };
 		A644F0B4193679F3009B7561 /* TimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A644F0B3193679F3009B7561 /* TimelineCell.m */; };
 		A644F0B91938F240009B7561 /* PathPolylineSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A644F0B81938F240009B7561 /* PathPolylineSpec.m */; };
@@ -238,7 +267,6 @@
 				A6748ABE192127EA0073CE19 /* XCTest.framework in Frameworks */,
 				A6748AC0192127EA0073CE19 /* UIKit.framework in Frameworks */,
 				A6748ABF192127EA0073CE19 /* Foundation.framework in Frameworks */,
-				52B113583BE24591AC8CB7D6 /* libPods-TheseusTests.a in Frameworks */,
 				233D261913FA48D99FA6F1DA /* libPods-TheseusTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -801,17 +829,47 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A636FFF4193984810059AEBF /* Stop.m in Sources */,
+				A6360004193985090059AEBF /* PathTimelineCell.m in Sources */,
 				A6AAB14D19305F70000DE81E /* NSString+TimeFormatterSpec.m in Sources */,
+				A636000C193985310059AEBF /* CDRawLocation.m in Sources */,
+				A636000D193985370059AEBF /* CDRawMotionActivity.m in Sources */,
+				A636FFFD193984B30059AEBF /* ListViewController.m in Sources */,
+				A636FFFE193984B80059AEBF /* DataProcessor.m in Sources */,
+				A63600051939850C0059AEBF /* FoursquareClient.m in Sources */,
+				A636FFF7193984940059AEBF /* VenueListViewController.m in Sources */,
 				A644F0B91938F240009B7561 /* PathPolylineSpec.m in Sources */,
+				A636FFF6193984910059AEBF /* Venue.m in Sources */,
+				A636FFF8193984980059AEBF /* UntrackedPeriod.m in Sources */,
+				A636FFFA193984A70059AEBF /* UntrackedPeriodTimelineCell.m in Sources */,
+				A63600111939854D0059AEBF /* MotionManager.m in Sources */,
+				A63600101939854A0059AEBF /* LocationManager.m in Sources */,
+				A63600061939850F0059AEBF /* DataExporter.m in Sources */,
+				A6360008193985160059AEBF /* CDUntrackedPeriod.m in Sources */,
+				A6360009193985240059AEBF /* AppDelegate.m in Sources */,
 				A65C2EEA19350D8E001FA01D /* RawLocation.m in Sources */,
+				A6360007193985120059AEBF /* CDVenue.m in Sources */,
+				A636000E1939853B0059AEBF /* CDStop.m in Sources */,
+				A6360012193985520059AEBF /* DaysAgoDataSource.m in Sources */,
+				A636000F1939853E0059AEBF /* FoursquareVenue.m in Sources */,
 				A6E5429E1934F0240056C20F /* DataProcessorSpec.m in Sources */,
 				A6C7CFF1192AAD2A001A6DAC /* Configuration.m in Sources */,
+				A6360000193984CC0059AEBF /* TimelineCell.m in Sources */,
+				A636FFF51939848C0059AEBF /* TimedEvent.m in Sources */,
 				A6E542A2193505DC0056C20F /* Fixture.m in Sources */,
+				A636FFFC193984AF0059AEBF /* Path.m in Sources */,
 				A6C7CFE3192A806B001A6DAC /* TheseusSpec.m in Sources */,
 				A6C7CFF4192AAD87001A6DAC /* ConfigurationSpec.m in Sources */,
+				A636FFFF193984BC0059AEBF /* StopTimelineCell.m in Sources */,
 				A6E542A3193509440056C20F /* RawDataPoint.m in Sources */,
+				A6360002193984D50059AEBF /* MapViewController.m in Sources */,
 				A65C2EEB19350D92001FA01D /* RawMotionActivity.m in Sources */,
+				A636000A1939852A0059AEBF /* CDPath.m in Sources */,
+				A636000B1939852E0059AEBF /* Day.m in Sources */,
+				A636FFF91939849A0059AEBF /* Theseus.m in Sources */,
+				A6360003193985040059AEBF /* StopAnnotation.m in Sources */,
 				A61D6461192ABF6800F7EB88 /* AppDelegateSpec.m in Sources */,
+				A6360001193984D00059AEBF /* PathPolyline.m in Sources */,
 				A6B91D1F193007AD00F7106E /* ListViewControllerSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -973,6 +1031,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "TheseusTests/TheseusTests-Info.plist";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -994,6 +1053,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Theseus/Theseus-Prefix.pch";
 				INFOPLIST_FILE = "TheseusTests/TheseusTests-Info.plist";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
