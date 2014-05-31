@@ -11,17 +11,19 @@ Installation
 ------------
 Although Theseus will eventually be available on the App Store, you must currently compile it from source. Assuming you want to run Theseus on your physical iPhone, you'll also need to be a member of Apple's [iOS Developer Program](https://developer.apple.com/devcenter/ios/index.action).
 
-Right now it will only work on an iPhone 5S, as it requires the M7 motion coprocessor. This will likely change. 
+Right now it will only work on an iPhone 5S, as it requires the M7 motion coprocessor. This will likely change.
 
 1. Clone this git repo: `git clone git@github.com:lazerwalker/Theseus.git`
 
 2. Copy `Configuration.plist.example` to `Configuration.plist`.
 
-3. Create a new Foursquare app (https://foursquare.com/developers/register), and a new Dropbox app (https://www.dropbox.com/developers/apps). These will be necessary to fetch Foursquare venues and export your data to Dropbox.
+3. Create a new Foursquare app (https://foursquare.com/developers/register). This will be necessary to fetch venue information from Foursquare.
 
-4. Open up `Theseus.xcworkspace` in Xcode. Open `Configuration.plist`, and enter the credentials for the Dropbox and Foursquare apps you created in the previous step.
+4. Create a new Dropbox app (https://www.dropbox.com/developers/apps). It should be a Dropbox API app, with access to Files and Datastores, that can be limited to its own folder. This will be necessary to export your data to Dropbox.
 
-5. Build and run the app. It should just work!
+5. Open up `Theseus.xcworkspace` in Xcode. Open `Configuration.plist`, and enter the credentials for the Dropbox and Foursquare apps you created in the previous step.
+
+6. Build and run the app. It should just work!
 
 
 Usage
