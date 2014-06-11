@@ -1,3 +1,6 @@
 language: objective-c
 script: rake travis
 before_install: export LC_CTYPE=en_US.UTF-8; cp Configuration.plist.example Configuration.plist; gem install cocoapods && gem install xcpretty
+branches:
+  only:
+    - master
