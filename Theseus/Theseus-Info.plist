@@ -35,6 +35,8 @@
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Theseus visualizes your location. It always keeps it private.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
