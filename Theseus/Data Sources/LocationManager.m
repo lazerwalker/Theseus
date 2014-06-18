@@ -46,6 +46,7 @@ extern NSString *TheseusDidProcessNewDataNotification;
 - (void)startMonitoring {
     if (![CLLocationManager locationServicesEnabled]) return;
 
+    [self.manager requestAlwaysAuthorization];
     [self.manager startUpdatingLocation];
     [self.manager startMonitoringVisits];
 }
