@@ -21,9 +21,9 @@ PODS:
   - PivotalCoreKit/UIKit/SpecHelper/Extensions (0.0.3)
   - PivotalCoreKit/UIKit/SpecHelper/Matchers (0.0.3)
   - PivotalCoreKit/UIKit/SpecHelper/Stubs (0.0.3)
-  - SDWebImage (3.6):
+  - SDWebImage (HEAD based on 3.6):
     - SDWebImage/Core
-  - SDWebImage/Core (3.6)
+  - SDWebImage/Core (HEAD based on 3.6)
   - Specta (0.2.1)
   - VTAcknowledgementsViewController (0.11)
 
@@ -36,7 +36,7 @@ DEPENDENCIES:
   - Mantle
   - OCMockito
   - PivotalCoreKit/UIKit/SpecHelper
-  - SDWebImage
+  - SDWebImage (HEAD)
   - Specta
   - VTAcknowledgementsViewController
 

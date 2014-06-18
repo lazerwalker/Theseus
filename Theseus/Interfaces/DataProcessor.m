@@ -70,14 +70,14 @@ NSString *DataProcessorDidFinishProcessingNotification = @"DataProcessorDidFinis
 - (NSDate *)beginningOfDay:(NSDate *)date {
     NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
     calendar.timeZone = [NSTimeZone localTimeZone];
-    NSDateComponents *components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
+    NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:date];
     return [calendar dateFromComponents:components];
 }
 
 - (NSDate *)dateForNDaysAgo:(NSInteger)daysAgo {
     NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
     calendar.timeZone = [NSTimeZone localTimeZone];
-    NSDateComponents *components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:NSDate.date];
+    NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:NSDate.date];
     components.day -= daysAgo;
     return [calendar dateFromComponents:components];
 }

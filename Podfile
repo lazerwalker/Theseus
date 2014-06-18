@@ -1,9 +1,11 @@
+platform :ios, '8.0'
+
 pod "Asterism", "1.0.0-RC3"
 pod "Dropbox-iOS-SDK"
 pod "FontAwesomeKit/FontAwesome"
 pod "MagicalRecord"
 pod "Mantle"
-pod "SDWebImage"
+pod "SDWebImage", :head
 pod "VTAcknowledgementsViewController"
 
 target :TheseusTests do

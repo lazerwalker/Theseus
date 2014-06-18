@@ -9,11 +9,30 @@
 #import "UIButton+WebCache.h"
 #import "objc/runtime.h"
 
+static char imageURLStorageKey;
 static char operationKey;
 
 @implementation UIButton (WebCache)
 
-- (void)setImageWithURL:(NSURL *)url forState:(UIControlState)state {
+- (NSURL *)currentImageURL;
+{
+    NSURL *url = self.imageURLStorage[@(self.state)];
+
+    if (!url)
+    {
+        url = self.imageURLStorage[@(UIControlStateNormal)];
+    }
+
+    return url;
+}
+
+- (NSURL *)imageURLForState:(UIControlState)state;
+{
+    return self.imageURLStorage[@(state)];
+}
+
+- (void)setImageWithURL:(NSURL *)url forState:(UIControlState)state
+{
     [self setImageWithURL:url forState:state placeholderImage:nil options:0 completed:nil];
 }
 
@@ -34,27 +53,33 @@ static char operationKey;
 }
 
 - (void)setImageWithURL:(NSURL *)url forState:(UIControlState)state placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options completed:(SDWebImageCompletedBlock)completedBlock {
-    [self cancelCurrentImageLoad];
 
     [self setImage:placeholder forState:state];
-
-    if (url) {
-        __weak UIButton *wself = self;
-        id <SDWebImageOperation> operation = [SDWebImageManager.sharedManager downloadWithURL:url options:options progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
-            if (!wself) return;
-            dispatch_main_sync_safe(^{
-                __strong UIButton *sself = wself;
-                if (!sself) return;
-                if (image) {
-                    [sself setImage:image forState:state];
-                }
-                if (completedBlock && finished) {
-                    completedBlock(image, error, cacheType);
-                }
-            });
-        }];
-        objc_setAssociatedObject(self, &operationKey, operation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self cancelCurrentImageLoad];
+    
+    if (!url) {
+        [self.imageURLStorage removeObjectForKey:@(state)];
+        
+        return;
     }
+    
+    self.imageURLStorage[@(state)] = url;
+
+    __weak UIButton *wself = self;
+    id <SDWebImageOperation> operation = [SDWebImageManager.sharedManager downloadWithURL:url options:options progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
+        if (!wself) return;
+        dispatch_main_sync_safe(^{
+            __strong UIButton *sself = wself;
+            if (!sself) return;
+            if (image) {
+                [sself setImage:image forState:state];
+            }
+            if (completedBlock && finished) {
+                completedBlock(image, error, cacheType);
+            }
+        });
+    }];
+    objc_setAssociatedObject(self, &operationKey, operation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (void)setBackgroundImageWithURL:(NSURL *)url forState:(UIControlState)state {
@@ -109,6 +134,18 @@ static char operationKey;
         [operation cancel];
         objc_setAssociatedObject(self, &operationKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
+}
+
+- (NSMutableDictionary *)imageURLStorage;
+{
+    NSMutableDictionary *storage = objc_getAssociatedObject(self, &imageURLStorageKey);
+    if (!storage)
+    {
+        storage = [NSMutableDictionary dictionary];
+        objc_setAssociatedObject(self, &imageURLStorageKey, storage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+
+    return storage;
 }
 
 @end

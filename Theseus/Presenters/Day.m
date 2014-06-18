@@ -65,7 +65,7 @@ NSString * const DayDataChangedKey = @"data";
     self.daysAgo = daysAgo;
     self.date = ({
         NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
-        NSDateComponents *components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:NSDate.date];
+        NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:NSDate.date];
         components.day -= daysAgo;
         [calendar dateFromComponents:components];
     });

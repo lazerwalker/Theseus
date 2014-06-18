@@ -40,7 +40,7 @@
 - (id)init {
     if ((self = [super init])) {
         _imageCache = [self createCache];
-        _imageDownloader = [SDWebImageDownloader new];
+        _imageDownloader = [SDWebImageDownloader sharedDownloader];
         _failedURLs = [NSMutableArray new];
         _runningOperations = [NSMutableArray new];
     }
@@ -58,6 +58,12 @@
     else {
         return [url absoluteString];
     }
+}
+
+- (BOOL)cachedImageExistsForURL:(NSURL *)url {
+    NSString *key = [self cacheKeyForURL:url];
+    if ([self.imageCache imageFromMemoryCacheForKey:key] != nil) return YES;
+    return [self.imageCache diskImageExistsWithKey:key];
 }
 
 - (BOOL)diskImageExistsForURL:(NSURL *)url {
@@ -145,7 +151,7 @@
                         completedBlock(nil, error, SDImageCacheTypeNone, finished);
                     });
 
-                    if (error.code != NSURLErrorNotConnectedToInternet) {
+                    if (error.code != NSURLErrorNotConnectedToInternet && error.code != NSURLErrorCancelled && error.code != NSURLErrorTimedOut) {
                         @synchronized (self.failedURLs) {
                             [self.failedURLs addObject:url];
                         }
@@ -162,24 +168,24 @@
                         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                             UIImage *transformedImage = [self.delegate imageManager:self transformDownloadedImage:downloadedImage withURL:url];
 
-                            dispatch_main_sync_safe(^{
-                                completedBlock(transformedImage, nil, SDImageCacheTypeNone, finished);
-                            });
-
                             if (transformedImage && finished) {
                                 BOOL imageWasTransformed = ![transformedImage isEqual:downloadedImage];
                                 [self.imageCache storeImage:transformedImage recalculateFromImage:imageWasTransformed imageData:data forKey:key toDisk:cacheOnDisk];
                             }
+
+                            dispatch_main_sync_safe(^{
+                                completedBlock(transformedImage, nil, SDImageCacheTypeNone, finished);
+                            });
                         });
                     }
                     else {
-                        dispatch_main_sync_safe(^{
-                            completedBlock(downloadedImage, nil, SDImageCacheTypeNone, finished);
-                        });
-
                         if (downloadedImage && finished) {
                             [self.imageCache storeImage:downloadedImage recalculateFromImage:NO imageData:data forKey:key toDisk:cacheOnDisk];
                         }
+
+                        dispatch_main_sync_safe(^{
+                            completedBlock(downloadedImage, nil, SDImageCacheTypeNone, finished);
+                        });
                     }
                 }
 
@@ -191,6 +197,10 @@
             }];
             operation.cancelBlock = ^{
                 [subOperation cancel];
+                
+                @synchronized (self.runningOperations) {
+                    [self.runningOperations removeObject:weakOperation];
+                }
             };
         }
         else if (image) {
@@ -213,6 +223,13 @@
     }];
 
     return operation;
+}
+
+- (void)saveImageToCache:(UIImage *)image forURL:(NSURL *)url {
+    if (image && url) {
+        NSString *key = [self cacheKeyForURL:url];
+        [self.imageCache storeImage:image forKey:key toDisk:YES];
+    }
 }
 
 - (void)cancelAll {

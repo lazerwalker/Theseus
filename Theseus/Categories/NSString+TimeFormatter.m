@@ -28,7 +28,7 @@
     NSDate *d1 = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
     NSDate *d2 = [NSDate dateWithTimeIntervalSinceReferenceDate:interval];
 
-    NSDateComponents *components = [calendar components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:d1 toDate:d2 options:0];
+    NSDateComponents *components = [calendar components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:d1 toDate:d2 options:0];
 
     NSString *minuteString = [NSString stringWithFormat:@"%lu min", (long)components.minute];
     NSString *hourString = [NSString stringWithFormat:@"%lu hr", (long)components.hour];
