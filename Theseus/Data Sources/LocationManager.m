@@ -20,6 +20,9 @@
 
 #import "LocationManager.h"
 #import "RawLocation.h"
+#import "Stop.h"
+
+extern NSString *TheseusDidProcessNewDataNotification;
 
 @import CoreLocation;
 
@@ -44,13 +47,22 @@
     if (![CLLocationManager locationServicesEnabled]) return;
 
     [self.manager startUpdatingLocation];
+    [self.manager startMonitoringVisits];
 }
 
 - (void)stopMonitoring {
     [self.manager stopUpdatingLocation];
+    [self.manager stopMonitoringVisits];
 }
 
 #pragma mark - CLLocationManagerDelegate
+- (void)locationManager:(CLLocationManager *)manager didVisit:(CLVisit *)visit {
+    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+        Stop *stop = [[Stop alloc] initWithContext:localContext];
+        [stop setupWithVisit:visit];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TheseusDidProcessNewDataNotification object:self];
+    }];
+}
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
         for (CLLocation *location in locations) {

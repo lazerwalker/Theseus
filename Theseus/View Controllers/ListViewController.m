@@ -19,7 +19,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #import "ListViewController.h"
-#import "DataProcessor.h"
 #import "Stop.h"
 
 #import "TimedEvent.h"
@@ -70,8 +69,6 @@
 
     self.tableView.contentInset = UIEdgeInsetsMake(20, 0, self.tabBarController.tabBar.bounds.size.height, 0);
 
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Process" style:UIBarButtonItemStylePlain target:self action:@selector(reprocess)];
-
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(didTapSettingsButton)];
 
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"Timeline"
@@ -109,11 +106,6 @@
 }
 
 #pragma mark -
-- (void)reprocess {
-    DataProcessor *dataProcessor = [DataProcessor new];
-    [dataProcessor reprocessData];
-}
-
 - (void)didTapSettingsButton {
     SettingsViewController *settingsController = [SettingsViewController new];
     [self.navigationController pushViewController:settingsController animated:YES];

@@ -25,9 +25,11 @@
 
 @interface CDStop : NSManagedObject<CDTimedEvent>
 
-@property (nonatomic) NSSet *locations;
-@property (nonatomic) NSSet *movementPaths;
+@property (nonatomic) NSNumber *latitude;
+@property (nonatomic) NSNumber *longitude;
+@property (nonatomic) NSNumber *horizontalAccuracy;
 @property (nonatomic) NSNumber *venueConfirmed;
+
 @property (nonatomic) CDVenue *venue;
 
 @end

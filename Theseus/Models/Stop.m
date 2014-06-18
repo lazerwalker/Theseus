@@ -57,17 +57,6 @@
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:Venue.class];
 }
 
-- (void)addPath:(Path *)path {
-    NSSet *paths = self.model.movementPaths ?: [NSSet new];
-    paths = [paths setByAddingObject:path.model];
-    self.model.movementPaths = paths;
-}
-
-- (void)mergeWithStop:(Stop *)stop {
-    NSArray *locations = [[self.locations setByAddingObjectsFromSet:stop.locations] allObjects];
-    [self setupWithLocations:locations];
-}
-
 - (BOOL)isSameLocationAs:(Stop *)stop {
     CLLocationDistance distance = [self distanceFromCoordinate:stop.coordinate];
 
@@ -83,44 +72,29 @@
     return [thisLocation distanceFromLocation:thatLocation];
 }
 
-- (void)setupWithLocations:(NSArray *)locations {
-    self.locations = [NSSet setWithArray:locations];
-
-    self.startTime = [locations valueForKeyPath:@"@min.timestamp"];
-    self.endTime = [locations valueForKeyPath:@"@max.timestamp"];
-}
-
-#pragma mark - Accessors
-- (CLLocationCoordinate2D)coordinate {
-    return CLLocationCoordinate2DMake(self.latitude, self.longitude);
-}
-
-- (CLLocationDistance)altitude {
-    return [[self.locations valueForKeyPath:@"@avg.altitude"] doubleValue];
-}
-
-- (CLLocationDegrees)latitude {
-    return [[self.locations valueForKeyPath:@"@avg.latitude"] doubleValue];
-}
-
-- (CLLocationDegrees)longitude {
-    return [[self.locations valueForKeyPath:@"@avg.longitude"] doubleValue];
+#pragma mark - Setup
+- (void)setupWithVisit:(CLVisit *)visit {
+    self.startTime = visit.arrivalDate;
+    self.endTime = visit.departureDate;
+    self.coordinate = visit.coordinate;
 }
 
 #pragma mark - Core Data Attributes
-- (NSSet *)locations {
-    NSSet *locations = self.model.locations;
-    return ASTMap(locations, ^id(CDRawLocation *location) {
-        return [[RawLocation alloc] initWithCDModel:location context:self.context];
-    });
+- (void)setCoordinate:(CLLocationCoordinate2D)coordinate {
+    self.model.latitude = @(coordinate.latitude);
+    self.model.longitude = @(coordinate.longitude);
 }
 
-- (void)setLocations:(NSSet *)locations {
-    NSSet *coreDataObjects = ASTMap(locations, ^id(RawLocation *location) {
-        return location.model;
-    });
+- (CLLocationCoordinate2D)coordinate {
+    return CLLocationCoordinate2DMake(self.model.latitude.floatValue, self.model.longitude.floatValue);
+}
 
-    self.model.locations = coreDataObjects;
+- (void)setHorizontalAccuracy:(CLLocationAccuracy)horizontalAccuracy {
+    self.model.horizontalAccuracy = @(horizontalAccuracy);
+}
+
+- (CLLocationAccuracy)horizontalAccuracy {
+    return self.model.horizontalAccuracy.floatValue;
 }
 
 - (Venue *)venue {

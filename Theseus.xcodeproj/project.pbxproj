@@ -39,7 +39,6 @@
 		A636FFFA193984A70059AEBF /* UntrackedPeriodTimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D10192E770C00F7106E /* UntrackedPeriodTimelineCell.m */; };
 		A636FFFC193984AF0059AEBF /* Path.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874E21932270000D8C7DD /* Path.m */; };
 		A636FFFD193984B30059AEBF /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6F4D96E1922E9F5006C7034 /* ListViewController.m */; };
-		A636FFFE193984B80059AEBF /* DataProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D7DFD9192417B20036C2DF /* DataProcessor.m */; };
 		A636FFFF193984BC0059AEBF /* StopTimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D02192E70BF00F7106E /* StopTimelineCell.m */; };
 		A644F0AD19366688009B7561 /* Pods-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = A644F0AC19366688009B7561 /* Pods-acknowledgements.plist */; };
 		A644F0B4193679F3009B7561 /* TimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A644F0B3193679F3009B7561 /* TimelineCell.m */; };
@@ -102,7 +101,6 @@
 		A6C7CFF0192AAD2A001A6DAC /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFEF192AAD2A001A6DAC /* Configuration.m */; };
 		A6C7CFF1192AAD2A001A6DAC /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFEF192AAD2A001A6DAC /* Configuration.m */; };
 		A6C7CFF4192AAD87001A6DAC /* ConfigurationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFF3192AAD87001A6DAC /* ConfigurationSpec.m */; };
-		A6D7DFDA192417B20036C2DF /* DataProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D7DFD9192417B20036C2DF /* DataProcessor.m */; };
 		A6E5429C1934EFF60056C20F /* ProcessAll.json in Resources */ = {isa = PBXBuildFile; fileRef = A6E5429B1934EFF60056C20F /* ProcessAll.json */; };
 		A6E5429E1934F0240056C20F /* DataProcessorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E5429D1934F0240056C20F /* DataProcessorSpec.m */; };
 		A6E542A2193505DC0056C20F /* Fixture.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E542A1193505DC0056C20F /* Fixture.m */; };
@@ -168,6 +166,7 @@
 		A68425C8192302CB0083D006 /* FoursquareVenue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FoursquareVenue.h; path = Models/FoursquareVenue.h; sourceTree = "<group>"; };
 		A68425C9192302CB0083D006 /* FoursquareVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FoursquareVenue.m; path = Models/FoursquareVenue.m; sourceTree = "<group>"; };
 		A68425CB1923047F0083D006 /* Configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Configuration.plist; path = ../Configuration.plist; sourceTree = "<group>"; };
+		A688D6051951BC0F00E0886D /* Theseus (2014-06-18).xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Theseus (2014-06-18).xcdatamodel"; sourceTree = "<group>"; };
 		A6A874E11932270000D8C7DD /* Path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Path.h; path = Models/Path.h; sourceTree = "<group>"; };
 		A6A874E21932270000D8C7DD /* Path.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Path.m; path = Models/Path.m; sourceTree = "<group>"; };
 		A6A874E41932294900D8C7DD /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Venue.h; path = Models/Venue.h; sourceTree = "<group>"; };
@@ -227,8 +226,6 @@
 		A6C7CFEE192AAD2A001A6DAC /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Configuration.h; path = Interfaces/Configuration.h; sourceTree = "<group>"; };
 		A6C7CFEF192AAD2A001A6DAC /* Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Configuration.m; path = Interfaces/Configuration.m; sourceTree = "<group>"; };
 		A6C7CFF3192AAD87001A6DAC /* ConfigurationSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfigurationSpec.m; path = Interfaces/ConfigurationSpec.m; sourceTree = "<group>"; };
-		A6D7DFD8192417B20036C2DF /* DataProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataProcessor.h; path = Interfaces/DataProcessor.h; sourceTree = "<group>"; };
-		A6D7DFD9192417B20036C2DF /* DataProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataProcessor.m; path = Interfaces/DataProcessor.m; sourceTree = "<group>"; };
 		A6E5429B1934EFF60056C20F /* ProcessAll.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ProcessAll.json; sourceTree = "<group>"; };
 		A6E5429D1934F0240056C20F /* DataProcessorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataProcessorSpec.m; path = Interfaces/DataProcessorSpec.m; sourceTree = "<group>"; };
 		A6E542A0193505DC0056C20F /* Fixture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Fixture.h; path = Helpers/Fixture.h; sourceTree = "<group>"; };
@@ -568,8 +565,6 @@
 			children = (
 				A6F4D9711922FE33006C7034 /* FoursquareClient.h */,
 				A6F4D9721922FE33006C7034 /* FoursquareClient.m */,
-				A6D7DFD8192417B20036C2DF /* DataProcessor.h */,
-				A6D7DFD9192417B20036C2DF /* DataProcessor.m */,
 				A6C7CFEE192AAD2A001A6DAC /* Configuration.h */,
 				A6C7CFEF192AAD2A001A6DAC /* Configuration.m */,
 				A6107DC819310B2B003B7837 /* DataExporter.h */,
@@ -810,7 +805,6 @@
 				A6748ADE1921344F0073CE19 /* MotionManager.m in Sources */,
 				A6748AB5192127E90073CE19 /* MapViewController.m in Sources */,
 				A6748AAF192127E90073CE19 /* AppDelegate.m in Sources */,
-				A6D7DFDA192417B20036C2DF /* DataProcessor.m in Sources */,
 				A6A874E919322E7400D8C7DD /* UntrackedPeriod.m in Sources */,
 				A6BD97B719299AE000264548 /* PathPolyline.m in Sources */,
 				A6748AAB192127E90073CE19 /* main.m in Sources */,
@@ -835,7 +829,6 @@
 				A636000C193985310059AEBF /* CDRawLocation.m in Sources */,
 				A636000D193985370059AEBF /* CDRawMotionActivity.m in Sources */,
 				A636FFFD193984B30059AEBF /* ListViewController.m in Sources */,
-				A636FFFE193984B80059AEBF /* DataProcessor.m in Sources */,
 				A63600051939850C0059AEBF /* FoursquareClient.m in Sources */,
 				A636FFF7193984940059AEBF /* VenueListViewController.m in Sources */,
 				A644F0B91938F240009B7561 /* PathPolylineSpec.m in Sources */,
@@ -1096,10 +1089,11 @@
 		A6F4D90F1922CF13006C7034 /* Theseus.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A688D6051951BC0F00E0886D /* Theseus (2014-06-18).xcdatamodel */,
 				A668A1F319324D6300C6363F /* Theseus (2014-05-25).xcdatamodel */,
 				A6F4D9101922CF13006C7034 /* Theseus (initial).xcdatamodel */,
 			);
-			currentVersion = A668A1F319324D6300C6363F /* Theseus (2014-05-25).xcdatamodel */;
+			currentVersion = A688D6051951BC0F00E0886D /* Theseus (2014-06-18).xcdatamodel */;
 			path = Theseus.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

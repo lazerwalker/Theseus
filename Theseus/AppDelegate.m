@@ -25,7 +25,6 @@
 #import "LocationManager.h"
 #import "MotionManager.h"
 #import "Configuration.h"
-#import "DataProcessor.h"
 
 #import <DropboxSDK/DropboxSDK.h>
 

@@ -22,7 +22,7 @@
 
 @implementation CDStop
 
-@dynamic startTime, endTime, locations, movementPaths, venue, venueConfirmed;
+@dynamic startTime, endTime, latitude, longitude, horizontalAccuracy, venue, venueConfirmed;
 
 
 @end

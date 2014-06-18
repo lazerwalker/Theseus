@@ -20,7 +20,6 @@
 
 #import "MotionManager.h"
 #import "RawMotionActivity.h"
-#import "DataProcessor.h"
 
 @import CoreMotion;
 
@@ -65,7 +64,6 @@
     [self.manager queryActivityStartingFromDate:date toDate:NSDate.date toQueue:self.operationQueue withHandler:^(NSArray *activities, NSError *error) {
 
         if (error) {
-            NSLog(@"MOTION ERROR ================> %@", error);
             return;
         }
 
@@ -74,8 +72,6 @@
                 RawMotionActivity *rawActivity = [[RawMotionActivity alloc] initWithContext:localContext];
                 [rawActivity setupWithMotionActivity:activity];
             }
-        } completion:^(BOOL success, NSError *error) {
-            [[DataProcessor sharedInstance] processNewData];
         }];
     }];
 }

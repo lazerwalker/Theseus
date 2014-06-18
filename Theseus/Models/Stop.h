@@ -27,20 +27,19 @@
 
 @interface Stop : TimedEvent
 
-@property (nonatomic) NSSet *locations;
-@property (nonatomic) NSSet *movementPaths;
 @property (nonatomic, assign) BOOL venueConfirmed;
 @property (nonatomic) Venue *venue;
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
-@property (nonatomic, readonly) CLLocationDegrees latitude;
-@property (nonatomic, readonly) CLLocationDegrees longitude;
-@property (nonatomic, readonly) CLLocationDistance altitude;
+@property (nonatomic, readonly) CLLocationAccuracy horizontalAccuracy;
 
-- (void)setupWithLocations:(NSArray *)locations;
 - (BOOL)isSameLocationAs:(Stop *)stop;
+- (CLLocationDistance)distanceFromCoordinate:(CLLocationCoordinate2D)coordinate;
+
+- (void)setupWithVisit:(CLVisit *)visit;
+- (void)setupWithLocations:(NSArray *)locations;
+
 - (void)mergeWithStop:(Stop *)stop;
 - (void)addPath:(Path *)path;
-- (CLLocationDistance)distanceFromCoordinate:(CLLocationCoordinate2D)coordinate;
 
 @end

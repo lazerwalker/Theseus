@@ -21,7 +21,9 @@
 #import "DataExporter.h"
 #import "Day.h"
 #import <DropboxSDK/DropboxSDK.h>
-#import "DataProcessor.h"
+
+#import "RawMotionActivity.h"
+#import "RawLocation.h"
 
 @interface DataExporter ()<DBRestClientDelegate>
 @property (nonatomic, strong) DBRestClient *dropboxClient;
@@ -66,8 +68,7 @@
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
     dateFormatter.dateFormat = @"MM-dd-yyyy";
 
-    DataProcessor *processor = DataProcessor.sharedInstance;
-    NSArray *data = processor.allRawData;
+    NSArray *data = [self allRawData];
     data = [MTLJSONAdapter JSONArrayFromModels:data];
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data
                                                    options:NSJSONWritingPrettyPrinted
@@ -82,6 +83,15 @@
     [text writeToFile:localPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 
     [self.dropboxClient uploadFile:filename toPath:@"/" withParentRev:nil fromPath:localPath];
+}
+
+- (NSArray *)allRawData {
+    NSArray *motionEvents = [RawMotionActivity MR_findAllSortedBy:@"timestamp" ascending:YES];
+    NSArray *locationEvents = [RawLocation MR_findAllSortedBy:@"timestamp" ascending:YES];
+
+    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:YES];
+    NSArray *allObjects = [[motionEvents arrayByAddingObjectsFromArray:locationEvents] sortedArrayUsingDescriptors:@[descriptor]];
+    return allObjects;
 }
 
 #pragma mark - DBRestClientDelegate
