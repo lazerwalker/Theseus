@@ -46,14 +46,18 @@ extern NSString *TheseusDidProcessNewDataNotification;
 - (void)startMonitoring {
     if (![CLLocationManager locationServicesEnabled]) return;
 
-    [self.manager requestAlwaysAuthorization];
-    [self.manager startUpdatingLocation];
-    [self.manager startMonitoringVisits];
+    if ([self.manager respondsToSelector:@selector(startMonitoringVisits)]) {
+        [self.manager requestAlwaysAuthorization];
+        [self.manager startUpdatingLocation];
+        [self.manager startMonitoringVisits];
+    }
 }
 
 - (void)stopMonitoring {
-    [self.manager stopUpdatingLocation];
-    [self.manager stopMonitoringVisits];
+    if ([self.manager respondsToSelector:@selector(stopMonitoringVisits)]) {
+        [self.manager stopUpdatingLocation];
+        [self.manager stopMonitoringVisits];
+    }
 }
 
 #pragma mark - CLLocationManagerDelegate
