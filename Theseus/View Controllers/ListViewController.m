@@ -37,8 +37,9 @@
 #import "MapViewController.h"
 
 @interface ListViewController ()
-@property (strong, nonatomic) NSArray *data;
+@property (nonatomic, strong) NSArray *data;
 @property (nonatomic, strong) Day *day;
+@property (nonatomic, assign) NSInteger stepCount;
 @end
 
 @implementation ListViewController
@@ -83,6 +84,12 @@
     [self.tableView registerClass:[UntrackedPeriodTimelineCell class] forCellReuseIdentifier:[UntrackedPeriodTimelineCell classReuseIdentifier]];
 
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
+    self.stepCount = -1;
+    [self.day fetchStepCountWithCompletion:^(NSInteger stepCount) {
+        self.stepCount = stepCount;
+        NSLog(@"Walked %ld steps today", (long)stepCount);
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

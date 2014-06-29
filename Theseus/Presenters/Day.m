@@ -22,6 +22,7 @@
 #import "TimedEvent.h"
 #import "Path.h"
 #import "Stop.h"
+#import "StepManager.h"
 
 #import "NSDate+DaysAgo.h"
 #import <Asterism.h>
@@ -96,6 +97,17 @@ NSString * const DayDataChangedKey = @"data";
     return ASTFilter(self.data, ^BOOL(TimedEvent *obj) {
         return [obj isKindOfClass:Stop.class];
     });
+}
+
+- (void)fetchStepCountWithCompletion:(void (^)(NSInteger))completion {
+    StepManager *stepManager = [StepManager new];
+    [stepManager stepsForDaysAgo:self.daysAgo completion:^(NSInteger numberOfSteps, NSError *error) {
+        if (!error && completion) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(numberOfSteps);
+            });
+        }
+    }];
 }
 
 - (NSString *)jsonRepresentation {

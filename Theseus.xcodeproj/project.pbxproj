@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		233D261913FA48D99FA6F1DA /* libPods-TheseusTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11A05698B66A478A80DE58EE /* libPods-TheseusTests.a */; };
+		A609635C1960AF150042ACC3 /* StepManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A609635B1960AF150042ACC3 /* StepManager.m */; };
 		A6107DC7193108B1003B7837 /* SettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6AAB1521930F558000DE81E /* SettingsViewController.storyboard */; };
 		A6107DCE19314B13003B7837 /* DataExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = A6107DC919310B2B003B7837 /* DataExporter.m */; };
 		A61D6461192ABF6800F7EB88 /* AppDelegateSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A61D6460192ABF6800F7EB88 /* AppDelegateSpec.m */; };
@@ -130,6 +131,8 @@
 		8BE585C2279B40C38BFDB9C8 /* Pods-TheseusTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheseusTests.xcconfig"; path = "Pods/Pods-TheseusTests.xcconfig"; sourceTree = "<group>"; };
 		8D971CDBFFFA4B76AEF7147C /* libPods-TheseusTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TheseusTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1D73CDD20E349509DE73F55 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A609635A1960AF150042ACC3 /* StepManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StepManager.h; path = "Data Sources/StepManager.h"; sourceTree = "<group>"; };
+		A609635B1960AF150042ACC3 /* StepManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StepManager.m; path = "Data Sources/StepManager.m"; sourceTree = "<group>"; };
 		A6107DC819310B2B003B7837 /* DataExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataExporter.h; path = Interfaces/DataExporter.h; sourceTree = "<group>"; };
 		A6107DC919310B2B003B7837 /* DataExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataExporter.m; path = Interfaces/DataExporter.m; sourceTree = "<group>"; };
 		A61D6460192ABF6800F7EB88 /* AppDelegateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegateSpec.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -417,6 +420,8 @@
 				A6748ADD1921344F0073CE19 /* MotionManager.m */,
 				A6B91D17192FA98F00F7106E /* DaysAgoDataSource.h */,
 				A6B91D18192FA98F00F7106E /* DaysAgoDataSource.m */,
+				A609635A1960AF150042ACC3 /* StepManager.h */,
+				A609635B1960AF150042ACC3 /* StepManager.m */,
 			);
 			name = "Data Sources";
 			sourceTree = "<group>";
@@ -802,6 +807,7 @@
 				A6A874FD1932355F00D8C7DD /* CDRawLocation.m in Sources */,
 				A6A874EC193230C700D8C7DD /* RawLocation.m in Sources */,
 				A668A1F0193246ED00C6363F /* RawDataPoint.m in Sources */,
+				A609635C1960AF150042ACC3 /* StepManager.m in Sources */,
 				A6B91D19192FA98F00F7106E /* DaysAgoDataSource.m in Sources */,
 				A6AAB1501930F548000DE81E /* SettingsViewController.m in Sources */,
 				A6A874E31932270000D8C7DD /* Path.m in Sources */,

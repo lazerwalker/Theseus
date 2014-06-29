@@ -39,7 +39,7 @@ extern NSString * const DayDataChangedKey;
 - (id)initWithDaysAgo:(NSUInteger)daysAgo;
 
 - (TimedEvent *)eventForIndex:(NSInteger)index;
-
+- (void)fetchStepCountWithCompletion:(void (^)(NSInteger))completion;
 - (NSString *)jsonRepresentation;
 
 @end
