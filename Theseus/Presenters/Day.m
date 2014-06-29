@@ -23,6 +23,7 @@
 #import "Path.h"
 #import "Stop.h"
 
+#import "NSDate+DaysAgo.h"
 #import <Asterism.h>
 
 NSString * const TheseusDidProcessNewDataNotification = @"TheseusDidProcessNewDataNotification";
@@ -63,12 +64,7 @@ NSString * const DayDataChangedKey = @"data";
     if (!self) return nil;
 
     self.daysAgo = daysAgo;
-    self.date = ({
-        NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
-        NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:NSDate.date];
-        components.day -= daysAgo;
-        [calendar dateFromComponents:components];
-    });
+    self.date = [[NSDate alloc] initWithDaysAgo:daysAgo];
 
     [self fetch];
 
@@ -82,8 +78,9 @@ NSString * const DayDataChangedKey = @"data";
 }
 
 - (void)fetch {
-    NSDate *startOfDay = [self dateForNDaysAgo:self.daysAgo];
-    NSDate *endOfDay = [self dateForNDaysAgo:self.daysAgo-1];
+    NSDate *startOfDay = [[NSDate alloc] initWithDaysAgo:self.daysAgo];
+    NSDate *endOfDay = startOfDay.endOfDay;
+    
         NSPredicate *day = [NSPredicate predicateWithFormat:@"(startTime > %@) AND (endTime < %@)", startOfDay, endOfDay];
 
     self.data = [Stop MR_findAllSortedBy:@"startTime" ascending:YES withPredicate:day];
@@ -169,20 +166,5 @@ NSString * const DayDataChangedKey = @"data";
     return MKCoordinateRegionMakeWithDistance(center, latitudeDelta, longitudeDelta);
 }
 
-#pragma mark - Date helpers
-- (NSDate *)beginningOfDay:(NSDate *)date {
-    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
-    calendar.timeZone = [NSTimeZone localTimeZone];
-    NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:date];
-    return [calendar dateFromComponents:components];
-}
-
-- (NSDate *)dateForNDaysAgo:(NSInteger)daysAgo {
-    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
-    calendar.timeZone = [NSTimeZone localTimeZone];
-    NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:NSDate.date];
-    components.day -= daysAgo;
-    return [calendar dateFromComponents:components];
-}
 
 @end

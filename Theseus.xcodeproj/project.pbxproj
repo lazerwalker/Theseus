@@ -66,6 +66,8 @@
 		A6806ACD1932170A00B2B0F3 /* Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = A6806ACC1932170A00B2B0F3 /* Stop.m */; };
 		A68425CA192302CB0083D006 /* FoursquareVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = A68425C9192302CB0083D006 /* FoursquareVenue.m */; };
 		A68425CC1923047F0083D006 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = A68425CB1923047F0083D006 /* Configuration.plist */; };
+		A68ACA191960A3B80051A708 /* NSDate+DaysAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = A68ACA181960A3B80051A708 /* NSDate+DaysAgo.m */; };
+		A68ACA1A1960A3B80051A708 /* NSDate+DaysAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = A68ACA181960A3B80051A708 /* NSDate+DaysAgo.m */; };
 		A6A874E31932270000D8C7DD /* Path.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874E21932270000D8C7DD /* Path.m */; };
 		A6A874E61932294900D8C7DD /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874E51932294900D8C7DD /* Venue.m */; };
 		A6A874E919322E7400D8C7DD /* UntrackedPeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A874E819322E7400D8C7DD /* UntrackedPeriod.m */; };
@@ -167,6 +169,8 @@
 		A68425C9192302CB0083D006 /* FoursquareVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FoursquareVenue.m; path = Models/FoursquareVenue.m; sourceTree = "<group>"; };
 		A68425CB1923047F0083D006 /* Configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Configuration.plist; path = ../Configuration.plist; sourceTree = "<group>"; };
 		A688D6051951BC0F00E0886D /* Theseus (2014-06-18).xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Theseus (2014-06-18).xcdatamodel"; sourceTree = "<group>"; };
+		A68ACA171960A38C0051A708 /* NSDate+DaysAgo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSDate+DaysAgo.h"; path = "Categories/NSDate+DaysAgo.h"; sourceTree = "<group>"; };
+		A68ACA181960A3B80051A708 /* NSDate+DaysAgo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+DaysAgo.m"; path = "Categories/NSDate+DaysAgo.m"; sourceTree = "<group>"; };
 		A6A874E11932270000D8C7DD /* Path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Path.h; path = Models/Path.h; sourceTree = "<group>"; };
 		A6A874E21932270000D8C7DD /* Path.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Path.m; path = Models/Path.m; sourceTree = "<group>"; };
 		A6A874E41932294900D8C7DD /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Venue.h; path = Models/Venue.h; sourceTree = "<group>"; };
@@ -502,6 +506,8 @@
 				A6B91D07192E737200F7106E /* UITableViewCell+ReuseIdentifier.m */,
 				A6B91D14192EA60200F7106E /* NSString+TimeFormatter.h */,
 				A6B91D15192EA60200F7106E /* NSString+TimeFormatter.m */,
+				A68ACA171960A38C0051A708 /* NSDate+DaysAgo.h */,
+				A68ACA181960A3B80051A708 /* NSDate+DaysAgo.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -799,6 +805,7 @@
 				A6B91D19192FA98F00F7106E /* DaysAgoDataSource.m in Sources */,
 				A6AAB1501930F548000DE81E /* SettingsViewController.m in Sources */,
 				A6A874E31932270000D8C7DD /* Path.m in Sources */,
+				A68ACA191960A3B80051A708 /* NSDate+DaysAgo.m in Sources */,
 				A68425CA192302CB0083D006 /* FoursquareVenue.m in Sources */,
 				A6A874FC1932355F00D8C7DD /* CDPath.m in Sources */,
 				A6F4D96F1922E9F5006C7034 /* ListViewController.m in Sources */,
@@ -828,6 +835,7 @@
 				A6AAB14D19305F70000DE81E /* NSString+TimeFormatterSpec.m in Sources */,
 				A636000C193985310059AEBF /* CDRawLocation.m in Sources */,
 				A636000D193985370059AEBF /* CDRawMotionActivity.m in Sources */,
+				A68ACA1A1960A3B80051A708 /* NSDate+DaysAgo.m in Sources */,
 				A636FFFD193984B30059AEBF /* ListViewController.m in Sources */,
 				A63600051939850C0059AEBF /* FoursquareClient.m in Sources */,
 				A636FFF7193984940059AEBF /* VenueListViewController.m in Sources */,

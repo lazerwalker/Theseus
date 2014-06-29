@@ -16,4 +16,5 @@
     #import <CoreData+MagicalRecord.h>
     #import "Theseus.h"
     #import "UITableViewCell+ReuseIdentifier.h"
+    #import "NSDate+DaysAgo.h"
 #endif
