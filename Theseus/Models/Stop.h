@@ -37,9 +37,5 @@
 - (CLLocationDistance)distanceFromCoordinate:(CLLocationCoordinate2D)coordinate;
 
 - (void)setupWithVisit:(CLVisit *)visit;
-- (void)setupWithLocations:(NSArray *)locations;
-
-- (void)mergeWithStop:(Stop *)stop;
-- (void)addPath:(Path *)path;
 
 @end
