@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6172.15" systemVersion="13D65" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="CDPath" representedClassName="CDPath" elementID="MovementPath" syncable="YES">
+        <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="activity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDRawMotionActivity" inverseName="movementPath" inverseEntity="CDRawMotionActivity" syncable="YES"/>
+        <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDRawLocation" inverseName="movementPath" inverseEntity="CDRawLocation" syncable="YES"/>
+        <relationship name="stop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDStop" inverseName="movementPaths" inverseEntity="CDStop" syncable="YES"/>
+    </entity>
+    <entity name="CDRawLocation" representedClassName="_RawLocation" elementID="RawLocation" syncable="YES">
+        <attribute name="altitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="horizontalAccuracy" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="speed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="verticalAccuracy" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="movementPath" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDPath" inverseName="locations" inverseEntity="CDPath" syncable="YES"/>
+        <relationship name="stop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDStop" inverseName="locations" inverseEntity="CDStop" syncable="YES"/>
+    </entity>
+    <entity name="CDRawMotionActivity" representedClassName="CDRawMotionActivity" elementID="RawMotionActivity" syncable="YES">
+        <attribute name="activity" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="confidence" optional="YES" attributeType="Integer 16" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="movementPath" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDPath" inverseName="activity" inverseEntity="CDPath" syncable="YES"/>
+    </entity>
+    <entity name="CDStepCount" syncable="YES">
+        <attribute name="count" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
+    <entity name="CDStop" representedClassName="CDStop" elementID="Stop" syncable="YES">
+        <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="venueConfirmed" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDRawLocation" inverseName="stop" inverseEntity="CDRawLocation" syncable="YES"/>
+        <relationship name="movementPaths" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDPath" inverseName="stop" inverseEntity="CDPath" syncable="YES"/>
+        <relationship name="venue" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDVenue" inverseName="stops" inverseEntity="CDVenue" syncable="YES"/>
+    </entity>
+    <entity name="CDUntrackedPeriod" representedClassName="CDUntrackedPeriod" elementID="UntrackedPeriod" syncable="YES">
+        <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
+    <entity name="CDVenue" representedClassName="CDVenue" elementID="Venue" syncable="YES">
+        <attribute name="foursquareIconPrefix" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="foursquareIconSuffix" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="foursquareId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="stops" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDStop" inverseName="venue" inverseEntity="CDStop" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="CDPath" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="CDRawLocation" positionX="0" positionY="0" width="128" height="180"/>
+        <element name="CDRawMotionActivity" positionX="0" positionY="0" width="128" height="103"/>
+        <element name="CDStop" positionX="0" positionY="0" width="128" height="133"/>
+        <element name="CDUntrackedPeriod" positionX="0" positionY="0" width="128" height="73"/>
+        <element name="CDVenue" positionX="0" positionY="0" width="128" height="148"/>
+        <element name="CDStepCount" positionX="18" positionY="81" width="128" height="73"/>
+    </elements>
+</model>

@@ -105,7 +105,6 @@
 		A6C7CFF1192AAD2A001A6DAC /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFEF192AAD2A001A6DAC /* Configuration.m */; };
 		A6C7CFF4192AAD87001A6DAC /* ConfigurationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFF3192AAD87001A6DAC /* ConfigurationSpec.m */; };
 		A6E5429C1934EFF60056C20F /* ProcessAll.json in Resources */ = {isa = PBXBuildFile; fileRef = A6E5429B1934EFF60056C20F /* ProcessAll.json */; };
-		A6E5429E1934F0240056C20F /* DataProcessorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E5429D1934F0240056C20F /* DataProcessorSpec.m */; };
 		A6E542A2193505DC0056C20F /* Fixture.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E542A1193505DC0056C20F /* Fixture.m */; };
 		A6E542A3193509440056C20F /* RawDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A8750519323B9E00D8C7DD /* RawDataPoint.m */; };
 		A6F4D9111922CF13006C7034 /* Theseus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6F4D90F1922CF13006C7034 /* Theseus.xcdatamodeld */; };
@@ -234,7 +233,6 @@
 		A6C7CFEF192AAD2A001A6DAC /* Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Configuration.m; path = Interfaces/Configuration.m; sourceTree = "<group>"; };
 		A6C7CFF3192AAD87001A6DAC /* ConfigurationSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfigurationSpec.m; path = Interfaces/ConfigurationSpec.m; sourceTree = "<group>"; };
 		A6E5429B1934EFF60056C20F /* ProcessAll.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ProcessAll.json; sourceTree = "<group>"; };
-		A6E5429D1934F0240056C20F /* DataProcessorSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataProcessorSpec.m; path = Interfaces/DataProcessorSpec.m; sourceTree = "<group>"; };
 		A6E542A0193505DC0056C20F /* Fixture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Fixture.h; path = Helpers/Fixture.h; sourceTree = "<group>"; };
 		A6E542A1193505DC0056C20F /* Fixture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Fixture.m; path = Helpers/Fixture.m; sourceTree = "<group>"; };
 		A6F4D9101922CF13006C7034 /* Theseus (initial).xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Theseus (initial).xcdatamodel"; sourceTree = "<group>"; };
@@ -549,7 +547,6 @@
 			isa = PBXGroup;
 			children = (
 				A6C7CFF3192AAD87001A6DAC /* ConfigurationSpec.m */,
-				A6E5429D1934F0240056C20F /* DataProcessorSpec.m */,
 			);
 			name = Interfaces;
 			sourceTree = "<group>";
@@ -859,7 +856,6 @@
 				A636000E1939853B0059AEBF /* CDStop.m in Sources */,
 				A6360012193985520059AEBF /* DaysAgoDataSource.m in Sources */,
 				A636000F1939853E0059AEBF /* FoursquareVenue.m in Sources */,
-				A6E5429E1934F0240056C20F /* DataProcessorSpec.m in Sources */,
 				A6C7CFF1192AAD2A001A6DAC /* Configuration.m in Sources */,
 				A6360000193984CC0059AEBF /* TimelineCell.m in Sources */,
 				A636FFF51939848C0059AEBF /* TimedEvent.m in Sources */,
