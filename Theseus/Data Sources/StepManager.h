@@ -22,7 +22,8 @@
 
 @interface StepManager : NSObject
 
-- (void)stepsForDaysAgo:(NSInteger)daysAgo
-             completion:(CMStepQueryHandler)completion;
+- (void)startMonitoring;
+- (void)stopMonitoring;
+- (void)fetchUpdatesWhileInactive;
 
 @end

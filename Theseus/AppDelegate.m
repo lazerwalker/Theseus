@@ -23,7 +23,7 @@
 #import "ListViewController.h"
 #import "DaysAgoDataSource.h"
 #import "LocationManager.h"
-#import "MotionManager.h"
+#import "StepManager.h"
 #import "Configuration.h"
 
 #import <DropboxSDK/DropboxSDK.h>
@@ -31,7 +31,7 @@
 @interface AppDelegate ()
 
 @property (strong, nonatomic) LocationManager *locationManager;
-@property (strong, nonatomic) MotionManager *motionManager;
+@property (strong, nonatomic) StepManager *stepManager;
 @property (strong, nonatomic) DaysAgoDataSource *daysAgoDataSource;
 
 @end
@@ -62,8 +62,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    MotionManager *manager = [MotionManager new];
-    [manager fetchUpdatesWhileInactive];
+    [self.stepManager startMonitoring];
 }
 
 #pragma mark - Private
@@ -75,8 +74,8 @@
     self.locationManager = [LocationManager new];
     [self.locationManager startMonitoring];
 
-    self.motionManager = [MotionManager new];
-    [self.motionManager startMonitoring];
+    self.stepManager = [StepManager new];
+    [self.stepManager startMonitoring];
 }
 
 #pragma mark - Dropbox

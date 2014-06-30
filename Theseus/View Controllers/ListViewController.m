@@ -55,14 +55,15 @@
 
     self.day = day;
     [self.day addObserver:self forKeyPath:DayDataChangedKey options:0 context:nil];
+    [self.day addObserver:self forKeyPath:DayStepsChangedKey options:0 context:nil];
 
-    self.title = self.day.title;
-
+    [self updateTitle];
     return self;
 }
 
 - (void)dealloc {
     [self.day removeObserver:self forKeyPath:DayDataChangedKey];
+    [self.day removeObserver:self forKeyPath:DayStepsChangedKey];
 }
 
 - (void)viewDidLoad {
@@ -84,12 +85,6 @@
     [self.tableView registerClass:[UntrackedPeriodTimelineCell class] forCellReuseIdentifier:[UntrackedPeriodTimelineCell classReuseIdentifier]];
 
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
-    self.stepCount = -1;
-    [self.day fetchStepCountWithCompletion:^(NSInteger stepCount) {
-        self.stepCount = stepCount;
-        NSLog(@"Walked %ld steps today", (long)stepCount);
-    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -104,6 +99,8 @@
                        context:(void*)context {
     if ([keyPath isEqualToString:DayDataChangedKey]) {
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+    } else if ([keyPath isEqualToString:DayStepsChangedKey]) {
+        [self updateTitle];
     }
 }
 
@@ -205,6 +202,14 @@
 - (Class)timelineCellClassForObject:(TimedEvent *)obj {
     NSString *className = [NSString stringWithFormat:@"%@TimelineCell", NSStringFromClass(obj.class)];
     return NSClassFromString(className);
+}
+
+- (void)updateTitle {
+    if (self.day.steps > 0) {
+        self.title = [NSString stringWithFormat:@"%@ (%ld steps)", self.day.title, (long)self.day.steps];
+    } else {
+        self.title = self.day.title;
+    }
 }
 
 @end

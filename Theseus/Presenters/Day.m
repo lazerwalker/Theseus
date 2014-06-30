@@ -22,17 +22,21 @@
 #import "TimedEvent.h"
 #import "Path.h"
 #import "Stop.h"
-#import "StepManager.h"
+#import "StepCount.h"
 
 #import "NSDate+DaysAgo.h"
 #import <Asterism.h>
 
-NSString * const TheseusDidProcessNewDataNotification = @"TheseusDidProcessNewDataNotification";
+NSString * const TheseusDidProcessNewDataLocation = @"TheseusDidProcessNewDataLocation";
+NSString * const TheseusDidProcessNewDataStep = @"TheseusDidProcessNewDataStep";
+
 NSString * const DayDataChangedKey = @"data";
+NSString * const DayStepsChangedKey = @"steps";
 
 @interface Day ()
 @property (nonatomic, strong) NSArray *data;
 @property (nonatomic, readwrite) NSDate *date;
+@property (nonatomic, readwrite, assign) NSInteger steps;
 @end
 
 @implementation Day
@@ -67,9 +71,11 @@ NSString * const DayDataChangedKey = @"data";
     self.daysAgo = daysAgo;
     self.date = [[NSDate alloc] initWithDaysAgo:daysAgo];
 
-    [self fetch];
+    [self fetchStops];
+    [self fetchSteps];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetch) name:TheseusDidProcessNewDataNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchStops) name:TheseusDidProcessNewDataLocation object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updatedSteps:) name:TheseusDidProcessNewDataStep object:nil];
 
     return self;
 }
@@ -78,7 +84,7 @@ NSString * const DayDataChangedKey = @"data";
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)fetch {
+- (void)fetchStops {
     NSDate *startOfDay = [[NSDate alloc] initWithDaysAgo:self.daysAgo];
     NSDate *endOfDay = startOfDay.endOfDay;
     
@@ -86,6 +92,18 @@ NSString * const DayDataChangedKey = @"data";
 
     self.data = [Stop MR_findAllSortedBy:@"startTime" ascending:YES withPredicate:day];
 }
+
+- (void)fetchSteps {
+    self.steps = [[StepCount forDate:self.date] count];
+}
+
+- (void)updatedSteps:(NSNotification *)notification {
+    NSDate *stepDate = notification.object;
+    if ([stepDate isEqualToDate:self.date]) {
+        [self fetchSteps];
+    }
+}
+
 
 - (NSArray *)paths {
     return ASTFilter(self.data, ^BOOL(TimedEvent *obj) {
@@ -97,17 +115,6 @@ NSString * const DayDataChangedKey = @"data";
     return ASTFilter(self.data, ^BOOL(TimedEvent *obj) {
         return [obj isKindOfClass:Stop.class];
     });
-}
-
-- (void)fetchStepCountWithCompletion:(void (^)(NSInteger))completion {
-    StepManager *stepManager = [StepManager new];
-    [stepManager stepsForDaysAgo:self.daysAgo completion:^(NSInteger numberOfSteps, NSError *error) {
-        if (!error && completion) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                completion(numberOfSteps);
-            });
-        }
-    }];
 }
 
 - (NSString *)jsonRepresentation {

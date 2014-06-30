@@ -95,6 +95,9 @@
 		A6B91D1F193007AD00F7106E /* ListViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B91D1E193007AD00F7106E /* ListViewControllerSpec.m */; };
 		A6BD97B719299AE000264548 /* PathPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BD97B619299AE000264548 /* PathPolyline.m */; };
 		A6BD97BA192A4B2900264548 /* VenueListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BD97B9192A4B2900264548 /* VenueListViewController.m */; };
+		A6C307E51961EAFD003512E7 /* CDStepCount.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C307E41961EAFD003512E7 /* CDStepCount.m */; };
+		A6C307E81961EB30003512E7 /* StepCount.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C307E71961EB30003512E7 /* StepCount.m */; };
+		A6C307E91961EB30003512E7 /* StepCount.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C307E71961EB30003512E7 /* StepCount.m */; };
 		A6C7CFE1192A7FF1001A6DAC /* Theseus.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFE0192A7FF1001A6DAC /* Theseus.m */; };
 		A6C7CFE3192A806B001A6DAC /* TheseusSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A6C7CFE2192A806B001A6DAC /* TheseusSpec.m */; };
 		A6C7CFE9192AACA4001A6DAC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6C7CFE8192AACA4001A6DAC /* Security.framework */; };
@@ -224,6 +227,11 @@
 		A6BD97B619299AE000264548 /* PathPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PathPolyline.m; path = Presenters/PathPolyline.m; sourceTree = "<group>"; };
 		A6BD97B8192A4B2900264548 /* VenueListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VenueListViewController.h; path = "View Controllers/VenueListViewController.h"; sourceTree = "<group>"; };
 		A6BD97B9192A4B2900264548 /* VenueListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenueListViewController.m; path = "View Controllers/VenueListViewController.m"; sourceTree = "<group>"; };
+		A6C307E21961E927003512E7 /* Theseus (2014-06-30).xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Theseus (2014-06-30).xcdatamodel"; sourceTree = "<group>"; };
+		A6C307E31961EAFD003512E7 /* CDStepCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDStepCount.h; path = Models/NSManagedObjects/CDStepCount.h; sourceTree = "<group>"; };
+		A6C307E41961EAFD003512E7 /* CDStepCount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CDStepCount.m; path = Models/NSManagedObjects/CDStepCount.m; sourceTree = "<group>"; };
+		A6C307E61961EB30003512E7 /* StepCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StepCount.h; path = Models/StepCount.h; sourceTree = "<group>"; };
+		A6C307E71961EB30003512E7 /* StepCount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StepCount.m; path = Models/StepCount.m; sourceTree = "<group>"; };
 		A6C7CFDF192A7FF1001A6DAC /* Theseus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Theseus.h; sourceTree = "<group>"; };
 		A6C7CFE0192A7FF1001A6DAC /* Theseus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theseus.m; sourceTree = "<group>"; };
 		A6C7CFE2192A806B001A6DAC /* TheseusSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheseusSpec.m; sourceTree = "<group>"; };
@@ -448,6 +456,8 @@
 				A6A8750219323A0300D8C7DD /* TimedEvent.m */,
 				A6A8750419323B9E00D8C7DD /* RawDataPoint.h */,
 				A6A8750519323B9E00D8C7DD /* RawDataPoint.m */,
+				A6C307E61961EB30003512E7 /* StepCount.h */,
+				A6C307E71961EB30003512E7 /* StepCount.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -467,6 +477,8 @@
 				A6A874F91932355F00D8C7DD /* CDUntrackedPeriod.m */,
 				A6A874FA1932355F00D8C7DD /* CDVenue.h */,
 				A6A874FB1932355F00D8C7DD /* CDVenue.m */,
+				A6C307E31961EAFD003512E7 /* CDStepCount.h */,
+				A6C307E41961EAFD003512E7 /* CDStepCount.m */,
 			);
 			name = NSManagedObjects;
 			sourceTree = "<group>";
@@ -787,6 +799,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6A874E61932294900D8C7DD /* Venue.m in Sources */,
+				A6C307E81961EB30003512E7 /* StepCount.m in Sources */,
 				A6B91D03192E70BF00F7106E /* StopTimelineCell.m in Sources */,
 				A6A8750319323A0300D8C7DD /* TimedEvent.m in Sources */,
 				A6B91D08192E737200F7106E /* UITableViewCell+ReuseIdentifier.m in Sources */,
@@ -823,6 +836,7 @@
 				A6B91D16192EA60200F7106E /* NSString+TimeFormatter.m in Sources */,
 				A6B91D0E192E76DA00F7106E /* PathTimelineCell.m in Sources */,
 				A6F4D9111922CF13006C7034 /* Theseus.xcdatamodeld in Sources */,
+				A6C307E51961EAFD003512E7 /* CDStepCount.m in Sources */,
 				A6A874FF1932355F00D8C7DD /* CDStop.m in Sources */,
 				A6B91D11192E770C00F7106E /* UntrackedPeriodTimelineCell.m in Sources */,
 				A6A874EF1932331300D8C7DD /* RawMotionActivity.m in Sources */,
@@ -834,6 +848,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A636FFF4193984810059AEBF /* Stop.m in Sources */,
+				A6C307E91961EB30003512E7 /* StepCount.m in Sources */,
 				A6360004193985090059AEBF /* PathTimelineCell.m in Sources */,
 				A6AAB14D19305F70000DE81E /* NSString+TimeFormatterSpec.m in Sources */,
 				A636000C193985310059AEBF /* CDRawLocation.m in Sources */,
@@ -1101,11 +1116,12 @@
 		A6F4D90F1922CF13006C7034 /* Theseus.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A6C307E21961E927003512E7 /* Theseus (2014-06-30).xcdatamodel */,
 				A688D6051951BC0F00E0886D /* Theseus (2014-06-18).xcdatamodel */,
 				A668A1F319324D6300C6363F /* Theseus (2014-05-25).xcdatamodel */,
 				A6F4D9101922CF13006C7034 /* Theseus (initial).xcdatamodel */,
 			);
-			currentVersion = A688D6051951BC0F00E0886D /* Theseus (2014-06-18).xcdatamodel */;
+			currentVersion = A6C307E21961E927003512E7 /* Theseus (2014-06-30).xcdatamodel */;
 			path = Theseus.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

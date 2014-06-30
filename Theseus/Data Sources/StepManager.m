@@ -19,7 +19,10 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 #import "StepManager.h"
+#import "StepCount.h"
 @import CoreMotion;
+
+extern NSString *TheseusDidProcessNewDataStep;
 
 @interface StepManager ()
 
@@ -39,15 +42,43 @@
     return self;
 }
 
-- (void)stepsForDaysAgo:(NSInteger)daysAgo
-             completion:(CMStepQueryHandler)completion {
-    NSDate *start = [[NSDate alloc] initWithDaysAgo:daysAgo];
-    NSDate *end = start.endOfDay;
+- (void)startMonitoring {
+    [self.manager startStepCountingUpdatesToQueue:self.queue
+                                         updateOn:1
+                                      withHandler:^(NSInteger numberOfSteps, NSDate *timestamp, NSError *error) {
+                                          NSDate *date = timestamp.beginningOfDay;
+                                          [self processStepsForDate:date];
+                                      }];
+}
 
-    [self.manager queryStepCountStartingFrom:start
-                                          to:end
+- (void)stopMonitoring {
+    [self.manager stopStepCountingUpdates];
+}
+
+- (void)fetchUpdatesWhileInactive {
+    for (int daysAgo=0; daysAgo<7; daysAgo++) {
+        NSDate *date = [[NSDate alloc] initWithDaysAgo:daysAgo];
+        [self processStepsForDate:date];
+    }
+}
+
+- (void)processStepsForDate:(NSDate *)date {
+    date = date.beginningOfDay;
+    [self.manager queryStepCountStartingFrom:date
+                                          to:date.endOfDay
                                      toQueue:self.queue
-                                 withHandler:completion];
+                                 withHandler:^(NSInteger numberOfSteps, NSError *error) {
+                                     if (!error && numberOfSteps > 0) {
+                                         [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+                                             StepCount *step = [StepCount forDate:date context:localContext];
+                                             step.count = numberOfSteps;
+                                             step.date = date;
+                                         } completion:^(BOOL success, NSError *error) {
+                                             if (!success) return;
+                                             [[NSNotificationCenter defaultCenter] postNotificationName:TheseusDidProcessNewDataStep object:date];
+                                         }];
+                                     }
+                                 }];
 }
 
 @end

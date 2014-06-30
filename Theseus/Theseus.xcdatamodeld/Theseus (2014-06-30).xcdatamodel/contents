@@ -24,7 +24,7 @@
         <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="movementPath" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDPath" inverseName="activity" inverseEntity="CDPath" syncable="YES"/>
     </entity>
-    <entity name="CDStepCount" syncable="YES">
+    <entity name="CDStepCount" representedClassName="CDStepCount" syncable="YES">
         <attribute name="count" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
     </entity>
@@ -53,9 +53,9 @@
         <element name="CDPath" positionX="0" positionY="0" width="128" height="120"/>
         <element name="CDRawLocation" positionX="0" positionY="0" width="128" height="180"/>
         <element name="CDRawMotionActivity" positionX="0" positionY="0" width="128" height="103"/>
+        <element name="CDStepCount" positionX="18" positionY="81" width="128" height="75"/>
         <element name="CDStop" positionX="0" positionY="0" width="128" height="133"/>
         <element name="CDUntrackedPeriod" positionX="0" positionY="0" width="128" height="73"/>
         <element name="CDVenue" positionX="0" positionY="0" width="128" height="148"/>
-        <element name="CDStepCount" positionX="18" positionY="81" width="128" height="73"/>
     </elements>
 </model>

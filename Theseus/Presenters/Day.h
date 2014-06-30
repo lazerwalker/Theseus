@@ -25,11 +25,13 @@
 @import MapKit;
 
 extern NSString * const DayDataChangedKey;
+extern NSString * const DayStepsChangedKey;
 
 @interface Day : MTLModel<MTLJSONSerializing>
 
 @property (nonatomic, readonly) NSUInteger numberOfEvents;
 @property (nonatomic, readonly) NSString *title;
+@property (nonatomic, readonly) NSInteger steps;
 @property (nonatomic, readonly) NSArray *stops;
 @property (nonatomic, readonly) NSArray *paths;
 @property (nonatomic, readonly) NSDate *date;
@@ -39,7 +41,6 @@ extern NSString * const DayDataChangedKey;
 - (id)initWithDaysAgo:(NSUInteger)daysAgo;
 
 - (TimedEvent *)eventForIndex:(NSInteger)index;
-- (void)fetchStepCountWithCompletion:(void (^)(NSInteger))completion;
 - (NSString *)jsonRepresentation;
 
 @end

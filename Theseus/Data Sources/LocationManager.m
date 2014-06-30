@@ -22,7 +22,7 @@
 #import "RawLocation.h"
 #import "Stop.h"
 
-extern NSString *TheseusDidProcessNewDataNotification;
+extern NSString *TheseusDidProcessNewDataLocation;
 
 @import CoreLocation;
 
@@ -65,7 +65,7 @@ extern NSString *TheseusDidProcessNewDataNotification;
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
         Stop *stop = [[Stop alloc] initWithContext:localContext];
         [stop setupWithVisit:visit];
-        [[NSNotificationCenter defaultCenter] postNotificationName:TheseusDidProcessNewDataNotification object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:TheseusDidProcessNewDataLocation object:self];
     }];
 }
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
