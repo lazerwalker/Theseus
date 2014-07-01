@@ -22,8 +22,6 @@
 #import "RawLocation.h"
 #import "Stop.h"
 
-extern NSString *TheseusDidProcessNewDataLocation;
-
 @import CoreLocation;
 
 @interface LocationManager ()<CLLocationManagerDelegate>

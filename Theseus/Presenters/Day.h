@@ -27,6 +27,9 @@
 extern NSString * const DayDataChangedKey;
 extern NSString * const DayStepsChangedKey;
 
+extern NSString * const TheseusDidProcessNewDataLocation;
+extern NSString * const TheseusDidProcessNewDataStep;
+
 @interface Day : MTLModel<MTLJSONSerializing>
 
 @property (nonatomic, readonly) NSUInteger numberOfEvents;

@@ -64,6 +64,7 @@
 		A6748AD7192128D70073CE19 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748AD6192128D70073CE19 /* LocationManager.m */; };
 		A6748ADE1921344F0073CE19 /* MotionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A6748ADD1921344F0073CE19 /* MotionManager.m */; };
 		A6748AE3192155F50073CE19 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6748AE2192155F50073CE19 /* MapKit.framework */; };
+		A67E98F419621D8300FAC109 /* DaySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = A67E98F319621D8300FAC109 /* DaySpec.m */; };
 		A6806ACD1932170A00B2B0F3 /* Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = A6806ACC1932170A00B2B0F3 /* Stop.m */; };
 		A68425CA192302CB0083D006 /* FoursquareVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = A68425C9192302CB0083D006 /* FoursquareVenue.m */; };
 		A68425CC1923047F0083D006 /* Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = A68425CB1923047F0083D006 /* Configuration.plist */; };
@@ -168,6 +169,7 @@
 		A6748ADC1921344F0073CE19 /* MotionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MotionManager.h; path = "Data Sources/MotionManager.h"; sourceTree = "<group>"; };
 		A6748ADD1921344F0073CE19 /* MotionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MotionManager.m; path = "Data Sources/MotionManager.m"; sourceTree = "<group>"; };
 		A6748AE2192155F50073CE19 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		A67E98F319621D8300FAC109 /* DaySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DaySpec.m; path = Presenters/DaySpec.m; sourceTree = "<group>"; };
 		A6806ACB1932170A00B2B0F3 /* Stop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Stop.h; path = Models/Stop.h; sourceTree = "<group>"; };
 		A6806ACC1932170A00B2B0F3 /* Stop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Stop.m; path = Models/Stop.m; sourceTree = "<group>"; };
 		A68425C8192302CB0083D006 /* FoursquareVenue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FoursquareVenue.h; path = Models/FoursquareVenue.h; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				A644F0B81938F240009B7561 /* PathPolylineSpec.m */,
+				A67E98F319621D8300FAC109 /* DaySpec.m */,
 			);
 			name = Presenters;
 			sourceTree = "<group>";
@@ -435,8 +438,6 @@
 		A6748AD819212E7C0073CE19 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A6B91D1A1930017200F7106E /* Day.h */,
-				A6B91D1B1930017200F7106E /* Day.m */,
 				A6806ACA19320DB100B2B0F3 /* NSManagedObjects */,
 				A68425C8192302CB0083D006 /* FoursquareVenue.h */,
 				A68425C9192302CB0083D006 /* FoursquareVenue.m */,
@@ -547,6 +548,8 @@
 		A6BD97B419299AC600264548 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
+				A6B91D1A1930017200F7106E /* Day.h */,
+				A6B91D1B1930017200F7106E /* Day.m */,
 				A6BD97B519299AE000264548 /* PathPolyline.h */,
 				A6BD97B619299AE000264548 /* PathPolyline.m */,
 				A654D887193904C400E5D0B6 /* StopAnnotation.h */,
@@ -869,6 +872,7 @@
 				A65C2EEA19350D8E001FA01D /* RawLocation.m in Sources */,
 				A6360007193985120059AEBF /* CDVenue.m in Sources */,
 				A636000E1939853B0059AEBF /* CDStop.m in Sources */,
+				A67E98F419621D8300FAC109 /* DaySpec.m in Sources */,
 				A6360012193985520059AEBF /* DaysAgoDataSource.m in Sources */,
 				A636000F1939853E0059AEBF /* FoursquareVenue.m in Sources */,
 				A6C7CFF1192AAD2A001A6DAC /* Configuration.m in Sources */,

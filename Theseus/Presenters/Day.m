@@ -64,6 +64,10 @@ NSString * const DayStepsChangedKey = @"steps";
     return dateFormatter;
 }
 
+- (id)init {
+    @throw @"Use initWithDaysAgo";
+}
+
 - (id)initWithDaysAgo:(NSUInteger)daysAgo {
     self = [super init];
     if (!self) return nil;
