@@ -6,12 +6,11 @@ Theseus is an open-source personal tracking tool that uses your iPhone 5S's loca
 
 One key difference between Theseus and other similar apps is its approach to privacy and data accessibility. By default, your data never leaves your phone; all processing happens on-device rather than an external server. If you want to access your data for personal usage, Theseus can export your data to Dropbox in JSON format for easy access.
 
-
 Installation
 ------------
-Although Theseus will eventually be available on the App Store, you must currently compile it from source. Assuming you want to run Theseus on your physical iPhone, you'll also need to be a member of Apple's [iOS Developer Program](https://developer.apple.com/devcenter/ios/index.action).
+Although Theseus will eventually be available on the App Store, you must currently compile it from source. Assuming you want to run Theseus on your physical iPhone, you'll also need to be a member of Apple's [iOS Developer Program](https://developer.apple.com/devcenter/ios/index.action). It requires iOS 8.
 
-Right now it will only work on an iPhone 5S, as it requires the M7 motion coprocessor. This will likely change.
+**Theseus currently makes use of new iOS 8 APIs that (as of iOS 8 beta 2) aren't 100% usable yet. As such, you may not find it particularly useful at this time.**
 
 1. Clone this git repo: `git clone git@github.com:lazerwalker/Theseus.git`
 
