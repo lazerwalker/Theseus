@@ -20,6 +20,8 @@
 
 #import "StepManager.h"
 #import "StepCount.h"
+#import "CDStepCount.h"
+
 @import CoreMotion;
 
 extern NSString *TheseusDidProcessNewDataStep;
@@ -70,7 +72,8 @@ extern NSString *TheseusDidProcessNewDataStep;
                                  withHandler:^(NSInteger numberOfSteps, NSError *error) {
                                      if (!error && numberOfSteps > 0) {
                                          [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-                                             StepCount *step = [StepCount forDate:date context:localContext];
+                                             StepCount *step = [self stepCountForDate:date context:localContext];
+
                                              step.count = numberOfSteps;
                                              step.date = date;
                                          } completion:^(BOOL success, NSError *error) {
@@ -81,4 +84,26 @@ extern NSString *TheseusDidProcessNewDataStep;
                                  }];
 }
 
+- (StepCount *)stepCountForDate:(NSDate *)date {
+    NSPredicate *day = [NSPredicate predicateWithFormat:@"date = %@", date];
+    CDStepCount *step = [CDStepCount MR_findFirstWithPredicate:day];
+
+    if (step) {
+        return [[StepCount alloc] initWithCDModel:step];
+    } else {
+        return [StepCount new];
+    }
+}
+
+#pragma mark - 
+- (StepCount *)stepCountForDate:(NSDate *)date context:(NSManagedObjectContext *)context {
+    NSPredicate *day = [NSPredicate predicateWithFormat:@"date = %@", date];
+    CDStepCount *step = [CDStepCount MR_findFirstWithPredicate:day inContext:context];
+
+    if (step) {
+        return [[StepCount alloc] initWithCDModel:step];
+    } else {
+        return [[StepCount alloc] initWithContext:context];
+    }
+}
 @end

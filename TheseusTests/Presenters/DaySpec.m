@@ -29,7 +29,17 @@
 #import <Specta.h>
 #import <Expecta.h>
 
+#import "StepManager.h"
+#import "LocationManager.h"
+#import "Stop.h"
+#import "StepCount.h"
+
 #import "Day.h"
+
+@interface Day ()
+@property (nonatomic, strong) LocationManager *locationManager;
+@property (nonatomic, strong) StepManager *stepManager;
+@end
 
 SpecBegin(Day)
 
@@ -38,6 +48,8 @@ describe(@"Day", ^{
 
     beforeEach(^{
         day = [[Day alloc] initWithDaysAgo:0];
+        day.locationManager = mock(LocationManager.class);
+        day.stepManager = mock(StepManager.class);
     });
 
     describe(@"title", ^{
@@ -72,36 +84,43 @@ describe(@"Day", ^{
         });
     });
 
-    // TODO: Implementing these two tests easily requires a better way to create new data without a MR dependency
-    xdescribe(@"updating the list of events", ^{
+    describe(@"updating the list of events", ^{
         context(@"when a new event notification is triggered", ^{
-            beforeEach(^{
-                [NSNotificationCenter.defaultCenter postNotificationName:TheseusDidProcessNewDataLocation object:nil];
-            });
-
             it(@"should re-fetch events", ^{
+                expect(day.numberOfEvents).to.equal(0);
+
+                [given([day.locationManager stopsForDate:day.date]) willReturn:@[[Stop new]]];
+
+                [NSNotificationCenter.defaultCenter postNotificationName:TheseusDidProcessNewDataLocation object:nil];
+
+                expect(day.numberOfEvents).to.equal(1);
             });
         });
     });
 
-    xdescribe(@"updating the step count", ^{
+    describe(@"updating the step count", ^{
         context(@"when a new step notification is triggered", ^{
-            context(@"when the notification is for the correct day", ^{
-                beforeEach(^{
-                    [NSNotificationCenter.defaultCenter postNotificationName:TheseusDidProcessNewDataStep object:day.date];
-                });
+            __block StepCount *stepCount;
 
-                it(@"should re-fetch the step count", ^{
+            beforeEach(^{
+                expect(day.steps).to.equal(0);
+
+                stepCount = [StepCount new];
+                stepCount.count = 20;
+                [given([day.stepManager stepCountForDate:day.date]) willReturn:stepCount];
+            });
+
+            context(@"when the notification is for the correct day", ^{
+                it(@"should re-fetch events", ^{
+                    [NSNotificationCenter.defaultCenter postNotificationName:TheseusDidProcessNewDataStep object:day.date];
+                    expect(day.steps).to.equal(20);
                 });
             });
 
             context(@"when the notification is not for the correct day", ^{
-                beforeEach(^{
-                    [NSNotificationCenter.defaultCenter postNotificationName:TheseusDidProcessNewDataStep object:day.date.endOfDay];
-                });
-
                 it(@"should do nothing", ^{
-
+                    [NSNotificationCenter.defaultCenter postNotificationName:TheseusDidProcessNewDataStep object:day.date.endOfDay];
+                    expect(day.steps).to.equal(0);
                 });
             });
         });

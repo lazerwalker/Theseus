@@ -25,4 +25,6 @@
 - (void)startMonitoring;
 - (void)stopMonitoring;
 
+- (NSArray *)stopsForDate:(NSDate *)date;
+
 @end

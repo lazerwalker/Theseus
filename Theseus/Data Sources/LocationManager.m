@@ -41,6 +41,17 @@
     return self;
 }
 
+#pragma mark - Querying
+- (NSArray *)stopsForDate:(NSDate *)date {
+    NSDate *startOfDay = date.beginningOfDay;
+    NSDate *endOfDay = startOfDay.endOfDay;
+
+    NSPredicate *day = [NSPredicate predicateWithFormat:@"(startTime > %@) AND (endTime < %@)", startOfDay, endOfDay];
+
+    return [Stop MR_findAllSortedBy:@"startTime" ascending:YES withPredicate:day];
+}
+
+#pragma mark - Monitoring
 - (void)startMonitoring {
     if (![CLLocationManager locationServicesEnabled]) return;
 

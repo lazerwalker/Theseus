@@ -19,11 +19,13 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>
 
 @import CoreMotion;
+@class StepCount;
 
 @interface StepManager : NSObject
 
 - (void)startMonitoring;
 - (void)stopMonitoring;
 - (void)fetchUpdatesWhileInactive;
+- (StepCount *)stepCountForDate:(NSDate *)date;
 
 @end

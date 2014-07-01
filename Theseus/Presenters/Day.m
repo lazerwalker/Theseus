@@ -24,6 +24,9 @@
 #import "Stop.h"
 #import "StepCount.h"
 
+#import "LocationManager.h"
+#import "StepManager.h"
+
 #import "NSDate+DaysAgo.h"
 #import <Asterism.h>
 
@@ -37,6 +40,10 @@ NSString * const DayStepsChangedKey = @"steps";
 @property (nonatomic, strong) NSArray *data;
 @property (nonatomic, readwrite) NSDate *date;
 @property (nonatomic, readwrite, assign) NSInteger steps;
+
+@property (nonatomic, strong) LocationManager *locationManager;
+@property (nonatomic, strong) StepManager *stepManager;
+
 @end
 
 @implementation Day
@@ -75,6 +82,9 @@ NSString * const DayStepsChangedKey = @"steps";
     self.daysAgo = daysAgo;
     self.date = [[NSDate alloc] initWithDaysAgo:daysAgo];
 
+    self.locationManager = [LocationManager new];
+    self.stepManager = [StepManager new];
+
     [self fetchStops];
     [self fetchSteps];
 
@@ -89,16 +99,11 @@ NSString * const DayStepsChangedKey = @"steps";
 }
 
 - (void)fetchStops {
-    NSDate *startOfDay = [[NSDate alloc] initWithDaysAgo:self.daysAgo];
-    NSDate *endOfDay = startOfDay.endOfDay;
-    
-        NSPredicate *day = [NSPredicate predicateWithFormat:@"(startTime > %@) AND (endTime < %@)", startOfDay, endOfDay];
-
-    self.data = [Stop MR_findAllSortedBy:@"startTime" ascending:YES withPredicate:day];
+    self.data = [self.locationManager stopsForDate:self.date];
 }
 
 - (void)fetchSteps {
-    self.steps = [[StepCount forDate:self.date] count];
+    self.steps = [[self.stepManager stepCountForDate:self.date] count];
 }
 
 - (void)updatedSteps:(NSNotification *)notification {

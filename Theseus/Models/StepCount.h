@@ -17,9 +17,6 @@
 
 @property (nonatomic, strong) CDStepCount *model;
 
-+ (instancetype)forDate:(NSDate *)date;
-+ (instancetype)forDate:(NSDate *)date context:(NSManagedObjectContext *)context;
-
 - (id)initWithCDModel:(CDStepCount *)model;
 - (id)initWithContext:(NSManagedObjectContext *)context;
 

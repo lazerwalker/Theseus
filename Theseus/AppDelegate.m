@@ -76,8 +76,6 @@
 
     self.stepManager = [StepManager new];
     [self.stepManager startMonitoring];
-
-    return NSLog(@"HI MOM");
 }
 
 #pragma mark - Dropbox

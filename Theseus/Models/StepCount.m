@@ -11,28 +11,6 @@
 
 @implementation StepCount
 
-+ (instancetype)forDate:(NSDate *)date {
-    NSPredicate *day = [NSPredicate predicateWithFormat:@"date = %@", date];
-    CDStepCount *step = [CDStepCount MR_findFirstWithPredicate:day];
-
-    if (step) {
-        return [[StepCount alloc] initWithCDModel:step];
-    } else {
-        return [StepCount new];
-    }
-}
-
-+ (instancetype)forDate:(NSDate *)date context:(NSManagedObjectContext *)context {
-    NSPredicate *day = [NSPredicate predicateWithFormat:@"date = %@", date];
-    CDStepCount *step = [CDStepCount MR_findFirstWithPredicate:day inContext:context];
-
-    if (step) {
-        return [[StepCount alloc] initWithCDModel:step];
-    } else {
-        return [[StepCount alloc] initWithContext:context];
-    }
-}
-
 - (id)initWithCDModel:(CDStepCount *)model {
     if (!model) return nil;
     if (!(self = [super init])) return nil;
