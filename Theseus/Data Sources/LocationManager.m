@@ -46,28 +46,29 @@ extern NSString *TheseusDidProcessNewDataLocation;
 - (void)startMonitoring {
     if (![CLLocationManager locationServicesEnabled]) return;
 
-    if ([self.manager respondsToSelector:@selector(startMonitoringVisits)]) {
-        [self.manager requestAlwaysAuthorization];
-        [self.manager startUpdatingLocation];
-        [self.manager startMonitoringVisits];
-    }
+//    if ([self.manager respondsToSelector:@selector(startMonitoringVisits)]) {
+//        [self.manager requestAlwaysAuthorization];
+//        [self.manager startUpdatingLocation];
+//        [self.manager startMonitoringVisits];
+//    }
 }
 
 - (void)stopMonitoring {
-    if ([self.manager respondsToSelector:@selector(stopMonitoringVisits)]) {
-        [self.manager stopUpdatingLocation];
-        [self.manager stopMonitoringVisits];
-    }
+//    if ([self.manager respondsToSelector:@selector(stopMonitoringVisits)]) {
+//        [self.manager stopUpdatingLocation];
+//        [self.manager stopMonitoringVisits];
+//    }
 }
 
 #pragma mark - CLLocationManagerDelegate
-- (void)locationManager:(CLLocationManager *)manager didVisit:(CLVisit *)visit {
-    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
-        Stop *stop = [[Stop alloc] initWithContext:localContext];
-        [stop setupWithVisit:visit];
-        [[NSNotificationCenter defaultCenter] postNotificationName:TheseusDidProcessNewDataLocation object:self];
-    }];
-}
+//- (void)locationManager:(CLLocationManager *)manager didVisit:(CLVisit *)visit {
+//    [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+//        Stop *stop = [[Stop alloc] initWithContext:localContext];
+//        [stop setupWithVisit:visit];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:TheseusDidProcessNewDataLocation object:self];
+//    }];
+//}
+
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
         for (CLLocation *location in locations) {

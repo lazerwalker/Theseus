@@ -36,6 +36,6 @@
 - (BOOL)isSameLocationAs:(Stop *)stop;
 - (CLLocationDistance)distanceFromCoordinate:(CLLocationCoordinate2D)coordinate;
 
-- (void)setupWithVisit:(CLVisit *)visit;
+//- (void)setupWithVisit:(CLVisit *)visit;
 
 @end
