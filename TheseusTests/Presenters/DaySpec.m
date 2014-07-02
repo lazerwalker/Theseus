@@ -54,31 +54,22 @@ describe(@"Day", ^{
 
     describe(@"title", ^{
         context(@"when it is today", ^{
-            beforeEach(^{
-                day = [[Day alloc] initWithDaysAgo:0];
-            });
-
             it(@"should be 'Today'", ^{
+                day = [[Day alloc] initWithDaysAgo:0];
                 expect(day.title).to.equal(@"Today");
             });
         });
 
         context(@"when it is yesterday", ^{
-            beforeEach(^{
-                day = [[Day alloc] initWithDaysAgo:1];
-            });
-
             it(@"should be 'Yesterday'", ^{
+                day = [[Day alloc] initWithDaysAgo:1];
                 expect(day.title).to.equal(@"Yesterday");
             });
         });
 
         context(@"when it is earlier than yesterday", ^{
-            beforeEach(^{
-                day = [[Day alloc] initWithDaysAgo:4];
-            });
-
             it(@"should show the number of days", ^{
+                day = [[Day alloc] initWithDaysAgo:4];
                 expect(day.title).to.equal(@"4 Days Ago");
             });
         });
