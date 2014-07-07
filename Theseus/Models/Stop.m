@@ -73,11 +73,11 @@
 }
 
 #pragma mark - Setup
-//- (void)setupWithVisit:(CLVisit *)visit {
-//    self.startTime = visit.arrivalDate;
-//    self.endTime = visit.departureDate;
-//    self.coordinate = visit.coordinate;
-//}
+- (void)setupWithVisit:(CLVisit *)visit {
+    self.startTime = visit.arrivalDate;
+    self.endTime = visit.departureDate;
+    self.coordinate = visit.coordinate;
+}
 
 #pragma mark - Core Data Attributes
 - (void)setCoordinate:(CLLocationCoordinate2D)coordinate {
