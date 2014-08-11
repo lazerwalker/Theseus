@@ -71,6 +71,11 @@
 
 #pragma mark - CLLocationManagerDelegate
 - (void)locationManager:(CLLocationManager *)manager didVisit:(CLVisit *)visit {
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.alertAction = nil;
+    notification.alertBody = [NSString stringWithFormat:@"Visit: %@", visit];
+    [UIApplication.sharedApplication presentLocalNotificationNow:notification];
+
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
         Stop *stop = [[Stop alloc] initWithContext:localContext];
         [stop setupWithVisit:visit];
