@@ -104,7 +104,7 @@ describe(@"Day", ^{
             context(@"when the notification is for the correct day", ^{
                 it(@"should re-fetch events", ^{
                     [NSNotificationCenter.defaultCenter postNotificationName:TheseusDidProcessNewDataStep object:day.date];
-                    expect(day.steps).to.equal(20);
+                    expect(day.steps).to.equal(19);
                 });
             });
 
