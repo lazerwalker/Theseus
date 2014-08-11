@@ -65,7 +65,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    [self.stepManager startMonitoring];
+    [self startMonitoring];
 }
 
 #pragma mark - Private
