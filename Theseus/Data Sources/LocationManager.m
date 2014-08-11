@@ -21,6 +21,7 @@
 #import "LocationManager.h"
 #import "RawLocation.h"
 #import "Stop.h"
+#import "Day.h"
 
 @import CoreLocation;
 
