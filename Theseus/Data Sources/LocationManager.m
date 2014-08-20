@@ -72,15 +72,15 @@
 
 #pragma mark - CLLocationManagerDelegate
 - (void)locationManager:(CLLocationManager *)manager didVisit:(CLVisit *)visit {
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    notification.alertAction = nil;
-    notification.alertBody = [NSString stringWithFormat:@"Visit: %@", visit];
-    [UIApplication.sharedApplication presentLocalNotificationNow:notification];
-
     [MagicalRecord saveWithBlock:^(NSManagedObjectContext *localContext) {
+        UILocalNotification *notification = [[UILocalNotification alloc] init];
+        notification.alertAction = nil;
+        notification.alertBody = [NSString stringWithFormat:@"In MagicalRecord: %@, %@, %f, %f", visit.arrivalDate, visit.departureDate, visit.coordinate.latitude, visit.coordinate.longitude];
+        [UIApplication.sharedApplication presentLocalNotificationNow:notification];
+
         Stop *stop = [[Stop alloc] initWithContext:localContext];
         [stop setupWithVisit:visit];
-        [[NSNotificationCenter defaultCenter] postNotificationName:TheseusDidProcessNewDataLocation object:self];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:TheseusDidProcessNewDataLocation object:self];
     }];
 }
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
