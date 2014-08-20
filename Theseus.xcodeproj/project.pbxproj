@@ -139,6 +139,7 @@
 		A6107DC819310B2B003B7837 /* DataExporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataExporter.h; path = Interfaces/DataExporter.h; sourceTree = "<group>"; };
 		A6107DC919310B2B003B7837 /* DataExporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataExporter.m; path = Interfaces/DataExporter.m; sourceTree = "<group>"; };
 		A61D6460192ABF6800F7EB88 /* AppDelegateSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegateSpec.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		A638890419A4DD4800436A66 /* Theseus (2014-08-20).xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Theseus (2014-08-20).xcdatamodel"; sourceTree = "<group>"; };
 		A644F0AC19366688009B7561 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
 		A644F0B3193679F3009B7561 /* TimelineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimelineCell.m; path = "Views/Timeline Cells/TimelineCell.m"; sourceTree = "<group>"; };
 		A644F0B81938F240009B7561 /* PathPolylineSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PathPolylineSpec.m; path = Presenters/PathPolylineSpec.m; sourceTree = "<group>"; };
@@ -1120,12 +1121,13 @@
 		A6F4D90F1922CF13006C7034 /* Theseus.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A638890419A4DD4800436A66 /* Theseus (2014-08-20).xcdatamodel */,
 				A6C307E21961E927003512E7 /* Theseus (2014-06-30).xcdatamodel */,
 				A688D6051951BC0F00E0886D /* Theseus (2014-06-18).xcdatamodel */,
 				A668A1F319324D6300C6363F /* Theseus (2014-05-25).xcdatamodel */,
 				A6F4D9101922CF13006C7034 /* Theseus (initial).xcdatamodel */,
 			);
-			currentVersion = A6C307E21961E927003512E7 /* Theseus (2014-06-30).xcdatamodel */;
+			currentVersion = A638890419A4DD4800436A66 /* Theseus (2014-08-20).xcdatamodel */;
 			path = Theseus.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

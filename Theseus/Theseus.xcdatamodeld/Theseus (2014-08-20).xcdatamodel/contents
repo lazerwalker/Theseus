@@ -30,8 +30,10 @@
     </entity>
     <entity name="CDStop" representedClassName="CDStop" elementID="Stop" syncable="YES">
         <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="venueConfirmed" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="venueConfirmed" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDRawLocation" inverseName="stop" inverseEntity="CDRawLocation" syncable="YES"/>
         <relationship name="movementPaths" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDPath" inverseName="stop" inverseEntity="CDPath" syncable="YES"/>
         <relationship name="venue" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDVenue" inverseName="stops" inverseEntity="CDVenue" syncable="YES"/>
@@ -54,7 +56,7 @@
         <element name="CDRawLocation" positionX="0" positionY="0" width="128" height="180"/>
         <element name="CDRawMotionActivity" positionX="0" positionY="0" width="128" height="103"/>
         <element name="CDStepCount" positionX="18" positionY="81" width="128" height="75"/>
-        <element name="CDStop" positionX="0" positionY="0" width="128" height="133"/>
+        <element name="CDStop" positionX="0" positionY="0" width="128" height="165"/>
         <element name="CDUntrackedPeriod" positionX="0" positionY="0" width="128" height="73"/>
         <element name="CDVenue" positionX="0" positionY="0" width="128" height="148"/>
     </elements>
