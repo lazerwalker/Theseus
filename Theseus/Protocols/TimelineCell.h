@@ -38,7 +38,6 @@ static NSString * const TimelineLineRightPadding = @"20.0";
 + (CGFloat)heightForTimedEvent:(TimedEvent *)event;
 
 @property (nonatomic, assign) BOOL isFirstEvent;
-@property (nonatomic, assign) BOOL isNow;
 @property (nonatomic, weak) id<TimelineCellDelegate> delegate;
 
 - (void)setupWithTimedEvent:(TimedEvent *)event;

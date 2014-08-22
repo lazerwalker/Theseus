@@ -182,10 +182,6 @@ static CGFloat EditIconSize = 18.0;
     self.startTime.text = [self.class.dateFormatter stringFromDate:stop.startTime];
     self.endTime.text = [self.class.dateFormatter stringFromDate:stop.endTime];
 
-    if (self.isNow) {
-        self.endTime.text = @"Now";
-    }
-
     [self.startTime sizeToFit];
     [self.endTime sizeToFit];
 }

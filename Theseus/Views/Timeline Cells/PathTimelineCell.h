@@ -26,7 +26,6 @@
 @interface PathTimelineCell : TimelineCell
 
 @property (nonatomic, assign) BOOL isFirstEvent;
-@property (nonatomic, assign) BOOL isNow;
 
 - (void)setupWithTimedEvent:(TimedEvent *)event;
 

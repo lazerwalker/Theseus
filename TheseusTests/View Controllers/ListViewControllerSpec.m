@@ -134,28 +134,6 @@ describe(@"ListViewController", ^{
                     [MKTVerify(cell) setIsFirstEvent:YES];
                 });
             });
-
-            context(@"the last cell", ^{
-                context(@"when the controller is a 'today' controller", ^{
-                    it(@"should set the cell's isNow property", ^{
-                        [given([day daysAgo]) willReturnInt:0];
-                        UITableViewCell *cell = mock(StopTimelineCell.class);
-                        [controller tableView:controller.tableView willDisplayCell:cell forRowAtIndexPath:untrackedIndexPath];
-
-                        [MKTVerify(cell) setIsNow:YES];
-                    });
-                });
-
-                context(@"when the controller is a past controller", ^{
-                    it(@"should not set the cell's isNow property", ^{
-                        [given([day daysAgo]) willReturnInt:1];
-                        UITableViewCell *cell = mock(StopTimelineCell.class);
-                        [controller tableView:controller.tableView willDisplayCell:cell forRowAtIndexPath:untrackedIndexPath];
-
-                        [MKTVerifyCount(cell, never()) setIsNow:YES];
-                    });
-                });
-            });
         });
 
         describe(@"didTapAccessoryView", ^{
