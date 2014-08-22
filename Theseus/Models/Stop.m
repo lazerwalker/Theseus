@@ -40,6 +40,8 @@
 @end
 
 @implementation Stop
+
+#pragma mark - Mantle
 + (Class)modelClass {
     return CDStop.class;
 }
@@ -56,6 +58,8 @@
 + (NSValueTransformer *)venueJSONTransformer {
     return [NSValueTransformer mtl_JSONDictionaryTransformerWithModelClass:Venue.class];
 }
+
+#pragma mark - Equality and comparisons
 
 - (BOOL)isSameLocationAs:(Stop *)stop {
     CLLocationDistance distance = [self distanceFromCoordinate:stop.coordinate];
