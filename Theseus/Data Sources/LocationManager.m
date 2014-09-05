@@ -49,7 +49,14 @@
 
     NSPredicate *day = [NSPredicate predicateWithFormat:@"(startTime > %@) AND (endTime < %@)", startOfDay, endOfDay];
 
-    return [Stop MR_findAllSortedBy:@"startTime" ascending:YES withPredicate:day];
+    // TODO: This removes duplicate dates at access-time.
+    // Ideally this would happen at insertion time, but it currently appears to
+    // take too long for a background CLLocationManager process.
+    NSArray *stops = [Stop MR_findAllSortedBy:@"startTime" ascending:YES withPredicate:day];
+    NSArray *filtered = [[NSSet setWithArray:stops] allObjects];
+
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:YES];
+    return [filtered sortedArrayUsingDescriptors:@[sort]];
 }
 
 #pragma mark - Monitoring
