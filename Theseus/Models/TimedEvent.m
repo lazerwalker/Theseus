@@ -180,6 +180,10 @@
     });
 }
 
++ (instancetype)MR_findWithStartTime:(NSDate *)date {
+    return [self.modelClass MR_findFirstByAttribute:@"startDate" withValue:date];
+}
+
 - (BOOL) MR_deleteInContext:(NSManagedObjectContext *)context {
     return [self.model MR_deleteInContext:context];
 }
