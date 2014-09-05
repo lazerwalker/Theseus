@@ -38,6 +38,8 @@ NSString * const DayStepsChangedKey = @"steps";
 
 @interface Day ()
 @property (nonatomic, strong) NSArray *data;
+@property (nonatomic, strong) NSArray *stops;
+@property (nonatomic, strong) NSArray *movement;
 @property (nonatomic, readwrite) NSDate *date;
 @property (nonatomic, readwrite, assign) NSInteger steps;
 
@@ -103,7 +105,29 @@ NSString * const DayStepsChangedKey = @"steps";
 
 #pragma mark - Data fetching
 - (void)fetchStops {
-    self.data = [self.locationManager stopsForDate:self.date];
+    self.stops = [self.locationManager stopsForDate:self.date];
+
+    if (self.stops.count == 0) {
+        self.data = self.stops;
+        return;
+    }
+
+    NSMutableArray *movement = [[NSMutableArray alloc] init];
+    for (int i = 0; i < self.stops.count - 1; i++) {
+        Stop *first = self.stops[i];
+        Stop *second = self.stops[i+1];
+
+        Path *path = [[Path alloc] init];
+        path.startTime = first.endTime;
+        path.endTime = second.startTime;
+
+        [movement addObject:path];
+    }
+    self.movement = movement;
+
+    NSArray *allData = [self.stops arrayByAddingObjectsFromArray:self.movement];
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:YES];
+    self.data = [allData sortedArrayUsingDescriptors:@[sort]];
 }
 
 - (void)fetchSteps {
