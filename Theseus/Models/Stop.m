@@ -76,6 +76,17 @@
     return [thisLocation distanceFromLocation:thatLocation];
 }
 
+#pragma mark - Equality
+- (BOOL)isEqual:(Stop *)object {
+    if (![object isKindOfClass:Stop.class]) { return NO; }
+    return [self.startTime isEqualToDate:object.startTime] &&
+        [self.endTime isEqualToDate:object.endTime];
+}
+
+- (NSUInteger)hash {
+    return self.startTime.hash ^ self.endTime.hash;
+}
+
 #pragma mark - Setup
 - (void)setupWithVisit:(CLVisit *)visit {
     UILocalNotification *notification = [[UILocalNotification alloc] init];
