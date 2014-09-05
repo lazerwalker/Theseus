@@ -89,11 +89,6 @@
 
 #pragma mark - Setup
 - (void)setupWithVisit:(CLVisit *)visit {
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    notification.alertAction = nil;
-    notification.alertBody = [NSString stringWithFormat:@"Setting up with visit: %@, %@, %f, %f", visit.arrivalDate, visit.departureDate, visit.coordinate.latitude, visit.coordinate.longitude];
-    [UIApplication.sharedApplication presentLocalNotificationNow:notification];
-
     self.startTime = visit.arrivalDate;
     self.endTime = visit.departureDate;
     self.coordinate = visit.coordinate;

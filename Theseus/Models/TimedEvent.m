@@ -72,11 +72,6 @@
 - (id)initWithContext:(NSManagedObjectContext *)context {
     if (!(self = [super init])) return nil;
 
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    notification.alertAction = nil;
-    notification.alertBody = [NSString stringWithFormat:@"Initializing with context: %@", context];
-    [UIApplication.sharedApplication presentLocalNotificationNow:notification];
-
     self.context = context;
     self.model = [self.class.modelClass MR_createInContext:context];
     return self;
