@@ -6,11 +6,20 @@ Theseus is an open-source personal tracking tool that uses your iPhone's locatio
 
 One key difference between Theseus and other similar apps is its approach to privacy and data accessibility. By default, your data never leaves your phone; all processing happens on-device rather than an external server. If you want to access your data for personal usage, Theseus can export your data to Dropbox in JSON format for easy access.
 
+The Status of Theseus
+---------------------
+
+**(You should read this)**
+
+Theseus currently uses Apple's `CLVisit` CoreLocation APIs to determine what places you visit. However, as of iOS 8.0, CLVisit data isn't particularly accurate.
+
+As such, rather than invest time polishing up Theseus and making it more full-featured, I'm basically going to leave it as-is for a while, in the hopes that future iOS updates make it more useful.
+
+Writing custom location clustering code to replace `CLVisit` is doable, but would require more work than I'm currently interested in investing by myself. I'd be more than happy to jam on this with someone else if they wanted to lend a hand — get in touch if this is something that might interest you!
+
 Installation
 ------------
 Although Theseus will eventually be available on the App Store, you must currently compile it from source. Assuming you want to run Theseus on your physical iPhone, you'll also need to be a member of Apple's [iOS Developer Program](https://developer.apple.com/devcenter/ios/index.action). It requires iOS 8.
-
-**Theseus currently makes use of new iOS 8 APIs that (as of iOS 8 beta 2) aren't 100% usable yet. As such, you may not find it particularly useful at this time.**
 
 1. Clone this git repo: `git clone git@github.com:lazerwalker/Theseus.git`
 
